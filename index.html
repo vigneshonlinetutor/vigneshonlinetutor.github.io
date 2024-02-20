@@ -213,8 +213,8 @@
     
             // Iterate through image filenames
             imageFiles.forEach((imageFile, index) => {
-                // Create a new row after every third image or at the start
-                if (index % 3 === 0) {
+                // Create a new row after every pair of images or at the start
+                if (index % 2 === 0) {
                     rowDiv = document.createElement('div');
                     rowDiv.classList.add('row');
                     reviewsDiv.appendChild(rowDiv);
@@ -234,7 +234,7 @@
     
                 // Creating div to contain the image
                 const imgDiv = document.createElement('div');
-                imgDiv.classList.add('col-md-4', 'mb-5', 'wow', 'fadeInUp');
+                imgDiv.classList.add('col-md-6', 'mb-5', 'wow', 'fadeInUp'); // Adjusted to col-md-6 for two images per row
                 imgDiv.setAttribute('data-wow-delay', '0.0s');
                 imgDiv.appendChild(imgElement);
     
@@ -246,6 +246,7 @@
         // Call the function to fetch and display review images
         fetchReviewImages();
     </script>
+    
     
        
     <!-- Training End -->

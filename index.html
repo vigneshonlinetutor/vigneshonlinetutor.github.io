@@ -59,7 +59,8 @@
                             <p></p>
                             <!-- <h1>Vignesh</h1> -->
                             <h2></h2>
-                            <div class="typed-text">Udemy Instructor, Online Trainer, Corporate Trainer, Senior Automation Engineer, Automation Enthusiast</div>
+                            <div class="typed-text">Udemy Instructor, Online Trainer, Corporate Trainer, Senior
+                                Automation Engineer, Automation Enthusiast</div>
                         </div>
                     </div>
                 </div>
@@ -114,8 +115,13 @@
             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
                 <h2>DISCOUNTED ONLINE COURSES</h2>
             </div>
-            <div class="row" id="online-courses">
+            <div class="row" id="online-courses"></div>
+        </div>
+        <div class="container reviews">
+            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                <h2>REVIEWS</h2>
             </div>
+            <div class="row" id="reviews">
             </div>
         </div>
         <div class="container offline-training">
@@ -140,6 +146,8 @@
             </div>
         </div>
     </div>
+    </div>
+    </div>
     <script>
         // Fetching online course links from courses.json
         fetch('courses.json')
@@ -149,26 +157,26 @@
                 Object.entries(data).forEach(course => {
                     const courseLink = course[1];
                     const courseName = course[0];
-    
+
                     const colDiv = document.createElement('div');
                     colDiv.classList.add('col-md-4', 'mb-5', 'wow', 'fadeInUp');
                     colDiv.setAttribute('data-wow-delay', '0.0s');
-    
+
                     const trainingItemDiv = document.createElement('div');
                     trainingItemDiv.classList.add('training-item');
-    
+
                     const trainingImgDiv = document.createElement('div');
                     trainingImgDiv.classList.add('training-img');
-    
+
                     const courseAnchor = document.createElement('a');
                     courseAnchor.href = courseLink;
                     courseAnchor.target = '_blank';
                     courseAnchor.rel = 'noopener noreferrer';
-    
+
                     const courseImg = document.createElement('img');
                     courseImg.src = `img/logo/${courseName}-Logo.png`; // Dynamically set image source
                     courseImg.alt = courseName.charAt(0).toUpperCase() + courseName.slice(1);
-    
+
                     // Append elements
                     courseAnchor.appendChild(courseImg);
                     trainingImgDiv.appendChild(courseAnchor);
@@ -180,7 +188,7 @@
             .catch(error => console.error('Error fetching courses:', error));
     </script>
     <!-- Training End -->
-    
+
     <!-- Footer Start -->
     <div class="footer wow fadeIn" data-wow-delay="0.3s">
         <div class="container-fluid">

@@ -114,47 +114,8 @@
             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
                 <h2>ONLINE COURSES</h2>
             </div>
-            <div class="row">
-                <div class="col-md-4 wow fadeInUp" data-wow-delay="0.0s">
-                    <div class="training-item">
-                        <div class="training-img">
-                            <a href="https://"
-                                target="_blank" rel="noopener noreferrer">
-                                <img src="img\Gatling-Logo-2.png" alt="Gatling">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 wow fadeInUp" data-wow-delay="0.0s">
-                    <div class="training-item">
-                        <div class="training-img">
-                            <a href="https://www.udemy.com/course/master-playwright-docker-cucumber-jenkins/"
-                                target="_blank" rel="noopener noreferrer">
-                                <img src="img/Playwright-Logo.png" alt="Playwright">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 wow fadeInUp" data-wow-delay="0.0s">
-                    <div class="training-item">
-                        <div class="training-img">
-                            <a href="https://www.udemy.com/course/cypress-ultimate-course/" target="_blank"
-                                rel="noopener noreferrer">
-                                <img src="img/Cypress-Logo.png" alt="Cypress">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 wow fadeInUp" data-wow-delay="0.0s">
-                    <div class="training-item">
-                        <div class="training-img">
-                            <a href="https://www.udemy.com/course/selenium-java-dedicated-course-for-advanced-framework-creation/"
-                                target="_blank" rel="noopener noreferrer">
-                                <img src="img/Selenium-Logo.png" alt="Selenium">
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div class="row" id="online-courses">
+            </div>
             </div>
         </div>
         <div class="container offline-training">
@@ -180,6 +141,43 @@
         </div>
     </div>
     <!-- Training End -->
+    <script>
+        // Fetching online course links from courses.json
+        fetch('courses.json')
+            .then(response => response.json())
+            .then(data => {
+                const onlineCoursesDiv = document.getElementById('online-courses');
+                Object.keys(data).forEach(course => {
+                    const courseLink = data[course];
+                    const colDiv = document.createElement('div');
+                    colDiv.classList.add('col-md-4', 'wow', 'fadeInUp');
+                    colDiv.setAttribute('data-wow-delay', '0.0s');
+    
+                    const trainingItemDiv = document.createElement('div');
+                    trainingItemDiv.classList.add('training-item');
+    
+                    const trainingImgDiv = document.createElement('div');
+                    trainingImgDiv.classList.add('training-img');
+    
+                    const courseAnchor = document.createElement('a');
+                    courseAnchor.href = courseLink;
+                    courseAnchor.target = '_blank';
+                    courseAnchor.rel = 'noopener noreferrer';
+    
+                    const courseImg = document.createElement('img');
+                    courseImg.src = `img/${course}-Logo.png`; // Dynamically set image source
+                    courseImg.alt = course.charAt(0).toUpperCase() + course.slice(1);
+    
+                    // Append elements
+                    courseAnchor.appendChild(courseImg);
+                    trainingImgDiv.appendChild(courseAnchor);
+                    trainingItemDiv.appendChild(trainingImgDiv);
+                    colDiv.appendChild(trainingItemDiv);
+                    onlineCoursesDiv.appendChild(colDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching courses:', error));
+    </script>
 
     <!-- Footer Start -->
     <div class="footer wow fadeIn" data-wow-delay="0.3s">

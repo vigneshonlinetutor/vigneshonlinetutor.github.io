@@ -187,6 +187,67 @@
             })
             .catch(error => console.error('Error fetching courses:', error));
     </script>
+    <script>
+        // Function to fetch review images
+        function fetchReviewImages() {
+            const reviewsDiv = document.getElementById('reviews');
+            const reviewsFolderPath = 'img/review/';
+    
+            // Image filenames
+            const imageFiles = [
+                'Cypress-BestSeller.png',
+                'Playwright-BestSeller.png',
+                'Cypress-Review-1.png',
+                'Cypress-Review-2.png',
+                'Cypress-Review-3.png',
+                'Cypress-Review-4.png',
+                'Playwright-Review-1.png',
+                'Playwright-Review-2.png',
+                'Playwright-Review-3.png',
+                'Playwright-Review-4.png'
+                // Add other image filenames here
+            ];
+    
+            // Create a new row container
+            let rowDiv;
+    
+            // Iterate through image filenames
+            imageFiles.forEach((imageFile, index) => {
+                // Create a new row after every third image or at the start
+                if (index % 3 === 0) {
+                    rowDiv = document.createElement('div');
+                    rowDiv.classList.add('row');
+                    reviewsDiv.appendChild(rowDiv);
+                }
+    
+                // Construct image source path
+                const imgSrc = reviewsFolderPath + imageFile;
+                const imgAlt = imageFile.split('.')[0]; // Extract filename without extension
+    
+                // Creating image element
+                const imgElement = document.createElement('img');
+                imgElement.src = imgSrc;
+                imgElement.alt = imgAlt;
+    
+                // Apply inline styles for consistent sizing
+                imgElement.style.maxWidth = '100%'; // Set maximum width to 100%
+    
+                // Creating div to contain the image
+                const imgDiv = document.createElement('div');
+                imgDiv.classList.add('col-md-4', 'mb-5', 'wow', 'fadeInUp');
+                imgDiv.setAttribute('data-wow-delay', '0.0s');
+                imgDiv.appendChild(imgElement);
+    
+                // Appending image div to row
+                rowDiv.appendChild(imgDiv);
+            });
+        }
+    
+        // Call the function to fetch and display review images
+        fetchReviewImages();
+    </script>
+    
+       
     <!-- Training End -->
 
     <!-- Footer Start -->

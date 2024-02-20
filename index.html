@@ -28,19 +28,13 @@
 
 <body data-spy="scroll" data-target=".navbar" data-offset="51">
     <!-- Nav Bar Start -->
-
     <div class="navbar navbar-expand-lg bg-light navbar-light">
-
         <div>
             <a href="index.html" class="navbar-brand">
                 <img src="img/displayPicture/Viki-DP.jpg" alt="Vignesh Srinivasa Raghavan">
             </a>
         </div>
-
         <div class="container-fluid">
-            <!-- Updated Navbar Brand with Circular Image -->
-
-
             <a href="index.html" class="navbar-brand">Vignesh Srinivasa Raghavan</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -192,7 +186,7 @@
         function fetchReviewImages() {
             const reviewsDiv = document.getElementById('reviews');
             const reviewsFolderPath = 'img/review/';
-    
+
             // Image filenames
             const imageFiles = [
                 'Cypress-BestSeller.png',
@@ -207,10 +201,10 @@
                 'Playwright-Review-4.png'
                 // Add other image filenames here
             ];
-    
+
             // Create a new row container
             let rowDiv;
-    
+
             // Iterate through image filenames
             imageFiles.forEach((imageFile, index) => {
                 // Create a new row after every pair of images or at the start
@@ -219,36 +213,60 @@
                     rowDiv.classList.add('row');
                     reviewsDiv.appendChild(rowDiv);
                 }
-    
+
                 // Construct image source path
                 const imgSrc = reviewsFolderPath + imageFile;
                 const imgAlt = imageFile.split('.')[0]; // Extract filename without extension
-    
+
                 // Creating image element
                 const imgElement = document.createElement('img');
                 imgElement.src = imgSrc;
                 imgElement.alt = imgAlt;
-    
+
                 // Apply inline styles for consistent sizing
                 imgElement.style.maxWidth = '100%'; // Set maximum width to 100%
-    
+                imgElement.style.cursor = 'pointer'; // Add cursor pointer
+
                 // Creating div to contain the image
                 const imgDiv = document.createElement('div');
                 imgDiv.classList.add('col-md-6', 'mb-5', 'wow', 'fadeInUp'); // Adjusted to col-md-6 for two images per row
                 imgDiv.setAttribute('data-wow-delay', '0.0s');
-                imgDiv.appendChild(imgElement);
-    
+
+                // Add click event listener to maximize image
+                imgElement.addEventListener('click', function () {
+                    const modal = document.createElement('div');
+                    modal.classList.add('modal', 'd-flex', 'align-items-center', 'justify-content-center');
+                    modal.innerHTML = `
+                        <div class="modal-content">
+                            <span class="close-btn">&times;</span>
+                            <img src="${imgSrc}" alt="${imgAlt}" style="width: 80%; height: auto;">
+                        </div>
+                    `;
+                    document.body.appendChild(modal);
+
+                    // Close modal when clicking on close button
+                    modal.querySelector('.close-btn').addEventListener('click', function () {
+                        modal.remove();
+                    });
+
+                    // Close modal when pressing ESC key
+                    document.addEventListener('keydown', function (e) {
+                        if (e.key === 'Escape') {
+                            modal.remove();
+                        }
+                    });
+                });
+
                 // Appending image div to row
+                imgDiv.appendChild(imgElement);
                 rowDiv.appendChild(imgDiv);
             });
         }
-    
+
         // Call the function to fetch and display review images
         fetchReviewImages();
     </script>
-    
-    
-       
+
     <!-- Training End -->
 
     <!-- Footer Start -->
@@ -256,9 +274,6 @@
         <div class="container-fluid">
             <div class="container">
                 <div class="footer-info">
-                    <!--                     <div class="footer-menu">
-                        <p class="fas fa-mobile-alt"><i></i> +91 98866-76363</p>
-                    </div> -->
                     <div class="footer-menu">
                         <p><i class="far fa-envelope"></i> <a class="mail"
                                 href="mailto:vigneshonlinetutor@gmail.com">vigneshonlinetutor@gmail.com
@@ -268,8 +283,6 @@
             </div>
             <div class="container copyright">
                 <p>&copy; <a href="#">Vignesh S</a>, All Right Reserved |
-
-                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
                     Designed By <a href="https://htmlcodex.com">HTML Codex</a>
                 </p>
             </div>
@@ -277,16 +290,13 @@
     </div>
     <!-- Footer End -->
 
-
     <!-- Back to top button -->
     <a href="#" class="btn back-to-top"><i class="fa fa-chevron-up"></i></a>
-
 
     <!-- Pre Loader -->
     <div id="loader" class="show">
         <div class="loader"></div>
     </div>
-
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

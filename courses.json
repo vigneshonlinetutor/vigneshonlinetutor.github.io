@@ -1,6 +1,6 @@
 {
-    "gatling": "https://www.google.com",
-    "cypress": "https://www.udemy.com/course/cypress-ultimate-course/?couponCode=25C0261C15FBBA38DE51",
-    "playwright": "https://www.udemy.com/course/master-playwright-docker-cucumber-jenkins/?couponCode=C5DB01E84EB093FC5C4C",
-    "selenium": "https://www.udemy.com/course/selenium-java-dedicated-course-for-advanced-framework-creation/?couponCode=393A4343FDCFD9E34B9E"
+    "gatling": "https://www.udemy.com/course/gatling-performance-testing-with-scala-jenkins/?referralCode=5730D5564DDD1A03E21F",
+    "cypress": "https://www.udemy.com/course/cypress-ultimate-course/?referralCode=FD50FE8BDC65F489AD5F",
+    "playwright": "https://www.udemy.com/course/master-playwright-docker-cucumber-jenkins/?referralCode=1ED6DDC9B89908E9C020",
+    "selenium": "https://www.udemy.com/course/selenium-java-dedicated-course-for-advanced-framework-creation/?referralCode=707AF00A78983797EA06"
 }

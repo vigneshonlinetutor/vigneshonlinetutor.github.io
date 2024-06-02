@@ -51,17 +51,33 @@
 
 <body data-spy="scroll" data-target=".navbar" data-offset="51">
     <!-- Nav Bar Start -->
+
     <div class="navbar navbar-expand-lg bg-light navbar-light">
+
         <div>
             <a href="index.html" class="navbar-brand">
                 <img src="img/displayPicture/Viki-DP.jpg" alt="Vignesh Srinivasa Raghavan">
             </a>
         </div>
+
         <div class="container-fluid">
+            <!-- Updated Navbar Brand with Circular Image -->
+
+
             <a href="index.html" class="navbar-brand">Vignesh Srinivasa Raghavan</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav ml-auto">
+                    <a href="https://www.linkedin.com/in/vignesh-srinivasa-raghavan/"
+                        class="fab fa-linkedin-in nav-item nav-link" target="_blank" rel="noopener noreferrer"></a>
+                    <a href="https://www.udemy.com/user/vignesh-2698/" class="fab fa-udemy nav-item nav-link"
+                        target="_blank" rel="noopener noreferrer">Udemy-Profile</a>
+
+                </div>
+            </div>
         </div>
     </div>
     <!-- Nav Bar End -->
@@ -76,8 +92,7 @@
                             <p></p>
                             <!-- <h1>Vignesh</h1> -->
                             <h2></h2>
-                            <div class="typed-text">Udemy Instructor, Online Trainer, Corporate Trainer, Senior
-                                Automation Engineer, Automation Enthusiast</div>
+                            <div class="typed-text">Senior Automation Engineer , Udemy Instructor, Online Trainer, Corporate Trainer, Automation Enthusiast</div>
                         </div>
                     </div>
                 </div>
@@ -94,7 +109,7 @@
         }
 
         .offline-training {
-            padding-top: 60px;
+            padding-top: 1px;
             /* Adjust the value based on your preference */
         }
 
@@ -126,19 +141,25 @@
             color: #f0f0f0;
             /* Dark white color for the text */
         }
+        .section-description {
+    font-style: italic; /* Example text style */
+}
+
     </style>
     <div class="training" id="training">
         <div class="container online-training">
             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s" data-target="#online-courses">
-                <h2>DISCOUNTED ONLINE COURSES</h2>
-            </div>
+                <h2>DISCOUNTED UDEMY COURSES</h2>
+                <h5 class="section-description">Make sure to complete payment via clicking on corresponding course link to avail complete discount</h5>
+            </div>            
             <div class="row content-section" id="online-courses">
                 <!-- Online courses content here -->
             </div>
         </div>
         <div class="container offline-training">
             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s" data-target="#offline-trainings">
-                <h2>OFFLINE TRAININGS</h2>
+                <h2>CORPORATE / LIVE TRAININGS</h2>
+                <h5 class="section-description">LIVE demo trainings to Corporate Organisations/ Training Institutes / Indivuduals who seek to enhance their career</h5>
             </div>
             <div class="row content-section" id="offline-trainings">
                 <div class="offline-training-list text-center">
@@ -160,9 +181,59 @@
         <div class="container reviews">
             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s" data-target="#reviews">
                 <h2>REVIEWS</h2>
+                <h5 class="section-description">Satisfied students reviews</h5>
             </div>
             <div class="row content-section" id="reviews">
                 <!-- Reviews content here -->
+            </div>
+        </div>
+        <div class="container aboutMe">
+            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s" data-target="#about">
+                <h2>ABOUT ME</h2>
+            </div>
+            <div class="row content-section" id="about">
+                <p>
+                    Senior QA Automation Engineer with <strong>9+ years</strong> of experience. I've honed my craft
+                    as a Software
+                    Quality Engineer, specializing in Agile Testing methodologies, both Automation & Manual, while
+                    excelling in devising robust Test Strategies, Test plan and steering execution with finesse.
+                </p>
+                <h5>Roles And Responsibilities</h5>
+                <ul>
+                    <li> Proficient in Web & Mobile Automation, API Testing, and Performance Testing. Leveraging a
+                        diverse tech stack, I've demonstrated prowess in employing cutting-edge tools to optimize
+                        efficiency and accuracy.
+                    </li>
+                    <li> Adept in Modern Web UI Automation using Cypress and Playwright, with a track record of
+                        creating sophisticated frameworks that elevate testing efficiency to unprecedented levels.
+                    </li>
+                    <li> Extensive hands-on experience with Selenium WebDriver, TestNG, Java, and Maven for Selenium
+                        Automation.
+                    </li>
+                    <li> Proficiency extends to Appium and Test Cafe for Mobile automation across Android & iOS
+                        platforms.
+                    </li>
+                    <li> Extensive hands-on experience with Rest Assured to ensure seamless API Automation.
+                    </li>
+                    <li> Well-versed in critical infrastructure tools such as Docker & Kubernetes, leveraging them
+                        to streamline testing processes and optimize resource allocation.
+                    </li>
+                    <li> Adept in Test-Driven Development (TDD) and Behavior Driven Development (BDD).
+                    </li>
+                    <li> Strong skills in conducting comprehensive Database testing through SQL queries and MongoDB,
+                        ensuring data integrity and system robustness.
+                    </li>
+                    <li> Extensive experience in Load/Performance Testing using Gatling & JMeter, ensuring
+                        applications withstand real-world demands and perform optimally under stress.
+                    </li>
+                    <li> Actively engaged as an Online/Offline Trainer, specializing in Playwright, Cypress,
+                        Selenium, Appium, Java, JavaScript, etc. Sharing knowledge and expertise to mentor and
+                        empower teams.
+                    </li>
+                    <li> Recognized as an accomplished Udemy Instructor with published courses on Playwright,
+                        Cypress & Selenium, attracting over 1500+ students.
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -187,23 +258,26 @@
 
         // Fetching online course links from courses.json
         fetch('courses.json')
-            .then(response => response.json())
-            .then(data => {
-                const onlineCoursesDiv = document.getElementById('online-courses');
-                let rowDiv;
+    .then(response => response.json())
+    .then(data => {
+        const onlineCoursesDiv = document.getElementById('online-courses');
+        let rowDiv;
 
-                Object.entries(data).forEach((course, index) => {
-                    if (index % 2 === 0) {
-                        rowDiv = document.createElement('div');
-                        rowDiv.classList.add('row');
-                        onlineCoursesDiv.appendChild(rowDiv);
-                    }
+        let coursesArray = Object.entries(data);
+        let rowCourses = [];
+        coursesArray.forEach((course, index) => {
+            rowCourses.push(course);
+            if ((index + 1) % 3 === 0 || index === coursesArray.length - 1) {
+                rowDiv = document.createElement('div');
+                rowDiv.classList.add('row');
+                onlineCoursesDiv.appendChild(rowDiv);
 
+                rowCourses.forEach(course => {
                     const courseLink = course[1];
                     const courseName = course[0];
 
                     const colDiv = document.createElement('div');
-                    colDiv.classList.add('col-md-6', 'mb-5', 'wow', 'fadeInUp');
+                    colDiv.classList.add('col-md-4', 'mb-5', 'wow', 'fadeInUp');
                     colDiv.setAttribute('data-wow-delay', '0.0s');
 
                     const trainingItemDiv = document.createElement('div');
@@ -228,8 +302,12 @@
                     colDiv.appendChild(trainingItemDiv);
                     rowDiv.appendChild(colDiv);
                 });
-            })
-            .catch(error => console.error('Error fetching courses:', error));
+
+                rowCourses = [];
+            }
+        });
+    })
+    .catch(error => console.error('Error fetching courses:', error));
 
         // Function to fetch review images
         function fetchReviewImages() {
@@ -308,13 +386,26 @@
         <div class="container-fluid">
             <div class="container">
                 <div class="footer-info">
+                    <h2>Vignesh Srinivasa Raghavan</h2>
+                    <!--                     <div class="footer-menu">
+                        <p class="fas fa-mobile-alt"><i></i> +91 98866-76363</p>
+                    </div> -->
                     <div class="footer-menu">
-                        <p><i class="far fa-envelope"></i> <a class="mail" href="mailto:vigneshonlinetutor@gmail.com">vigneshonlinetutor@gmail.com</a></p>
+                        <p><i class="far fa-envelope"></i> <a class="mail"
+                                href="mailto:vigneshonlinetutor@gmail.com">vigneshonlinetutor@gmail.com
+                            </a></p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/vignesh-srinivasa-raghavan/" target="_blank"
+                            rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
             <div class="container copyright">
-                <p>&copy; <a href="#">Vignesh S</a>, All Right Reserved | Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+                <p>&copy; <a href="#">Vignesh S</a>, All Right Reserved |
+
+                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                    Designed By <a href="https://htmlcodex.com">HTML Codex</a>
                 </p>
             </div>
         </div>

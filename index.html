@@ -12,8 +12,7 @@
     <link href="img/favicon.ico" rel="icon">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- CSS Libraries -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -24,6 +23,30 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        .content-section {
+            display: none;
+        }
+
+        .section-header {
+            cursor: pointer;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .section-header:hover {
+            background-color: #e2e6ea;
+        }
+
+        .section-header.active {
+            background-color: #e2e6ea;
+        }
+    </style>
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="51">
@@ -106,23 +129,18 @@
     </style>
     <div class="training" id="training">
         <div class="container online-training">
-            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s" data-target="#online-courses">
                 <h2>DISCOUNTED ONLINE COURSES</h2>
             </div>
-            <div class="row" id="online-courses"></div>
-        </div>
-        <div class="container reviews">
-            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
-                <h2>REVIEWS</h2>
-            </div>
-            <div class="row" id="reviews">
+            <div class="row content-section" id="online-courses">
+                <!-- Online courses content here -->
             </div>
         </div>
         <div class="container offline-training">
-            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s" data-target="#offline-trainings">
                 <h2>OFFLINE TRAININGS</h2>
             </div>
-            <div class="row">
+            <div class="row content-section" id="offline-trainings">
                 <div class="offline-training-list text-center">
                     <ul>
                         <li>Manual QE to SDET Roadmap</li>
@@ -139,21 +157,53 @@
                 </div>
             </div>
         </div>
+        <div class="container reviews">
+            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s" data-target="#reviews">
+                <h2>REVIEWS</h2>
+            </div>
+            <div class="row content-section" id="reviews">
+                <!-- Reviews content here -->
+            </div>
+        </div>
     </div>
-    </div>
-    </div>
+
     <script>
+        // JavaScript for handling the collapsible sections
+        document.querySelectorAll('.section-header').forEach(header => {
+            header.addEventListener('click', function () {
+                const contentSection = document.querySelector(this.getAttribute('data-target'));
+                const isActive = contentSection.style.display === 'block';
+                
+                // Toggle display
+                contentSection.style.display = isActive ? 'none' : 'block';
+
+                // Toggle active class
+                document.querySelectorAll('.section-header').forEach(h => h.classList.remove('active'));
+                if (!isActive) {
+                    this.classList.add('active');
+                }
+            });
+        });
+
         // Fetching online course links from courses.json
         fetch('courses.json')
             .then(response => response.json())
             .then(data => {
                 const onlineCoursesDiv = document.getElementById('online-courses');
-                Object.entries(data).forEach(course => {
+                let rowDiv;
+
+                Object.entries(data).forEach((course, index) => {
+                    if (index % 2 === 0) {
+                        rowDiv = document.createElement('div');
+                        rowDiv.classList.add('row');
+                        onlineCoursesDiv.appendChild(rowDiv);
+                    }
+
                     const courseLink = course[1];
                     const courseName = course[0];
 
                     const colDiv = document.createElement('div');
-                    colDiv.classList.add('col-md-4', 'mb-5', 'wow', 'fadeInUp');
+                    colDiv.classList.add('col-md-6', 'mb-5', 'wow', 'fadeInUp');
                     colDiv.setAttribute('data-wow-delay', '0.0s');
 
                     const trainingItemDiv = document.createElement('div');
@@ -176,12 +226,11 @@
                     trainingImgDiv.appendChild(courseAnchor);
                     trainingItemDiv.appendChild(trainingImgDiv);
                     colDiv.appendChild(trainingItemDiv);
-                    onlineCoursesDiv.appendChild(colDiv);
+                    rowDiv.appendChild(colDiv);
                 });
             })
             .catch(error => console.error('Error fetching courses:', error));
-    </script>
-    <script>
+
         // Function to fetch review images
         function fetchReviewImages() {
             const reviewsDiv = document.getElementById('reviews');
@@ -196,43 +245,32 @@
                 'Cypress-Review-3.png',
                 'Cypress-Review-4.png',
                 'Playwright-Review-1.png',
-                'Playwright-Review-2.png',
-                'Playwright-Review-3.png',
-                'Playwright-Review-4.png'
-                // Add other image filenames here
+                'Playwright-Review-2.png'
             ];
 
-            // Create a new row container
             let rowDiv;
 
-            // Iterate through image filenames
             imageFiles.forEach((imageFile, index) => {
-                // Create a new row after every pair of images or at the start
                 if (index % 2 === 0) {
                     rowDiv = document.createElement('div');
                     rowDiv.classList.add('row');
                     reviewsDiv.appendChild(rowDiv);
                 }
 
-                // Construct image source path
                 const imgSrc = reviewsFolderPath + imageFile;
-                const imgAlt = imageFile.split('.')[0]; // Extract filename without extension
+                const imgAlt = imageFile.split('.')[0];
 
-                // Creating image element
                 const imgElement = document.createElement('img');
                 imgElement.src = imgSrc;
                 imgElement.alt = imgAlt;
 
-                // Apply inline styles for consistent sizing
-                imgElement.style.maxWidth = '100%'; // Set maximum width to 100%
-                imgElement.style.cursor = 'pointer'; // Add cursor pointer
+                imgElement.style.maxWidth = '100%';
+                imgElement.style.cursor = 'pointer';
 
-                // Creating div to contain the image
                 const imgDiv = document.createElement('div');
-                imgDiv.classList.add('col-md-6', 'mb-5', 'wow', 'fadeInUp'); // Adjusted to col-md-6 for two images per row
+                imgDiv.classList.add('col-md-6', 'mb-5', 'wow', 'fadeInUp');
                 imgDiv.setAttribute('data-wow-delay', '0.0s');
 
-                // Add click event listener to maximize image
                 imgElement.addEventListener('click', function () {
                     const modal = document.createElement('div');
                     modal.classList.add('modal', 'd-flex', 'align-items-center', 'justify-content-center');
@@ -244,12 +282,10 @@
                     `;
                     document.body.appendChild(modal);
 
-                    // Close modal when clicking on close button
                     modal.querySelector('.close-btn').addEventListener('click', function () {
                         modal.remove();
                     });
 
-                    // Close modal when pressing ESC key
                     document.addEventListener('keydown', function (e) {
                         if (e.key === 'Escape') {
                             modal.remove();
@@ -257,13 +293,11 @@
                     });
                 });
 
-                // Appending image div to row
                 imgDiv.appendChild(imgElement);
                 rowDiv.appendChild(imgDiv);
             });
         }
 
-        // Call the function to fetch and display review images
         fetchReviewImages();
     </script>
 
@@ -275,15 +309,12 @@
             <div class="container">
                 <div class="footer-info">
                     <div class="footer-menu">
-                        <p><i class="far fa-envelope"></i> <a class="mail"
-                                href="mailto:vigneshonlinetutor@gmail.com">vigneshonlinetutor@gmail.com
-                            </a></p>
+                        <p><i class="far fa-envelope"></i> <a class="mail" href="mailto:vigneshonlinetutor@gmail.com">vigneshonlinetutor@gmail.com</a></p>
                     </div>
                 </div>
             </div>
             <div class="container copyright">
-                <p>&copy; <a href="#">Vignesh S</a>, All Right Reserved |
-                    Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+                <p>&copy; <a href="#">Vignesh S</a>, All Right Reserved | Designed By <a href="https://htmlcodex.com">HTML Codex</a>
                 </p>
             </div>
         </div>

@@ -242,8 +242,164 @@
                                     <input type="text" class="form-control" id="company" name="company">
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="phone" class="form-label font-weight-500">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phone" name="phone">
+                                    <label for="whatsapp" class="form-label font-weight-500">
+                                        WhatsApp Number * 
+                                        <i class="fas fa-info-circle text-info ml-1" 
+                                           data-toggle="tooltip" 
+                                           data-placement="top" 
+                                           title="I will contact you via WhatsApp to discuss training requirements and schedule your preferred session"></i>
+                                    </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend" style="flex: 0 0 auto; width: 35%;">
+                                            <select class="form-control" id="countryCode" name="countryCode" style="width: 100%; border-right: 0;">
+                                                <option value="+93" data-flag="🇦🇫" data-country="Afghanistan">🇦🇫 Afghanistan +93</option>
+                                                <option value="+355" data-flag="🇦🇱" data-country="Albania">🇦🇱 Albania +355</option>
+                                                <option value="+213" data-flag="🇩🇿" data-country="Algeria">🇩🇿 Algeria +213</option>
+                                                <option value="+376" data-flag="🇦🇩" data-country="Andorra">🇦🇩 Andorra +376</option>
+                                                <option value="+1268" data-flag="🇦🇬" data-country="Antigua & Barbuda">🇦🇬 Antigua & Barbuda +1268</option>
+                                                <option value="+54" data-flag="🇦🇷" data-country="Argentina">🇦🇷 Argentina +54</option>
+                                                <option value="+374" data-flag="🇦🇲" data-country="Armenia">🇦🇲 Armenia +374</option>
+                                                <option value="+61" data-flag="🇦🇺" data-country="Australia">🇦🇺 Australia +61</option>
+                                                <option value="+43" data-flag="🇦🇹" data-country="Austria">🇦🇹 Austria +43</option>
+                                                <option value="+994" data-flag="🇦🇿" data-country="Azerbaijan">🇦🇿 Azerbaijan +994</option>
+                                                <option value="+1242" data-flag="🇧🇸" data-country="Bahamas">🇧🇸 Bahamas +1242</option>
+                                                <option value="+973" data-flag="🇧🇭" data-country="Bahrain">🇧🇭 Bahrain +973</option>
+                                                <option value="+880" data-flag="🇧🇩" data-country="Bangladesh">🇧🇩 Bangladesh +880</option>
+                                                <option value="+1246" data-flag="🇧🇧" data-country="Barbados">🇧🇧 Barbados +1246</option>
+                                                <option value="+375" data-flag="🇧🇾" data-country="Belarus">🇧🇾 Belarus +375</option>
+                                                <option value="+32" data-flag="🇧🇪" data-country="Belgium">🇧🇪 Belgium +32</option>
+                                                <option value="+501" data-flag="🇧🇿" data-country="Belize">🇧🇿 Belize +501</option>
+                                                <option value="+1441" data-flag="🇧🇲" data-country="Bermuda">🇧🇲 Bermuda +1441</option>
+                                                <option value="+975" data-flag="🇧🇹" data-country="Bhutan">🇧🇹 Bhutan +975</option>
+                                                <option value="+591" data-flag="🇧🇴" data-country="Bolivia">🇧🇴 Bolivia +591</option>
+                                                <option value="+387" data-flag="🇧🇦" data-country="Bosnia & Herzegovina">🇧🇦 Bosnia & Herzegovina +387</option>
+                                                <option value="+55" data-flag="🇧🇷" data-country="Brazil">🇧🇷 Brazil +55</option>
+                                                <option value="+1284" data-flag="🇻🇬" data-country="British Virgin Islands">🇻🇬 British Virgin Islands +1284</option>
+                                                <option value="+673" data-flag="🇧🇳" data-country="Brunei">🇧🇳 Brunei +673</option>
+                                                <option value="+359" data-flag="🇧🇬" data-country="Bulgaria">🇧🇬 Bulgaria +359</option>
+                                                <option value="+855" data-flag="🇰🇭" data-country="Cambodia">🇰🇭 Cambodia +855</option>
+                                                <option value="+1" data-flag="🇺🇸" data-country="Canada">🇺🇸 Canada +1</option>
+                                                <option value="+1345" data-flag="🇰🇾" data-country="Cayman Islands">🇰🇾 Cayman Islands +1345</option>
+                                                <option value="+56" data-flag="🇨🇱" data-country="Chile">🇨🇱 Chile +56</option>
+                                                <option value="+86" data-flag="🇨🇳" data-country="China">🇨🇳 China +86</option>
+                                                <option value="+57" data-flag="🇨🇴" data-country="Colombia">🇨🇴 Colombia +57</option>
+                                                <option value="+506" data-flag="🇨🇷" data-country="Costa Rica">🇨🇷 Costa Rica +506</option>
+                                                <option value="+385" data-flag="🇭🇷" data-country="Croatia">🇭🇷 Croatia +385</option>
+                                                <option value="+53" data-flag="🇨🇺" data-country="Cuba">🇨🇺 Cuba +53</option>
+                                                <option value="+420" data-flag="🇨🇿" data-country="Czech Republic">🇨🇿 Czech Republic +420</option>
+                                                <option value="+45" data-flag="🇩🇰" data-country="Denmark">🇩🇰 Denmark +45</option>
+                                                <option value="+1809" data-flag="🇩🇴" data-country="Dominican Republic">🇩🇴 Dominican Republic +1809</option>
+                                                <option value="+593" data-flag="🇪🇨" data-country="Ecuador">🇪🇨 Ecuador +593</option>
+                                                <option value="+20" data-flag="🇪🇬" data-country="Egypt">🇪🇬 Egypt +20</option>
+                                                <option value="+503" data-flag="🇸🇻" data-country="El Salvador">🇸🇻 El Salvador +503</option>
+                                                <option value="+372" data-flag="🇪🇪" data-country="Estonia">🇪🇪 Estonia +372</option>
+                                                <option value="+679" data-flag="🇫🇯" data-country="Fiji">🇫🇯 Fiji +679</option>
+                                                <option value="+358" data-flag="🇫🇮" data-country="Finland">🇫🇮 Finland +358</option>
+                                                <option value="+33" data-flag="🇫🇷" data-country="France">🇫🇷 France +33</option>
+                                                <option value="+594" data-flag="🇬🇫" data-country="French Guiana">🇬🇫 French Guiana +594</option>
+                                                <option value="+689" data-flag="🇵🇫" data-country="French Polynesia">🇵🇫 French Polynesia +689</option>
+                                                <option value="+995" data-flag="🇬🇪" data-country="Georgia">🇬🇪 Georgia +995</option>
+                                                <option value="+49" data-flag="🇩🇪" data-country="Germany">🇩🇪 Germany +49</option>
+                                                <option value="+233" data-flag="🇬🇭" data-country="Ghana">🇬🇭 Ghana +233</option>
+                                                <option value="+30" data-flag="🇬🇷" data-country="Greece">🇬🇷 Greece +30</option>
+                                                <option value="+299" data-flag="🇬🇱" data-country="Greenland">🇬🇱 Greenland +299</option>
+                                                <option value="+1473" data-flag="🇬🇩" data-country="Grenada">🇬🇩 Grenada +1473</option>
+                                                <option value="+590" data-flag="🇬🇵" data-country="Guadeloupe">🇬🇵 Guadeloupe +590</option>
+                                                <option value="+502" data-flag="🇬🇹" data-country="Guatemala">🇬🇹 Guatemala +502</option>
+                                                <option value="+592" data-flag="🇬🇾" data-country="Guyana">🇬🇾 Guyana +592</option>
+                                                <option value="+509" data-flag="🇭🇹" data-country="Haiti">🇭🇹 Haiti +509</option>
+                                                <option value="+504" data-flag="🇭🇳" data-country="Honduras">🇭🇳 Honduras +504</option>
+                                                <option value="+36" data-flag="🇭🇺" data-country="Hungary">🇭🇺 Hungary +36</option>
+                                                <option value="+354" data-flag="🇮🇸" data-country="Iceland">🇮🇸 Iceland +354</option>
+                                                <option value="+91" data-flag="🇮🇳" data-country="India" selected>🇮🇳 India +91</option>
+                                                <option value="+62" data-flag="🇮🇩" data-country="Indonesia">🇮🇩 Indonesia +62</option>
+                                                <option value="+98" data-flag="🇮🇷" data-country="Iran">🇮🇷 Iran +98</option>
+                                                <option value="+964" data-flag="🇮🇶" data-country="Iraq">🇮🇶 Iraq +964</option>
+                                                <option value="+353" data-flag="🇮🇪" data-country="Ireland">🇮🇪 Ireland +353</option>
+                                                <option value="+972" data-flag="🇮🇱" data-country="Israel">🇮🇱 Israel +972</option>
+                                                <option value="+39" data-flag="🇮🇹" data-country="Italy">🇮🇹 Italy +39</option>
+                                                <option value="+1876" data-flag="🇯🇲" data-country="Jamaica">🇯🇲 Jamaica +1876</option>
+                                                <option value="+81" data-flag="🇯🇵" data-country="Japan">🇯🇵 Japan +81</option>
+                                                <option value="+962" data-flag="🇯🇴" data-country="Jordan">🇯🇴 Jordan +962</option>
+                                                <option value="+254" data-flag="🇰🇪" data-country="Kenya">🇰🇪 Kenya +254</option>
+                                                <option value="+383" data-flag="🇽🇰" data-country="Kosovo">🇽🇰 Kosovo +383</option>
+                                                <option value="+965" data-flag="🇰🇼" data-country="Kuwait">🇰🇼 Kuwait +965</option>
+                                                <option value="+996" data-flag="🇰🇬" data-country="Kyrgyzstan">🇰🇬 Kyrgyzstan +996</option>
+                                                <option value="+856" data-flag="🇱🇦" data-country="Laos">🇱🇦 Laos +856</option>
+                                                <option value="+371" data-flag="🇱🇻" data-country="Latvia">🇱🇻 Latvia +371</option>
+                                                <option value="+961" data-flag="🇱🇧" data-country="Lebanon">🇱🇧 Lebanon +961</option>
+                                                <option value="+370" data-flag="🇱🇹" data-country="Lithuania">🇱🇹 Lithuania +370</option>
+                                                <option value="+352" data-flag="🇱🇺" data-country="Luxembourg">🇱🇺 Luxembourg +352</option>
+                                                <option value="+389" data-flag="🇲🇰" data-country="Macedonia">🇲🇰 Macedonia +389</option>
+                                                <option value="+960" data-flag="🇲🇻" data-country="Maldives">🇲🇻 Maldives +960</option>
+                                                <option value="+60" data-flag="🇲🇾" data-country="Malaysia">🇲🇾 Malaysia +60</option>
+                                                <option value="+596" data-flag="🇲🇶" data-country="Martinique">🇲🇶 Martinique +596</option>
+                                                <option value="+52" data-flag="🇲🇽" data-country="Mexico">🇲🇽 Mexico +52</option>
+                                                <option value="+377" data-flag="🇲🇨" data-country="Monaco">🇲🇨 Monaco +377</option>
+                                                <option value="+382" data-flag="🇲🇪" data-country="Montenegro">🇲🇪 Montenegro +382</option>
+                                                <option value="+212" data-flag="🇲🇦" data-country="Morocco">🇲🇦 Morocco +212</option>
+                                                <option value="+95" data-flag="🇲🇲" data-country="Myanmar">🇲🇲 Myanmar +95</option>
+                                                <option value="+977" data-flag="🇳🇵" data-country="Nepal">🇳🇵 Nepal +977</option>
+                                                <option value="+31" data-flag="🇳🇱" data-country="Netherlands">🇳🇱 Netherlands +31</option>
+                                                <option value="+687" data-flag="🇳🇨" data-country="New Caledonia">🇳🇨 New Caledonia +687</option>
+                                                <option value="+64" data-flag="🇳🇿" data-country="New Zealand">🇳🇿 New Zealand +64</option>
+                                                <option value="+505" data-flag="🇳🇮" data-country="Nicaragua">🇳🇮 Nicaragua +505</option>
+                                                <option value="+234" data-flag="🇳🇬" data-country="Nigeria">🇳🇬 Nigeria +234</option>
+                                                <option value="+47" data-flag="🇳🇴" data-country="Norway">🇳🇴 Norway +47</option>
+                                                <option value="+968" data-flag="🇴🇲" data-country="Oman">🇴🇲 Oman +968</option>
+                                                <option value="+92" data-flag="🇵🇰" data-country="Pakistan">🇵🇰 Pakistan +92</option>
+                                                <option value="+507" data-flag="🇵🇦" data-country="Panama">🇵🇦 Panama +507</option>
+                                                <option value="+595" data-flag="🇵🇾" data-country="Paraguay">🇵🇾 Paraguay +595</option>
+                                                <option value="+51" data-flag="🇵🇪" data-country="Peru">🇵🇪 Peru +51</option>
+                                                <option value="+63" data-flag="🇵🇭" data-country="Philippines">🇵🇭 Philippines +63</option>
+                                                <option value="+48" data-flag="🇵🇱" data-country="Poland">🇵🇱 Poland +48</option>
+                                                <option value="+351" data-flag="🇵🇹" data-country="Portugal">🇵🇹 Portugal +351</option>
+                                                <option value="+1787" data-flag="🇵🇷" data-country="Puerto Rico">🇵🇷 Puerto Rico +1787</option>
+                                                <option value="+974" data-flag="🇶🇦" data-country="Qatar">🇶🇦 Qatar +974</option>
+                                                <option value="+40" data-flag="🇷🇴" data-country="Romania">🇷🇴 Romania +40</option>
+                                                <option value="+7" data-flag="🇷🇺" data-country="Russia">🇷🇺 Russia +7</option>
+                                                <option value="+685" data-flag="🇼🇸" data-country="Samoa">🇼🇸 Samoa +685</option>
+                                                <option value="+378" data-flag="🇸🇲" data-country="San Marino">🇸🇲 San Marino +378</option>
+                                                <option value="+966" data-flag="🇸🇦" data-country="Saudi Arabia">🇸🇦 Saudi Arabia +966</option>
+                                                <option value="+381" data-flag="🇷🇸" data-country="Serbia">🇷🇸 Serbia +381</option>
+                                                <option value="+65" data-flag="🇸🇬" data-country="Singapore">🇸🇬 Singapore +65</option>
+                                                <option value="+421" data-flag="🇸🇰" data-country="Slovakia">🇸🇰 Slovakia +421</option>
+                                                <option value="+27" data-flag="🇿🇦" data-country="South Africa">🇿🇦 South Africa +27</option>
+                                                <option value="+82" data-flag="🇰🇷" data-country="South Korea">🇰🇷 South Korea +82</option>
+                                                <option value="+34" data-flag="🇪🇸" data-country="Spain">🇪🇸 Spain +34</option>
+                                                <option value="+94" data-flag="🇱🇰" data-country="Sri Lanka">🇱🇰 Sri Lanka +94</option>
+                                                <option value="+1869" data-flag="🇰🇳" data-country="St Kitts & Nevis">🇰🇳 St Kitts & Nevis +1869</option>
+                                                <option value="+1758" data-flag="🇱🇨" data-country="St Lucia">🇱🇨 St Lucia +1758</option>
+                                                <option value="+1784" data-flag="🇻🇨" data-country="St Vincent & Grenadines">🇻🇨 St Vincent & Grenadines +1784</option>
+                                                <option value="+597" data-flag="🇸🇷" data-country="Suriname">🇸🇷 Suriname +597</option>
+                                                <option value="+46" data-flag="🇸🇪" data-country="Sweden">🇸🇪 Sweden +46</option>
+                                                <option value="+41" data-flag="🇨🇭" data-country="Switzerland">🇨🇭 Switzerland +41</option>
+                                                <option value="+963" data-flag="🇸🇾" data-country="Syria">🇸🇾 Syria +963</option>
+                                                <option value="+992" data-flag="🇹🇯" data-country="Tajikistan">🇹🇯 Tajikistan +992</option>
+                                                <option value="+66" data-flag="🇹🇭" data-country="Thailand">🇹🇭 Thailand +66</option>
+                                                <option value="+676" data-flag="🇹🇴" data-country="Tonga">🇹🇴 Tonga +676</option>
+                                                <option value="+216" data-flag="🇹🇳" data-country="Tunisia">🇹🇳 Tunisia +216</option>
+                                                <option value="+90" data-flag="🇹🇷" data-country="Turkey">🇹🇷 Turkey +90</option>
+                                                <option value="+1649" data-flag="🇹🇨" data-country="Turks & Caicos">🇹🇨 Turks & Caicos +1649</option>
+                                                <option value="+993" data-flag="🇹🇲" data-country="Turkmenistan">🇹🇲 Turkmenistan +993</option>
+                                                <option value="+380" data-flag="🇺🇦" data-country="Ukraine">🇺🇦 Ukraine +380</option>
+                                                <option value="+971" data-flag="🇦🇪" data-country="United Arab Emirates">🇦🇪 United Arab Emirates +971</option>
+                                                <option value="+44" data-flag="🇬🇧" data-country="United Kingdom">🇬🇧 United Kingdom +44</option>
+                                                <option value="+1" data-flag="🇺🇸" data-country="United States">🇺🇸 United States +1</option>
+                                                <option value="+598" data-flag="🇺🇾" data-country="Uruguay">🇺🇾 Uruguay +598</option>
+                                                <option value="+1340" data-flag="🇻🇮" data-country="US Virgin Islands">🇻🇮 US Virgin Islands +1340</option>
+                                                <option value="+998" data-flag="🇺🇿" data-country="Uzbekistan">🇺🇿 Uzbekistan +998</option>
+                                                <option value="+379" data-flag="🇻🇦" data-country="Vatican City">🇻🇦 Vatican City +379</option>
+                                                <option value="+58" data-flag="🇻🇪" data-country="Venezuela">🇻🇪 Venezuela +58</option>
+                                                <option value="+84" data-flag="🇻🇳" data-country="Vietnam">🇻🇳 Vietnam +84</option>
+                                                <option value="+967" data-flag="🇾🇪" data-country="Yemen">🇾🇪 Yemen +967</option>
+                                            </select>
+                                        </div>
+                                        <input type="tel" class="form-control" id="whatsapp" name="whatsapp" 
+                                               placeholder="Enter phone number" required style="border-left: 0; flex: 1; min-width: 0;">
+                                        <input type="hidden" id="fullWhatsApp" name="fullWhatsApp">
+                                    </div>
+                                    <div class="invalid-feedback">Please provide a valid WhatsApp number.</div>
                                 </div>
                             </div>
                             
@@ -257,6 +413,17 @@
                                     <option value="online">Online Group Training</option>
                                 </select>
                                 <div class="invalid-feedback">Please select a training type.</div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="teamSize" class="form-label font-weight-500">Team Size (if applicable)</label>
+                                <select class="form-control" id="teamSize" name="teamSize">
+                                    <option value="">Select Team Size</option>
+                                    <option value="1-5">1-5 people</option>
+                                    <option value="6-15">6-15 people</option>
+                                    <option value="16-30">16-30 people</option>
+                                    <option value="30+">30+ people</option>
+                                </select>
                             </div>
                             
                             <div class="mb-3">
@@ -299,17 +466,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="teamSize" class="form-label font-weight-500">Team Size (if applicable)</label>
-                                <select class="form-control" id="teamSize" name="teamSize">
-                                    <option value="">Select Team Size</option>
-                                    <option value="1-5">1-5 people</option>
-                                    <option value="6-15">6-15 people</option>
-                                    <option value="16-30">16-30 people</option>
-                                    <option value="30+">30+ people</option>
-                                </select>
                             </div>
                             
                             <div class="mb-4">
@@ -383,10 +539,208 @@
     <!-- Interactive Features -->
     <script src="../js/interactive.js"></script>
     
+    <!-- Fix Select Dropdown Styling -->
+    <style>
+    .contact-form select.form-control {
+        height: 48px !important;
+        padding: 12px 40px 12px 15px !important;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e") !important;
+        background-position: right 12px center !important;
+        background-repeat: no-repeat !important;
+        background-size: 16px 12px !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+        cursor: pointer !important;
+    }
+    
+    .contact-form select.form-control:focus {
+        outline: none !important;
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15) !important;
+    }
+    
+    /* Perfect country dropdown styling */
+    #countryCode {
+        position: relative;
+        flex-shrink: 0;
+        min-width: 120px;
+        max-width: 140px;
+        font-size: 14px;
+    }
+    
+    /* Style for better mobile keyboard navigation */
+    #countryCode option {
+        padding: 8px 12px;
+        font-size: 14px;
+        line-height: 1.4;
+        white-space: nowrap;
+    }
+    
+    /* Ensure proper spacing in dropdown */
+    #countryCode option:hover {
+        background-color: var(--primary-color);
+        color: white;
+    }
+    
+    /* Ensure input group displays properly */
+    .input-group {
+        display: flex !important;
+        width: 100% !important;
+    }
+    
+    .input-group-prepend {
+        flex-shrink: 0;
+        width: 35% !important;
+    }
+    
+    /* Phone input takes MORE space (65%) */
+    #whatsapp {
+        flex-grow: 1 !important;
+        min-width: 0 !important;
+        width: 65% !important;
+        font-size: 16px;
+    }
+    </style>
+
     <!-- Interactive Form Handling -->
     <script>
+        // Initialize Bootstrap tooltips
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+        
+        // Advanced validation functions
+        function isValidEmailDomain(email) {
+            const validDomains = [
+                // Common email providers
+                'gmail.com', 'outlook.com', 'hotmail.com', 'yahoo.com', 'icloud.com', 
+                'protonmail.com', 'aol.com', 'live.com', 'msn.com', 'rediffmail.com',
+                // Business domains (common patterns)
+                'company.com', 'corp.com', 'inc.com', 'org.com', 'co.in', 'co.uk', 'com.au',
+                // Tech companies
+                'microsoft.com', 'google.com', 'amazon.com', 'apple.com', 'ibm.com',
+                'oracle.com', 'salesforce.com', 'adobe.com', 'nvidia.com', 'intel.com'
+            ];
+            
+            const domain = email.split('@')[1];
+            if (!domain) return false;
+            
+            // Check exact matches
+            if (validDomains.includes(domain.toLowerCase())) return true;
+            
+            // Check for company domain patterns (at least 4 chars + valid TLD)
+            const domainParts = domain.split('.');
+            if (domainParts.length >= 2) {
+                const tld = domainParts[domainParts.length - 1];
+                const validTlds = ['com', 'org', 'net', 'edu', 'gov', 'mil', 'co', 'in', 'uk', 'au', 'de', 'fr', 'jp'];
+                return validTlds.includes(tld) && domainParts[0].length >= 3;
+            }
+            
+            return false;
+        }
+        
+        function isValidPhonePattern(phone) {
+            // Remove all non-digits
+            const digits = phone.replace(/\D/g, '');
+            
+            // Must be 10-15 digits
+            if (digits.length < 10 || digits.length > 15) return false;
+            
+            // Prevent sequential patterns
+            const sequential = ['1234567890', '0123456789', '9876543210'];
+            if (sequential.some(pattern => digits.includes(pattern))) return false;
+            
+            // Prevent repeated digits (more than 5 same digits)
+            const repeatedDigits = /(\d)\1{5,}/.test(digits);
+            if (repeatedDigits) return false;
+            
+            // Must not be all same digits
+            if (new Set(digits).size <= 2) return false;
+            
+            return true;
+        }
+        
+        // Combine country code and phone number
+        function updateFullWhatsApp() {
+            const countryCode = document.getElementById('countryCode').value;
+            const phoneNumber = document.getElementById('whatsapp').value;
+            document.getElementById('fullWhatsApp').value = countryCode + phoneNumber;
+        }
+        
+        // Update combined number when either field changes
+        document.getElementById('countryCode').addEventListener('change', updateFullWhatsApp);
+        document.getElementById('whatsapp').addEventListener('input', updateFullWhatsApp);
+        
+        // Perfect country dropdown with custom display behavior
+        document.addEventListener('DOMContentLoaded', function() {
+            const select = document.getElementById('countryCode');
+            
+            // Function to update the visual display of the selected option
+            function updateSelectedDisplay() {
+                const selectedOption = select.options[select.selectedIndex];
+                if (selectedOption && selectedOption.value) {
+                    const flag = selectedOption.getAttribute('data-flag');
+                    const code = selectedOption.value;
+                    
+                    // Create a temporary element to hold the compact display
+                    const compactText = `${flag} ${code}`;
+                    
+                    // Store the original full text 
+                    const fullText = selectedOption.textContent;
+                    selectedOption.setAttribute('data-full-text', fullText);
+                    
+                    // Set compact display for the selected value (what user sees when closed)
+                    selectedOption.textContent = compactText;
+                    
+                    // Restore full text for all other options
+                    Array.from(select.options).forEach(option => {
+                        if (option !== selectedOption && option.getAttribute('data-full-text')) {
+                            option.textContent = option.getAttribute('data-full-text');
+                        }
+                    });
+                }
+            }
+            
+            // Store original full text for all options first
+            Array.from(select.options).forEach(option => {
+                if (option.value) {
+                    option.setAttribute('data-full-text', option.textContent);
+                }
+            });
+            
+            // Set initial display (compact for selected, full for others)
+            updateSelectedDisplay();
+            
+            // Handle dropdown opening - show full text for all options
+            select.addEventListener('mousedown', function() {
+                Array.from(select.options).forEach(option => {
+                    if (option.getAttribute('data-full-text')) {
+                        option.textContent = option.getAttribute('data-full-text');
+                    }
+                });
+            });
+            
+            // Handle option selection - update display after selection
+            select.addEventListener('change', function() {
+                // Small delay to ensure the selection is complete
+                setTimeout(updateSelectedDisplay, 50);
+                updateFullWhatsApp();
+            });
+            
+            // Handle dropdown closing without selection
+            select.addEventListener('blur', function() {
+                setTimeout(updateSelectedDisplay, 50);
+            });
+            
+            // Initialize the full WhatsApp number
+            updateFullWhatsApp();
+        });
+        
         // Form validation and submission for Netlify Forms
         document.getElementById('trainingContactForm').addEventListener('submit', function(e) {
+            // Update full WhatsApp number before submission
+            updateFullWhatsApp();
             // Get form elements
             const form = this;
             const submitBtn = document.getElementById('submitBtn');
@@ -437,18 +791,101 @@
         // Real-time validation feedback
         document.querySelectorAll('#trainingContactForm input, #trainingContactForm select, #trainingContactForm textarea').forEach(element => {
             element.addEventListener('blur', function() {
-                if (this.checkValidity()) {
-                    this.classList.remove('is-invalid');
-                    this.classList.add('is-valid');
-                } else {
-                    this.classList.remove('is-valid');
-                    this.classList.add('is-invalid');
+                const hasValue = this.type === 'select-one' ? this.selectedIndex > 0 : this.value.trim() !== '';
+                let isValid = this.checkValidity();
+                let customMessage = '';
+                
+                // Advanced validation for specific fields
+                if (hasValue && this.type === 'email') {
+                    if (!isValidEmailDomain(this.value)) {
+                        isValid = false;
+                        customMessage = 'Please enter a valid email address with a real domain.';
+                    }
                 }
+                
+                if (hasValue && this.name === 'whatsapp') {
+                    const countryCode = document.getElementById('countryCode').value;
+                    const fullNumber = countryCode + this.value;
+                    if (!isValidPhonePattern(fullNumber)) {
+                        isValid = false;
+                        customMessage = 'Please enter a valid phone number (avoid patterns like 1234567890).';
+                    }
+                }
+                
+                // Update validation feedback message
+                let feedback;
+                if (this.name === 'whatsapp') {
+                    // For WhatsApp field in input-group, look in the containing div
+                    feedback = this.closest('.col-md-6').querySelector('.invalid-feedback');
+                } else {
+                    feedback = this.parentNode.querySelector('.invalid-feedback');
+                }
+                
+                if (feedback && customMessage) {
+                    feedback.textContent = customMessage;
+                }
+                
+                // Remove both classes first
+                this.classList.remove('is-valid', 'is-invalid');
+                
+                if (!isValid) {
+                    // Show red for invalid fields (required and empty, or invalid content)
+                    this.classList.add('is-invalid');
+                } else if (hasValue) {
+                    // Show green only when there's a value AND it's valid
+                    this.classList.add('is-valid');
+                }
+                // Empty optional fields show neutral (no class)
             });
             
             element.addEventListener('input', function() {
-                if (this.classList.contains('is-invalid') && this.checkValidity()) {
-                    this.classList.remove('is-invalid');
+                const hasValue = this.type === 'select-one' ? this.selectedIndex > 0 : this.value.trim() !== '';
+                let isValid = this.checkValidity();
+                let customMessage = '';
+                
+                // Advanced validation for specific fields
+                if (hasValue && this.type === 'email') {
+                    if (!isValidEmailDomain(this.value)) {
+                        isValid = false;
+                        customMessage = 'Please enter a valid email address with a real domain.';
+                    }
+                }
+                
+                if (hasValue && this.name === 'whatsapp') {
+                    const countryCode = document.getElementById('countryCode').value;
+                    const fullNumber = countryCode + this.value;
+                    if (!isValidPhonePattern(fullNumber)) {
+                        isValid = false;
+                        customMessage = 'Please enter a valid phone number (avoid patterns like 1234567890).';
+                    }
+                }
+                
+                // Update validation feedback message
+                let feedback;
+                if (this.name === 'whatsapp') {
+                    // For WhatsApp field in input-group, look in the containing div
+                    feedback = this.closest('.col-md-6').querySelector('.invalid-feedback');
+                } else {
+                    feedback = this.parentNode.querySelector('.invalid-feedback');
+                }
+                
+                if (feedback && customMessage) {
+                    feedback.textContent = customMessage;
+                } else if (feedback && !customMessage) {
+                    // Reset to default message
+                    if (this.type === 'email') {
+                        feedback.textContent = 'Please provide a valid email address.';
+                    } else if (this.name === 'whatsapp') {
+                        feedback.textContent = 'Please provide a valid WhatsApp number.';
+                    }
+                }
+                
+                // Remove both classes first
+                this.classList.remove('is-valid', 'is-invalid');
+                
+                if (!isValid) {
+                    this.classList.add('is-invalid');
+                } else if (hasValue) {
                     this.classList.add('is-valid');
                 }
             });

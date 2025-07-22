@@ -221,7 +221,8 @@
                             <p class="text-muted">Ready to enhance your team's automation testing capabilities? Fill out the form below and I'll get back to you within 24 hours.</p>
                         </div>
                         
-                        <form id="trainingContactForm" class="contact-form">
+                        <form id="trainingContactForm" class="contact-form" name="training-contact" method="POST" data-netlify="true">
+                            <input type="hidden" name="form-name" value="training-contact">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="name" class="form-label font-weight-500">Name *</label>
@@ -384,10 +385,8 @@
     
     <!-- Interactive Form Handling -->
     <script>
-        // Form validation and submission
+        // Form validation and submission for Netlify Forms
         document.getElementById('trainingContactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
             // Get form elements
             const form = this;
             const submitBtn = document.getElementById('submitBtn');
@@ -397,6 +396,7 @@
             
             // Validate form
             if (!form.checkValidity()) {
+                e.preventDefault();
                 form.classList.add('was-validated');
                 return;
             }
@@ -407,55 +407,31 @@
             btnLoading.classList.remove('d-none');
             formResult.innerHTML = '';
             
-            // Collect form data
-            const formData = new FormData(form);
+            // Collect selected topics for better formatting
             const topics = [];
             document.querySelectorAll('input[name="topics"]:checked').forEach(checkbox => {
                 topics.push(checkbox.value);
             });
             
-            // Create email content
-            const emailSubject = `Training Request from ${formData.get('name')}`;
-            const emailBody = `
-Name: ${formData.get('name')}
-Email: ${formData.get('email')}
-Company: ${formData.get('company') || 'Not specified'}
-Phone: ${formData.get('phone') || 'Not specified'}
-Training Type: ${formData.get('trainingType')}
-Team Size: ${formData.get('teamSize') || 'Not specified'}
-Topics of Interest: ${topics.length > 0 ? topics.join(', ') : 'Not specified'}
-
-Message:
-${formData.get('message')}
-            `.trim();
+            // Add formatted topics to form data
+            const topicsField = document.createElement('input');
+            topicsField.type = 'hidden';
+            topicsField.name = 'selected-topics';
+            topicsField.value = topics.length > 0 ? topics.join(', ') : 'Not specified';
+            form.appendChild(topicsField);
             
-            // Create mailto link
-            const mailtoLink = `mailto:vigneshonlinetutor@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            // Let Netlify handle the form submission
+            // The form will be submitted automatically since we're not preventing default
             
-            // Simulate processing time for better UX
+            // Show processing message
             setTimeout(() => {
-                // Open email client
-                window.location.href = mailtoLink;
-                
-                // Show success message
                 formResult.innerHTML = `
-                    <div class="alert alert-success">
-                        <i class="fas fa-check-circle mr-2"></i>
-                        Your email client should open with the training request. If it doesn't open automatically, 
-                        please send an email to <strong>vigneshonlinetutor@gmail.com</strong> with your requirements.
+                    <div class="alert alert-info">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        Submitting your training request...
                     </div>
                 `;
-                
-                // Reset form
-                form.reset();
-                form.classList.remove('was-validated');
-                
-                // Reset button
-                submitBtn.disabled = false;
-                btnText.classList.remove('d-none');
-                btnLoading.classList.add('d-none');
-                
-            }, 1500);
+            }, 500);
         });
         
         // Real-time validation feedback

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Reviews - Vignesh Online Tutor</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Student Reviews, Testimonials, Course Reviews" name="keywords">
+    <meta content="Student Reviews and Testimonials for Vignesh Srinivasa Raghavan's Courses" name="description">
+
+    <!-- Favicon -->
+    <link href="../img/favicon.ico" rel="icon">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="../lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Independent Professional Styling -->
+    <link href="../css/modern-style.css" rel="stylesheet">
+
+    <style>
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            margin: auto;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .review-item {
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .review-item:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="51">
+    <!-- Nav Bar Start -->
+    <div class="navbar-wrapper bg-light">
+        <!-- First Row: Logo and Name -->
+        <div class="navbar-brand-row">
+            <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+                <a href="../index.html" class="navbar-brand-custom d-flex align-items-center">
+                    <img src="../img/displayPicture/Viki-DP.jpg" alt="Vignesh Srinivasa Raghavan" class="navbar-logo">
+                    <span class="navbar-title">Vignesh Srinivasa Raghavan</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Second Row: Navigation Menu -->
+        <div class="navbar navbar-expand-lg bg-light navbar-light border-top">
+            <div class="container-fluid">
+                <button type="button" class="navbar-toggler mx-auto" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                        <a href="../index.html" class="nav-item nav-link">Home</a>
+                        <a href="courses.html" class="nav-item nav-link">Courses</a>
+                        <a href="corporate-training.html" class="nav-item nav-link">Corporate Training</a>
+                        <a href="workshops.html" class="nav-item nav-link">Workshops</a>
+                        <a href="conference-talks.html" class="nav-item nav-link">Conference Talks</a>
+                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="reviews.html" class="nav-item nav-link active">Reviews</a>
+                        <a href="https://www.linkedin.com/in/vignesh-srinivasa-raghavan/" class="nav-item nav-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a href="https://www.udemy.com/user/vignesh-2698/" class="nav-item nav-link" target="_blank" rel="noopener noreferrer">Udemy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Nav Bar End -->
+
+    <!-- Page Header Start -->
+    <div class="hero" id="reviews">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="hero-content text-center">
+                        <div class="hero-text">
+                            <h1>Student Reviews</h1>
+                            <p>Satisfied students reviews and testimonials</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Reviews Start -->
+    <div class="training" id="reviews-content">
+        <div class="container">
+            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                <h2>What Students Say</h2>
+                <p>Real feedback from students who have transformed their careers</p>
+            </div>
+            
+            <div class="row" id="reviews-gallery">
+                <!-- Reviews will be loaded here via JavaScript -->
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.3s">
+                    <h3>Achievement Highlights</h3>
+                    <div class="row mt-4">
+                        <div class="col-md-3">
+                            <i class="fas fa-users fa-3x mb-3" style="color: #f40909;"></i>
+                            <h4>1500+</h4>
+                            <p>Students Enrolled</p>
+                        </div>
+                        <div class="col-md-3">
+                            <i class="fas fa-star fa-3x mb-3" style="color: #f40909;"></i>
+                            <h4>4.5+</h4>
+                            <p>Average Rating</p>
+                        </div>
+                        <div class="col-md-3">
+                            <i class="fas fa-graduation-cap fa-3x mb-3" style="color: #f40909;"></i>
+                            <h4>Multiple</h4>
+                            <p>Bestseller Courses</p>
+                        </div>
+                        <div class="col-md-3">
+                            <i class="fas fa-award fa-3x mb-3" style="color: #f40909;"></i>
+                            <h4>9+</h4>
+                            <p>Years Experience</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Written Testimonials -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="section-header text-center">
+                        <h3>Written Testimonials</h3>
+                        <p>What students are saying about the courses</p>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-lg-6 mb-4 wow fadeInLeft" data-wow-delay="0.1s">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-0">
+                                        <p class="mb-3">"This Cypress course transformed my testing approach completely. The instructor's real-world experience shows in every lesson. Highly recommended for anyone serious about automation testing!"</p>
+                                        <footer class="blockquote-footer">
+                                            <strong>Rajesh Kumar</strong> - <cite title="Company">Senior QA at TCS</cite>
+                                            <div class="mt-2">
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star text-warning"></i>
+                                            </div>
+                                        </footer>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 mb-4 wow fadeInRight" data-wow-delay="0.3s">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-0">
+                                        <p class="mb-3">"Excellent teaching style and comprehensive coverage of Selenium concepts. The framework creation section was particularly valuable for my career growth."</p>
+                                        <footer class="blockquote-footer">
+                                            <strong>Priya Sharma</strong> - <cite title="Company">Test Lead at Infosys</cite>
+                                            <div class="mt-2">
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="fas fa-star text-warning"></i>
+                                            </div>
+                                        </footer>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.4s">
+                    <h3>Join Our Success Stories</h3>
+                    <p>Ready to start your journey in automation testing?</p>
+                    <div class="mt-4">
+                        <a href="courses.html" class="btn btn-primary btn-lg mr-3 mb-2">
+                            <i class="fas fa-graduation-cap mr-2"></i>View Courses
+                        </a>
+                        <a href="corporate-training.html" class="btn btn-outline-primary btn-lg mb-2">
+                            <i class="fas fa-chalkboard-teacher mr-2"></i>Corporate Training
+                        </a>
+                    </div>
+                    <div class="mt-3">
+                        <a href="mailto:vigneshonlinetutor@gmail.com" class="btn btn-outline-secondary">
+                            <i class="fas fa-envelope mr-2"></i>Contact Me
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Reviews End -->
+
+    <!-- Footer Start -->
+    <div class="footer wow fadeIn" data-wow-delay="0.3s">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="footer-info">
+                    <h2>Vignesh Srinivasa Raghavan</h2>
+                    <div class="footer-menu">
+                        <p><i class="far fa-envelope"></i> <a class="mail" href="mailto:vigneshonlinetutor@gmail.com">vigneshonlinetutor@gmail.com</a></p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/vignesh-srinivasa-raghavan/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="container copyright">
+                <p>&copy; 2024 <a href="#">Vignesh Srinivasa Raghavan</a>. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to top button -->
+    <a href="#" class="btn back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- Pre Loader -->
+    <div id="loader" class="show">
+        <div class="loader"></div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/easing/easing.min.js"></script>
+    <script src="../lib/wow/wow.min.js"></script>
+    <script src="../lib/waypoints/waypoints.min.js"></script>
+    <script src="../lib/typed/typed.min.js"></script>
+    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="../lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Core Javascript -->
+    <script src="../js/main.js"></script>
+    <!-- Interactive Features -->
+    <script src="../js/interactive.js"></script>
+
+    <script>
+        // Function to fetch and display review images
+        function fetchReviewImages() {
+            const reviewsDiv = document.getElementById('reviews-gallery');
+            const reviewsFolderPath = '../img/review/';
+
+            // Image filenames
+            const imageFiles = [
+                'Cypress-BestSeller.png',
+                'Playwright-BestSeller.png',
+                'Cypress-Review-1.png',
+                'Cypress-Review-2.png',
+                'Cypress-Review-3.png',
+                'Cypress-Review-4.png',
+                'Playwright-Review-1.png',
+                'Playwright-Review-2.png'
+            ];
+
+            imageFiles.forEach((imageFile, index) => {
+                const imgSrc = reviewsFolderPath + imageFile;
+                const imgAlt = imageFile.split('.')[0];
+
+                const colDiv = document.createElement('div');
+                colDiv.classList.add('col-md-6', 'col-lg-4', 'mb-4', 'wow', 'fadeInUp');
+                colDiv.setAttribute('data-wow-delay', `${0.1 + (index * 0.1)}s`);
+
+                const reviewItemDiv = document.createElement('div');
+                reviewItemDiv.classList.add('review-item', 'text-center', 'p-3', 'border', 'rounded');
+
+                const imgElement = document.createElement('img');
+                imgElement.src = imgSrc;
+                imgElement.alt = imgAlt;
+                imgElement.classList.add('img-fluid', 'rounded');
+                imgElement.style.maxHeight = '300px';
+                imgElement.style.objectFit = 'contain';
+
+                // Add click event for modal
+                imgElement.addEventListener('click', function () {
+                    const modal = document.createElement('div');
+                    modal.classList.add('modal', 'd-flex', 'align-items-center', 'justify-content-center');
+                    modal.innerHTML = `
+                        <div class="modal-content">
+                            <span class="close-btn">&times;</span>
+                            <img src="${imgSrc}" alt="${imgAlt}" style="width: 100%; height: auto; max-width: 800px;">
+                        </div>
+                    `;
+                    document.body.appendChild(modal);
+
+                    modal.querySelector('.close-btn').addEventListener('click', function () {
+                        modal.remove();
+                    });
+
+                    modal.addEventListener('click', function (e) {
+                        if (e.target === modal) {
+                            modal.remove();
+                        }
+                    });
+
+                    document.addEventListener('keydown', function (e) {
+                        if (e.key === 'Escape') {
+                            modal.remove();
+                        }
+                    });
+                });
+
+                reviewItemDiv.appendChild(imgElement);
+                colDiv.appendChild(reviewItemDiv);
+                reviewsDiv.appendChild(colDiv);
+            });
+        }
+
+        // Load reviews when page loads
+        fetchReviewImages();
+    </script>
+</body>
+
+</html> 

@@ -24,6 +24,199 @@
     <!-- Independent Professional Styling -->
     <link href="css/modern-style.css" rel="stylesheet">
 
+    <!-- Enhanced Dropdown Navigation Styling -->
+    <style>
+        /* Remove Bootstrap default focus/active states that cause violet squares */
+        .navbar-nav .nav-link:focus,
+        .navbar-nav .nav-link.active,
+        .navbar-nav .nav-link:hover {
+            background-color: transparent !important;
+            border-radius: 0 !important;
+            color: #007bff !important;
+        }
+        
+        /* Remove any button-like styling */
+        .navbar-nav .nav-item .nav-link {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+        
+        /* Dropdown Navigation Enhancements */
+        .navbar-nav .nav-item.dropdown {
+            position: relative;
+        }
+        
+        /* Custom dropdown arrow using FontAwesome */
+        .navbar-nav .dropdown-toggle::after {
+            display: none !important; /* Hide dropdown arrows completely */
+        }
+        
+        /* Hover-based dropdown behavior */
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            display: block !important; /* Always display but use opacity for show/hide */
+        }
+        
+        /* Dropdown item styling */
+        .dropdown-item {
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            color: #495057;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .dropdown-item:hover {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            border-left-color: #ffc107;
+            transform: translateX(5px);
+        }
+        
+        .dropdown-item i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Pure hover-based dropdown for desktop */
+        @media (min-width: 992px) {
+            .navbar-nav .dropdown:hover .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+            
+            /* Disable click behavior on desktop */
+            .navbar-nav .dropdown-toggle {
+                pointer-events: none;
+            }
+            
+            .navbar-nav .dropdown-toggle::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                pointer-events: auto;
+            }
+        }
+        
+        /* Mobile click-based behavior */
+        @media (max-width: 991.98px) {
+            .dropdown-menu {
+                position: static;
+                float: none;
+                width: 100%;
+                margin-top: 0;
+                background-color: #f8f9fa;
+                border-radius: 0;
+                box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+            }
+            
+            .dropdown-item {
+                padding: 0.5rem 2rem;
+                border-left: none;
+                border-bottom: 1px solid #e9ecef;
+            }
+            
+            .dropdown-item:hover {
+                transform: none;
+                background-color: #007bff;
+                border-left: none;
+            }
+            
+            /* Re-enable click behavior on mobile */
+            .navbar-nav .dropdown-toggle {
+                pointer-events: auto;
+            }
+        }
+        
+        /* Enhanced navigation link styling */
+        .navbar-nav .nav-link {
+            position: relative;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem !important;
+        }
+        
+        /* Underline effect for non-dropdown links */
+        .navbar-nav .nav-link:not(.dropdown-toggle)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .navbar-nav .nav-link:not(.dropdown-toggle):hover::after,
+        .navbar-nav .nav-link:not(.dropdown-toggle).active::after {
+            width: 100%;
+        }
+        
+        /* Clean hover states */
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: #007bff !important;
+            background-color: transparent !important;
+        }
+        
+        /* Clean dropdown toggle hover */
+        .navbar-nav .dropdown-toggle:hover {
+            color: #007bff !important;
+            background-color: transparent !important;
+        }
+        
+        /* Enhanced mobile toggle */
+        .navbar-toggler {
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            padding: 0.5rem 0.75rem;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        /* Remove any Bootstrap button styling that might cause squares */
+        .nav-link.active,
+        .nav-link:focus,
+        .nav-link:hover {
+            background: none !important;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+        
+        /* Ensure dropdown menus stay visible when hovering over them */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    </style>
+
 
 </head>
 
@@ -50,14 +243,83 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-auto">
                         <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="pages/courses.html" class="nav-item nav-link">Courses</a>
-                        <a href="pages/corporate-training.html" class="nav-item nav-link">Corporate Training</a>
-                        <a href="pages/workshops.html" class="nav-item nav-link">Workshops</a>
-                        <a href="pages/conference-talks.html" class="nav-item nav-link">Conference Talks</a>
-                        <a href="pages/about.html" class="nav-item nav-link">About</a>
-                        <a href="pages/reviews.html" class="nav-item nav-link">Reviews</a>
-                        <a href="https://www.linkedin.com/in/vignesh-srinivasa-raghavan/" class="nav-item nav-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                        <a href="https://www.udemy.com/user/vignesh-2698/" class="nav-item nav-link" target="_blank" rel="noopener noreferrer">Udemy</a>
+                        
+                        <!-- Get Trained Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="getTrainedDropdown">
+                                Get Trained
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="getTrainedDropdown">
+                                <a class="dropdown-item" href="portfolio/training/online-courses.html">
+                                    <i class="fas fa-graduation-cap mr-2 text-primary"></i>Online Courses
+                                </a>
+                                <a class="dropdown-item" href="portfolio/training/live-workshops.html">
+                                    <i class="fas fa-users mr-2 text-success"></i>Live Workshops
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="demo/index.html">
+                                    <i class="fas fa-flask mr-2 text-purple"></i>Testing Practice Lab
+                                    <small class="d-block text-muted">Real automation scenarios</small>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Personal Training Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="personalTrainingDropdown">
+                                Personal Training
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="personalTrainingDropdown">
+                                <a class="dropdown-item" href="portfolio/training/corporate-training.html">
+                                    <i class="fas fa-building mr-2 text-info"></i>Corporate Training
+                                </a>
+                                <a class="dropdown-item" href="portfolio/training/mentoring.html">
+                                    <i class="fas fa-user-tie mr-2 text-warning"></i>1-to-1 Mentoring
+                                </a>
+                                <a class="dropdown-item" href="portfolio/training/career-coaching.html">
+                                    <i class="fas fa-chart-line mr-2 text-danger"></i>Career Coaching
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <a href="portfolio/reviews.html" class="nav-item nav-link">Reviews</a>
+                        <a href="portfolio/about.html" class="nav-item nav-link">About</a>
+                        
+                        <!-- Speaking & Events Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="speakingDropdown">
+                                Speaking & Events
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="speakingDropdown">
+                                <a class="dropdown-item" href="portfolio/speaking/conference-talks.html">
+                                    <i class="fas fa-microphone mr-2 text-primary"></i>Conference Talks
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Let's Connect Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="connectDropdown">
+                                Let's Connect
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="connectDropdown">
+                                <a class="dropdown-item" href="portfolio/connect/contact-form.html">
+                                    <i class="fas fa-envelope mr-2 text-primary"></i>Contact Form
+                                </a>
+                                <a class="dropdown-item" href="portfolio/connect/whatsapp.html">
+                                    <i class="fab fa-whatsapp mr-2 text-success"></i>WhatsApp Direct
+                                </a>
+                                <a class="dropdown-item" href="https://www.linkedin.com/in/vignesh-srinivasa-raghavan/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-linkedin mr-2 text-info"></i>LinkedIn Profile
+                                </a>
+                                <a class="dropdown-item" href="https://www.udemy.com/user/vignesh-2698/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-play-circle mr-2 text-danger"></i>Udemy Profile
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Testing Lab Button -->
+                        <a href="demo/index.html" class="nav-item nav-link">Testing Lab</a>
                     </div>
                 </div>
             </div>
@@ -101,10 +363,13 @@
                             </div>
                             
                             <div class="hero-buttons">
-                                <a href="pages/courses.html" class="btn btn-primary btn-lg mr-3 mb-2">
+                                <a href="portfolio/training/online-courses.html" class="btn btn-primary btn-lg mr-3 mb-2">
                                     <i class="fas fa-graduation-cap mr-2"></i>View Courses
                                 </a>
-                                <a href="pages/corporate-training.html" class="btn btn-outline-primary btn-lg mb-2">
+                                <a href="demo/index.html" class="btn btn-outline-info btn-lg mr-3 mb-2">
+                                    <i class="fas fa-flask mr-2"></i>Practice Lab
+                                </a>
+                                <a href="portfolio/training/corporate-training.html" class="btn btn-outline-primary btn-lg mb-2">
                                     <i class="fas fa-chalkboard-teacher mr-2"></i>Corporate Training
                                 </a>
                             </div>
@@ -136,7 +401,7 @@
                             <span class="badge badge-primary mr-2">1500+ Students</span>
                             <span class="badge badge-success">Bestseller</span>
                         </div>
-                        <a href="pages/courses.html" class="btn btn-primary btn-block">
+                        <a href="portfolio/training/online-courses.html" class="btn btn-primary btn-block">
                             <i class="fas fa-play-circle mr-2"></i>View Courses
                         </a>
                     </div>
@@ -153,7 +418,7 @@
                             <span class="badge badge-info mr-2">Custom Programs</span>
                             <span class="badge badge-warning">On-site/Remote</span>
                         </div>
-                        <a href="pages/corporate-training.html" class="btn btn-primary btn-block">
+                        <a href="portfolio/training/corporate-training.html" class="btn btn-primary btn-block">
                             <i class="fas fa-building mr-2"></i>Learn More
                         </a>
                     </div>
@@ -170,8 +435,50 @@
                             <span class="badge badge-danger mr-2">1:1 Sessions</span>
                             <span class="badge badge-secondary">Career Growth</span>
                         </div>
-                        <a href="mailto:vigneshonlinetutor@gmail.com" class="btn btn-primary btn-block">
+                        <a href="portfolio/connect/contact-form.html" class="btn btn-primary btn-block">
                             <i class="fas fa-envelope mr-2"></i>Contact Me
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="service-item" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; overflow: hidden; padding: 2rem;">
+                        <a href="demo/index.html" class="text-decoration-none">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="service-icon mr-3">
+                                            <i class="fas fa-flask" style="color: white; font-size: 3rem;"></i>
+                                        </div>
+                                        <div class="service-text">
+                                            <h3 style="color: white; margin-bottom: 0.5rem;">🧪 Testing Practice Lab</h3>
+                                            <p style="color: rgba(255,255,255,0.9); margin-bottom: 1rem;">Hands-on automation practice with real E2E E-commerce applications and complex scenarios</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-wrap">
+                                        <span class="badge badge-light mr-2 mb-1" style="font-size: 0.75rem;">
+                                            <i class="fas fa-mouse-pointer mr-1"></i>UI Elements
+                                        </span>
+                                        <span class="badge badge-light mr-2 mb-1" style="font-size: 0.75rem;">
+                                            <i class="fas fa-arrows-alt mr-1"></i>Interactions
+                                        </span>
+                                        <span class="badge badge-light mr-2 mb-1" style="font-size: 0.75rem;">
+                                            <i class="fas fa-table mr-1"></i>Data Tables
+                                        </span>
+                                        <span class="badge badge-light mb-1" style="font-size: 0.75rem;">
+                                            <i class="fas fa-shopping-cart mr-1"></i>E-commerce Workflows
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <div class="btn btn-light btn-lg">
+                                        <i class="fas fa-flask mr-2"></i>Start Practicing
+                                    </div>
+                                    <div class="mt-2" style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">
+                                        100+ Real Scenarios
+                                    </div>
+                                </div>
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -179,6 +486,8 @@
         </div>
     </div>
     <!-- Services End -->
+
+
 
     <!-- About Preview Start -->
     <div class="training" id="about-preview" style="background-color: #f8f9fa;">
@@ -203,7 +512,7 @@
                             <i class="fas fa-check-circle text-primary mr-2"></i>API Testing
                         </div>
                     </div>
-                    <a href="pages/about.html" class="btn btn-primary mt-3">Learn More About Me</a>
+                    <a href="portfolio/about.html" class="btn btn-primary mt-3">Learn More About Me</a>
                 </div>
                 <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.3s">
                     <div class="text-center">
@@ -352,7 +661,7 @@
             </div>
             
             <div class="text-center mt-4">
-                <a href="pages/reviews.html" class="btn btn-primary">View All Reviews</a>
+                <a href="portfolio/reviews.html" class="btn btn-primary">View All Reviews</a>
             </div>
         </div>
     </div>
@@ -416,6 +725,51 @@
     <script src="js/main.js"></script>
     <!-- Interactive Features -->
     <script src="js/interactive.js"></script>
+    
+    <!-- Custom Navigation Behavior -->
+    <script>
+        // Handle mobile dropdown behavior
+        $(document).ready(function() {
+            // Only enable click behavior on mobile
+            function handleMobileDropdowns() {
+                if ($(window).width() <= 991) {
+                    // Mobile: Enable click behavior
+                    $('.dropdown-toggle').off('click').on('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        var $dropdown = $(this).parent();
+                        var $menu = $dropdown.find('.dropdown-menu');
+                        
+                        // Close other dropdowns
+                        $('.dropdown-menu').not($menu).removeClass('show');
+                        
+                        // Toggle current dropdown
+                        $menu.toggleClass('show');
+                    });
+                    
+                    // Close dropdown when clicking outside
+                    $(document).on('click', function(e) {
+                        if (!$(e.target).closest('.dropdown').length) {
+                            $('.dropdown-menu').removeClass('show');
+                        }
+                    });
+                } else {
+                    // Desktop: Disable click behavior (hover only)
+                    $('.dropdown-toggle').off('click');
+                    $('.dropdown-menu').removeClass('show');
+                }
+            }
+            
+            // Initial setup
+            handleMobileDropdowns();
+            
+            // Handle window resize
+            $(window).resize(function() {
+                handleMobileDropdowns();
+            });
+        });
+    </script>
 </body>
 
 </html>

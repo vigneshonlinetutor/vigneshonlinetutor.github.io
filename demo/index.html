@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Automation Testing Demo Hub - Vignesh Online Tutor</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Automation Testing Practice, Selenium Demo, Playwright Practice, UI Testing" name="keywords">
+    <meta content="Comprehensive automation testing practice hub with real-world scenarios for Selenium, Playwright, and Cypress" name="description">
+
+    <!-- Favicon -->
+    <link href="../img/favicon.ico" rel="icon">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="../lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../lib/wow/wow.min.js" rel="stylesheet">
+
+    <!-- Custom Demo Hub Styling -->
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            --warning-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --info-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .demo-header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .demo-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .demo-header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-section {
+            padding: 3rem 0;
+        }
+
+        .category-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .category-title h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #2d3436;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-title p {
+            color: #636e72;
+            font-size: 1.1rem;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+
+        .demo-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .demo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+            transition: all 0.3s ease;
+        }
+
+        .demo-card.success::before { background: var(--success-gradient); }
+        .demo-card.warning::before { background: var(--warning-gradient); }
+        .demo-card.info::before { background: var(--info-gradient); }
+
+        .demo-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .demo-card:hover .demo-icon {
+            transform: scale(1.1);
+        }
+
+        .demo-card.success .demo-icon { color: #00b894; }
+        .demo-card.warning .demo-icon { color: #e84393; }
+        .demo-card.info .demo-icon { color: #0984e3; }
+        .demo-card .demo-icon { color: #6c5ce7; }
+
+        .demo-card h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #2d3436;
+        }
+
+        .demo-card p {
+            color: #636e72;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .demo-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .badge-beginner { background: #d1f2eb; color: #00b894; }
+        .badge-intermediate { background: #fef9e7; color: #e17055; }
+        .badge-advanced { background: #f8d7da; color: #e84393; }
+        .badge-expert { background: #e3f2fd; color: #0984e3; }
+
+        .coming-soon {
+            opacity: 0.6;
+            position: relative;
+        }
+
+        .coming-soon::after {
+            content: 'Coming Soon';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #fd79a8;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .stats-section {
+            background: white;
+            padding: 2rem 0;
+            margin: 3rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: #636e72;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .footer-demo {
+            background: #2d3436;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .demo-header h1 { font-size: 2.5rem; }
+            .demo-header p { font-size: 1.1rem; }
+            .category-title h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Demo Header -->
+    <div class="demo-header">
+        <div class="container">
+            <h1 class="wow fadeInDown">🧪 Automation Testing Lab</h1>
+            <p class="lead wow fadeInUp" data-wow-delay="0.2s">Master real E2E automation scenarios with complete E-commerce applications and complex workflows</p>
+            <p class="wow fadeInUp" data-wow-delay="0.4s">
+                <i class="fas fa-tools mr-2"></i>Perfect for Selenium • Playwright • Cypress • WebDriver
+            </p>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="container">
+        <div class="stats-section wow fadeInUp" data-wow-delay="0.2s">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Real Scenarios</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number">E2E</div>
+                        <div class="stat-label">E-commerce App</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Hands-on Learning</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number">Free</div>
+                        <div class="stat-label">Open Access</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Basic Elements Category -->
+    <div class="category-section">
+        <div class="container">
+            <div class="category-title wow fadeInUp">
+                <h2>🎯 Basic Elements</h2>
+                <p>Master fundamental UI element interactions</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card wow fadeInUp" data-wow-delay="0.1s" onclick="window.location.href='basic-elements/buttons.html'">
+                        <div class="demo-icon">
+                            <i class="fas fa-mouse-pointer"></i>
+                        </div>
+                        <h4>Button Interactions</h4>
+                        <p>Practice clicking, hovering, and button state handling</p>
+                        <div class="demo-badge badge-beginner">Beginner</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card coming-soon wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="demo-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h4>Input Fields</h4>
+                        <p>Text, email, password, and special input handling</p>
+                        <div class="demo-badge badge-beginner">Beginner</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card coming-soon wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="demo-icon">
+                            <i class="fas fa-list-ul"></i>
+                        </div>
+                        <h4>Dropdown Menus</h4>
+                        <p>Select options, multi-select, and custom dropdowns</p>
+                        <div class="demo-badge badge-beginner">Beginner</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card coming-soon wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="demo-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h4>Radio & Checkboxes</h4>
+                        <p>Selection controls and toggle interactions</p>
+                        <div class="demo-badge badge-beginner">Beginner</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card coming-soon wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="demo-icon">
+                            <i class="fas fa-align-left"></i>
+                        </div>
+                        <h4>Text Areas</h4>
+                        <p>Multi-line inputs, character limits, auto-resize</p>
+                        <div class="demo-badge badge-beginner">Beginner</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card coming-soon wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="demo-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4>Search Autocomplete</h4>
+                        <p>Dynamic suggestions and typeahead functionality</p>
+                        <div class="demo-badge badge-beginner">Beginner</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Interactions Category -->
+    <div class="category-section" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="category-title wow fadeInUp">
+                <h2>🎮 User Interactions</h2>
+                <p>Advanced user behavior simulation</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card success coming-soon wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="demo-icon">
+                            <i class="fas fa-arrows-alt"></i>
+                        </div>
+                        <h4>Drag & Drop</h4>
+                        <p>Element dragging, dropping, and repositioning</p>
+                        <div class="demo-badge badge-intermediate">Intermediate</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card success coming-soon wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="demo-icon">
+                            <i class="fas fa-sort"></i>
+                        </div>
+                        <h4>Sorting Lists</h4>
+                        <p>Sortable elements and list reordering</p>
+                        <div class="demo-badge badge-intermediate">Intermediate</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card success coming-soon wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="demo-icon">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <h4>Range Sliders</h4>
+                        <p>Slider manipulation and value extraction</p>
+                        <div class="demo-badge badge-intermediate">Intermediate</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card success coming-soon wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="demo-icon">
+                            <i class="fas fa-hand-pointer"></i>
+                        </div>
+                        <h4>Hover Effects</h4>
+                        <p>Mouse hover, tooltips, and menu reveals</p>
+                        <div class="demo-badge badge-intermediate">Intermediate</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card success coming-soon wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="demo-icon">
+                            <i class="fas fa-keyboard"></i>
+                        </div>
+                        <h4>Keyboard Navigation</h4>
+                        <p>Tab sequences, shortcuts, accessibility</p>
+                        <div class="demo-badge badge-intermediate">Intermediate</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card success coming-soon wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="demo-icon">
+                            <i class="fas fa-arrows-alt-v"></i>
+                        </div>
+                        <h4>Scroll Behaviors</h4>
+                        <p>Infinite scroll, sticky elements, lazy loading</p>
+                        <div class="demo-badge badge-intermediate">Intermediate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advanced Features Category -->
+    <div class="category-section">
+        <div class="container">
+            <div class="category-title wow fadeInUp">
+                <h2>⚡ Advanced Features</h2>
+                <p>Complex automation scenarios</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card warning coming-soon wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="demo-icon">
+                            <i class="fas fa-window-restore"></i>
+                        </div>
+                        <h4>Frames & iFrames</h4>
+                        <p>Switching contexts and nested frame handling</p>
+                        <div class="demo-badge badge-advanced">Advanced</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card warning coming-soon wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="demo-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h4>Alert Dialogs</h4>
+                        <p>JavaScript alerts, confirms, and prompts</p>
+                        <div class="demo-badge badge-advanced">Advanced</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card warning coming-soon wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="demo-icon">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                        <h4>Window Handling</h4>
+                        <p>Multiple tabs, popups, and window switching</p>
+                        <div class="demo-badge badge-advanced">Advanced</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card warning coming-soon wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="demo-icon">
+                            <i class="fas fa-hourglass-half"></i>
+                        </div>
+                        <h4>Wait Strategies</h4>
+                        <p>Implicit, explicit waits and loading states</p>
+                        <div class="demo-badge badge-advanced">Advanced</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card warning coming-soon wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="demo-icon">
+                            <i class="fas fa-mask"></i>
+                        </div>
+                        <h4>Shadow DOM</h4>
+                        <p>Modern web components and encapsulated DOM</p>
+                        <div class="demo-badge badge-advanced">Advanced</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card warning coming-soon wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="demo-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h4>Canvas & SVG</h4>
+                        <p>Interactive graphics and coordinate testing</p>
+                        <div class="demo-badge badge-advanced">Advanced</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Components Category -->
+    <div class="category-section" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="category-title wow fadeInUp">
+                <h2>📊 Data Components</h2>
+                <p>Complex data structures and forms</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card info coming-soon wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="demo-icon">
+                            <i class="fas fa-table"></i>
+                        </div>
+                        <h4>Data Tables</h4>
+                        <p>Table parsing, sorting, filtering, and pagination</p>
+                        <div class="demo-badge badge-expert">Expert</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card info coming-soon wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="demo-icon">
+                            <i class="fas fa-wpforms"></i>
+                        </div>
+                        <h4>Complex Forms</h4>
+                        <p>Multi-step forms, validation, and submission</p>
+                        <div class="demo-badge badge-expert">Expert</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card info coming-soon wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="demo-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h4>Date Pickers</h4>
+                        <p>Calendar interactions and date selection</p>
+                        <div class="demo-badge badge-expert">Expert</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card info coming-soon wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="demo-icon">
+                            <i class="fas fa-upload"></i>
+                        </div>
+                        <h4>File Uploads</h4>
+                        <p>File selection, drag-drop uploads, progress</p>
+                        <div class="demo-badge badge-expert">Expert</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card info coming-soon wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="demo-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Charts & Graphs</h4>
+                        <p>Interactive data visualization and chart.js</p>
+                        <div class="demo-badge badge-expert">Expert</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card info coming-soon wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="demo-icon">
+                            <i class="fas fa-stream"></i>
+                        </div>
+                        <h4>Infinite Scroll</h4>
+                        <p>Social feeds, lazy loading, virtual scrolling</p>
+                        <div class="demo-badge badge-expert">Expert</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Real-World Scenarios Category -->
+    <div class="category-section">
+        <div class="container">
+            <div class="category-title wow fadeInUp">
+                <h2>🌐 Real-World Scenarios</h2>
+                <p>Master-level complete application workflows</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card coming-soon wow fadeInUp" data-wow-delay="0.1s" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                        <div class="demo-icon" style="color: white;">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h4>E-commerce Workflow</h4>
+                        <p>Complete shopping journey and payment flows</p>
+                        <div class="demo-badge" style="background: rgba(255,255,255,0.2); color: white;">Master</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card coming-soon wow fadeInUp" data-wow-delay="0.2s" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                        <div class="demo-icon" style="color: white;">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Authentication Flows</h4>
+                        <p>Login, 2FA, OAuth, and security testing</p>
+                        <div class="demo-badge" style="background: rgba(255,255,255,0.2); color: white;">Master</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card coming-soon wow fadeInUp" data-wow-delay="0.3s" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                        <div class="demo-icon" style="color: white;">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h4>Dashboard Interactions</h4>
+                        <p>Admin panels, filters, and real-time data</p>
+                        <div class="demo-badge" style="background: rgba(255,255,255,0.2); color: white;">Master</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="demo-card coming-soon wow fadeInUp" data-wow-delay="0.4s" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                        <div class="demo-icon" style="color: white;">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h4>Mobile Responsive</h4>
+                        <p>Touch gestures and viewport testing</p>
+                        <div class="demo-badge" style="background: rgba(255,255,255,0.2); color: white;">Master</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Marketing Highlight Section -->
+    <div class="category-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
+                    <div class="category-title text-white" style="text-align: left; border-bottom: none;">
+                        <h2 style="color: white;">🚀 Why Choose Our Testing Lab?</h2>
+                        <p style="color: rgba(255,255,255,0.9);">The most comprehensive practice environment for automation engineers. Master real-world scenarios from beginner to expert level.</p>
+                    </div>
+                    <div class="row text-white">
+                        <div class="col-6 mb-3">
+                            <i class="fas fa-check-circle mr-2" style="color: #00b894;"></i>100+ Real Scenarios
+                        </div>
+                        <div class="col-6 mb-3">
+                            <i class="fas fa-check-circle mr-2" style="color: #00b894;"></i>E2E E-commerce App
+                        </div>
+                        <div class="col-6 mb-3">
+                            <i class="fas fa-check-circle mr-2" style="color: #00b894;"></i>Complex Workflows
+                        </div>
+                        <div class="col-6 mb-3">
+                            <i class="fas fa-check-circle mr-2" style="color: #00b894;"></i>Mobile Responsive
+                        </div>
+                        <div class="col-6">
+                            <i class="fas fa-check-circle mr-2" style="color: #00b894;"></i>Selenium Compatible
+                        </div>
+                        <div class="col-6">
+                            <i class="fas fa-check-circle mr-2" style="color: #00b894;"></i>Playwright Ready
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="basic-elements/buttons.html" class="btn btn-light btn-lg mr-3">
+                            <i class="fas fa-play mr-2"></i>Try Live Demo
+                        </a>
+                        <a href="../portfolio/training/online-courses.html" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-graduation-cap mr-2"></i>Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.3s">
+                    <div class="row">
+                        <div class="col-6 mb-4">
+                            <div class="text-center p-3" style="background: rgba(255,255,255,0.1); border-radius: 15px;">
+                                <i class="fas fa-mouse-pointer mb-2" style="font-size: 2rem; color: #74b9ff;"></i>
+                                <h5 style="color: white;">Basic Elements</h5>
+                                <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">Buttons, inputs, dropdowns, forms</p>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-4">
+                            <div class="text-center p-3" style="background: rgba(255,255,255,0.1); border-radius: 15px;">
+                                <i class="fas fa-arrows-alt mb-2" style="font-size: 2rem; color: #00b894;"></i>
+                                <h5 style="color: white;">User Interactions</h5>
+                                <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">Drag & drop, hover, scroll</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center p-3" style="background: rgba(255,255,255,0.1); border-radius: 15px;">
+                                <i class="fas fa-cogs mb-2" style="font-size: 2rem; color: #e84393;"></i>
+                                <h5 style="color: white;">Advanced Features</h5>
+                                <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">Frames, alerts, waits, shadow DOM</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center p-3" style="background: rgba(255,255,255,0.1); border-radius: 15px;">
+                                <i class="fas fa-shopping-cart mb-2" style="font-size: 2rem; color: #fdcb6e;"></i>
+                                <h5 style="color: white;">Real-World Apps</h5>
+                                <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">E-commerce, dashboards, auth</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-demo">
+        <div class="container">
+            <p class="mb-2">
+                <strong>🧪 Automation Testing Lab</strong> - Built for learning and practice
+            </p>
+            <p class="mb-0">
+                <i class="fas fa-arrow-left mr-2"></i>
+                <a href="../index.html" style="color: #74b9ff; text-decoration: none;">
+                    ← Back to Main Portfolio
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/wow/wow.min.js"></script>
+    
+    <script>
+        // Initialize animations
+        new WOW().init();
+        
+        // Add click handlers for demo cards
+        document.querySelectorAll('.demo-card:not(.coming-soon)').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+        
+        // Add coming soon click handler
+        document.querySelectorAll('.demo-card.coming-soon').forEach(card => {
+            card.addEventListener('click', function() {
+                alert('🚧 This practice scenario is coming soon! \n\nCurrently available:\n✅ Button Interactions\n🔜 E-commerce workflows\n🔜 Real automation scenarios');
+            });
+        });
+    </script>
+</body>
+
+</html> 

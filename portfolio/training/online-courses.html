@@ -9,7 +9,7 @@
     <meta content="Udemy Courses by Vignesh Srinivasa Raghavan" name="description">
 
     <!-- Favicon -->
-    <link href="../img/favicon.ico" rel="icon">
+    <link href="../../img/favicon.ico" rel="icon">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -17,12 +17,205 @@
     <!-- CSS Libraries -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="../lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="../../lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
     <!-- Independent Professional Styling -->
-    <link href="../css/modern-style.css" rel="stylesheet">
+    <link href="../../css/modern-style.css" rel="stylesheet">
+
+    <!-- Enhanced Dropdown Navigation Styling -->
+    <style>
+        /* Remove Bootstrap default focus/active states that cause violet squares */
+        .navbar-nav .nav-link:focus,
+        .navbar-nav .nav-link.active,
+        .navbar-nav .nav-link:hover {
+            background-color: transparent !important;
+            border-radius: 0 !important;
+            color: #007bff !important;
+        }
+        
+        /* Remove any button-like styling */
+        .navbar-nav .nav-item .nav-link {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+        
+        /* Dropdown Navigation Enhancements */
+        .navbar-nav .nav-item.dropdown {
+            position: relative;
+        }
+        
+        /* Custom dropdown arrow using FontAwesome */
+        .navbar-nav .dropdown-toggle::after {
+            display: none !important; /* Hide dropdown arrows completely */
+        }
+        
+        /* Hover-based dropdown behavior */
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            display: block !important; /* Always display but use opacity for show/hide */
+        }
+        
+        /* Dropdown item styling */
+        .dropdown-item {
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            color: #495057;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .dropdown-item:hover {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            border-left-color: #ffc107;
+            transform: translateX(5px);
+        }
+        
+        .dropdown-item i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Pure hover-based dropdown for desktop */
+        @media (min-width: 992px) {
+            .navbar-nav .dropdown:hover .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+            
+            /* Disable click behavior on desktop */
+            .navbar-nav .dropdown-toggle {
+                pointer-events: none;
+            }
+            
+            .navbar-nav .dropdown-toggle::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                pointer-events: auto;
+            }
+        }
+        
+        /* Mobile click-based behavior */
+        @media (max-width: 991.98px) {
+            .dropdown-menu {
+                position: static;
+                float: none;
+                width: 100%;
+                margin-top: 0;
+                background-color: #f8f9fa;
+                border-radius: 0;
+                box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+            }
+            
+            .dropdown-item {
+                padding: 0.5rem 2rem;
+                border-left: none;
+                border-bottom: 1px solid #e9ecef;
+            }
+            
+            .dropdown-item:hover {
+                transform: none;
+                background-color: #007bff;
+                border-left: none;
+            }
+            
+            /* Re-enable click behavior on mobile */
+            .navbar-nav .dropdown-toggle {
+                pointer-events: auto;
+            }
+        }
+        
+        /* Enhanced navigation link styling */
+        .navbar-nav .nav-link {
+            position: relative;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem !important;
+        }
+        
+        /* Underline effect for non-dropdown links */
+        .navbar-nav .nav-link:not(.dropdown-toggle)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .navbar-nav .nav-link:not(.dropdown-toggle):hover::after,
+        .navbar-nav .nav-link:not(.dropdown-toggle).active::after {
+            width: 100%;
+        }
+        
+        /* Clean hover states */
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: #007bff !important;
+            background-color: transparent !important;
+        }
+        
+        /* Clean dropdown toggle hover */
+        .navbar-nav .dropdown-toggle:hover {
+            color: #007bff !important;
+            background-color: transparent !important;
+        }
+        
+        /* Enhanced mobile toggle */
+        .navbar-toggler {
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            padding: 0.5rem 0.75rem;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        /* Remove any Bootstrap button styling that might cause squares */
+        .nav-link.active,
+        .nav-link:focus,
+        .nav-link:hover {
+            background: none !important;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+        
+        /* Ensure dropdown menus stay visible when hovering over them */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    </style>
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="51">
@@ -31,8 +224,8 @@
         <!-- First Row: Logo and Name -->
         <div class="navbar-brand-row">
             <div class="container-fluid d-flex align-items-center justify-content-center h-100">
-                <a href="../index.html" class="navbar-brand-custom d-flex align-items-center">
-                    <img src="../img/displayPicture/Viki-DP.jpg" alt="Vignesh Srinivasa Raghavan" class="navbar-logo">
+                <a href="../../index.html" class="navbar-brand-custom d-flex align-items-center">
+                    <img src="../../img/displayPicture/Viki-DP.jpg" alt="Vignesh Srinivasa Raghavan" class="navbar-logo">
                     <span class="navbar-title">Vignesh Srinivasa Raghavan</span>
                 </a>
             </div>
@@ -47,15 +240,76 @@
 
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-auto">
-                        <a href="../index.html" class="nav-item nav-link">Home</a>
-                        <a href="courses.html" class="nav-item nav-link active">Courses</a>
-                        <a href="corporate-training.html" class="nav-item nav-link">Corporate Training</a>
-                        <a href="workshops.html" class="nav-item nav-link">Workshops</a>
-                        <a href="conference-talks.html" class="nav-item nav-link">Conference Talks</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="reviews.html" class="nav-item nav-link">Reviews</a>
-                        <a href="https://www.linkedin.com/in/vignesh-srinivasa-raghavan/" class="nav-item nav-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                        <a href="https://www.udemy.com/user/vignesh-2698/" class="nav-item nav-link" target="_blank" rel="noopener noreferrer">Udemy</a>
+                        <a href="../../index.html" class="nav-item nav-link">Home</a>
+                        
+                        <!-- Get Trained Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="getTrainedDropdown">
+                                Get Trained
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="getTrainedDropdown">
+                                <a class="dropdown-item active" href="online-courses.html">
+                                    <i class="fas fa-graduation-cap mr-2 text-primary"></i>Online Courses
+                                </a>
+                                <a class="dropdown-item" href="live-workshops.html">
+                                    <i class="fas fa-users mr-2 text-success"></i>Live Workshops
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Personal Training Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="personalTrainingDropdown">
+                                Personal Training
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="personalTrainingDropdown">
+                                <a class="dropdown-item" href="corporate-training.html">
+                                    <i class="fas fa-building mr-2 text-info"></i>Corporate Training
+                                </a>
+                                <a class="dropdown-item" href="mentoring.html">
+                                    <i class="fas fa-user-tie mr-2 text-warning"></i>1-to-1 Mentoring
+                                </a>
+                                <a class="dropdown-item" href="career-coaching.html">
+                                    <i class="fas fa-chart-line mr-2 text-danger"></i>Career Coaching
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <a href="../reviews.html" class="nav-item nav-link">Reviews</a>
+                        <a href="../about.html" class="nav-item nav-link">About</a>
+                        
+                        <!-- Speaking & Events Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="speakingDropdown">
+                                Speaking & Events
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="speakingDropdown">
+                                <a class="dropdown-item" href="../speaking/conference-talks.html">
+                                    <i class="fas fa-microphone mr-2 text-primary"></i>Conference Talks
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Let's Connect Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="connectDropdown">
+                                Let's Connect
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="connectDropdown">
+                                <a class="dropdown-item" href="../connect/contact-form.html">
+                                    <i class="fas fa-envelope mr-2 text-primary"></i>Contact Form
+                                </a>
+                                <a class="dropdown-item" href="../connect/whatsapp.html">
+                                    <i class="fab fa-whatsapp mr-2 text-success"></i>WhatsApp Direct
+                                </a>
+                                <a class="dropdown-item" href="https://www.linkedin.com/in/vignesh-srinivasa-raghavan/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-linkedin mr-2 text-info"></i>LinkedIn Profile
+                                </a>
+                                <a class="dropdown-item" href="https://www.udemy.com/user/vignesh-2698/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-play-circle mr-2 text-danger"></i>Udemy Profile
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -199,20 +453,63 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="../lib/easing/easing.min.js"></script>
-    <script src="../lib/wow/wow.min.js"></script>
-    <script src="../lib/waypoints/waypoints.min.js"></script>
-    <script src="../lib/typed/typed.min.js"></script>
-    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../lib/isotope/isotope.pkgd.min.js"></script>
-    <script src="../lib/lightbox/js/lightbox.min.js"></script>
+    <script src="../../lib/easing/easing.min.js"></script>
+    <script src="../../lib/wow/wow.min.js"></script>
+    <script src="../../lib/waypoints/waypoints.min.js"></script>
+    <script src="../../lib/typed/typed.min.js"></script>
+    <script src="../../lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../../lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="../../lib/lightbox/js/lightbox.min.js"></script>
 
     <!-- Core Javascript -->
-    <script src="../js/main.js"></script>
+    <script src="../../js/main.js"></script>
     <!-- Interactive Features -->
-    <script src="../js/interactive.js"></script>
-
+    <script src="../../js/interactive.js"></script>
+    
+    <!-- Custom Navigation Behavior -->
     <script>
+        // Handle mobile dropdown behavior
+        $(document).ready(function() {
+            // Only enable click behavior on mobile
+            function handleMobileDropdowns() {
+                if ($(window).width() <= 991) {
+                    // Mobile: Enable click behavior
+                    $('.dropdown-toggle').off('click').on('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        var $dropdown = $(this).parent();
+                        var $menu = $dropdown.find('.dropdown-menu');
+                        
+                        // Close other dropdowns
+                        $('.dropdown-menu').not($menu).removeClass('show');
+                        
+                        // Toggle current dropdown
+                        $menu.toggleClass('show');
+                    });
+                    
+                    // Close dropdown when clicking outside
+                    $(document).on('click', function(e) {
+                        if (!$(e.target).closest('.dropdown').length) {
+                            $('.dropdown-menu').removeClass('show');
+                        }
+                    });
+                } else {
+                    // Desktop: Disable click behavior (hover only)
+                    $('.dropdown-toggle').off('click');
+                    $('.dropdown-menu').removeClass('show');
+                }
+            }
+            
+            // Initial setup
+            handleMobileDropdowns();
+            
+            // Handle window resize
+            $(window).resize(function() {
+                handleMobileDropdowns();
+            });
+        });
+        
         // Course descriptions and details
         const courseDetails = {
             'playwright': {
@@ -248,9 +545,9 @@
                 badge: 'Most Popular'
             }
         };
-
+        
         // Load courses from courses.json
-                  fetch('../courses.json')
+        fetch('../../courses.json')
             .then(response => response.json())
             .then(data => {
                 const onlineCoursesDiv = document.getElementById('online-courses');
@@ -274,7 +571,7 @@
                             <div class="row align-items-center">
                                 <div class="col-md-4 text-center mb-3 mb-md-0">
                                     <div class="p-3 bg-light rounded-circle d-inline-block mb-2" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
-                                        <img src="../img/logo/${courseName}-Logo.png" 
+                                        <img src="../../img/logo/${courseName}-Logo.png" 
                                              alt="${details.title}" 
                                              class="img-fluid" 
                                              style="max-height: 50px; object-fit: contain;">

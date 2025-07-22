@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Contact Form - Vignesh Online Tutor</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Contact Form, Get In Touch, Training Inquiry" name="keywords">
+    <meta content="Contact Vignesh for training inquiries, mentoring, and career coaching" name="description">
+
+    <!-- Favicon -->
+    <link href="../../img/favicon.ico" rel="icon">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="../../lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Independent Professional Styling -->
+    <link href="../../css/modern-style.css" rel="stylesheet">
+
+    <!-- Enhanced Dropdown Navigation Styling -->
+    <style>
+        /* Remove Bootstrap default focus/active states that cause violet squares */
+        .navbar-nav .nav-link:focus,
+        .navbar-nav .nav-link.active,
+        .navbar-nav .nav-link:hover {
+            background-color: transparent !important;
+            border-radius: 0 !important;
+            color: #007bff !important;
+        }
+        
+        /* Remove any button-like styling */
+        .navbar-nav .nav-item .nav-link {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+        
+        /* Dropdown Navigation Enhancements */
+        .navbar-nav .nav-item.dropdown {
+            position: relative;
+        }
+        
+        /* Custom dropdown arrow using FontAwesome */
+        .navbar-nav .dropdown-toggle::after {
+            display: none !important; /* Hide dropdown arrows completely */
+        }
+        
+        /* Hover-based dropdown behavior */
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            display: block !important; /* Always display but use opacity for show/hide */
+        }
+        
+        /* Dropdown item styling */
+        .dropdown-item {
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            color: #495057;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .dropdown-item:hover {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            border-left-color: #ffc107;
+            transform: translateX(5px);
+        }
+        
+        .dropdown-item i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Pure hover-based dropdown for desktop */
+        @media (min-width: 992px) {
+            .navbar-nav .dropdown:hover .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+            
+            /* Disable click behavior on desktop */
+            .navbar-nav .dropdown-toggle {
+                pointer-events: none;
+            }
+            
+            .navbar-nav .dropdown-toggle::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                pointer-events: auto;
+            }
+        }
+        
+        /* Mobile click-based behavior */
+        @media (max-width: 991.98px) {
+            .dropdown-menu {
+                position: static;
+                float: none;
+                width: 100%;
+                margin-top: 0;
+                background-color: #f8f9fa;
+                border-radius: 0;
+                box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+            }
+            
+            .dropdown-item {
+                padding: 0.5rem 2rem;
+                border-left: none;
+                border-bottom: 1px solid #e9ecef;
+            }
+            
+            .dropdown-item:hover {
+                transform: none;
+                background-color: #007bff;
+                border-left: none;
+            }
+            
+            /* Re-enable click behavior on mobile */
+            .navbar-nav .dropdown-toggle {
+                pointer-events: auto;
+            }
+        }
+        
+        /* Enhanced navigation link styling */
+        .navbar-nav .nav-link {
+            position: relative;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem !important;
+        }
+        
+        /* Underline effect for non-dropdown links */
+        .navbar-nav .nav-link:not(.dropdown-toggle)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .navbar-nav .nav-link:not(.dropdown-toggle):hover::after,
+        .navbar-nav .nav-link:not(.dropdown-toggle).active::after {
+            width: 100%;
+        }
+        
+        /* Clean hover states */
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: #007bff !important;
+            background-color: transparent !important;
+        }
+        
+        /* Clean dropdown toggle hover */
+        .navbar-nav .dropdown-toggle:hover {
+            color: #007bff !important;
+            background-color: transparent !important;
+        }
+        
+        /* Enhanced mobile toggle */
+        .navbar-toggler {
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            padding: 0.5rem 0.75rem;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        /* Remove any Bootstrap button styling that might cause squares */
+        .nav-link.active,
+        .nav-link:focus,
+        .nav-link:hover {
+            background: none !important;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+        
+        /* Ensure dropdown menus stay visible when hovering over them */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="51">
+    <!-- Nav Bar Start -->
+    <div class="navbar-wrapper bg-light">
+        <!-- First Row: Logo and Name -->
+        <div class="navbar-brand-row">
+            <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+                <a href="../../index.html" class="navbar-brand-custom d-flex align-items-center">
+                    <img src="../../img/displayPicture/Viki-DP.jpg" alt="Vignesh Srinivasa Raghavan" class="navbar-logo">
+                    <span class="navbar-title">Vignesh Srinivasa Raghavan</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Second Row: Navigation Menu -->
+        <div class="navbar navbar-expand-lg bg-light navbar-light border-top">
+            <div class="container-fluid">
+                <button type="button" class="navbar-toggler mx-auto" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                        <a href="../../index.html" class="nav-item nav-link">Home</a>
+                        
+                        <!-- Get Trained Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="getTrainedDropdown">
+                                Get Trained
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="getTrainedDropdown">
+                                <a class="dropdown-item" href="../training/online-courses.html">
+                                    <i class="fas fa-graduation-cap mr-2 text-primary"></i>Online Courses
+                                </a>
+                                <a class="dropdown-item" href="../training/live-workshops.html">
+                                    <i class="fas fa-users mr-2 text-success"></i>Live Workshops
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Personal Training Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="personalTrainingDropdown">
+                                Personal Training
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="personalTrainingDropdown">
+                                <a class="dropdown-item" href="../training/corporate-training.html">
+                                    <i class="fas fa-building mr-2 text-info"></i>Corporate Training
+                                </a>
+                                <a class="dropdown-item" href="../training/mentoring.html">
+                                    <i class="fas fa-user-tie mr-2 text-warning"></i>1-to-1 Mentoring
+                                </a>
+                                <a class="dropdown-item" href="../training/career-coaching.html">
+                                    <i class="fas fa-chart-line mr-2 text-danger"></i>Career Coaching
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <a href="../reviews.html" class="nav-item nav-link">Reviews</a>
+                        <a href="../about.html" class="nav-item nav-link">About</a>
+                        
+                        <!-- Speaking & Events Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="speakingDropdown">
+                                Speaking & Events
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="speakingDropdown">
+                                <a class="dropdown-item" href="../speaking/conference-talks.html">
+                                    <i class="fas fa-microphone mr-2 text-primary"></i>Conference Talks
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Let's Connect Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="connectDropdown">
+                                Let's Connect
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="connectDropdown">
+                                <a class="dropdown-item active" href="contact-form.html">
+                                    <i class="fas fa-envelope mr-2 text-primary"></i>Contact Form
+                                </a>
+                                <a class="dropdown-item" href="whatsapp.html">
+                                    <i class="fab fa-whatsapp mr-2 text-success"></i>WhatsApp Direct
+                                </a>
+                                <a class="dropdown-item" href="https://www.linkedin.com/in/vignesh-srinivasa-raghavan/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-linkedin mr-2 text-info"></i>LinkedIn Profile
+                                </a>
+                                <a class="dropdown-item" href="https://www.udemy.com/user/vignesh-2698/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-play-circle mr-2 text-danger"></i>Udemy Profile
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Nav Bar End -->
+
+    <!-- Header Start -->
+    <div class="training" id="header">
+        <div class="container">
+            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                <h2>Get In Touch</h2>
+                <p>Ready to transform your automation testing career? Let's discuss your goals!</p>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+    <!-- Contact Form Start -->
+    <div class="training" id="contact-form">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="shadow-custom border-radius-custom p-5 bg-white">
+                        <h3 class="text-center mb-4">Professional Inquiry Form</h3>
+                        <p class="text-center text-muted mb-4">Fill out the form below and I'll get back to you within 24 hours</p>
+                        
+                        <form name="training-request" netlify netlify-honeypot="bot-field" data-netlify-recaptcha="true">
+                            <!-- Netlify Anti-spam -->
+                            <input type="hidden" name="form-name" value="training-request">
+                            <p style="display: none;">
+                                <label>Don't fill this out if you're human: <input name="bot-field"></label>
+                            </p>
+                            <input type="hidden" name="subject" value="[VigneshHub] Professional Inquiry">
+                            
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="fullName">Full Name *</label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="fullName" 
+                                           name="fullName" 
+                                           required
+                                           placeholder="Your full name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" 
+                                           class="form-control" 
+                                           id="email" 
+                                           name="email" 
+                                           required
+                                           placeholder="your.email@company.com">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="countryCode">Country</label>
+                                    <select class="form-control" id="countryCode" name="countryCode">
+                                        <option value="+91" data-flag="🇮🇳">🇮🇳 India +91</option>
+                                        <option value="+1" data-flag="🇺🇸">🇺🇸 United States +1</option>
+                                        <option value="+44" data-flag="🇬🇧">🇬🇧 United Kingdom +44</option>
+                                        <option value="+49" data-flag="🇩🇪">🇩🇪 Germany +49</option>
+                                        <option value="+33" data-flag="🇫🇷">🇫🇷 France +33</option>
+                                        <option value="+61" data-flag="🇦🇺">🇦🇺 Australia +61</option>
+                                        <option value="+81" data-flag="🇯🇵">🇯🇵 Japan +81</option>
+                                        <option value="+82" data-flag="🇰🇷">🇰🇷 South Korea +82</option>
+                                        <option value="+86" data-flag="🇨🇳">🇨🇳 China +86</option>
+                                        <option value="+7" data-flag="🇷🇺">🇷🇺 Russia +7</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-8">
+                                    <label for="whatsappNumber">WhatsApp Number</label>
+                                    <input type="tel" 
+                                           class="form-control" 
+                                           id="whatsappNumber" 
+                                           name="whatsappNumber" 
+                                           placeholder="Enter your WhatsApp number">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="inquiryType">Type of Inquiry *</label>
+                                <select class="form-control" id="inquiryType" name="inquiryType" required>
+                                    <option value="">Select inquiry type</option>
+                                    <option value="corporate-training">Corporate Training</option>
+                                    <option value="1-to-1-mentoring">1-to-1 Mentoring</option>
+                                    <option value="career-coaching">Career Coaching</option>
+                                    <option value="online-courses">Online Courses Guidance</option>
+                                    <option value="workshop">Live Workshop</option>
+                                    <option value="speaking-engagement">Speaking Engagement</option>
+                                    <option value="general-inquiry">General Inquiry</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="currentRole">Current Role</label>
+                                <select class="form-control" id="currentRole" name="currentRole">
+                                    <option value="">Select your current role</option>
+                                    <option value="manual-tester">Manual Tester/QE</option>
+                                    <option value="junior-sdet">Junior SDET</option>
+                                    <option value="sdet">SDET</option>
+                                    <option value="senior-sdet">Senior SDET</option>
+                                    <option value="lead-sdet">Lead SDET</option>
+                                    <option value="qa-manager">QA Manager</option>
+                                    <option value="student">Student</option>
+                                    <option value="career-changer">Career Changer</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="experience">Years of Experience</label>
+                                <select class="form-control" id="experience" name="experience">
+                                    <option value="">Select experience level</option>
+                                    <option value="0-1">0-1 years</option>
+                                    <option value="1-3">1-3 years</option>
+                                    <option value="3-5">3-5 years</option>
+                                    <option value="5-8">5-8 years</option>
+                                    <option value="8+">8+ years</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea class="form-control" 
+                                          id="message" 
+                                          name="message" 
+                                          rows="5" 
+                                          required
+                                          placeholder="Please describe your specific requirements, goals, or questions..."></textarea>
+                            </div>
+                            
+                            <!-- Budget range for paid services -->
+                            <div class="form-group">
+                                <label for="budgetRange">Budget Range (for paid services)</label>
+                                <select class="form-control" id="budgetRange" name="budgetRange">
+                                    <option value="">Select budget range (optional)</option>
+                                    <option value="under-500">Under $500</option>
+                                    <option value="500-1000">$500 - $1,000</option>
+                                    <option value="1000-2500">$1,000 - $2,500</option>
+                                    <option value="2500-5000">$2,500 - $5,000</option>
+                                    <option value="5000+">$5,000+</option>
+                                    <option value="discuss">Prefer to discuss</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Netlify reCAPTCHA -->
+                            <div class="form-group">
+                                <div data-netlify-recaptcha="true"></div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                <i class="fas fa-paper-plane mr-2"></i>Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact Form End -->
+
+    <!-- Alternative Contact Methods Start -->
+    <div class="training" id="contact-alternatives" style="background-color: #f8f9fa;">
+        <div class="container">
+            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                <h3>Other Ways to Connect</h3>
+                <p>Choose the method that works best for you</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="text-center p-4 bg-white rounded shadow-sm h-100">
+                        <i class="fab fa-whatsapp fa-3x text-success mb-3"></i>
+                        <h4>WhatsApp Direct</h4>
+                        <p class="text-muted mb-3">Quick questions or instant chat</p>
+                        <a href="whatsapp.html" class="btn btn-success">
+                            <i class="fab fa-whatsapp mr-2"></i>Chat Now
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="text-center p-4 bg-white rounded shadow-sm h-100">
+                        <i class="far fa-envelope fa-3x text-primary mb-3"></i>
+                        <h4>Email Direct</h4>
+                        <p class="text-muted mb-3">Detailed inquiries or proposals</p>
+                        <a href="mailto:vigneshonlinetutor@gmail.com" class="btn btn-primary">
+                            <i class="far fa-envelope mr-2"></i>Send Email
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="text-center p-4 bg-white rounded shadow-sm h-100">
+                        <i class="fab fa-linkedin fa-3x text-info mb-3"></i>
+                        <h4>LinkedIn Connect</h4>
+                        <p class="text-muted mb-3">Professional networking and career discussions</p>
+                        <a href="https://www.linkedin.com/in/vignesh-srinivasa-raghavan/" target="_blank" rel="noopener noreferrer" class="btn btn-info">
+                            <i class="fab fa-linkedin mr-2"></i>Connect
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Alternative Contact Methods End -->
+
+    <!-- Footer Start -->
+    <div class="footer wow fadeIn" data-wow-delay="0.3s">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="footer-info">
+                    <h2>Vignesh Srinivasa Raghavan</h2>
+                    <div class="footer-menu">
+                        <p><i class="far fa-envelope"></i> <a class="mail" href="mailto:vigneshonlinetutor@gmail.com">vigneshonlinetutor@gmail.com</a></p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/vignesh-srinivasa-raghavan/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="container copyright">
+                <p>&copy; 2024 <a href="#">Vignesh Srinivasa Raghavan</a>. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to top button -->
+    <a href="#" class="btn back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- Pre Loader -->
+    <div id="loader" class="show">
+        <div class="loader"></div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="../../lib/easing/easing.min.js"></script>
+    <script src="../../lib/wow/wow.min.js"></script>
+    <script src="../../lib/waypoints/waypoints.min.js"></script>
+    <script src="../../lib/typed/typed.min.js"></script>
+    <script src="../../lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../../lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="../../lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Core Javascript -->
+    <script src="../../js/main.js"></script>
+    <!-- Interactive Features -->
+    <script src="../../js/interactive.js"></script>
+    
+    <!-- Custom Navigation Behavior -->
+    <script>
+        // Handle mobile dropdown behavior
+        $(document).ready(function() {
+            // Only enable click behavior on mobile
+            function handleMobileDropdowns() {
+                if ($(window).width() <= 991) {
+                    // Mobile: Enable click behavior
+                    $('.dropdown-toggle').off('click').on('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        var $dropdown = $(this).parent();
+                        var $menu = $dropdown.find('.dropdown-menu');
+                        
+                        // Close other dropdowns
+                        $('.dropdown-menu').not($menu).removeClass('show');
+                        
+                        // Toggle current dropdown
+                        $menu.toggleClass('show');
+                    });
+                    
+                    // Close dropdown when clicking outside
+                    $(document).on('click', function(e) {
+                        if (!$(e.target).closest('.dropdown').length) {
+                            $('.dropdown-menu').removeClass('show');
+                        }
+                    });
+                } else {
+                    // Desktop: Disable click behavior (hover only)
+                    $('.dropdown-toggle').off('click');
+                    $('.dropdown-menu').removeClass('show');
+                }
+            }
+            
+            // Initial setup
+            handleMobileDropdowns();
+            
+            // Handle window resize
+            $(window).resize(function() {
+                handleMobileDropdowns();
+            });
+        });
+    </script>
+</body>
+
+</html> 

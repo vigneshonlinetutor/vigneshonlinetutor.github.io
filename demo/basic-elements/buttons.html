@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Button Interactions - Automation Testing Lab</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Button Testing, Click Testing, UI Automation Practice" name="keywords">
+    <meta content="Practice button interactions for automation testing - clicks, hovers, states, and disabled buttons" name="description">
+
+    <!-- Favicon -->
+    <link href="../../img/favicon.ico" rel="icon">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .demo-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .demo-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .demo-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            color: #2d3436;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #74b9ff;
+            padding-bottom: 0.5rem;
+        }
+
+        /* Button Test Styles */
+        .test-button {
+            margin: 0.5rem;
+            min-width: 120px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom-success {
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+            border: none;
+            color: white;
+        }
+
+        .btn-custom-danger {
+            background: linear-gradient(135deg, #e17055 0%, #d63031 100%);
+            border: none;
+            color: white;
+        }
+
+        .btn-custom-warning {
+            background: linear-gradient(135deg, #fdcb6e 0%, #e17055 100%);
+            border: none;
+            color: white;
+        }
+
+        .btn-hover-effect:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-click-counter {
+            position: relative;
+        }
+
+        .click-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e84393;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .status-display {
+            background: #f8f9fa;
+            border-left: 4px solid #74b9ff;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .progress-demo {
+            transition: width 0.3s ease;
+        }
+
+        /* Tooltip Demo */
+        .tooltip-demo {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip-demo .tooltip-text {
+            visibility: hidden;
+            width: 120px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip-demo:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Animation Effects */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .shake-animation {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse-animation {
+            animation: pulse 1s infinite;
+        }
+
+        /* Automation Testing Helper */
+        .test-info {
+            background: #e8f4fd;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .test-info h6 {
+            color: #0c5460;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .test-info code {
+            background: #f1f3f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #d63384;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .result-message {
+            display: none;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        .result-success {
+            background: #d1edff;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .result-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Back to Demo Hub -->
+    <a href="../index.html" class="btn btn-outline-light back-link">
+        <i class="fas fa-arrow-left mr-2"></i>Back to Demo Hub
+    </a>
+
+    <!-- Header -->
+    <div class="demo-header">
+        <div class="container">
+            <h1><i class="fas fa-mouse-pointer mr-3"></i>Button Interactions</h1>
+            <p class="lead">Practice various button click scenarios for automation testing</p>
+            <div class="test-info">
+                <h6><i class="fas fa-info-circle mr-2"></i>Automation Testing Tips</h6>
+                <p class="mb-0">Use <code>id</code>, <code>data-testid</code>, or <code>class</code> attributes to locate buttons. Test different states: enabled, disabled, loading, etc.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Basic Button Clicks -->
+        <div class="demo-section">
+            <h3 class="section-title">🎯 Basic Button Clicks</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Standard Buttons</h5>
+                    <button id="btn-primary" class="btn btn-primary test-button">Primary Button</button>
+                    <button id="btn-secondary" class="btn btn-secondary test-button">Secondary Button</button>
+                    <button id="btn-success" class="btn btn-success test-button">Success Button</button>
+                    <button id="btn-danger" class="btn btn-danger test-button">Danger Button</button>
+                    
+                    <div class="status-display mt-3">
+                        <strong>Last Clicked:</strong> <span id="last-clicked">None</span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="test-info">
+                        <h6>Test Scenarios:</h6>
+                        <ul class="mb-0">
+                            <li>Click each button and verify the status updates</li>
+                            <li>Use different locator strategies (ID, class, text)</li>
+                            <li>Verify button text and styling</li>
+                            <li>Test rapid multiple clicks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Button States -->
+        <div class="demo-section">
+            <h3 class="section-title">🔄 Button States & Conditions</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>State Management</h5>
+                    <button id="btn-enabled" class="btn btn-outline-primary test-button">Enabled Button</button>
+                    <button id="btn-disabled" class="btn btn-outline-secondary test-button" disabled>Disabled Button</button>
+                    <button id="btn-toggle" class="btn btn-outline-warning test-button">Toggle Me</button>
+                    <button id="btn-loading" class="btn btn-outline-info test-button">
+                        <span class="btn-text">Click for Loading</span>
+                        <span class="btn-spinner" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i> Loading...
+                        </span>
+                    </button>
+                    
+                    <div class="mt-3">
+                        <button id="btn-enable-all" class="btn btn-sm btn-success">Enable All</button>
+                        <button id="btn-disable-all" class="btn btn-sm btn-danger">Disable All</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="test-info">
+                        <h6>State Testing:</h6>
+                        <ul class="mb-0">
+                            <li>Check <code>disabled</code> attribute presence</li>
+                            <li>Verify buttons can't be clicked when disabled</li>
+                            <li>Test state changes and transitions</li>
+                            <li>Handle loading states and spinners</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Click Counter & Events -->
+        <div class="demo-section">
+            <h3 class="section-title">📊 Click Counter & Events</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Interactive Counters</h5>
+                    <div class="mb-3">
+                        <button id="btn-counter" class="btn btn-primary test-button btn-click-counter">
+                            Click Counter
+                            <span class="click-count" id="click-count">0</span>
+                        </button>
+                        <button id="btn-reset-counter" class="btn btn-outline-secondary test-button">Reset</button>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <button id="btn-double-click" class="btn btn-warning test-button">Double Click Me</button>
+                        <div class="mt-2">
+                            <small>Double clicks: <span id="double-click-count">0</span></small>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <button id="btn-right-click" class="btn btn-info test-button">Right Click Me</button>
+                        <div class="mt-2">
+                            <small>Right clicks: <span id="right-click-count">0</span></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="test-info">
+                        <h6>Event Testing:</h6>
+                        <ul class="mb-0">
+                            <li>Verify click event handling</li>
+                            <li>Test double-click events</li>
+                            <li>Handle context menu (right-click)</li>
+                            <li>Track and validate counter values</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hover & Visual Effects -->
+        <div class="demo-section">
+            <h3 class="section-title">✨ Hover & Visual Effects</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Interactive Effects</h5>
+                    <div class="mb-3">
+                        <button id="btn-hover" class="btn btn-custom-success test-button btn-hover-effect">Hover Effect</button>
+                        <div class="tooltip-demo d-inline-block">
+                            <button id="btn-tooltip" class="btn btn-custom-warning test-button">Hover for Tooltip</button>
+                            <span class="tooltip-text">This is a tooltip!</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <button id="btn-shake" class="btn btn-custom-danger test-button">Shake Animation</button>
+                        <button id="btn-pulse" class="btn btn-outline-primary test-button">Pulse Animation</button>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h6>Color Changer</h6>
+                        <button id="btn-color-change" class="btn btn-secondary test-button">Change My Color</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="test-info">
+                        <h6>Visual Testing:</h6>
+                        <ul class="mb-0">
+                            <li>Test hover state changes</li>
+                            <li>Verify tooltip appearance/disappearance</li>
+                            <li>Check CSS animations and transitions</li>
+                            <li>Validate color and style changes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress & Feedback -->
+        <div class="demo-section">
+            <h3 class="section-title">📈 Progress & Feedback</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Progress Simulation</h5>
+                    <button id="btn-start-progress" class="btn btn-primary test-button">Start Progress</button>
+                    <button id="btn-stop-progress" class="btn btn-danger test-button">Stop Progress</button>
+                    
+                    <div class="mt-3">
+                        <div class="progress">
+                            <div id="progress-bar" class="progress-bar progress-demo" role="progressbar" style="width: 0%"></div>
+                        </div>
+                        <small>Progress: <span id="progress-text">0%</span></small>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <button id="btn-success-msg" class="btn btn-success test-button">Show Success</button>
+                        <button id="btn-error-msg" class="btn btn-danger test-button">Show Error</button>
+                        
+                        <div id="result-success" class="result-message result-success">
+                            <i class="fas fa-check-circle mr-2"></i>Operation completed successfully!
+                        </div>
+                        <div id="result-error" class="result-message result-error">
+                            <i class="fas fa-exclamation-triangle mr-2"></i>An error occurred during the operation!
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="test-info">
+                        <h6>Feedback Testing:</h6>
+                        <ul class="mb-0">
+                            <li>Monitor progress bar changes</li>
+                            <li>Verify success/error message display</li>
+                            <li>Test timing and animations</li>
+                            <li>Check element visibility states</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Scenarios -->
+        <div class="demo-section">
+            <h3 class="section-title">🎛️ Advanced Scenarios</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Complex Interactions</h5>
+                    <div class="mb-3">
+                        <button id="btn-confirm" class="btn btn-warning test-button">Confirm Action</button>
+                        <button id="btn-submit-form" class="btn btn-success test-button">Submit Form</button>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h6>Button Group</h6>
+                        <div class="btn-group" role="group">
+                            <button id="btn-group-1" type="button" class="btn btn-outline-primary">Option 1</button>
+                            <button id="btn-group-2" type="button" class="btn btn-outline-primary">Option 2</button>
+                            <button id="btn-group-3" type="button" class="btn btn-outline-primary">Option 3</button>
+                        </div>
+                        <div class="mt-2">
+                            <small>Selected: <span id="selected-option">None</span></small>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h6>Dynamic Button</h6>
+                        <button id="btn-add-dynamic" class="btn btn-primary test-button">Add Dynamic Button</button>
+                        <div id="dynamic-buttons-container" class="mt-2"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="test-info">
+                        <h6>Advanced Testing:</h6>
+                        <ul class="mb-0">
+                            <li>Handle confirmation dialogs</li>
+                            <li>Test button groups and selection</li>
+                            <li>Work with dynamically added elements</li>
+                            <li>Validate form submission flows</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            let clickCount = 0;
+            let doubleClickCount = 0;
+            let rightClickCount = 0;
+            let progressInterval;
+            let currentProgress = 0;
+            let dynamicButtonCount = 0;
+
+            // Basic button clicks
+            $('.test-button').click(function() {
+                const buttonText = $(this).text().trim();
+                $('#last-clicked').text(buttonText);
+            });
+
+            // Button state management
+            $('#btn-toggle').click(function() {
+                $(this).toggleClass('btn-outline-warning btn-warning');
+                if ($(this).hasClass('btn-warning')) {
+                    $(this).text('Toggled ON');
+                } else {
+                    $(this).text('Toggle Me');
+                }
+            });
+
+            $('#btn-loading').click(function() {
+                const btn = $(this);
+                btn.prop('disabled', true);
+                btn.find('.btn-text').hide();
+                btn.find('.btn-spinner').show();
+                
+                setTimeout(function() {
+                    btn.prop('disabled', false);
+                    btn.find('.btn-text').show();
+                    btn.find('.btn-spinner').hide();
+                }, 3000);
+            });
+
+            $('#btn-enable-all').click(function() {
+                $('.test-button').prop('disabled', false);
+            });
+
+            $('#btn-disable-all').click(function() {
+                $('.test-button').prop('disabled', true);
+            });
+
+            // Click counter
+            $('#btn-counter').click(function() {
+                clickCount++;
+                $('#click-count').text(clickCount);
+            });
+
+            $('#btn-reset-counter').click(function() {
+                clickCount = 0;
+                $('#click-count').text(clickCount);
+            });
+
+            // Double click
+            $('#btn-double-click').dblclick(function() {
+                doubleClickCount++;
+                $('#double-click-count').text(doubleClickCount);
+            });
+
+            // Right click
+            $('#btn-right-click').contextmenu(function(e) {
+                e.preventDefault();
+                rightClickCount++;
+                $('#right-click-count').text(rightClickCount);
+            });
+
+            // Animations
+            $('#btn-shake').click(function() {
+                $(this).addClass('shake-animation');
+                setTimeout(() => {
+                    $(this).removeClass('shake-animation');
+                }, 500);
+            });
+
+            $('#btn-pulse').click(function() {
+                $(this).toggleClass('pulse-animation');
+            });
+
+            // Color changer
+            $('#btn-color-change').click(function() {
+                const colors = ['btn-primary', 'btn-success', 'btn-danger', 'btn-warning', 'btn-info', 'btn-secondary'];
+                const currentClass = colors.find(color => $(this).hasClass(color));
+                const currentIndex = colors.indexOf(currentClass);
+                const nextIndex = (currentIndex + 1) % colors.length;
+                
+                $(this).removeClass(currentClass).addClass(colors[nextIndex]);
+            });
+
+            // Progress simulation
+            $('#btn-start-progress').click(function() {
+                currentProgress = 0;
+                progressInterval = setInterval(function() {
+                    currentProgress += 10;
+                    $('#progress-bar').css('width', currentProgress + '%');
+                    $('#progress-text').text(currentProgress + '%');
+                    
+                    if (currentProgress >= 100) {
+                        clearInterval(progressInterval);
+                    }
+                }, 200);
+            });
+
+            $('#btn-stop-progress').click(function() {
+                clearInterval(progressInterval);
+            });
+
+            // Messages
+            $('#btn-success-msg').click(function() {
+                $('#result-success').show().delay(3000).fadeOut();
+                $('#result-error').hide();
+            });
+
+            $('#btn-error-msg').click(function() {
+                $('#result-error').show().delay(3000).fadeOut();
+                $('#result-success').hide();
+            });
+
+            // Confirm action
+            $('#btn-confirm').click(function() {
+                if (confirm('Are you sure you want to perform this action?')) {
+                    alert('Action confirmed!');
+                } else {
+                    alert('Action cancelled!');
+                }
+            });
+
+            // Submit form
+            $('#btn-submit-form').click(function() {
+                alert('Form submitted successfully!');
+            });
+
+            // Button group
+            $('.btn-group button').click(function() {
+                $('.btn-group button').removeClass('active');
+                $(this).addClass('active');
+                $('#selected-option').text($(this).text());
+            });
+
+            // Dynamic buttons
+            $('#btn-add-dynamic').click(function() {
+                dynamicButtonCount++;
+                const dynamicBtn = $(`<button class="btn btn-outline-primary btn-sm mr-2 mb-2" data-testid="dynamic-btn-${dynamicButtonCount}">Dynamic ${dynamicButtonCount}</button>`);
+                
+                dynamicBtn.click(function() {
+                    alert(`You clicked Dynamic Button ${dynamicButtonCount}!`);
+                    $(this).remove();
+                });
+                
+                $('#dynamic-buttons-container').append(dynamicBtn);
+            });
+        });
+    </script>
+</body>
+
+</html> 

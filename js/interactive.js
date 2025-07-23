@@ -359,6 +359,91 @@ function getAvatarHTML(name, photo) {
     }
 }
 
+// Functions for reviews.html page tab loading
+function loadReviewsByType(type, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    console.log(`Loading ${type} reviews into ${containerId}`);
+    
+    // Filter reviews by type
+    const filteredReviews = reviewsData.filter(review => review.type === type);
+    
+    if (filteredReviews.length === 0) {
+        container.innerHTML = `
+            <div class="text-center py-5">
+                <h4 class="text-muted">No ${type} reviews available</h4>
+                <p class="text-muted">Check back soon for more reviews.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    const reviewsHtml = `
+        <div class="row">
+            ${filteredReviews.map(review => `
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="testimonial-card h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="mr-3">
+                                ${getAvatarHTML(review.name, review.photo)}
+                            </div>
+                            <div>
+                                <h6 class="mb-0 font-weight-bold">${review.name || 'Anonymous'}</h6>
+                                <small class="text-primary font-weight-500">${review.title || 'Student'}</small>
+                                <div class="text-muted small">${review.company || ''}</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            ${generateStars(review.rating)}
+                            <span class="ml-2 text-muted small">(${review.rating} Rating)</span>
+                        </div>
+                        <p class="text-muted">"${(review.review || '').replace(/"/g, '&quot;')}"</p>
+                        <div class="mt-3">
+                            <span class="badge badge-primary mr-1">${review.type.charAt(0).toUpperCase() + review.type.slice(1).replace('-', ' ')}</span>
+                            ${review.subtype ? `<span class="badge badge-success">${review.subtype.charAt(0).toUpperCase() + review.subtype.slice(1)}</span>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+    
+    container.innerHTML = reviewsHtml;
+    console.log(`✅ Loaded ${filteredReviews.length} ${type} reviews`);
+}
+
+// Initialize reviews page tabs
+async function initializeReviewsPage() {
+    console.log('🔍 Initializing reviews page');
+    
+    // Load reviews data first
+    await loadReviewsData();
+    
+    // Load reviews for each tab
+    loadReviewsByType('workshop', 'workshop-reviews-container');
+    loadReviewsByType('mentoring', 'mentoring-reviews-container');
+    loadReviewsByType('online-course', 'online-course-reviews-container');
+    
+    // Add tab change event listeners
+    const tabLinks = document.querySelectorAll('[data-toggle="pill"]');
+    tabLinks.forEach(link => {
+        link.addEventListener('shown.bs.tab', function(e) {
+            const targetId = e.target.getAttribute('href').substring(1);
+            console.log(`Tab changed to: ${targetId}`);
+            
+            // Load reviews when tab is shown
+            if (targetId === 'workshop-reviews' && document.getElementById('workshop-reviews-container').children.length === 1) {
+                loadReviewsByType('workshop', 'workshop-reviews-container');
+            } else if (targetId === 'mentoring-reviews' && document.getElementById('mentoring-reviews-container').children.length === 1) {
+                loadReviewsByType('mentoring', 'mentoring-reviews-container');
+            } else if (targetId === 'online-course-reviews' && document.getElementById('online-course-reviews-container').children.length === 1) {
+                loadReviewsByType('online-course', 'online-course-reviews-container');
+            }
+        });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     
     // Credential Animation Enhancement
@@ -650,6 +735,11 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
         loadTestimonials();
     }, 100);
+
+    // Initialize reviews page tabs on load (only if on reviews page)
+    if (document.getElementById('reviews-tab-content')) {
+        initializeReviewsPage();
+    }
     
     console.log('Interactive features loaded successfully! 🚀');
 });

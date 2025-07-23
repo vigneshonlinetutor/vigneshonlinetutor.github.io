@@ -510,6 +510,25 @@
     </div>
     <!-- Success Stories End -->
 
+    <!-- Mentoring Reviews Section -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div id="mentoring-reviews" class="reviews-section">
+                        <!-- Reviews will be loaded here -->
+                        <div class="text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="sr-only">Loading reviews...</span>
+                            </div>
+                            <p class="mt-2">Loading mentoring reviews...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer Start -->
     <div class="footer wow fadeIn" data-wow-delay="0.3s">
         <div class="container-fluid">
@@ -603,6 +622,100 @@
             $(window).resize(function() {
                 handleMobileDropdowns();
             });
+
+            // Load mentoring reviews
+            async function loadMentoringReviews() {
+                try {
+                    const response = await fetch('../../portfolio/reviews.json');
+                    const data = await response.json();
+                    const mentoringReviews = data.reviews.filter(review => review.type === 'mentoring');
+                    
+                    if (mentoringReviews.length === 0) {
+                        document.getElementById('mentoring-reviews').innerHTML = `
+                            <div class="text-center py-5">
+                                <h4 class="text-muted">No mentoring reviews available yet.</h4>
+                                <p class="text-muted">Check back soon for student testimonials!</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    // Sort by rating (highest first)
+                    mentoringReviews.sort((a, b) => b.rating - a.rating);
+
+                    const reviewsHtml = `
+                        <div class="row mb-4">
+                            <div class="col-12 text-center">
+                                <h3>What Our 1-to-1 Mentoring Students Say</h3>
+                                <p class="text-muted">Real feedback from ${mentoringReviews.length} students who received personalized guidance</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            ${mentoringReviews.map(review => `
+                                <div class="col-lg-6 col-md-6 mb-4">
+                                    <div class="review-card h-100 p-4 border rounded shadow-sm">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="mr-3">
+                                                ${review.photo.startsWith('generic_') ? 
+                                                    `<div class="avatar-placeholder rounded-circle shadow-sm d-flex align-items-center justify-content-center" 
+                                                          style="width: 60px; height: 60px; background-color: #6366F1; color: white; font-weight: bold; font-size: 20px;">
+                                                         ${review.name.split(' ').map(n => n.charAt(0)).join('').toUpperCase()}
+                                                     </div>` :
+                                                    `<img src="../../portfolio/img/reviews/${review.photo}" 
+                                                          class="rounded-circle shadow-sm" 
+                                                          alt="${review.name}"
+                                                          style="width: 60px; height: 60px; object-fit: cover;">`
+                                                }
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-0 font-weight-bold">${review.name}</h6>
+                                                <small class="text-primary font-weight-500">${review.title}</small>
+                                                <div class="text-muted small">${review.company}</div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            ${Array.from({length: 5}, (_, i) => {
+                                                const rating = review.rating;
+                                                if (i < Math.floor(rating)) {
+                                                    return '<i class="fas fa-star text-warning"></i>';
+                                                } else if (i < Math.ceil(rating) && rating % 1 !== 0) {
+                                                    return '<i class="fas fa-star-half-alt text-warning"></i>';
+                                                } else {
+                                                    return '<i class="far fa-star text-warning"></i>';
+                                                }
+                                            }).join('')}
+                                            <span class="ml-2 text-muted small">(${review.rating}★)</span>
+                                        </div>
+                                        <p class="text-muted mb-3">"${review.review}"</p>
+                                        <div class="mt-auto">
+                                            <span class="badge badge-success mr-1">1-to-1 Mentoring</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="text-center mt-4">
+                            <a href="../reviews.html" class="btn btn-outline-primary">
+                                View All Reviews
+                            </a>
+                        </div>
+                    `;
+
+                    document.getElementById('mentoring-reviews').innerHTML = reviewsHtml;
+                    console.log(`✅ Loaded ${mentoringReviews.length} mentoring reviews`);
+                } catch (error) {
+                    console.error('❌ Error loading mentoring reviews:', error);
+                    document.getElementById('mentoring-reviews').innerHTML = `
+                        <div class="text-center py-5">
+                            <h4 class="text-muted">Unable to load reviews at this time.</h4>
+                            <p class="text-muted">Please check back later.</p>
+                        </div>
+                    `;
+                }
+            }
+
+            // Load mentoring reviews
+            loadMentoringReviews();
         });
     </script>
 </body>

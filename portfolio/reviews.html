@@ -397,22 +397,99 @@
                 <p>Real feedback from students who have transformed their careers</p>
             </div>
             
-            <div class="row" id="reviews-gallery">
-                <!-- Reviews will be loaded here via JavaScript -->
+            <!-- Tab Navigation -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <ul class="nav nav-pills nav-fill justify-content-center" id="reviews-tabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="workshop-tab" data-toggle="pill" href="#workshop-reviews" role="tab" aria-controls="workshop-reviews" aria-selected="true">
+                                <i class="fas fa-chalkboard-teacher mr-2"></i>Workshops
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="mentoring-tab" data-toggle="pill" href="#mentoring-reviews" role="tab" aria-controls="mentoring-reviews" aria-selected="true">
+                                <i class="fas fa-user-tie mr-2"></i>1-to-1 Training
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="online-course-tab" data-toggle="pill" href="#online-course-reviews" role="tab" aria-controls="online-course-reviews" aria-selected="false">
+                                <i class="fas fa-laptop mr-2"></i>Online Courses
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
+            <!-- Tab Content -->
+            <div class="tab-content" id="reviews-tab-content">
+                <!-- Workshop Reviews Tab -->
+                <div class="tab-pane fade show active" id="workshop-reviews" role="tabpanel" aria-labelledby="workshop-tab">
+                    <div class="row mb-4">
+                        <div class="col-12 text-center">
+                            <h3>Workshop Participants</h3>
+                            <p class="text-muted">Feedback from students who attended our live workshops</p>
+                        </div>
+                    </div>
+                    <div id="workshop-reviews-container">
+                        <div class="text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="sr-only">Loading workshop reviews...</span>
+                            </div>
+                            <p class="mt-2">Loading workshop reviews...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mentoring Reviews Tab -->
+                <div class="tab-pane fade show active" id="mentoring-reviews" role="tabpanel" aria-labelledby="mentoring-tab">
+                    <div class="row mb-4">
+                        <div class="col-12 text-center">
+                            <h3>1-to-1 Training Success Stories</h3>
+                            <p class="text-muted">Personal guidance and career transformation stories</p>
+                        </div>
+                    </div>
+                    <div id="mentoring-reviews-container">
+                        <div class="text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="sr-only">Loading mentoring reviews...</span>
+                            </div>
+                            <p class="mt-2">Loading mentoring reviews...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Online Course Reviews Tab -->
+                <div class="tab-pane fade" id="online-course-reviews" role="tabpanel" aria-labelledby="online-course-tab">
+                    <div class="row mb-4">
+                        <div class="col-12 text-center">
+                            <h3>Online Course Students</h3>
+                            <p class="text-muted">Reviews from students who completed our comprehensive online courses</p>
+                        </div>
+                    </div>
+                    <div id="online-course-reviews-container">
+                        <div class="text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="sr-only">Loading online course reviews...</span>
+                            </div>
+                            <p class="mt-2">Loading online course reviews...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievement Highlights -->
             <div class="row mt-5">
                 <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.3s">
                     <h3>Achievement Highlights</h3>
                     <div class="row mt-4">
                         <div class="col-md-3">
                             <i class="fas fa-users fa-3x mb-3" style="color: #f40909;"></i>
-                            <h4>1500+</h4>
-                            <p>Students Enrolled</p>
+                            <h4>7000+</h4>
+                            <p>Students Trained</p>
                         </div>
                         <div class="col-md-3">
                             <i class="fas fa-star fa-3x mb-3" style="color: #f40909;"></i>
-                            <h4>4.5+</h4>
+                            <h4>4.7+</h4>
                             <p>Average Rating</p>
                         </div>
                         <div class="col-md-3">
@@ -422,23 +499,9 @@
                         </div>
                         <div class="col-md-3">
                             <i class="fas fa-award fa-3x mb-3" style="color: #f40909;"></i>
-                            <h4>9+</h4>
+                            <h4>10+</h4>
                             <p>Years Experience</p>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Written Testimonials -->
-            <div class="row mt-5">
-                <div class="col-12">
-                    <div class="section-header text-center">
-                        <h3>Written Testimonials</h3>
-                        <p>What students are saying about the courses</p>
-                    </div>
-                    
-                    <div class="row mt-4" id="written-testimonials-container">
-                        <!-- Written testimonials will be loaded dynamically from reviews.json -->
                     </div>
                 </div>
             </div>
@@ -744,9 +807,155 @@
             return starsHTML;
         }
 
-        // Load both reviews and testimonials when page loads
-        fetchReviewImages();
-        loadWrittenTestimonials();
+        // Tab-based Review Management System
+        let reviewsData = [];
+
+        // Load reviews data
+        async function loadReviewsData() {
+            try {
+                const response = await fetch('reviews.json');
+                const data = await response.json();
+                reviewsData = data.reviews;
+                console.log(`✅ Loaded ${reviewsData.length} reviews from JSON`);
+                return reviewsData;
+            } catch (error) {
+                console.error('❌ Error loading reviews:', error);
+                return [];
+            }
+        }
+
+        // Render reviews for a specific type
+        function renderReviewsByType(type, containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) {
+                console.error(`❌ Container ${containerId} not found!`);
+                return;
+            }
+
+            const filteredReviews = reviewsData.filter(review => review.type === type);
+            
+            if (filteredReviews.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center py-5">
+                        <h4 class="text-muted">No ${type.replace('-', ' ')} reviews available yet.</h4>
+                        <p class="text-muted">Check back soon for student testimonials!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Sort by subtype, then by rating
+            filteredReviews.sort((a, b) => {
+                if (a.subtype && b.subtype && a.subtype !== b.subtype) {
+                    return a.subtype.localeCompare(b.subtype);
+                }
+                return b.rating - a.rating;
+            });
+
+            const reviewsHtml = filteredReviews.map(review => `
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="review-card h-100 p-4 border rounded shadow-sm">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="mr-3">
+                                ${review.photo.startsWith('generic_') ? 
+                                    `<div class="avatar-placeholder rounded-circle shadow-sm d-flex align-items-center justify-content-center" 
+                                          style="width: 60px; height: 60px; background-color: #6366F1; color: white; font-weight: bold; font-size: 20px;">
+                                         ${review.name.split(' ').map(n => n.charAt(0)).join('').toUpperCase()}
+                                     </div>` :
+                                    `<img src="img/reviews/${review.photo}" 
+                                          class="rounded-circle shadow-sm" 
+                                          alt="${review.name}"
+                                          style="width: 60px; height: 60px; object-fit: cover;">`
+                                }
+                            </div>
+                            <div>
+                                <h6 class="mb-0 font-weight-bold">${review.name}</h6>
+                                <small class="text-primary font-weight-500">${review.title}</small>
+                                <div class="text-muted small">${review.company}</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            ${generateStars(review.rating)}
+                            <span class="ml-2 text-muted small">(${review.rating}★)</span>
+                        </div>
+                        <p class="text-muted mb-3">"${review.review}"</p>
+                        <div class="mt-auto">
+                            <span class="badge badge-primary mr-1">${type.charAt(0).toUpperCase() + type.slice(1).replace('-', ' ')}</span>
+                            ${review.subtype ? `<span class="badge badge-success">${review.subtype.charAt(0).toUpperCase() + review.subtype.slice(1)}</span>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            container.innerHTML = `<div class="row">${reviewsHtml}</div>`;
+            console.log(`✅ Loaded ${filteredReviews.length} ${type} reviews`);
+        }
+
+        // Helper function to generate star ratings
+        function generateStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let starsHTML = '';
+            
+            // Add full stars
+            for (let i = 0; i < fullStars; i++) {
+                starsHTML += '<i class="fas fa-star text-warning"></i>';
+            }
+            
+            // Add half star if needed
+            if (hasHalfStar) {
+                starsHTML += '<i class="fas fa-star-half-alt text-warning"></i>';
+            }
+            
+            // Add empty stars to make 5 total
+            const emptyStars = 5 - Math.ceil(rating);
+            for (let i = 0; i < emptyStars; i++) {
+                starsHTML += '<i class="far fa-star text-warning"></i>';
+            }
+            
+            return starsHTML;
+        }
+
+        // Initialize the reviews system
+        async function initializeReviewsSystem() {
+            // Load reviews data
+            await loadReviewsData();
+            
+            // Load reviews for both default active tabs (workshop and mentoring)
+            renderReviewsByType('workshop', 'workshop-reviews-container');
+            renderReviewsByType('mentoring', 'mentoring-reviews-container');
+            
+            // Handle tab switching
+            $('#reviews-tabs a[data-toggle="pill"]').on('click', function(e) {
+                e.preventDefault();
+                const tabId = $(this).attr('href').replace('#', '');
+                const containerId = tabId + '-container';
+                
+                // Determine review type based on tab
+                let reviewType = '';
+                if (tabId === 'workshop-reviews') {
+                    reviewType = 'workshop';
+                } else if (tabId === 'mentoring-reviews') {
+                    reviewType = 'mentoring';
+                } else if (tabId === 'online-course-reviews') {
+                    reviewType = 'online-course';
+                }
+                
+                // Load reviews for the selected tab if not already loaded
+                const container = document.getElementById(containerId);
+                if (container && container.innerHTML.includes('spinner-border')) {
+                    renderReviewsByType(reviewType, containerId);
+                }
+                
+                // Show the tab
+                $(this).tab('show');
+            });
+        }
+
+        // Initialize when page loads
+        $(document).ready(function() {
+            initializeReviewsSystem();
+        });
     </script>
 </body>
 

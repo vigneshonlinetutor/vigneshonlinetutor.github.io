@@ -1,66 +1,312 @@
 // Interactive Features for Enhanced User Experience
 
-// Global variables for testimonials 
-let currentTestimonialSet = 0;
-const testimonialsData = [
+// Global variables for reviews system
+let currentReviewSet = 0;
+let reviewsData = [];
+
+// Fallback reviews data for when JSON fetch fails (CORS/file:// issues)
+const fallbackReviews = [
     {
-        name: "Sarah Johnson",
-        title: "QA Engineer at Microsoft",
-        rating: 5.0,
-        photo: "portfolio/img/reviews/sarah_johnson.jpg",
-        review: "Vignesh's Playwright course helped me transition from manual testing to automation. The hands-on approach and real-world examples made all the difference.",
-        badges: ["Career Growth", "Playwright Expert"]
+        "name": "Swati Shinde",
+        "title": "Deputy Manager", 
+        "company": "Saregama India Ltd",
+        "rating": 4.9,
+        "photo": "swati_shinde.jpg",
+        "review": "This bootcamp changed the way I looked at test automation. Vignesh didn't just teach Playwright – he taught us how to think in frameworks. From learning locator strategies to integrating with Jenkins and Docker, every session had real-world examples. Page Object Model, JSON/CSV data-driven testing, even Allure reporting – all explained so well!",
+        "type": "workshop",
+        "subtype": "playwright"
     },
     {
-        name: "Mike Chen", 
-        title: "SDET at Google",
-        rating: 5.0,
-        photo: "portfolio/img/reviews/mike_chen.jpg",
-        review: "The Selenium framework course was exactly what I needed. Vignesh's industry experience shows in every lesson. Got promoted within 6 months!",
-        badges: ["Promotion", "Selenium Expert"]
+        "name": "Javier",
+        "title": "QA Analyst",
+        "company": "NDP Studi", 
+        "rating": 5.0,
+        "photo": "javier.jpeg",
+        "review": "Before this workshop, I had only heard of playwright. After it, I have started using playwright for my automation testing and it has been a great experience. The workshop was very informative and I have learned a lot from it.",
+        "type": "workshop",
+        "subtype": "playwright"
     },
     {
-        name: "Aisha Patel",
-        title: "Test Lead at Amazon",
-        rating: 5.0,
-        photo: "portfolio/img/reviews/aisha_patel.jpg",
-        review: "Best investment in my career! The corporate training session for our team was exceptional. Clear explanations and practical examples.",
-        badges: ["Team Training", "Leadership"]
+        "name": "Swapnil",
+        "title": "Senior QA Analyst",
+        "company": "Capgemini",
+        "rating": 4.8,
+        "photo": "generic_male.jpg", 
+        "review": "I was stuck in manual QA for years. Vignesh's mentorship gave me not just a roadmap but the confidence to switch to automation. His guidance on frameworks, AI tools in QA, and resume strategy was gold. The mock interview we did helped me land my first automation role!",
+        "type": "mentoring",
+        "subtype": ""
     },
     {
-        name: "David Kumar",
-        title: "Senior QA Engineer at Netflix",
-        rating: 4.8,
-        photo: "portfolio/img/reviews/david_kumar.jpg",
-        review: "Amazing course structure! Vignesh breaks down complex concepts into digestible pieces. The practice labs were incredibly helpful.",
-        badges: ["Skill Upgrade", "Cypress Expert"]
+        "name": "Lohith",
+        "title": "QA Engineer",
+        "company": "Bosch",
+        "rating": 4.8,
+        "photo": "generic_male.jpg",
+        "review": "I always struggled with test stability before joining the Playwright bootcamp. Vignesh's session on locators and annotations gave me solid confidence. Learning Docker and Cucumber in the same flow was a huge win. Now, I've even started contributing to our team's Playwright framework!",
+        "type": "workshop", 
+        "subtype": "playwright"
     },
     {
-        name: "Lisa Wong",
-        title: "Senior QA at Adobe", 
-        rating: 4.8,
-        photo: "portfolio/img/reviews/lisa_wong.jpg",
-        review: "The API testing course was comprehensive and well-structured. Helped me advance from mid-level to senior QA role within 8 months. Highly recommend!",
-        badges: ["Skill Enhancement", "Senior Role"]
+        "name": "Kapil Bhansal",
+        "title": "Senior Test Engineer",
+        "company": "Dell",
+        "rating": 5.0,
+        "photo": "kapil_bhansal.jpg",
+        "review": "One of the most hands-on AI workshops I've attended. I especially loved how we were shown real QA use cases – test case generation, web automation with ChatGPT, and even custom GPTs! The session on applying Gen AI for job search was the cherry on top.",
+        "type": "workshop",
+        "subtype": "gen-ai"
+    },
+    {
+        "name": "Shilpa Shravge", 
+        "title": "QA Lead",
+        "company": "Absa Group",
+        "rating": 4.9,
+        "photo": "shilpa_shravge.jpeg",
+        "review": "Vignesh's mentorship is unlike any other. He helped me migrate our legacy framework to a clean, maintainable architecture. What stood out was how he explained thread-safety and framework decisions clearly. Also loved the regular mock interviews – boosted my confidence immensely!",
+        "type": "mentoring",
+        "subtype": ""
+    },
+    {
+        "name": "Yosra Miladi",
+        "title": "Software QA Team Lead",
+        "company": "Insta Deep",
+        "rating": 5.0,
+        "photo": "generic_female.jpg",
+        "review": "I've taken many online courses, but this one stood out. The Playwright course wasn't just theory – it was hands-on with Docker, Allure, Jenkins, API testing, and Cucumber! The way POM and advanced UI element handling was explained made automation fun and practical.",
+        "type": "online-course",
+        "subtype": "playwright"
+    },
+    {
+        "name": "Ninad",
+        "title": "SDET",
+        "company": "Infosys",
+        "rating": 4.9,
+        "photo": "generic_male.jpg",
+        "review": "Loved how this course covered everything from Cypress basics to Docker and Jenkins integration. The best part for me was learning to mock API calls and use Cypress dashboard effectively. I've implemented fixtures, custom commands, and the POM approach from this course in my daily work.",
+        "type": "online-course",
+        "subtype": "cypress"
     }
 ];
 
-// Global function to load testimonials
-function loadTestimonials() {
-    console.log('🔍 loadTestimonials called');
-    const containers = document.querySelectorAll('#testimonials-container');
+// Load reviews from JSON file
+async function loadReviewsData() {
+    try {
+        const response = await fetch('portfolio/reviews.json');
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const data = await response.json();
+        reviewsData = data.reviews || [];
+        console.log(`✅ Loaded ${reviewsData.length} reviews from JSON`);
+        return true;
+    } catch (error) {
+        console.log('⚠️ Unable to load reviews.json, using fallback data:', error.message);
+        reviewsData = fallbackReviews;
+        console.log(`✅ Using ${reviewsData.length} fallback reviews`);
+        return false;
+    }
+}
+
+// Filter reviews by type and optionally by subtype
+function filterReviews(type = null, subtype = null) {
+    if (!reviewsData.length) return [];
     
-    if (containers.length === 0) {
-        console.error('❌ No testimonials containers found!');
+    let filtered = reviewsData;
+    
+    if (type) {
+        filtered = filtered.filter(review => review.type === type);
+    }
+    
+    if (subtype) {
+        filtered = filtered.filter(review => review.subtype === subtype);
+    }
+    
+    // Sort by subtype first, then by rating (highest first)
+    return filtered.sort((a, b) => {
+        if (a.subtype && b.subtype && a.subtype !== b.subtype) {
+            return a.subtype.localeCompare(b.subtype);
+        }
+        return b.rating - a.rating;
+    });
+}
+
+// Render reviews with custom layout options
+function renderReviews(reviews, containerId, options = {}) {
+    const container = document.getElementById(containerId);
+    if (!container) {
+        console.error(`❌ Container ${containerId} not found!`);
         return;
     }
     
-    console.log(`✅ Found ${containers.length} testimonials containers, updating all`);
-    // Clear loading spinner from all containers first
-    containers.forEach(container => {
-        container.innerHTML = '';
-    });
-    window.showTestimonialSet(0);
+    const {
+        layout = 'grid', // 'grid' or 'carousel'
+        itemsPerRow = 3,
+        showPagination = true,
+        showHeader = true
+    } = options;
+    
+    if (reviews.length === 0) {
+        container.innerHTML = `
+            <div class="text-center py-5">
+                <h4 class="text-muted">No reviews available for this category yet.</h4>
+                <p class="text-muted">Check back soon for student testimonials!</p>
+            </div>
+        `;
+        return;
+    }
+    
+    if (layout === 'grid') {
+        renderGridLayout(reviews, container, itemsPerRow, showHeader);
+    } else {
+        renderCarouselLayout(reviews, container, showPagination);
+    }
+}
+
+// Render grid layout for training pages
+function renderGridLayout(reviews, container, itemsPerRow, showHeader) {
+    const headerHtml = showHeader ? `
+        <div class="row mb-4">
+            <div class="col-12">
+                <h3>Student Reviews (${reviews.length})</h3>
+                <p class="text-muted">Real feedback from students who have transformed their careers</p>
+            </div>
+        </div>
+    ` : '';
+    
+    const reviewsHtml = reviews.map(review => `
+        <div class="col-lg-${12/itemsPerRow} col-md-6 mb-4">
+            <div class="review-card h-100 p-4 border rounded shadow-sm">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="mr-3">
+                        ${getAvatarHTML(review.name, review.photo)}
+                    </div>
+                    <div>
+                        <h6 class="mb-0 font-weight-bold">${review.name}</h6>
+                        <small class="text-primary font-weight-500">${review.title}</small>
+                        <div class="text-muted small">${review.company}</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    ${generateStars(review.rating)}
+                    <span class="ml-2 text-muted small">(${review.rating}★)</span>
+                </div>
+                <p class="text-muted mb-3">"${review.review}"</p>
+                <div class="mt-auto">
+                    <span class="badge badge-primary mr-1">${review.type.charAt(0).toUpperCase() + review.type.slice(1).replace('-', ' ')}</span>
+                    ${review.subtype ? `<span class="badge badge-success">${review.subtype.charAt(0).toUpperCase() + review.subtype.slice(1)}</span>` : ''}
+                </div>
+            </div>
+        </div>
+    `).join('');
+    
+    container.innerHTML = `
+        ${headerHtml}
+        <div class="row">
+            ${reviewsHtml}
+        </div>
+    `;
+}
+
+// Render carousel layout (existing function, but updated)
+function renderCarouselLayout(reviews, container, showPagination) {
+    // This is the existing showTestimonialSet logic but adapted
+    const reviewsPerSet = 3;
+    let currentSet = 0;
+    
+    function showReviewSet(setIndex) {
+        const startIndex = setIndex * reviewsPerSet;
+        const endIndex = Math.min(startIndex + reviewsPerSet, reviews.length);
+        const currentReviews = reviews.slice(startIndex, endIndex);
+        
+        const reviewsHtml = `
+            <div class="row">
+                ${currentReviews.map(review => `
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="testimonial-card h-100">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="mr-3">
+                                    ${getAvatarHTML(review.name, review.photo)}
+                                </div>
+                                <div>
+                                    <h6 class="mb-0 font-weight-bold">${review.name}</h6>
+                                    <small class="text-primary font-weight-500">${review.title}</small>
+                                    <div class="text-muted small">${review.company}</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                ${generateStars(review.rating)}
+                                <span class="ml-2 text-muted small">(${review.rating} Rating)</span>
+                            </div>
+                            <p class="text-muted">"${review.review}"</p>
+                            <div class="mt-3">
+                                <span class="badge badge-primary mr-1">${review.type.charAt(0).toUpperCase() + review.type.slice(1).replace('-', ' ')}</span>
+                                ${review.subtype ? `<span class="badge badge-success">${review.subtype.charAt(0).toUpperCase() + review.subtype.slice(1)}</span>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+            
+            ${showPagination ? `
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <button class="btn btn-outline-primary" onclick="showReviewSet(${setIndex - 1})" ${setIndex === 0 ? 'disabled' : ''}>
+                        <i class="fas fa-chevron-left mr-2"></i>Previous
+                    </button>
+                    
+                    <div class="review-indicators">
+                        ${Array.from({length: Math.ceil(reviews.length / reviewsPerSet)}, (_, i) => `
+                            <button class="btn btn-sm ${i === setIndex ? 'btn-primary' : 'btn-outline-primary'} mx-1" 
+                                    onclick="showReviewSet(${i})">${i + 1}</button>
+                        `).join('')}
+                    </div>
+                    
+                    <button class="btn btn-outline-primary" onclick="showReviewSet(${setIndex + 1})" 
+                            ${endIndex >= reviews.length ? 'disabled' : ''}>
+                        Next<i class="fas fa-chevron-right ml-2"></i>
+                    </button>
+                </div>
+            ` : ''}
+        `;
+        
+        container.innerHTML = reviewsHtml;
+        currentSet = setIndex;
+    }
+    
+    // Make showReviewSet available globally for this container
+    window[`showReviewSet_${container.id}`] = showReviewSet;
+    showReviewSet(0);
+}
+
+// Main function to load and display testimonials
+async function loadTestimonials() {
+    console.log('🔍 loadTestimonials called');
+    
+    try {
+        // Load reviews data (will use fallback if JSON fails)
+        await loadReviewsData();
+        
+        // Update containers
+        const containers = document.querySelectorAll('#testimonials-container');
+        console.log(`✅ Found ${containers.length} testimonials containers, updating all`);
+        
+        if (containers.length > 0) {
+            console.log('📋 Calling showTestimonialSet with reviewsData:', reviewsData.length, 'reviews');
+            window.showTestimonialSet(0); // Start with first set of testimonials
+        } else {
+            console.error('❌ No testimonials containers found on page');
+        }
+    } catch (error) {
+        console.error('❌ Error in loadTestimonials:', error);
+        
+        // Show error message in containers if they exist
+        const containers = document.querySelectorAll('#testimonials-container');
+        containers.forEach(container => {
+            container.innerHTML = `
+                <div class="text-center py-5">
+                    <h4 class="text-muted">Unable to load testimonials</h4>
+                    <p class="text-muted">Please refresh the page or try again later.</p>
+                </div>
+            `;
+        });
+    }
 }
 
 // Helper function to generate star ratings
@@ -86,6 +332,31 @@ function generateStars(rating) {
     }
     
     return starsHTML;
+}
+
+// Helper function to get avatar HTML (real photo or generic placeholder)
+function getAvatarHTML(name, photo) {
+    const initials = name.split(' ').map(n => n.charAt(0)).join('').toUpperCase();
+    const colors = [
+        '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FECA57',
+        '#FF9FF3', '#54A0FF', '#5F27CD', '#00D2D3', '#FF9F43'
+    ];
+    const colorIndex = name.length % colors.length;
+    const bgColor = colors[colorIndex];
+    
+    if (photo && photo.startsWith('generic_')) {
+        // Create CSS-based avatar with initials for generic photos
+        return `<div class="avatar-placeholder rounded-circle shadow-sm d-flex align-items-center justify-content-center" 
+                     style="width: 50px; height: 50px; background-color: ${bgColor}; color: white; font-weight: bold; font-size: 18px;">
+                    ${initials}
+                </div>`;
+    } else {
+        // Use real photo without fallback for now (we'll handle missing images later)
+        return `<img src="portfolio/img/reviews/${photo}" 
+                     class="rounded-circle shadow-sm" 
+                     alt="${name}"
+                     style="width: 50px; height: 50px; object-fit: cover;">`;
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -385,6 +656,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Global function to show testimonials (accessible from onclick)
 window.showTestimonialSet = function(setIndex) {
+    console.log(`🎯 showTestimonialSet called with setIndex: ${setIndex}`);
+    
     const containers = document.querySelectorAll('#testimonials-container');
     
     if (containers.length === 0) {
@@ -392,72 +665,99 @@ window.showTestimonialSet = function(setIndex) {
         return;
     }
     
-    const testimonialsPerSet = 3;
-    const startIndex = setIndex * testimonialsPerSet;
-    const endIndex = Math.min(startIndex + testimonialsPerSet, testimonialsData.length);
-    const currentTestimonials = testimonialsData.slice(startIndex, endIndex);
+    if (reviewsData.length === 0) {
+        console.error('❌ No reviews data loaded!');
+        return;
+    }
     
-    console.log(`✅ Showing testimonials ${startIndex + 1} to ${endIndex} of ${testimonialsData.length}`);
+    console.log(`📊 Total reviews available: ${reviewsData.length}`);
     
-    const testimonialsHtml = `
-        <div class="row">
-            ${currentTestimonials.map((testimonial, index) => `
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="testimonial-card h-100">
-                        <div class="d-flex align-items-center mb-3">
-                            <div class="mr-3">
-                                <img src="${testimonial.photo}" 
-                                     class="rounded-circle shadow-sm" 
-                                     alt="${testimonial.name}"
-                                     style="width: 50px; height: 50px; object-fit: cover;"
-                                     onerror="this.src='https://via.placeholder.com/50x50/007bff/ffffff?text=${testimonial.name.charAt(0)}'">
+    const reviewsPerSet = 3;
+    const startIndex = setIndex * reviewsPerSet;
+    const endIndex = Math.min(startIndex + reviewsPerSet, reviewsData.length);
+    const currentReviews = reviewsData.slice(startIndex, endIndex);
+    
+    console.log(`✅ Showing reviews ${startIndex + 1} to ${endIndex} of ${reviewsData.length} (All Reviews)`);
+    console.log('📋 Current reviews being rendered:', currentReviews);
+    
+    // Validate each review has required fields
+    currentReviews.forEach((review, index) => {
+        if (!review.name || !review.review || !review.rating) {
+            console.error(`❌ Review ${index} is missing required fields:`, review);
+        }
+    });
+    
+    let reviewsHtml;
+    try {
+        reviewsHtml = `
+            <div class="row">
+                ${currentReviews.map((review, index) => {
+                    try {
+                        return `
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="testimonial-card h-100">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="mr-3">
+                                            ${getAvatarHTML(review.name, review.photo)}
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 font-weight-bold">${review.name || 'Anonymous'}</h6>
+                                            <small class="text-primary font-weight-500">${review.title || 'Student'}</small>
+                                            <div class="text-muted small">${review.company || ''}</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        ${generateStars(review.rating)}
+                                        <span class="ml-2 text-muted small">(${review.rating} Rating)</span>
+                                    </div>
+                                    <p class="text-muted">"${(review.review || '').replace(/"/g, '&quot;')}"</p>
+                                    <div class="mt-3">
+                                        <span class="badge badge-primary mr-1">${review.type.charAt(0).toUpperCase() + review.type.slice(1).replace('-', ' ')}</span>
+                                        ${review.subtype ? `<span class="badge badge-success">${review.subtype.charAt(0).toUpperCase() + review.subtype.slice(1)}</span>` : ''}
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <h6 class="mb-0 font-weight-bold">${testimonial.name}</h6>
-                                <small class="text-primary font-weight-500">${testimonial.title}</small>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            ${generateStars(testimonial.rating)}
-                            <span class="ml-2 text-muted small">(${testimonial.rating} Rating)</span>
-                        </div>
-                        <p class="text-muted">"${testimonial.review}"</p>
-                        <div class="mt-3">
-                            ${testimonial.badges.map((badge, badgeIndex) => {
-                                const colors = ['badge-primary', 'badge-success', 'badge-info', 'badge-warning'];
-                                const colorClass = colors[badgeIndex % colors.length];
-                                return `<span class="badge ${colorClass} mr-1 mb-1">${badge}</span>`;
-                            }).join('')}
-                        </div>
-                    </div>
-                </div>
-            `).join('')}
-        </div>
-        
-        <div class="d-flex justify-content-between align-items-center mt-4">
-            <button class="btn btn-outline-primary" id="prevTestimonials" ${setIndex === 0 ? 'disabled' : ''}>
-                <i class="fas fa-chevron-left mr-2"></i>Previous
-            </button>
-            
-            <div class="testimonial-indicators">
-                ${Array.from({length: Math.ceil(testimonialsData.length / testimonialsPerSet)}, (_, i) => `
-                    <button class="btn btn-sm ${i === setIndex ? 'btn-primary' : 'btn-outline-primary'} mx-1" 
-                            onclick="showTestimonialSet(${i})">${i + 1}</button>
-                `).join('')}
+                        `;
+                    } catch (error) {
+                        console.error(`❌ Error rendering review ${index}:`, error, review);
+                        return '<div class="col-lg-4 col-md-6 mb-4"><div class="alert alert-warning">Error loading review</div></div>';
+                    }
+                }).join('')}
             </div>
             
-            <button class="btn btn-outline-primary" id="nextTestimonials" 
-                    ${endIndex >= testimonialsData.length ? 'disabled' : ''}>
-                Next<i class="fas fa-chevron-right ml-2"></i>
-            </button>
-        </div>
-    `;
+            <div class="d-flex justify-content-between align-items-center mt-4">
+                <button class="btn btn-outline-primary" id="prevTestimonials" ${setIndex === 0 ? 'disabled' : ''}>
+                    <i class="fas fa-chevron-left mr-2"></i>Previous
+                </button>
+                
+                <div class="testimonial-indicators">
+                    ${Array.from({length: Math.ceil(reviewsData.length / reviewsPerSet)}, (_, i) => `
+                        <button class="btn btn-sm ${i === setIndex ? 'btn-primary' : 'btn-outline-primary'} mx-1" 
+                                onclick="showTestimonialSet(${i})">${i + 1}</button>
+                    `).join('')}
+                </div>
+                
+                <button class="btn btn-outline-primary" id="nextTestimonials" 
+                        ${endIndex >= reviewsData.length ? 'disabled' : ''}>
+                    Next<i class="fas fa-chevron-right ml-2"></i>
+                </button>
+            </div>
+        `;
+    } catch (error) {
+        console.error('❌ Error generating testimonials HTML:', error);
+        reviewsHtml = `
+            <div class="text-center py-5">
+                <h4 class="text-muted">Error loading testimonials.</h4>
+                <p class="text-muted">Please try again later.</p>
+            </div>
+        `;
+    }
     
     // Update all containers with the same content
     containers.forEach(container => {
-        container.innerHTML = testimonialsHtml;
+        container.innerHTML = reviewsHtml;
     });
-    currentTestimonialSet = setIndex;
+    currentReviewSet = setIndex;
     
     // Add event listeners for navigation (only need to do this once)
     const prevBtn = document.getElementById('prevTestimonials');
@@ -465,39 +765,23 @@ window.showTestimonialSet = function(setIndex) {
     
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
-            if (currentTestimonialSet > 0) {
-                showTestimonialSet(currentTestimonialSet - 1);
+            if (currentReviewSet > 0) {
+                showTestimonialSet(currentReviewSet - 1);
             }
         });
     }
     
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
-            const maxSets = Math.ceil(testimonialsData.length / testimonialsPerSet);
-            if (currentTestimonialSet < maxSets - 1) {
-                showTestimonialSet(currentTestimonialSet + 1);
+            const maxSets = Math.ceil(reviewsData.length / reviewsPerSet);
+            if (currentReviewSet < maxSets - 1) {
+                showTestimonialSet(currentReviewSet + 1);
             }
         });
     }
     
     console.log('✅ Testimonials displayed with navigation');
 };
-
-// Backup testimonial loading for immediate execution
-(function() {
-    console.log('🚀 Script loaded, setting up backup testimonial loading...');
-    
-    // Backup loading with multiple attempts
-    setTimeout(() => {
-        console.log('🔄 Backup attempt to load testimonials...');
-        loadTestimonials();
-    }, 500);
-    
-    setTimeout(() => {
-        console.log('🔄 Final backup attempt to load testimonials...');
-        loadTestimonials();
-    }, 1500);
-})();
 
 // Helper function to generate badges
 function generateBadges(badges) {

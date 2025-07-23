@@ -572,6 +572,21 @@
                 </div>
             </div>
 
+            <!-- Workshop Reviews Section -->
+            <div class="row mt-5 pt-5">
+                <div class="col-12">
+                    <div id="workshop-reviews" class="reviews-section">
+                        <!-- Reviews will be loaded here -->
+                        <div class="text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="sr-only">Loading reviews...</span>
+                            </div>
+                            <p class="mt-2">Loading workshop reviews...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Call to Action -->
             <div class="row mt-5">
                 <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.6s">
@@ -684,6 +699,108 @@
             $(window).resize(function() {
                 handleMobileDropdowns();
             });
+
+            // Load workshop reviews
+            async function loadWorkshopReviews() {
+                try {
+                    const response = await fetch('../../portfolio/reviews.json');
+                    const data = await response.json();
+                    const workshopReviews = data.reviews.filter(review => review.type === 'workshop');
+                    
+                    if (workshopReviews.length === 0) {
+                        document.getElementById('workshop-reviews').innerHTML = `
+                            <div class="text-center py-5">
+                                <h4 class="text-muted">No workshop reviews available yet.</h4>
+                                <p class="text-muted">Check back soon for student testimonials!</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    // Sort by subtype, then by rating
+                    workshopReviews.sort((a, b) => {
+                        if (a.subtype && b.subtype && a.subtype !== b.subtype) {
+                            return a.subtype.localeCompare(b.subtype);
+                        }
+                        return b.rating - a.rating;
+                    });
+
+                    const reviewsHtml = `
+                        <div class="row mb-4">
+                            <div class="col-12 text-center">
+                                <h3>What Our Workshop Participants Say</h3>
+                                <p class="text-muted">Real feedback from ${workshopReviews.length} students who attended our live workshops</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            ${workshopReviews.slice(0, 6).map(review => `
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="review-card h-100 p-4 border rounded shadow-sm">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="mr-3">
+                                                ${review.photo.startsWith('generic_') ? 
+                                                    `<div class="avatar-placeholder rounded-circle shadow-sm d-flex align-items-center justify-content-center" 
+                                                          style="width: 50px; height: 50px; background-color: #6366F1; color: white; font-weight: bold; font-size: 18px;">
+                                                         ${review.name.split(' ').map(n => n.charAt(0)).join('').toUpperCase()}
+                                                     </div>` :
+                                                    `<img src="../../portfolio/img/reviews/${review.photo}" 
+                                                          class="rounded-circle shadow-sm" 
+                                                          alt="${review.name}"
+                                                          style="width: 50px; height: 50px; object-fit: cover;">`
+                                                }
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-0 font-weight-bold">${review.name}</h6>
+                                                <small class="text-primary font-weight-500">${review.title}</small>
+                                                <div class="text-muted small">${review.company}</div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            ${Array.from({length: 5}, (_, i) => {
+                                                const rating = review.rating;
+                                                if (i < Math.floor(rating)) {
+                                                    return '<i class="fas fa-star text-warning"></i>';
+                                                } else if (i < Math.ceil(rating) && rating % 1 !== 0) {
+                                                    return '<i class="fas fa-star-half-alt text-warning"></i>';
+                                                } else {
+                                                    return '<i class="far fa-star text-warning"></i>';
+                                                }
+                                            }).join('')}
+                                            <span class="ml-2 text-muted small">(${review.rating}★)</span>
+                                        </div>
+                                        <p class="text-muted mb-3">"${review.review}"</p>
+                                        <div class="mt-auto">
+                                            <span class="badge badge-primary mr-1">Workshop</span>
+                                            ${review.subtype ? `<span class="badge badge-success">${review.subtype.charAt(0).toUpperCase() + review.subtype.slice(1)}</span>` : ''}
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        ${workshopReviews.length > 6 ? `
+                            <div class="text-center mt-4">
+                                <a href="../reviews.html" class="btn btn-outline-primary">
+                                    View All ${workshopReviews.length} Workshop Reviews
+                                </a>
+                            </div>
+                        ` : ''}
+                    `;
+
+                    document.getElementById('workshop-reviews').innerHTML = reviewsHtml;
+                    console.log(`✅ Loaded ${workshopReviews.length} workshop reviews`);
+                } catch (error) {
+                    console.error('❌ Error loading workshop reviews:', error);
+                    document.getElementById('workshop-reviews').innerHTML = `
+                        <div class="text-center py-5">
+                            <h4 class="text-muted">Unable to load reviews at this time.</h4>
+                            <p class="text-muted">Please check back later.</p>
+                        </div>
+                    `;
+                }
+            }
+
+            // Load workshop reviews
+            loadWorkshopReviews();
         });
     </script>
 </body>

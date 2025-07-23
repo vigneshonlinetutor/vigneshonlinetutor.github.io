@@ -342,6 +342,60 @@
         .testimonials-carousel:hover .pause-indicator {
             display: block;
         }
+        
+        /* Workshop Promotion Text Highlighting */
+        .workshop-promotion-text {
+            background: linear-gradient(135deg, #ffc107 0%, #ff8800 100%);
+            color: #ffffff !important;
+            font-size: 1.2rem !important;
+            font-weight: 700 !important;
+            text-align: center;
+            padding: 15px 25px;
+            border-radius: 15px;
+            position: relative;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.3);
+            border: 2px solid #ffffff;
+            animation: pulseGlow 2s ease-in-out infinite alternate;
+            overflow: hidden;
+        }
+        
+        .workshop-promotion-text::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+            z-index: 1;
+        }
+        
+        .workshop-promotion-text strong {
+            position: relative;
+            z-index: 2;
+        }
+        
+        @keyframes pulseGlow {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 8px 25px rgba(255, 193, 7, 0.3);
+            }
+            100% {
+                transform: scale(1.02);
+                box-shadow: 0 12px 35px rgba(255, 193, 7, 0.5);
+            }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
     </style>
 
 
@@ -382,11 +436,6 @@
                                 </a>
                                 <a class="dropdown-item" href="portfolio/training/live-workshops.html">
                                     <i class="fas fa-users mr-2 text-success"></i>Live Workshops
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="demo/index.html">
-                                    <i class="fas fa-flask mr-2 text-purple"></i>Testing Practice Lab
-                                    <small class="d-block text-muted">Real automation scenarios</small>
                                 </a>
                             </div>
                         </div>
@@ -479,6 +528,27 @@
         </div>
     </div>
     <!-- Hero End -->
+
+    <!-- Current Workshop Promotion Start -->
+    <div class="workshop-promotion" id="current-workshop-promotion" style="display: none; background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); padding: 4rem 0;">
+        <div class="container">
+            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                <h2 style="color: white;">🚀 Join Our Current Workshop!</h2>
+                <p class="workshop-promotion-text"><strong>⚡ LIMITED SEATS AVAILABLE:</strong> Secure your spot now in our intensive hands-on workshop - Register today and transform your testing career!</p>
+            </div>
+            
+            <!-- Workshop content will be dynamically loaded here -->
+            <div id="current-workshops-container" class="row">
+                <!-- Loading state -->
+                <div class="col-12 text-center">
+                    <div class="spinner-border text-light" role="status">
+                        <span class="sr-only">Loading current workshops...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Current Workshop Promotion End -->
 
     <!-- Stats Start -->
     <div class="training" id="stats" style="background-color: #f8f9fa;">
@@ -851,7 +921,173 @@
             $(window).resize(function() {
                 handleMobileDropdowns();
             });
+
+            // Load current workshops for home page promotion
+            loadCurrentWorkshops();
         });
+
+        // Workshop data for home page promotion
+        let currentWorkshopsData = [];
+
+        // Parse dd-mm-YYYY format to Date object
+        function parseDateDDMMYYYY(dateStr) {
+            const [day, month, year] = dateStr.split('-');
+            return new Date(year, month - 1, day); // month is 0-indexed in JS
+        }
+
+        // Workshop Status Calculator (same logic as live-workshops.html)
+        function getWorkshopStatus(startDate, endDate) {
+            const today = new Date();
+            const workshopStart = parseDateDDMMYYYY(startDate);
+            const workshopEnd = parseDateDDMMYYYY(endDate);
+            const timeDiff = workshopStart - today;
+            const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+            
+            // If workshop has ended
+            if (workshopEnd < today) {
+                return 'past';
+            }
+            // If workshop starts more than 2 months from now
+            else if (daysDiff > 60) {
+                return 'upcoming';
+            }
+            // If workshop is current (within 60 days or ongoing)
+            else {
+                return 'current';
+            }
+        }
+
+        // Generate Workshop HTML for Home Page (modified for blue gradient background)
+        function generateHomeWorkshopHTML(workshop, index) {
+            // Format date range for display
+            const startDate = parseDateDDMMYYYY(workshop.startDate);
+            const endDate = parseDateDDMMYYYY(workshop.endDate);
+            
+            const formatOptions = { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            };
+            
+            const startStr = startDate.toLocaleDateString('en-US', formatOptions);
+            const endStr = endDate.toLocaleDateString('en-US', formatOptions);
+            
+            // Create date range string
+            const dateStr = startDate.getFullYear() === endDate.getFullYear() && 
+                           startDate.getMonth() === endDate.getMonth() ? 
+                           `${startDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${endDate.getDate()}, ${endDate.getFullYear()}` :
+                           `${startStr} - ${endStr}`;
+            
+            const delay = (index * 0.2).toFixed(1);
+            
+            return `
+                <div class="col-lg-6 col-md-12 mb-4 wow fadeInUp" data-wow-delay="${delay}s">
+                    <div class="card h-100 bg-white shadow-lg border-0">
+                        <div class="card-body p-4">
+                            <div class="row align-items-center">
+                                <div class="col-md-4 text-center mb-3 mb-md-0">
+                                    <div class="p-2 bg-light rounded-circle d-inline-block mb-2" style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center;">
+                                        ${workshop.logo ? 
+                                            `<img src="${workshop.logo.replace('../logo/', 'portfolio/logo/')}" alt="${workshop.title}" style="width: 80px; height: 80px; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                             <i class="${workshop.fallbackIcon} fa-3x ${workshop.iconColor}" style="display: none;"></i>` :
+                                            `<i class="${workshop.fallbackIcon} fa-3x ${workshop.iconColor}"></i>`
+                                        }
+                                    </div>
+                                    <div class="text-center mt-2">
+                                        <small class="text-muted font-weight-bold">${dateStr}</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h5 class="font-weight-bold mb-2 text-dark">${workshop.title}</h5>
+                                    <p class="text-muted mb-3">${workshop.description}</p>
+                                    
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <div class="d-flex align-items-center justify-content-center">
+                                                <i class="fas fa-clock text-warning mr-2"></i>
+                                                <span class="font-weight-bold text-dark">${workshop.duration}</span>
+                                                <small class="text-muted ml-1">Duration</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        ${workshop.technologies.map((tech, i) => 
+                                            `<span class="badge badge-${workshop.techColors[i]} mr-1 mb-1">${tech}</span>`
+                                        ).join('')}
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2">
+                                            <a href="${workshop.registrationLink}" class="btn btn-success btn-block" target="_blank" rel="noopener noreferrer">
+                                                <i class="fas fa-calendar-plus mr-2"></i>Register Now
+                                            </a>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <a href="portfolio/training/live-workshops.html" class="btn btn-outline-primary btn-block">
+                                                <i class="fas fa-info-circle mr-2"></i>More Details
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Load Workshop Data from JSON
+        async function loadCurrentWorkshopData() {
+            try {
+                const response = await fetch('portfolio/workshops.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                const allWorkshops = data.workshops || [];
+                
+                // Filter to only current workshops
+                currentWorkshopsData = allWorkshops.filter(workshop => 
+                    getWorkshopStatus(workshop.startDate, workshop.endDate) === 'current'
+                );
+                
+                console.log(`✅ Loaded ${currentWorkshopsData.length} current workshops from JSON`);
+                return currentWorkshopsData;
+            } catch (error) {
+                console.error('❌ Error loading current workshops data:', error);
+                currentWorkshopsData = [];
+                return [];
+            }
+        }
+
+        // Load and Display Current Workshops
+        async function loadCurrentWorkshops() {
+            const promotionSection = document.getElementById('current-workshop-promotion');
+            const container = document.getElementById('current-workshops-container');
+            
+            // Load current workshop data from JSON
+            await loadCurrentWorkshopData();
+            
+            if (currentWorkshopsData.length === 0) {
+                // Hide the entire promotion section if no current workshops
+                promotionSection.style.display = 'none';
+                console.log('ℹ️ No current workshops to display - section hidden');
+                return;
+            }
+            
+            // Show the promotion section
+            promotionSection.style.display = 'block';
+            
+            // Generate workshop HTML
+            const workshopsHTML = currentWorkshopsData.map((workshop, index) => 
+                generateHomeWorkshopHTML(workshop, index)
+            ).join('');
+            
+            container.innerHTML = workshopsHTML;
+            
+            console.log(`✅ Displayed ${currentWorkshopsData.length} current workshops on home page`);
+        }
     </script>
 </body>
 

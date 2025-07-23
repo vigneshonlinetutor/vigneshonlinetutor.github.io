@@ -334,6 +334,14 @@ function generateStars(rating) {
     return starsHTML;
 }
 
+// Helper function to get correct image path based on current page location
+function getImagePath(photo) {
+    // Check if we're in a subfolder (portfolio) or at root
+    const isInPortfolioFolder = window.location.pathname.includes('/portfolio/');
+    const basePath = isInPortfolioFolder ? 'img/reviews/' : 'portfolio/img/reviews/';
+    return `${basePath}${photo}`;
+}
+
 // Helper function to get avatar HTML (real photo or generic placeholder)
 function getAvatarHTML(name, photo) {
     const initials = name.split(' ').map(n => n.charAt(0)).join('').toUpperCase();
@@ -351,8 +359,8 @@ function getAvatarHTML(name, photo) {
                     ${initials}
                 </div>`;
     } else {
-        // Use real photo without fallback for now (we'll handle missing images later)
-        return `<img src="portfolio/img/reviews/${photo}" 
+        // Use real photo with correct path
+        return `<img src="${getImagePath(photo)}" 
                      class="rounded-circle shadow-sm" 
                      alt="${name}"
                      style="width: 50px; height: 50px; object-fit: cover;">`;
@@ -420,26 +428,28 @@ async function initializeReviewsPage() {
     // Load reviews data first
     await loadReviewsData();
     
-    // Load reviews for each tab
-    loadReviewsByType('workshop', 'workshop-reviews-container');
-    loadReviewsByType('mentoring', 'mentoring-reviews-container');
-    loadReviewsByType('online-course', 'online-course-reviews-container');
+    // Use Bootstrap's built-in tab functionality instead of custom implementation
+    const tabLinks = document.querySelectorAll('#reviews-tabs a[data-toggle="pill"]');
     
-    // Add tab change event listeners
-    const tabLinks = document.querySelectorAll('[data-toggle="pill"]');
+    // Load workshop reviews initially (default active tab)
+    loadReviewsByType('workshop', 'workshop-reviews-container');
+    
+    // Use Bootstrap's shown.bs.tab event instead of click to avoid conflicts
     tabLinks.forEach(link => {
-        link.addEventListener('shown.bs.tab', function(e) {
-            const targetId = e.target.getAttribute('href').substring(1);
-            console.log(`Tab changed to: ${targetId}`);
+        $(link).on('shown.bs.tab', function(e) {
+            const targetId = $(this).attr('href').substring(1);
+            console.log(`🎯 Tab shown: ${targetId}`);
             
-            // Load reviews when tab is shown
-            if (targetId === 'workshop-reviews' && document.getElementById('workshop-reviews-container').children.length === 1) {
+            // Load content for the selected tab (lazy loading)
+            if (targetId === 'workshop-reviews') {
                 loadReviewsByType('workshop', 'workshop-reviews-container');
-            } else if (targetId === 'mentoring-reviews' && document.getElementById('mentoring-reviews-container').children.length === 1) {
+            } else if (targetId === 'mentoring-reviews') {
                 loadReviewsByType('mentoring', 'mentoring-reviews-container');
-            } else if (targetId === 'online-course-reviews' && document.getElementById('online-course-reviews-container').children.length === 1) {
+            } else if (targetId === 'online-course-reviews') {
                 loadReviewsByType('online-course', 'online-course-reviews-container');
             }
+            
+            console.log(`✅ Content loaded for tab: ${targetId}`);
         });
     });
 }

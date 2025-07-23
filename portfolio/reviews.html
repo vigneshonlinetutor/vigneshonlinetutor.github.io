@@ -48,6 +48,51 @@
             position: relative;
         }
         
+        /* Tab System Fix - Simple approach: only hide content, not tabs */
+        .tab-pane {
+            display: none;
+        }
+        
+        .tab-pane.active {
+            display: block;
+        }
+        
+        /* Ensure nav tabs remain visible and stable */
+        .nav-pills .nav-link {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            transform: none !important;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Override main nav styles for tab navigation specifically */
+        #reviews-tabs .nav-link {
+            color: #495057 !important;
+            background: #f8f9fa !important;
+            border: 1px solid #dee2e6 !important;
+            margin: 0 2px !important;
+            transform: none !important;
+        }
+        
+        #reviews-tabs .nav-link.active {
+            background: #007bff !important;
+            color: #ffffff !important;
+            border-color: #007bff !important;
+            transform: none !important;
+            display: block !important;
+            visibility: visible !important;
+        }
+        
+        #reviews-tabs .nav-link:hover {
+            background: #e9ecef !important;
+            color: #495057 !important;
+            border-color: #dee2e6 !important;
+            transform: none !important;
+            display: block !important;
+            visibility: visible !important;
+        }
+        
         /* Custom dropdown arrow using FontAwesome */
         .navbar-nav .dropdown-toggle::after {
             display: none !important; /* Hide dropdown arrows completely */
@@ -423,7 +468,7 @@
             <!-- Tab Content -->
             <div class="tab-content" id="reviews-tab-content">
                 <!-- Workshop Reviews Tab -->
-                <div class="tab-pane fade show active" id="workshop-reviews" role="tabpanel" aria-labelledby="workshop-tab">
+                <div class="tab-pane active" id="workshop-reviews" role="tabpanel" aria-labelledby="workshop-tab">
                     <div class="row mb-4">
                         <div class="col-12 text-center">
                             <h3>Workshop Participants</h3>
@@ -441,7 +486,7 @@
                 </div>
 
                 <!-- Mentoring Reviews Tab -->
-                <div class="tab-pane fade" id="mentoring-reviews" role="tabpanel" aria-labelledby="mentoring-tab">
+                <div class="tab-pane" id="mentoring-reviews" role="tabpanel" aria-labelledby="mentoring-tab">
                     <div class="row mb-4">
                         <div class="col-12 text-center">
                             <h3>1-to-1 Training Success Stories</h3>
@@ -459,7 +504,7 @@
                 </div>
 
                 <!-- Online Course Reviews Tab -->
-                <div class="tab-pane fade" id="online-course-reviews" role="tabpanel" aria-labelledby="online-course-tab">
+                <div class="tab-pane" id="online-course-reviews" role="tabpanel" aria-labelledby="online-course-tab">
                     <div class="row mb-4">
                         <div class="col-12 text-center">
                             <h3>Online Course Students</h3>

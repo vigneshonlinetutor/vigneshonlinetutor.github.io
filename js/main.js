@@ -78,18 +78,18 @@
     }, {offset: '80%'});
 
 
-    // Testimonials carousel
-    $(".testimonials-carousel").owlCarousel({
-        center: true,
-        autoplay: true,
-        dots: true,
-        loop: true,
-        responsive: {
-            0:{
-                items:1
-            }
-        }
-    });
+    // Testimonials carousel - Disabled (using custom testimonials system)
+    // $(".testimonials-carousel").owlCarousel({
+    //     center: true,
+    //     autoplay: true,
+    //     dots: true,
+    //     loop: true,
+    //     responsive: {
+    //         0:{
+    //             items:1
+    //         }
+    //     }
+    // });
     //Experience
     document.addEventListener("DOMContentLoaded", function () {
         var coll = document.getElementsByClassName("collapsible");

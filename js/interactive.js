@@ -1,5 +1,93 @@
 // Interactive Features for Enhanced User Experience
 
+// Global variables for testimonials 
+let currentTestimonialSet = 0;
+const testimonialsData = [
+    {
+        name: "Sarah Johnson",
+        title: "QA Engineer at Microsoft",
+        rating: 5.0,
+        photo: "portfolio/img/reviews/sarah_johnson.jpg",
+        review: "Vignesh's Playwright course helped me transition from manual testing to automation. The hands-on approach and real-world examples made all the difference.",
+        badges: ["Career Growth", "Playwright Expert"]
+    },
+    {
+        name: "Mike Chen", 
+        title: "SDET at Google",
+        rating: 5.0,
+        photo: "portfolio/img/reviews/mike_chen.jpg",
+        review: "The Selenium framework course was exactly what I needed. Vignesh's industry experience shows in every lesson. Got promoted within 6 months!",
+        badges: ["Promotion", "Selenium Expert"]
+    },
+    {
+        name: "Aisha Patel",
+        title: "Test Lead at Amazon",
+        rating: 5.0,
+        photo: "portfolio/img/reviews/aisha_patel.jpg",
+        review: "Best investment in my career! The corporate training session for our team was exceptional. Clear explanations and practical examples.",
+        badges: ["Team Training", "Leadership"]
+    },
+    {
+        name: "David Kumar",
+        title: "Senior QA Engineer at Netflix",
+        rating: 4.8,
+        photo: "portfolio/img/reviews/david_kumar.jpg",
+        review: "Amazing course structure! Vignesh breaks down complex concepts into digestible pieces. The practice labs were incredibly helpful.",
+        badges: ["Skill Upgrade", "Cypress Expert"]
+    },
+    {
+        name: "Lisa Wong",
+        title: "Senior QA at Adobe", 
+        rating: 4.8,
+        photo: "portfolio/img/reviews/lisa_wong.jpg",
+        review: "The API testing course was comprehensive and well-structured. Helped me advance from mid-level to senior QA role within 8 months. Highly recommend!",
+        badges: ["Skill Enhancement", "Senior Role"]
+    }
+];
+
+// Global function to load testimonials
+function loadTestimonials() {
+    console.log('🔍 loadTestimonials called');
+    const containers = document.querySelectorAll('#testimonials-container');
+    
+    if (containers.length === 0) {
+        console.error('❌ No testimonials containers found!');
+        return;
+    }
+    
+    console.log(`✅ Found ${containers.length} testimonials containers, updating all`);
+    // Clear loading spinner from all containers first
+    containers.forEach(container => {
+        container.innerHTML = '';
+    });
+    window.showTestimonialSet(0);
+}
+
+// Helper function to generate star ratings
+function generateStars(rating) {
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+    let starsHTML = '';
+    
+    // Add full stars
+    for (let i = 0; i < fullStars; i++) {
+        starsHTML += '<i class="fas fa-star text-warning"></i>';
+    }
+    
+    // Add half star if needed
+    if (hasHalfStar) {
+        starsHTML += '<i class="fas fa-star-half-alt text-warning"></i>';
+    }
+    
+    // Add empty stars to make 5 total
+    const emptyStars = 5 - Math.ceil(rating);
+    for (let i = 0; i < emptyStars; i++) {
+        starsHTML += '<i class="far fa-star text-warning"></i>';
+    }
+    
+    return starsHTML;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     
     // Credential Animation Enhancement
@@ -104,24 +192,46 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!numberElement) return;
         
         const text = numberElement.textContent;
-        const number = parseInt(text.replace(/\D/g, ''));
         
-        if (isNaN(number)) return;
-        
-        const suffix = text.replace(/[\d]/g, '');
-        const duration = 2000;
-        const steps = 60;
-        const increment = number / steps;
-        let current = 0;
-        
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= number) {
-                current = number;
-                clearInterval(timer);
-            }
-            numberElement.textContent = Math.floor(current) + suffix;
-        }, duration / steps);
+        // Handle decimal numbers like 4.7+
+        if (text.includes('.')) {
+            const number = parseFloat(text.replace(/[^\d.]/g, ''));
+            if (isNaN(number)) return;
+            
+            const suffix = text.replace(/[\d.]/g, '');
+            const duration = 2000;
+            const steps = 60;
+            const increment = number / steps;
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= number) {
+                    current = number;
+                    clearInterval(timer);
+                }
+                numberElement.textContent = current.toFixed(1) + suffix;
+            }, duration / steps);
+        } else {
+            // Handle whole numbers like 7000+, 10+
+            const number = parseInt(text.replace(/\D/g, ''));
+            if (isNaN(number)) return;
+            
+            const suffix = text.replace(/[\d]/g, '');
+            const duration = 2000;
+            const steps = 60;
+            const increment = number / steps;
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= number) {
+                    current = number;
+                    clearInterval(timer);
+                }
+                numberElement.textContent = Math.floor(current) + suffix;
+            }, duration / steps);
+        }
     }
     
     // Enhanced Form Interactions (for all forms)
@@ -278,8 +388,143 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Load testimonials after DOM is ready
+    console.log('🚀 Checking for testimonials container...');
+    setTimeout(() => {
+        loadTestimonials();
+    }, 100);
+    
     console.log('Interactive features loaded successfully! 🚀');
 });
+
+// Global function to show testimonials (accessible from onclick)
+window.showTestimonialSet = function(setIndex) {
+    const containers = document.querySelectorAll('#testimonials-container');
+    
+    if (containers.length === 0) {
+        console.error('❌ Cannot show testimonials: no containers found!');
+        return;
+    }
+    
+    const testimonialsPerSet = 3;
+    const startIndex = setIndex * testimonialsPerSet;
+    const endIndex = Math.min(startIndex + testimonialsPerSet, testimonialsData.length);
+    const currentTestimonials = testimonialsData.slice(startIndex, endIndex);
+    
+    console.log(`✅ Showing testimonials ${startIndex + 1} to ${endIndex} of ${testimonialsData.length}`);
+    
+    const testimonialsHtml = `
+        <div class="row">
+            ${currentTestimonials.map((testimonial, index) => `
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="testimonial-card h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="mr-3">
+                                <img src="${testimonial.photo}" 
+                                     class="rounded-circle shadow-sm" 
+                                     alt="${testimonial.name}"
+                                     style="width: 50px; height: 50px; object-fit: cover;"
+                                     onerror="this.src='https://via.placeholder.com/50x50/007bff/ffffff?text=${testimonial.name.charAt(0)}'">
+                            </div>
+                            <div>
+                                <h6 class="mb-0 font-weight-bold">${testimonial.name}</h6>
+                                <small class="text-primary font-weight-500">${testimonial.title}</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            ${generateStars(testimonial.rating)}
+                            <span class="ml-2 text-muted small">(${testimonial.rating} Rating)</span>
+                        </div>
+                        <p class="text-muted">"${testimonial.review}"</p>
+                        <div class="mt-3">
+                            ${testimonial.badges.map((badge, badgeIndex) => {
+                                const colors = ['badge-primary', 'badge-success', 'badge-info', 'badge-warning'];
+                                const colorClass = colors[badgeIndex % colors.length];
+                                return `<span class="badge ${colorClass} mr-1 mb-1">${badge}</span>`;
+                            }).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+        
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <button class="btn btn-outline-primary" id="prevTestimonials" ${setIndex === 0 ? 'disabled' : ''}>
+                <i class="fas fa-chevron-left mr-2"></i>Previous
+            </button>
+            
+            <div class="testimonial-indicators">
+                ${Array.from({length: Math.ceil(testimonialsData.length / testimonialsPerSet)}, (_, i) => `
+                    <button class="btn btn-sm ${i === setIndex ? 'btn-primary' : 'btn-outline-primary'} mx-1" 
+                            onclick="showTestimonialSet(${i})">${i + 1}</button>
+                `).join('')}
+            </div>
+            
+            <button class="btn btn-outline-primary" id="nextTestimonials" 
+                    ${endIndex >= testimonialsData.length ? 'disabled' : ''}>
+                Next<i class="fas fa-chevron-right ml-2"></i>
+            </button>
+        </div>
+    `;
+    
+    // Update all containers with the same content
+    containers.forEach(container => {
+        container.innerHTML = testimonialsHtml;
+    });
+    currentTestimonialSet = setIndex;
+    
+    // Add event listeners for navigation (only need to do this once)
+    const prevBtn = document.getElementById('prevTestimonials');
+    const nextBtn = document.getElementById('nextTestimonials');
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentTestimonialSet > 0) {
+                showTestimonialSet(currentTestimonialSet - 1);
+            }
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            const maxSets = Math.ceil(testimonialsData.length / testimonialsPerSet);
+            if (currentTestimonialSet < maxSets - 1) {
+                showTestimonialSet(currentTestimonialSet + 1);
+            }
+        });
+    }
+    
+    console.log('✅ Testimonials displayed with navigation');
+};
+
+// Backup testimonial loading for immediate execution
+(function() {
+    console.log('🚀 Script loaded, setting up backup testimonial loading...');
+    
+    // Backup loading with multiple attempts
+    setTimeout(() => {
+        console.log('🔄 Backup attempt to load testimonials...');
+        loadTestimonials();
+    }, 500);
+    
+    setTimeout(() => {
+        console.log('🔄 Final backup attempt to load testimonials...');
+        loadTestimonials();
+    }, 1500);
+})();
+
+// Helper function to generate badges
+function generateBadges(badges) {
+    const badgeColors = [
+        'badge-primary', 'badge-success', 'badge-info', 
+        'badge-warning', 'badge-danger', 'badge-secondary'
+    ];
+    
+    return badges.map((badge, index) => {
+        const colorClass = badgeColors[index % badgeColors.length];
+        return `<span class="badge ${colorClass} mr-1 mb-1">${badge}</span>`;
+    }).join('');
+}
 
 // CSS for ripple effect
 const rippleCSS = `

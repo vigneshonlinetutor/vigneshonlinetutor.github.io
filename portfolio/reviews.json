@@ -1,0 +1,112 @@
+{
+  "testimonials": [
+    {
+      "id": "sarah_johnson",
+      "name": "Sarah Johnson",
+      "title": "QA Engineer at Microsoft", 
+      "company": "Microsoft",
+      "rating": 5.0,
+      "photo": "portfolio/img/reviews/sarah_johnson.jpg",
+      "course": "Playwright",
+      "badges": ["Career Growth", "Playwright Expert"],
+      "review": "Vignesh's Playwright course helped me transition from manual testing to automation. The hands-on approach and real-world examples made all the difference.",
+      "featured": true
+    },
+    {
+      "id": "mike_chen",
+      "name": "Mike Chen", 
+      "title": "SDET at Google",
+      "company": "Google",
+      "rating": 5.0,
+      "photo": "portfolio/img/reviews/mike_chen.jpg",
+      "course": "Selenium",
+      "badges": ["Promotion", "Selenium Expert"],
+      "review": "The Selenium framework course was exactly what I needed. Vignesh's industry experience shows in every lesson. Got promoted within 6 months!",
+      "featured": true
+    },
+    {
+      "id": "aisha_patel",
+      "name": "Aisha Patel",
+      "title": "Test Lead at Amazon", 
+      "company": "Amazon",
+      "rating": 5.0,
+      "photo": "portfolio/img/reviews/aisha_patel.jpg",
+      "course": "Corporate Training",
+      "badges": ["Team Training", "Leadership"],
+      "review": "Best investment in my career! The corporate training session for our team was exceptional. Clear explanations and practical examples.",
+      "featured": true
+    },
+    {
+      "id": "david_kumar",
+      "name": "David Kumar",
+      "title": "Senior QA Engineer at Netflix",
+      "company": "Netflix", 
+      "rating": 4.8,
+      "photo": "portfolio/img/reviews/david_kumar.jpg",
+      "course": "Cypress",
+      "badges": ["Skill Upgrade", "Cypress Expert"],
+      "review": "Amazing course structure! Vignesh breaks down complex concepts into digestible pieces. The practice labs were incredibly helpful.",
+      "featured": false
+    },
+    {
+      "id": "priya_sharma",
+      "name": "Priya Sharma",
+      "title": "QA Lead at Spotify",
+      "company": "Spotify",
+      "rating": 5.0,
+      "photo": "portfolio/img/reviews/priya_sharma.jpg", 
+      "course": "API Testing",
+      "badges": ["Career Transition", "API Expert"],
+      "review": "Transitioned from manual to automation testing within 3 months. Vignesh's mentoring approach is what made the difference.",
+      "featured": false
+    },
+    {
+      "id": "james_wilson", 
+      "name": "James Wilson",
+      "title": "SDET at Uber",
+      "company": "Uber",
+      "rating": 4.9,
+      "photo": "portfolio/img/reviews/james_wilson.jpg",
+      "course": "Playwright",
+      "badges": ["Framework Design", "Architecture"],
+      "review": "Learned to build robust test frameworks from scratch. The course content is industry-relevant and up-to-date.",
+      "featured": false
+    },
+    {
+      "id": "alex_martinez",
+      "name": "Alex Martinez",
+      "title": "QA Automation Engineer at Tesla",
+      "company": "Tesla",
+      "rating": 5.0,
+      "photo": "portfolio/img/reviews/alex_martinez.jpg",
+      "course": "Selenium",
+      "badges": ["Career Switch", "Test Lead"],
+      "review": "Made the switch from manual to automation testing seamlessly. Vignesh's teaching style is clear and the examples are practical. Now leading a team of 5 automation engineers!",
+      "featured": false
+    },
+    {
+      "id": "lisa_wong",
+      "name": "Lisa Wong", 
+      "title": "Senior QA at Adobe",
+      "company": "Adobe",
+      "rating": 4.8,
+      "photo": "portfolio/img/reviews/lisa_wong.jpg",
+      "course": "API Testing",
+      "badges": ["Skill Enhancement", "Senior Role"],
+      "review": "The API testing course was comprehensive and well-structured. Helped me advance from mid-level to senior QA role within 8 months. Highly recommend!",
+      "featured": false
+    },
+    {
+      "id": "robert_johnson",
+      "name": "Robert Johnson",
+      "title": "Test Automation Lead at IBM",
+      "company": "IBM",
+      "rating": 4.9,
+      "photo": "portfolio/img/reviews/robert_johnson.jpg",
+      "course": "Cypress",
+      "badges": ["Leadership", "Team Building"],
+      "review": "Outstanding content on modern testing practices. Applied the learnings to build our entire automation strategy. The course pays for itself within weeks!",
+      "featured": false
+    }
+  ]
+} 

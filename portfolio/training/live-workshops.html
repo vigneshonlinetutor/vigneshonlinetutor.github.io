@@ -737,11 +737,17 @@
         // Workshop data will be loaded from JSON file
         let workshopsData = [];
 
+        // Parse dd-mm-YYYY format to Date object
+        function parseDateDDMMYYYY(dateStr) {
+            const [day, month, year] = dateStr.split('-');
+            return new Date(year, month - 1, day); // month is 0-indexed in JS
+        }
+
         // Workshop Status Calculator
         function getWorkshopStatus(startDate, endDate) {
             const today = new Date();
-            const workshopStart = new Date(startDate);
-            const workshopEnd = new Date(endDate);
+            const workshopStart = parseDateDDMMYYYY(startDate);
+            const workshopEnd = parseDateDDMMYYYY(endDate);
             const timeDiff = workshopStart - today;
             const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
             
@@ -775,8 +781,8 @@
             const delay = (index * 0.2).toFixed(1);
             
             // Format date range for display
-            const startDate = new Date(workshop.startDate);
-            const endDate = new Date(workshop.endDate);
+            const startDate = parseDateDDMMYYYY(workshop.startDate);
+            const endDate = parseDateDDMMYYYY(workshop.endDate);
             
             const formatOptions = { 
                 year: 'numeric', 
@@ -912,7 +918,7 @@
                 }
                 
                 // Within same status, sort by start date
-                return new Date(a.startDate) - new Date(b.startDate);
+                return parseDateDDMMYYYY(a.startDate) - parseDateDDMMYYYY(b.startDate);
             });
             
             const workshopsHTML = sortedWorkshops.map((workshop, index) => 

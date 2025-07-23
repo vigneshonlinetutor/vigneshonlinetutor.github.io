@@ -134,21 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Floating Contact Button
-    function addFloatingContact() {
-        const floatingContact = document.createElement('a');
-        floatingContact.href = 'mailto:vigneshonlinetutor@gmail.com';
-        floatingContact.className = 'floating-contact';
-        floatingContact.innerHTML = '<i class="fas fa-envelope"></i>';
-        floatingContact.setAttribute('data-tooltip', 'Contact Me');
-        floatingContact.setAttribute('aria-label', 'Contact via email');
-        document.body.appendChild(floatingContact);
-    }
-    
-    // Only add floating contact if not on corporate training page (which has its own form)
-    if (!window.location.pathname.includes('corporate-training')) {
-        addFloatingContact();
-    }
+    // Floating Contact Button - Removed (broken and redundant with footer contacts)
     
     // Intersection Observer for Animations
     const observerOptions = {

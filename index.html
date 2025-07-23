@@ -1079,6 +1079,13 @@
             // Show the promotion section
             promotionSection.style.display = 'block';
             
+            // Add center alignment class if only 1 workshop
+            if (currentWorkshopsData.length === 1) {
+                container.classList.add('justify-content-center');
+            } else {
+                container.classList.remove('justify-content-center');
+            }
+            
             // Generate workshop HTML
             const workshopsHTML = currentWorkshopsData.map((workshop, index) => 
                 generateHomeWorkshopHTML(workshop, index)

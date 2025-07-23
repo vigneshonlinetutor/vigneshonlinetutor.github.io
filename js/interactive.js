@@ -4,11 +4,12 @@
 let currentReviewSet = 0;
 let reviewsData = [];
 
-// Fallback reviews data for when JSON fetch fails (CORS/file:// issues)
+// Fallback reviews data for when JSON fetch fails (CORS/file:// issues) - Complete dataset
 const fallbackReviews = [
+    // Workshop Reviews (9 total)
     {
         "name": "Swati Shinde",
-        "title": "Deputy Manager", 
+        "title": "Deputy Manager",
         "company": "Saregama India Ltd",
         "rating": 4.9,
         "photo": "swati_shinde.jpg",
@@ -19,22 +20,12 @@ const fallbackReviews = [
     {
         "name": "Javier",
         "title": "QA Analyst",
-        "company": "NDP Studi", 
+        "company": "NDP Studi",
         "rating": 5.0,
         "photo": "javier.jpeg",
         "review": "Before this workshop, I had only heard of playwright. After it, I have started using playwright for my automation testing and it has been a great experience. The workshop was very informative and I have learned a lot from it.",
         "type": "workshop",
         "subtype": "playwright"
-    },
-    {
-        "name": "Swapnil",
-        "title": "Senior QA Analyst",
-        "company": "Capgemini",
-        "rating": 4.8,
-        "photo": "generic_male.jpg", 
-        "review": "I was stuck in manual QA for years. Vignesh's mentorship gave me not just a roadmap but the confidence to switch to automation. His guidance on frameworks, AI tools in QA, and resume strategy was gold. The mock interview we did helped me land my first automation role!",
-        "type": "mentoring",
-        "subtype": ""
     },
     {
         "name": "Lohith",
@@ -43,7 +34,27 @@ const fallbackReviews = [
         "rating": 4.8,
         "photo": "generic_male.jpg",
         "review": "I always struggled with test stability before joining the Playwright bootcamp. Vignesh's session on locators and annotations gave me solid confidence. Learning Docker and Cucumber in the same flow was a huge win. Now, I've even started contributing to our team's Playwright framework!",
-        "type": "workshop", 
+        "type": "workshop",
+        "subtype": "playwright"
+    },
+    {
+        "name": "Evgeniya Turtschin",
+        "title": "QA Consultant",
+        "company": "ITX",
+        "rating": 5.0,
+        "photo": "evgeniya_turtschin.jpeg",
+        "review": "I joined the Playwright bootcamp with zero knowledge and walked out confidently writing tests using POM, hooks, and even Docker integration. Vignesh's pace and examples were super beginner-friendly. I especially loved the group activities and doubt-solving sessions.",
+        "type": "workshop",
+        "subtype": "playwright"
+    },
+    {
+        "name": "Kalpuri Preetham",
+        "title": "SDET 1",
+        "company": "Entain India",
+        "rating": 4.8,
+        "photo": "kalpuri_preetham.jpeg",
+        "review": "What I liked most about the Playwright bootcamp was the clear separation of test logic and structure. The use of POM, hooks, test parameterization, and even Cucumber felt industry-grade. It wasn't just a training—it felt like a real project.",
+        "type": "workshop",
         "subtype": "playwright"
     },
     {
@@ -57,7 +68,39 @@ const fallbackReviews = [
         "subtype": "gen-ai"
     },
     {
-        "name": "Shilpa Shravge", 
+        "name": "Titir Mishra",
+        "title": "QA Engineer",
+        "company": "IRIS Software Group",
+        "rating": 4.9,
+        "photo": "titir_misra.jpeg",
+        "review": "The Gen AI workshop was an eye-opener. I had no clue AI could write my test cases, analyze logs, and even generate full test plans. Vignesh's use of Cursor AI and prompt tweaking was brilliant. I'm now using Gen AI daily in my QA workflow.",
+        "type": "workshop",
+        "subtype": "gen-ai"
+    },
+    {
+        "name": "Anukriti Ojha",
+        "title": "Senior Quality Engineer",
+        "company": "Walmart Global Tech India",
+        "rating": 4.9,
+        "photo": "anukriti_ojha.jpeg",
+        "review": "The Gen AI bootcamp gave me a completely new perspective on testing. I'm now using GPTs to write test plans, do code reviews, and generate test data on the fly. The hands-on tasks and curated prompts Vignesh shared were absolute gems!",
+        "type": "workshop",
+        "subtype": "gen-ai"
+    },
+    
+    // Mentoring Reviews (7 total)
+    {
+        "name": "Swapnil",
+        "title": "Senior QA Analyst",
+        "company": "Capgemini",
+        "rating": 4.8,
+        "photo": "generic_male.jpg",
+        "review": "I was stuck in manual QA for years. Vignesh's mentorship gave me not just a roadmap but the confidence to switch to automation. His guidance on frameworks, AI tools in QA, and resume strategy was gold. The mock interview we did helped me land my first automation role!",
+        "type": "mentoring",
+        "subtype": ""
+    },
+    {
+        "name": "Shilpa Shravge",
         "title": "QA Lead",
         "company": "Absa Group",
         "rating": 4.9,
@@ -67,12 +110,94 @@ const fallbackReviews = [
         "subtype": ""
     },
     {
+        "name": "Neha Tyagi",
+        "title": "Quality Assurance Engineer",
+        "company": "Customer Alliance",
+        "rating": 4.7,
+        "photo": "neha_tyagi.jpeg",
+        "review": "During 1:1 mentoring, Vignesh helped me transform my basic TestNG skills into a solid framework. His suggestions around reporting, retries, and cross-browser testing saved me hours of debugging. I can't thank him enough!",
+        "type": "mentoring",
+        "subtype": ""
+    },
+    {
+        "name": "Sriram Balaji",
+        "title": "Senior QA Developer",
+        "company": "Retresco",
+        "rating": 5.0,
+        "photo": "sriram_balaji.jpeg",
+        "review": "Through Vignesh's 1-on-1 coaching, I upgraded my entire QA strategy to include GenAI tools. We restructured our automation framework with better CI/CD, implemented Docker, and added AI-powered reporting workflows. That insight is hard to find elsewhere.",
+        "type": "mentoring",
+        "subtype": ""
+    },
+    {
+        "name": "Penzar Merchant",
+        "title": "QA Test Analyst",
+        "company": "Zurich Covermore",
+        "rating": 5.0,
+        "photo": "penzar_merchant.jpeg",
+        "review": "Attended Vignesh's Playwright workshop last year. It was a great learning experience and I was able to apply the learnings in my work. From then on in constant touch with Vignesh for my queries and guidance. He is a great mentor and a great teacher.",
+        "type": "mentoring",
+        "subtype": ""
+    },
+    {
+        "name": "Akshaya Narayanan",
+        "title": "QA Engineer",
+        "company": "Check 24",
+        "rating": 5.0,
+        "photo": "akshaya_narayanan.jpeg",
+        "review": "Couple of years back reached out to Vignesh via LinkedIn and asked him to guide me for an interview preparation. He was very helpful and guided me through the process. Through which I have cleared my interview and got selected. Years passed and I have been in touch with Vignesh for my queries and guidance.",
+        "type": "mentoring",
+        "subtype": ""
+    },
+    {
+        "name": "Anurima Chandra",
+        "title": "QA Consultant",
+        "company": "JLL Technologies",
+        "rating": 5.0,
+        "photo": "anurima_chandra.jpeg",
+        "review": "Vignesh is a great trainer and mentor. He taught me various automation technologies such as selenium, cypress etc. Due to which I could able to shine in my current organization and able to automate on my own.",
+        "type": "mentoring",
+        "subtype": ""
+    },
+    
+    // Online Course Reviews (14 total)
+    {
         "name": "Yosra Miladi",
         "title": "Software QA Team Lead",
         "company": "Insta Deep",
         "rating": 5.0,
         "photo": "generic_female.jpg",
         "review": "I've taken many online courses, but this one stood out. The Playwright course wasn't just theory – it was hands-on with Docker, Allure, Jenkins, API testing, and Cucumber! The way POM and advanced UI element handling was explained made automation fun and practical.",
+        "type": "online-course",
+        "subtype": "playwright"
+    },
+    {
+        "name": "Yash Swami",
+        "title": "QA Automation Specialist",
+        "company": "Persistent Systems",
+        "rating": 4.8,
+        "photo": "generic_male.jpg",
+        "review": "The Playwright online course was extremely well-structured. I could follow along even with a busy schedule. The CI/CD with Jenkins, the Allure report, and JSON/CSV test data parts helped me upskill fast. Highly recommend for anyone looking to implement a full-stack testing framework.",
+        "type": "online-course",
+        "subtype": "playwright"
+    },
+    {
+        "name": "Surajit Paul",
+        "title": "Automation Tester",
+        "company": "IBM",
+        "rating": 4.8,
+        "photo": "generic_male.jpg",
+        "review": "Brilliant course. From JSON/CSV-driven testing to Allure reports and Docker config, every topic was explained in-depth. I especially liked how debugging tips and project structuring were included – it felt like working on a real automation project.",
+        "type": "online-course",
+        "subtype": "playwright"
+    },
+    {
+        "name": "Prashant Appanna Savalagi",
+        "title": "QA Engineer",
+        "company": "TechJini",
+        "rating": 4.7,
+        "photo": "generic_male.jpg",
+        "review": "Loved the balance of theory and real-time use cases in this Playwright course. I appreciated the way Docker, Allure, and CI/CD were added gradually. Helped me build a complete understanding and apply it in my company's setup.",
         "type": "online-course",
         "subtype": "playwright"
     },
@@ -85,6 +210,116 @@ const fallbackReviews = [
         "review": "Loved how this course covered everything from Cypress basics to Docker and Jenkins integration. The best part for me was learning to mock API calls and use Cypress dashboard effectively. I've implemented fixtures, custom commands, and the POM approach from this course in my daily work.",
         "type": "online-course",
         "subtype": "cypress"
+    },
+    {
+        "name": "Vaishali Chaudhari",
+        "title": "Automation Test Engineer",
+        "company": "Zensar",
+        "rating": 5.0,
+        "photo": "generic_female.jpg",
+        "review": "This Cypress course really covers it all – from basic UI handling to mocking APIs and integrating with Docker. The examples were clear and applicable. The module on writing custom commands and using plugins was especially helpful for our project setup.",
+        "type": "online-course",
+        "subtype": "cypress"
+    },
+    {
+        "name": "Olamide John",
+        "title": "QA Engineer",
+        "company": "Andela",
+        "rating": 5.0,
+        "photo": "generic_male.jpg",
+        "review": "The Cypress online course was practical, fast-paced, and comprehensive. Loved the parts where we tested XHR requests and used fixtures with custom commands. Now I can test modern UIs with confidence – and better structure!",
+        "type": "online-course",
+        "subtype": "cypress"
+    },
+    {
+        "name": "Kesavan Selvaraj",
+        "title": "Software Tester",
+        "company": "Harman International",
+        "rating": 4.9,
+        "photo": "generic_male.jpg",
+        "review": "Fantastic Cypress course. The focus on page objects, mocking APIs, and dashboard integration helped me modernize our test suite. Also, I finally understood how to use plugins the right way thanks to this course!",
+        "type": "online-course",
+        "subtype": "cypress"
+    },
+    {
+        "name": "Divya",
+        "title": "Performance Test Engineer",
+        "company": "TCS",
+        "rating": 4.8,
+        "photo": "generic_female.jpg",
+        "review": "Vignesh made Gatling approachable, even for someone new to Scala. The explanation of feeders, injections, CLI setup, and Gatling Enterprise was so clear. I now feel confident setting up performance tests with real-world scenarios. The Grafana integration module was a bonus!",
+        "type": "online-course",
+        "subtype": "gatling"
+    },
+    {
+        "name": "Jyoti Shankar Sahoo",
+        "title": "Performance QA",
+        "company": "Virtusa",
+        "rating": 4.9,
+        "photo": "generic_male.jpg",
+        "review": "Clear, to the point, and packed with value. The Gatling course helped me understand feeders, scenario injection, and advanced simulation setups. I'm now able to run our API load tests independently with Grafana dashboards set up, thanks to this course.",
+        "type": "online-course",
+        "subtype": "gatling"
+    },
+    {
+        "name": "Amit Malbari",
+        "title": "Performance Engineer",
+        "company": "LTI Mindtree",
+        "rating": 4.9,
+        "photo": "generic_male.jpg",
+        "review": "This Gatling course breaks everything down – Scala basics, feeders, CLI usage, and even CICD flows. The Grafana integration and Gatling Enterprise module were very helpful. I now use Gatling for both regression and spike testing.",
+        "type": "online-course",
+        "subtype": "gatling"
+    },
+    {
+        "name": "Simplice Tchoupkoua",
+        "title": "QA Performance Analyst",
+        "company": "Orange Cameroon",
+        "rating": 4.8,
+        "photo": "generic_male.jpg",
+        "review": "I took this Gatling course to upskill for an enterprise project and it delivered beyond expectations. The explanation around simulation steps, feeders, command-line runs, and CICD flow was easy to follow. Truly scalable learning.",
+        "type": "online-course",
+        "subtype": "gatling"
+    },
+    {
+        "name": "Jaywant Chavan",
+        "title": "QA Automation Engineer",
+        "company": "Wipro",
+        "rating": 4.9,
+        "photo": "generic_male.jpg",
+        "review": "From Extent Reports to Docker execution, this course is a complete Selenium framework builder's guide. I learned how to design POMs, implement retry logic, handle cross-browser testing, and even integrate with Selenium Grid. The real-world structure made it super practical!",
+        "type": "online-course",
+        "subtype": "selenium"
+    },
+    {
+        "name": "Pranab Ghatak",
+        "title": "QA Engineer",
+        "company": "DXC Technology",
+        "rating": 4.8,
+        "photo": "generic_male.jpg",
+        "review": "I appreciated how deep the Selenium course went into framework design – not just writing tests. Factory classes, thread-safety, exception handling, Docker execution – everything was taught like it was part of a real project. Loved the focus on best practices.",
+        "type": "online-course",
+        "subtype": "selenium"
+    },
+    {
+        "name": "Sreejith",
+        "title": "QA Automation Lead",
+        "company": "UST Global",
+        "rating": 4.9,
+        "photo": "generic_male.jpg",
+        "review": "If you're building a Selenium framework from scratch, this is the course to take. I was blown away by the POM chaining, retry logic, and even Docker execution with Selenium Grid. Super practical and clean code examples.",
+        "type": "online-course",
+        "subtype": "selenium"
+    },
+    {
+        "name": "Ismail Savcan",
+        "title": "QA Automation Specialist",
+        "company": "Turkcell",
+        "rating": 5.0,
+        "photo": "generic_male.jpg",
+        "review": "The Selenium framework course is all meat, no fluff. I learned how to structure tests using base pages, handle enums properly, and implement retry logic with Method Interceptor. It's the cleanest Selenium setup I've seen in any course.",
+        "type": "online-course",
+        "subtype": "selenium"
     }
 ];
 

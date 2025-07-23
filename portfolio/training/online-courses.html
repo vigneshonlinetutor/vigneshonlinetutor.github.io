@@ -215,6 +215,62 @@
         .dropdown:hover .dropdown-menu {
             display: block;
         }
+        
+        /* Ultra Highlighting for Special Discount Text */
+        .special-discount-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff !important;
+            font-size: 1.2rem !important;
+            font-weight: 700 !important;
+            text-align: center;
+            padding: 15px 25px;
+            border-radius: 15px;
+            position: relative;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            border: 2px solid #ffc107;
+            animation: pulseGlow 2s ease-in-out infinite alternate;
+            overflow: hidden;
+        }
+        
+        .special-discount-text::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+            z-index: 1;
+        }
+        
+        .special-discount-text strong {
+            position: relative;
+            z-index: 2;
+        }
+        
+        @keyframes pulseGlow {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+                border-color: #ffc107;
+            }
+            100% {
+                transform: scale(1.03);
+                box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+                border-color: #ff6b6b;
+            }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
     </style>
 </head>
 
@@ -372,7 +428,7 @@
 
             <div class="section-header text-center mb-4">
                 <h3>Available Courses</h3>
-                <p class="text-danger"><strong>Special Discount:</strong> Use the links below to get maximum discount on all courses</p>
+                <p class="special-discount-text"><strong>🎉 Special Discount:</strong> Use the links below to get maximum discount on all courses</p>
             </div>
             
             <div class="row" id="online-courses">
@@ -553,7 +609,7 @@
         };
         
         // Load courses from courses.json
-        fetch('../../courses.json')
+        fetch('../courses.json')
             .then(response => response.json())
             .then(data => {
                 const onlineCoursesDiv = document.getElementById('online-courses');
@@ -576,7 +632,7 @@
                             <div class="row align-items-center">
                                 <div class="col-md-4 text-center mb-3 mb-md-0">
                                     <div class="p-3 bg-light rounded mb-2" style="width: 180px; height: 120px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
-                                        <img src="../../img/logo/${courseName}-Logo.png" 
+                                        <img src="../logo/${courseName}-Logo.png" 
                                              alt="${details.title}" 
                                              class="img-fluid" 
                                              style="max-height: 90px; max-width: 160px; object-fit: contain;">

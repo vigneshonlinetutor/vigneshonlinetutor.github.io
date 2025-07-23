@@ -215,6 +215,84 @@
         .dropdown:hover .dropdown-menu {
             display: block;
         }
+
+        /* Workshop Status Styles */
+        .workshop-past, .workshop-upcoming {
+            opacity: 0.6;
+            filter: grayscale(0.5);
+        }
+
+        .workshop-past .course-card, .workshop-upcoming .course-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+        }
+
+        .workshop-past h5, .workshop-upcoming h5 {
+            color: #6c757d !important;
+        }
+
+        /* Buttons remain clickable for all workshop statuses */
+
+        .workshop-current {
+            opacity: 1;
+            filter: none;
+        }
+
+        .workshop-status-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 2;
+        }
+
+        .badge-past {
+            background-color: #6c757d !important;
+        }
+
+        .badge-upcoming {
+            background-color: #17a2b8 !important;
+        }
+
+        .badge-current {
+            background-color: #28a745 !important;
+        }
+
+        /* Diagonal Overlay for Past/Upcoming Workshops */
+        .workshop-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .workshop-overlay::before {
+            content: attr(data-overlay-text);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-25deg);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            white-space: nowrap;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .workshop-past .workshop-overlay::before {
+            background: rgba(108, 117, 125, 0.9);
+        }
+
+        .workshop-upcoming .workshop-overlay::before {
+            background: rgba(23, 162, 184, 0.9);
+        }
     </style>
 </head>
 
@@ -342,197 +420,14 @@
                 <p>Intensive, hands-on learning experiences with real-world projects and immediate application</p>
             </div>
             
-            <div class="row">
-                <!-- Workshop 1 -->
-                <div class="col-lg-6 col-md-12 mb-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="course-card h-100 position-relative">
-                        <div class="course-badge">Weekend</div>
-                        <div class="card-body p-4">
-                            <div class="row align-items-center">
-                                <div class="col-md-4 text-center mb-3 mb-md-0">
-                                    <div class="p-3 bg-light rounded-circle d-inline-block mb-2" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
-                                        <i class="fas fa-tools fa-3x text-primary"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h5 class="font-weight-bold mb-2 text-dark">Selenium Framework Bootcamp</h5>
-                                    <p class="text-muted mb-3">Build robust automation frameworks from scratch with Page Object Model, TestNG, and advanced reporting</p>
-                                    
-                                    <div class="row mb-3">
-                                        <div class="col-6">
-                                            <div class="d-flex align-items-center">
-                                                <i class="fas fa-clock text-warning mr-1"></i>
-                                                <span class="font-weight-bold text-dark">16 Hours</span>
-                                                <small class="text-muted ml-1">Duration</small>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="d-flex align-items-center">
-                                                <i class="fas fa-users text-primary mr-1"></i>
-                                                <span class="font-weight-bold text-dark">12 Max</span>
-                                                <small class="text-muted ml-1">Participants</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="mb-4">
-                                        <span class="badge badge-primary mr-1 mb-1">Selenium</span>
-                                        <span class="badge badge-success mr-1 mb-1">TestNG</span>
-                                        <span class="badge badge-info mr-1 mb-1">Maven</span>
-                                        <span class="badge badge-warning mr-1 mb-1">Jenkins</span>
-                                    </div>
-                                    
-                                    <a href="mailto:vigneshonlinetutor@gmail.com?subject=Workshop Inquiry - Selenium Framework Bootcamp" class="btn btn-primary btn-block">
-                                        <i class="fas fa-calendar-plus mr-2"></i>Register Interest
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+            <!-- Workshops will be dynamically generated here -->
+            <div id="workshops-container" class="row">
+                <!-- Loading state -->
+                <div class="col-12 text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading workshops...</span>
                     </div>
-                </div>
-
-                <!-- Workshop 2 -->
-                <div class="col-lg-6 col-md-12 mb-4 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="course-card h-100 position-relative">
-                        <div class="course-badge">Popular</div>
-                        <div class="card-body p-4">
-                            <div class="row align-items-center">
-                                <div class="col-md-4 text-center mb-3 mb-md-0">
-                                    <div class="p-3 bg-light rounded-circle d-inline-block mb-2" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
-                                        <i class="fas fa-rocket fa-3x text-success"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h5 class="font-weight-bold mb-2 text-dark">Modern Testing with Playwright</h5>
-                                    <p class="text-muted mb-3">Master the next-generation testing tool with cross-browser automation, API testing, and visual comparisons</p>
-                                    
-                                    <div class="row mb-3">
-                                        <div class="col-6">
-                                            <div class="d-flex align-items-center">
-                                                <i class="fas fa-clock text-warning mr-1"></i>
-                                                <span class="font-weight-bold text-dark">12 Hours</span>
-                                                <small class="text-muted ml-1">Duration</small>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="d-flex align-items-center">
-                                                <i class="fas fa-users text-primary mr-1"></i>
-                                                <span class="font-weight-bold text-dark">15 Max</span>
-                                                <small class="text-muted ml-1">Participants</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="mb-4">
-                                        <span class="badge badge-success mr-1 mb-1">Playwright</span>
-                                        <span class="badge badge-primary mr-1 mb-1">TypeScript</span>
-                                        <span class="badge badge-info mr-1 mb-1">API Testing</span>
-                                        <span class="badge badge-warning mr-1 mb-1">Visual Testing</span>
-                                    </div>
-                                    
-                                    <a href="mailto:vigneshonlinetutor@gmail.com?subject=Workshop Inquiry - Modern Testing with Playwright" class="btn btn-primary btn-block">
-                                        <i class="fas fa-calendar-plus mr-2"></i>Register Interest
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Workshop 3 -->
-                <div class="col-lg-6 col-md-12 mb-4 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="course-card h-100 position-relative">
-                        <div class="course-badge">New</div>
-                        <div class="card-body p-4">
-                            <div class="row align-items-center">
-                                <div class="col-md-4 text-center mb-3 mb-md-0">
-                                    <div class="p-3 bg-light rounded-circle d-inline-block mb-2" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
-                                        <i class="fas fa-cogs fa-3x text-info"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h5 class="font-weight-bold mb-2 text-dark">CI/CD for Test Automation</h5>
-                                    <p class="text-muted mb-3">Integrate your automation tests into CI/CD pipelines with Jenkins, Docker, and cloud platforms</p>
-                                    
-                                    <div class="row mb-3">
-                                        <div class="col-6">
-                                            <div class="d-flex align-items-center">
-                                                <i class="fas fa-clock text-warning mr-1"></i>
-                                                <span class="font-weight-bold text-dark">8 Hours</span>
-                                                <small class="text-muted ml-1">Duration</small>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="d-flex align-items-center">
-                                                <i class="fas fa-users text-primary mr-1"></i>
-                                                <span class="font-weight-bold text-dark">10 Max</span>
-                                                <small class="text-muted ml-1">Participants</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="mb-4">
-                                        <span class="badge badge-info mr-1 mb-1">Jenkins</span>
-                                        <span class="badge badge-primary mr-1 mb-1">Docker</span>
-                                        <span class="badge badge-success mr-1 mb-1">GitHub Actions</span>
-                                        <span class="badge badge-warning mr-1 mb-1">AWS</span>
-                                    </div>
-                                    
-                                    <a href="mailto:vigneshonlinetutor@gmail.com?subject=Workshop Inquiry - CI/CD for Test Automation" class="btn btn-primary btn-block">
-                                        <i class="fas fa-calendar-plus mr-2"></i>Register Interest
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Workshop 4 -->
-                <div class="col-lg-6 col-md-12 mb-4 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="course-card h-100 position-relative">
-                        <div class="course-badge">Intensive</div>
-                        <div class="card-body p-4">
-                            <div class="row align-items-center">
-                                <div class="col-md-4 text-center mb-3 mb-md-0">
-                                    <div class="p-3 bg-light rounded-circle d-inline-block mb-2" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
-                                        <i class="fas fa-mobile-alt fa-3x text-danger"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h5 class="font-weight-bold mb-2 text-dark">Mobile Automation Mastery</h5>
-                                    <p class="text-muted mb-3">Complete mobile testing with Appium for Android and iOS, including real device and emulator testing</p>
-                                    
-                                    <div class="row mb-3">
-                                        <div class="col-6">
-                                            <div class="d-flex align-items-center">
-                                                <i class="fas fa-clock text-warning mr-1"></i>
-                                                <span class="font-weight-bold text-dark">20 Hours</span>
-                                                <small class="text-muted ml-1">Duration</small>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="d-flex align-items-center">
-                                                <i class="fas fa-users text-primary mr-1"></i>
-                                                <span class="font-weight-bold text-dark">8 Max</span>
-                                                <small class="text-muted ml-1">Participants</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="mb-4">
-                                        <span class="badge badge-danger mr-1 mb-1">Appium</span>
-                                        <span class="badge badge-primary mr-1 mb-1">Android</span>
-                                        <span class="badge badge-success mr-1 mb-1">iOS</span>
-                                        <span class="badge badge-warning mr-1 mb-1">Real Devices</span>
-                                    </div>
-                                    
-                                    <a href="mailto:vigneshonlinetutor@gmail.com?subject=Workshop Inquiry - Mobile Automation Mastery" class="btn btn-primary btn-block">
-                                        <i class="fas fa-calendar-plus mr-2"></i>Register Interest
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="mt-2">Loading workshops...</p>
                 </div>
             </div>
 
@@ -729,7 +624,6 @@
                         <div class="row mb-4">
                             <div class="col-12 text-center">
                                 <h3>What Our Workshop Participants Say</h3>
-                                <p class="text-muted">Real feedback from ${workshopReviews.length} students who attended our live workshops</p>
                             </div>
                         </div>
                         <div class="row">
@@ -801,7 +695,193 @@
 
             // Load workshop reviews
             loadWorkshopReviews();
+
+            // Load workshops
+            loadWorkshops();
         });
+
+        // Workshop Data Structure
+        const workshopsData = [
+            {
+                id: 'gen-ai-bootcamp',
+                title: 'AI-Driven Testing and Automation',
+                description: 'Boost productivity by automating repetitive QA tasks. Stay ahead of industry trends and future-proof your skills by mastering AI integration in testing',
+                duration: '25 Hours',
+                startDate: '2025-01-15',
+                endDate: '2025-01-17',
+                technologies: ['GenAI', 'ChatGPT', 'Cursor'],
+                techColors: ['primary', 'success', 'info', 'warning'],
+                icon: 'fas fa-robot',
+                iconColor: 'text-primary',
+                registrationLink: 'https://www.thetesttribe.com/live-trainings/ai-powered-testing/?sld=vigneshsrinivasan18',
+                inquiryLink: 'mailto:vigneshonlinetutor@gmail.com?subject=AI Workshop Inquiry'
+            },
+            {
+                id: 'playwright-bootcamp',
+                title: 'Advanced Playwright Workshop',
+                description: 'Master modern web automation with Playwright, API automation, and CI/CD integration using Docker Jenkins',
+                duration: '30 Hours',
+                startDate: '2025-12-01',
+                endDate: '2025-12-05',
+                technologies: ['Playwright', 'TypeScript', 'API Testing', 'Docker', 'Jenkins'],
+                techColors: ['success', 'primary', 'info', 'warning'],
+                icon: 'fas fa-rocket',
+                iconColor: 'text-success',
+                registrationLink: 'https://www.thetesttribe.com/live-trainings/playwright-with-typescript-bootcamp/?sld=vigneshsrinivasan18',
+                inquiryLink: 'mailto:vigneshonlinetutor@gmail.com?subject=Playwright Workshop Inquiry'
+            }
+        ];
+
+        // Workshop Status Calculator
+        function getWorkshopStatus(startDate, endDate) {
+            const today = new Date();
+            const workshopStart = new Date(startDate);
+            const workshopEnd = new Date(endDate);
+            const timeDiff = workshopStart - today;
+            const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+            
+            // If workshop has ended
+            if (workshopEnd < today) {
+                return 'past';
+            }
+            // If workshop starts more than 2 months from now
+            else if (daysDiff > 60) {
+                return 'upcoming';
+            }
+            // If workshop is current (within 60 days or ongoing)
+            else {
+                return 'current';
+            }
+        }
+
+        // Generate Workshop HTML
+        function generateWorkshopHTML(workshop, index) {
+            const status = getWorkshopStatus(workshop.startDate, workshop.endDate);
+            const statusClass = `workshop-${status}`;
+            
+            // Status badge configuration
+            const statusBadges = {
+                past: { text: 'Past Workshop', class: 'badge-past' },
+                upcoming: { text: 'Upcoming Workshop', class: 'badge-upcoming' },
+                current: { text: 'Current Workshop', class: 'badge-current' }
+            };
+            
+            const statusBadge = statusBadges[status];
+            const delay = (index * 0.2).toFixed(1);
+            
+            // Format date range for display
+            const startDate = new Date(workshop.startDate);
+            const endDate = new Date(workshop.endDate);
+            
+            const formatOptions = { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            };
+            
+            const startStr = startDate.toLocaleDateString('en-US', formatOptions);
+            const endStr = endDate.toLocaleDateString('en-US', formatOptions);
+            
+            // Create date range string
+            const dateStr = startDate.getFullYear() === endDate.getFullYear() && 
+                           startDate.getMonth() === endDate.getMonth() ? 
+                           `${startDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${endDate.getDate()}, ${endDate.getFullYear()}` :
+                           `${startStr} - ${endStr}`;
+            
+            // Button configuration based on status
+            const buttonConfig = {
+                past: { 
+                    text: 'View Details & Syllabus', 
+                    disabled: false,
+                    href: workshop.registrationLink || workshop.inquiryLink
+                },
+                upcoming: { 
+                    text: 'View Details & Register Interest', 
+                    disabled: false,
+                    href: workshop.registrationLink || workshop.inquiryLink
+                },
+                current: { 
+                    text: 'Register Now', 
+                    disabled: false,
+                    href: workshop.registrationLink || workshop.inquiryLink
+                }
+            };
+            
+            const button = buttonConfig[status];
+            
+            return `
+                <div class="col-lg-6 col-md-12 mb-4 wow fadeInUp ${statusClass}" data-wow-delay="${delay}s">
+                    <div class="course-card h-100 position-relative">
+                        ${status !== 'current' ? `<div class="workshop-overlay" data-overlay-text="${statusBadge.text}"></div>` : ''}
+                        <div class="card-body p-4">
+                            <div class="row align-items-center">
+                                <div class="col-md-4 text-center mb-3 mb-md-0">
+                                    <div class="p-3 bg-light rounded-circle d-inline-block mb-2" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+                                        <i class="${workshop.icon} fa-3x ${workshop.iconColor}"></i>
+                                    </div>
+                                    <div class="text-center mt-2">
+                                        <small class="text-muted font-weight-bold">${dateStr}</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h5 class="font-weight-bold mb-2 text-dark">${workshop.title}</h5>
+                                    <p class="text-muted mb-3">${workshop.description}</p>
+                                    
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <div class="d-flex align-items-center justify-content-center">
+                                                <i class="fas fa-clock text-warning mr-2"></i>
+                                                <span class="font-weight-bold text-dark">${workshop.duration}</span>
+                                                <small class="text-muted ml-1">Duration</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        ${workshop.technologies.map((tech, i) => 
+                                            `<span class="badge badge-${workshop.techColors[i]} mr-1 mb-1">${tech}</span>`
+                                        ).join('')}
+                                    </div>
+                                    
+                                                                                            <a href="${button.href}" class="btn btn-primary btn-block" ${button.href.startsWith('https://') ? 'target="_blank" rel="noopener noreferrer"' : ''}>
+                                        <i class="fas fa-${status === 'past' ? 'info-circle' : status === 'upcoming' ? 'eye' : 'calendar-plus'} mr-2"></i>${button.text}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Load and Display Workshops
+        function loadWorkshops() {
+            const container = document.getElementById('workshops-container');
+            
+            // Sort workshops by date (upcoming first, then current, then past)
+            const sortedWorkshops = workshopsData.sort((a, b) => {
+                const statusA = getWorkshopStatus(a.startDate, a.endDate);
+                const statusB = getWorkshopStatus(b.startDate, b.endDate);
+                
+                // Priority order: current, upcoming, past
+                const statusOrder = { current: 0, upcoming: 1, past: 2 };
+                
+                if (statusOrder[statusA] !== statusOrder[statusB]) {
+                    return statusOrder[statusA] - statusOrder[statusB];
+                }
+                
+                // Within same status, sort by start date
+                return new Date(a.startDate) - new Date(b.startDate);
+            });
+            
+            const workshopsHTML = sortedWorkshops.map((workshop, index) => 
+                generateWorkshopHTML(workshop, index)
+            ).join('');
+            
+            container.innerHTML = workshopsHTML;
+            
+            console.log(`✅ Loaded ${workshopsData.length} workshops with date-based status`);
+        }
     </script>
 </body>
 

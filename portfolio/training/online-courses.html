@@ -379,34 +379,7 @@
                 <!-- Course content will be loaded here via JavaScript -->
             </div>
 
-            <!-- What You'll Learn -->
-            <div class="row mt-5">
-                <div class="col-12">
-                    <div class="section-header text-center">
-                        <h3>What You'll Master</h3>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-md-6">
-                            <h5><i class="fas fa-check-circle text-success mr-2"></i>Modern Automation Frameworks</h5>
-                            <ul>
-                                <li>Selenium WebDriver with Java/JavaScript</li>
-                                <li>Playwright for modern web testing</li>
-                                <li>Cypress for end-to-end testing</li>
-                                <li>Appium for mobile automation</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <h5><i class="fas fa-check-circle text-success mr-2"></i>Advanced Testing Concepts</h5>
-                            <ul>
-                                <li>Performance testing with Gatling</li>
-                                <li>API testing and automation</li>
-                                <li>CI/CD integration with Jenkins</li>
-                                <li>Docker and containerized testing</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
 
             <!-- Student Reviews Section -->
             <div class="row mt-5 pt-5">
@@ -423,13 +396,29 @@
                 </div>
             </div>
 
-            <!-- Call to Action -->
+            <!-- Personalized Training Section -->
             <div class="row mt-5">
                 <div class="col-12 text-center">
-                    <h3>Ready to Start Your Journey?</h3>
-                    <p>Join thousands of students who have transformed their careers with these courses</p>
-                    <a href="mailto:vigneshonlinetutor@gmail.com" class="btn btn-outline-primary btn-lg mr-3">Ask Questions</a>
-                    <a href="../reviews.html" class="btn btn-primary btn-lg">See All Reviews</a>
+                    <h3>Looking for Personalized Training for Yourself or Your Team?</h3>
+                    <p>Get customized training solutions tailored to your specific needs</p>
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 text-center p-4">
+                                <i class="fas fa-envelope fa-3x text-primary mb-3"></i>
+                                <h5>Contact Form</h5>
+                                <p class="text-muted">Send us your detailed requirements and we'll get back to you with a customized solution</p>
+                                <a href="../connect/contact-form.html" class="btn btn-outline-primary">Send Message</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 text-center p-4">
+                                <i class="fab fa-whatsapp fa-3x text-success mb-3"></i>
+                                <h5>WhatsApp Direct</h5>
+                                <p class="text-muted">Chat with us directly on WhatsApp for instant support and quick responses</p>
+                                <a href="../connect/whatsapp.html" class="btn btn-outline-success">Chat Now</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -536,33 +525,29 @@
             'playwright': {
                 title: 'Master Playwright with Docker & Cucumber',
                 description: 'Complete automation testing with Playwright, Docker integration, and BDD with Cucumber',
-                features: ['Modern Web Testing', 'Docker Integration', 'Cucumber BDD', 'CI/CD Ready'],
-                rating: '4.6',
-                students: '2,500+',
+                rating: '4.8',
+                students: '3,500+',
                 badge: 'Bestseller'
             },
             'cypress': {
                 title: 'Cypress Ultimate Course',
                 description: 'End-to-end testing mastery with Cypress including advanced concepts and real projects',
-                features: ['E2E Testing', 'API Testing', 'Visual Testing', 'Advanced Concepts'],
                 rating: '4.7',
-                students: '3,200+',
+                students: '3,000+',
                 badge: 'Bestseller'
             },
             'gatling': {
                 title: 'Gatling Performance Testing with Scala',
                 description: 'Master performance testing using Gatling with Scala and Jenkins integration',
-                features: ['Performance Testing', 'Scala Programming', 'Jenkins Integration', 'Load Testing'],
-                rating: '4.5',
-                students: '1,800+',
+                rating: '4.9',
+                students: '1,000+',
                 badge: 'New'
             },
             'selenium': {
                 title: 'Selenium Java Advanced Framework',
                 description: 'Advanced Selenium automation with Java including framework creation and best practices',
-                features: ['Advanced Selenium', 'Java Frameworks', 'TestNG', 'Maven Integration'],
                 rating: '4.6',
-                students: '4,100+',
+                students: '1,000+',
                 badge: 'Most Popular'
             }
         };
@@ -587,15 +572,17 @@
                     courseCard.classList.add('course-card', 'h-100', 'position-relative');
 
                     courseCard.innerHTML = `
-                        <div class="course-badge">${details.badge}</div>
                         <div class="card-body p-4">
                             <div class="row align-items-center">
                                 <div class="col-md-4 text-center mb-3 mb-md-0">
-                                    <div class="p-3 bg-light rounded-circle d-inline-block mb-2" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+                                    <div class="p-3 bg-light rounded mb-2" style="width: 180px; height: 120px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
                                         <img src="../../img/logo/${courseName}-Logo.png" 
                                              alt="${details.title}" 
                                              class="img-fluid" 
-                                             style="max-height: 50px; object-fit: contain;">
+                                             style="max-height: 90px; max-width: 160px; object-fit: contain;">
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="badge badge-${details.badge === 'Bestseller' ? 'success' : details.badge === 'New' ? 'info' : 'primary'}">${details.badge}</span>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
@@ -619,19 +606,13 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="mb-4">
-                                        ${details.features.map((feature, idx) => {
-                                            const colors = ['primary', 'success', 'info', 'warning'];
-                                            const color = colors[idx % colors.length];
-                                            return `<span class="badge badge-${color} mr-1 mb-1">${feature}</span>`;
-                                        }).join('')}
-                                    </div>
+
                                     
                                     <a href="${courseLink}" 
                                        target="_blank" 
                                        rel="noopener noreferrer" 
                                        class="btn btn-primary btn-block">
-                                        <i class="fas fa-play-circle mr-2"></i>Enroll Now - Special Discount
+                                        <i class="fas fa-shopping-cart mr-2"></i>Buy now with discount
                                     </a>
                                 </div>
                             </div>
@@ -672,8 +653,7 @@
                 const reviewsHtml = `
                     <div class="row mb-4">
                         <div class="col-12 text-center">
-                            <h3>What Our Online Course Students Say</h3>
-                            <p class="text-muted">Real feedback from ${onlineCourseReviews.length} students who completed our online courses</p>
+                            <h3>What Students Say</h3>
                         </div>
                     </div>
                     <div class="row">

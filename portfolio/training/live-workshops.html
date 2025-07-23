@@ -271,13 +271,13 @@
         .workshop-overlay::before {
             content: attr(data-overlay-text);
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-25deg);
+            top: 15px;
+            right: -35px;
+            transform: rotate(25deg);
             background: rgba(0, 0, 0, 0.8);
             color: white;
-            padding: 8px 20px;
-            font-size: 14px;
+            padding: 6px 40px;
+            font-size: 12px;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -444,11 +444,11 @@
                             <div class="stats-item">
                                 <i class="fas fa-laptop-code fa-3x mb-3"></i>
                                 <h5 class="font-weight-bold">Hands-on Learning</h5>
-                                <p class="text-muted">70% practical coding with real-world projects and scenarios</p>
+                                <p class="text-muted">100% practical coding with real-world projects and scenarios</p>
                             </div>
                         </div>
                         
-                        <div class="col-md-4 mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="col-md-4 mb-4 wow fadeInUp" data-wow-delay="0.2s">
                             <div class="stats-item">
                                 <i class="fas fa-users-cog fa-3x mb-3"></i>
                                 <h5 class="font-weight-bold">Small Groups</h5>
@@ -456,11 +456,35 @@
                             </div>
                         </div>
                         
-                        <div class="col-md-4 mb-4 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="col-md-4 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                             <div class="stats-item">
                                 <i class="fas fa-certificate fa-3x mb-3"></i>
                                 <h5 class="font-weight-bold">Certificate & Resources</h5>
                                 <p class="text-muted">Completion certificate and lifetime access to workshop materials</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4 wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="stats-item">
+                                <i class="fas fa-headset fa-3x mb-3"></i>
+                                <h5 class="font-weight-bold">Lifelong Instructor Support</h5>
+                                <p class="text-muted">Get ongoing support from your instructor even after workshop completion</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4 wow fadeInUp" data-wow-delay="0.5s">
+                            <div class="stats-item">
+                                <i class="fab fa-whatsapp fa-3x mb-3"></i>
+                                <h5 class="font-weight-bold">WhatsApp Community</h5>
+                                <p class="text-muted">Join our 24/7 support community for instant query resolution and networking</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4 wow fadeInUp" data-wow-delay="0.6s">
+                            <div class="stats-item">
+                                <i class="fas fa-briefcase fa-3x mb-3"></i>
+                                <h5 class="font-weight-bold">Career Guidance</h5>
+                                <p class="text-muted">Resume review, interview preparation, and career advancement tips</p>
                             </div>
                         </div>
                     </div>
@@ -482,18 +506,28 @@
                 </div>
             </div>
 
-            <!-- Call to Action -->
+            <!-- Personalized Training Section -->
             <div class="row mt-5">
-                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.6s">
-                    <h3>Ready to Accelerate Your Skills?</h3>
-                    <p>Join our intensive workshops and transform your automation testing capabilities</p>
-                    <div class="mt-4">
-                        <a href="mailto:vigneshonlinetutor@gmail.com?subject=General Workshop Inquiry" class="btn btn-primary btn-lg mr-3 mb-2">
-                            <i class="fas fa-envelope mr-2"></i>Contact for Details
-                        </a>
-                        <a href="corporate-training.html" class="btn btn-outline-primary btn-lg mb-2">
-                            <i class="fas fa-building mr-2"></i>Corporate Workshops
-                        </a>
+                <div class="col-12 text-center">
+                    <h3>Looking for Personalized Training for Yourself or Your Team?</h3>
+                    <p>Get customized training solutions tailored to your specific needs</p>
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 text-center p-4">
+                                <i class="fas fa-envelope fa-3x text-primary mb-3"></i>
+                                <h5>Contact Form</h5>
+                                <p class="text-muted">Send us your detailed requirements and we'll get back to you with a customized solution</p>
+                                <a href="../connect/contact-form.html" class="btn btn-outline-primary">Send Message</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 text-center p-4">
+                                <i class="fab fa-whatsapp fa-3x text-success mb-3"></i>
+                                <h5>WhatsApp Direct</h5>
+                                <p class="text-muted">Chat with us directly on WhatsApp for instant support and quick responses</p>
+                                <a href="../connect/whatsapp.html" class="btn btn-outline-success">Chat Now</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -700,37 +734,8 @@
             loadWorkshops();
         });
 
-        // Workshop Data Structure
-        const workshopsData = [
-            {
-                id: 'gen-ai-bootcamp',
-                title: 'AI-Driven Testing and Automation',
-                description: 'Boost productivity by automating repetitive QA tasks. Stay ahead of industry trends and future-proof your skills by mastering AI integration in testing',
-                duration: '25 Hours',
-                startDate: '2025-01-15',
-                endDate: '2025-01-17',
-                technologies: ['GenAI', 'ChatGPT', 'Cursor'],
-                techColors: ['primary', 'success', 'info', 'warning'],
-                icon: 'fas fa-robot',
-                iconColor: 'text-primary',
-                registrationLink: 'https://www.thetesttribe.com/live-trainings/ai-powered-testing/?sld=vigneshsrinivasan18',
-                inquiryLink: 'mailto:vigneshonlinetutor@gmail.com?subject=AI Workshop Inquiry'
-            },
-            {
-                id: 'playwright-bootcamp',
-                title: 'Advanced Playwright Workshop',
-                description: 'Master modern web automation with Playwright, API automation, and CI/CD integration using Docker Jenkins',
-                duration: '30 Hours',
-                startDate: '2025-12-01',
-                endDate: '2025-12-05',
-                technologies: ['Playwright', 'TypeScript', 'API Testing', 'Docker', 'Jenkins'],
-                techColors: ['success', 'primary', 'info', 'warning'],
-                icon: 'fas fa-rocket',
-                iconColor: 'text-success',
-                registrationLink: 'https://www.thetesttribe.com/live-trainings/playwright-with-typescript-bootcamp/?sld=vigneshsrinivasan18',
-                inquiryLink: 'mailto:vigneshonlinetutor@gmail.com?subject=Playwright Workshop Inquiry'
-            }
-        ];
+        // Workshop data will be loaded from JSON file
+        let workshopsData = [];
 
         // Workshop Status Calculator
         function getWorkshopStatus(startDate, endDate) {
@@ -761,9 +766,9 @@
             
             // Status badge configuration
             const statusBadges = {
-                past: { text: 'Past Workshop', class: 'badge-past' },
-                upcoming: { text: 'Upcoming Workshop', class: 'badge-upcoming' },
-                current: { text: 'Current Workshop', class: 'badge-current' }
+                past: { text: 'Past', class: 'badge-past' },
+                upcoming: { text: 'Upcoming', class: 'badge-upcoming' },
+                current: { text: 'Current', class: 'badge-current' }
             };
             
             const statusBadge = statusBadges[status];
@@ -816,8 +821,12 @@
                         <div class="card-body p-4">
                             <div class="row align-items-center">
                                 <div class="col-md-4 text-center mb-3 mb-md-0">
-                                    <div class="p-3 bg-light rounded-circle d-inline-block mb-2" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
-                                        <i class="${workshop.icon} fa-3x ${workshop.iconColor}"></i>
+                                    <div class="p-2 bg-light rounded-circle d-inline-block mb-2" style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center;">
+                                        ${workshop.logo ? 
+                                            `<img src="${workshop.logo}" alt="${workshop.title}" style="width: 80px; height: 80px; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                             <i class="${workshop.fallbackIcon} fa-3x ${workshop.iconColor}" style="display: none;"></i>` :
+                                            `<i class="${workshop.fallbackIcon} fa-3x ${workshop.iconColor}"></i>`
+                                        }
                                     </div>
                                     <div class="text-center mt-2">
                                         <small class="text-muted font-weight-bold">${dateStr}</small>
@@ -854,9 +863,41 @@
             `;
         }
 
+        // Load Workshop Data from JSON
+        async function loadWorkshopData() {
+            try {
+                const response = await fetch('../../portfolio/workshops.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                workshopsData = data.workshops || [];
+                console.log(`✅ Loaded ${workshopsData.length} workshops from JSON`);
+                return workshopsData;
+            } catch (error) {
+                console.error('❌ Error loading workshops data:', error);
+                // Fallback to empty array if JSON loading fails
+                workshopsData = [];
+                return [];
+            }
+        }
+
         // Load and Display Workshops
-        function loadWorkshops() {
+        async function loadWorkshops() {
             const container = document.getElementById('workshops-container');
+            
+            // Load workshop data from JSON first
+            await loadWorkshopData();
+            
+            if (workshopsData.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center py-5">
+                        <h4 class="text-muted">No workshops available at this time.</h4>
+                        <p class="text-muted">Check back soon for upcoming workshops!</p>
+                    </div>
+                `;
+                return;
+            }
             
             // Sort workshops by date (upcoming first, then current, then past)
             const sortedWorkshops = workshopsData.sort((a, b) => {
@@ -880,7 +921,7 @@
             
             container.innerHTML = workshopsHTML;
             
-            console.log(`✅ Loaded ${workshopsData.length} workshops with date-based status`);
+            console.log(`✅ Displayed ${workshopsData.length} workshops with date-based status`);
         }
     </script>
 </body>

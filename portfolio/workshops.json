@@ -1,0 +1,34 @@
+{
+    "workshops": [
+        {
+            "id": "gen-ai-bootcamp",
+            "title": "AI-Driven Testing and Automation",
+            "description": "Boost productivity by automating repetitive QA tasks. Stay ahead of industry trends and future-proof your skills by mastering AI integration in testing",
+            "duration": "25 Hours",
+            "startDate": "2025-01-15",
+            "endDate": "2025-01-17",
+            "technologies": ["GenAI", "ChatGPT", "Cursor"],
+            "techColors": ["primary", "success", "info", "warning"],
+            "logo": "../logo/genAi-bootcamp-Logo.webp",
+            "fallbackIcon": "fas fa-robot",
+            "iconColor": "text-primary",
+            "registrationLink": "https://www.thetesttribe.com/live-trainings/ai-powered-testing/?sld=vigneshsrinivasan18",
+            "inquiryLink": "mailto:vigneshonlinetutor@gmail.com?subject=AI Workshop Inquiry"
+        },
+        {
+            "id": "playwright-bootcamp",
+            "title": "Advanced Playwright Workshop",
+            "description": "Master modern web automation with Playwright, API automation, and CI/CD integration using Docker Jenkins",
+            "duration": "30 Hours",
+            "startDate": "2025-12-01",
+            "endDate": "2025-12-05",
+            "technologies": ["Playwright", "TypeScript", "API Testing", "Docker", "Jenkins"],
+            "techColors": ["success", "primary", "info", "warning"],
+            "logo": "../logo/playwright-bootcamp-Logo.png",
+            "fallbackIcon": "fas fa-rocket",
+            "iconColor": "text-success",
+            "registrationLink": "https://www.thetesttribe.com/live-trainings/playwright-with-typescript-bootcamp/?sld=vigneshsrinivasan18",
+            "inquiryLink": "mailto:vigneshonlinetutor@gmail.com?subject=Playwright Workshop Inquiry"
+        }
+    ]
+} 

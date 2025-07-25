@@ -261,21 +261,7 @@
             display: block;
         }
         
-        /* Smooth loading for written testimonials */
-        #written-testimonials-container {
-            min-height: 300px;
-        }
-        
-        .testimonial-card-item {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .testimonial-card-item.loaded {
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.5s ease;
-        }
+        /* Removed old testimonial CSS - now using centralized carousel system */
         
         /* Original reviews page styles */
         .modal {
@@ -741,134 +727,40 @@
             });
         }
 
-        // Function to load written testimonials from JSON
-        async function loadWrittenTestimonials() {
-            const container = document.getElementById('written-testimonials-container');
-            if (!container) return;
-            
-            // Show loading state
-            container.innerHTML = `
-                <div class="col-12 text-center">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                    <p class="text-muted mt-2">Loading testimonials...</p>
-                </div>
-            `;
-            
-            try {
-                const response = await fetch('reviews.json');
-                const data = await response.json();
-                
-                // Generate HTML for all testimonials
-                const testimonialsHTML = data.testimonials.map((testimonial, index) => {
-                    const stars = generateStars(testimonial.rating);
-                    
-                    return `
-                        <div class="col-lg-6 mb-4 testimonial-card-item" data-index="${index}">
-                            <div class="card shadow-sm h-100">
-                                <div class="card-body d-flex flex-column">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <img src="${testimonial.photo}" 
-                                             class="rounded-circle mr-3" 
-                                             alt="${testimonial.name}"
-                                             style="width: 60px; height: 60px; object-fit: cover;"
-                                             onerror="this.src='https://via.placeholder.com/60x60/007bff/ffffff?text=${testimonial.name.charAt(0)}'">
-                                        <div>
-                                            <h6 class="mb-0 font-weight-bold">${testimonial.name}</h6>
-                                            <small class="text-primary">${testimonial.title}</small>
-                                            <div class="mt-1">
-                                                <span class="badge badge-info badge-sm">${testimonial.course}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <blockquote class="blockquote mb-0 flex-grow-1 d-flex flex-column">
-                                        <p class="mb-3 flex-grow-1">"${testimonial.review}"</p>
-                                        <footer class="blockquote-footer mt-auto">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    ${stars}
-                                                    <span class="ml-2 text-muted small">(${testimonial.rating})</span>
-                                                </div>
-                                                <div>
-                                                    ${testimonial.badges.map(badge => 
-                                                        `<span class="badge badge-secondary badge-sm mr-1">${badge}</span>`
-                                                    ).join('')}
-                                                </div>
-                                            </div>
-                                        </footer>
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-                
-                container.innerHTML = testimonialsHTML;
-                
-                // Add smooth entrance animations
-                setTimeout(() => {
-                    const testimonialItems = container.querySelectorAll('.testimonial-card-item');
-                    testimonialItems.forEach((item, index) => {
-                        setTimeout(() => {
-                            item.classList.add('loaded');
-                        }, index * 150);
-                    });
-                }, 100);
-                
-            } catch (error) {
-                console.error('Error loading testimonials:', error);
-                container.innerHTML = `
-                    <div class="col-12 text-center">
-                        <div class="alert alert-warning" role="alert">
-                            <i class="fas fa-exclamation-triangle mr-2"></i>
-                            Unable to load testimonials. Please refresh the page.
-                        </div>
-                    </div>
-                `;
-            }
-        }
-
-        // Helper function to generate star ratings
-        function generateStars(rating) {
-            const fullStars = Math.floor(rating);
-            const hasHalfStar = rating % 1 !== 0;
-            let starsHTML = '';
-            
-            // Add full stars
-            for (let i = 0; i < fullStars; i++) {
-                starsHTML += '<i class="fas fa-star text-warning"></i>';
-            }
-            
-            // Add half star if needed
-            if (hasHalfStar) {
-                starsHTML += '<i class="fas fa-star-half-alt text-warning"></i>';
-            }
-            
-            // Add empty stars to make 5 total
-            const emptyStars = 5 - Math.ceil(rating);
-            for (let i = 0; i < emptyStars; i++) {
-                starsHTML += '<i class="far fa-star text-warning"></i>';
-            }
-            
-            return starsHTML;
-        }
+        // Old testimonial loading function removed - now using centralized carousel system
 
         // Tab-based Review Management System using centralized service
         
         // Render reviews for a specific type using centralized service
         async function renderReviewsByType(type, containerId) {
             try {
-                console.log(`🔄 Loading ${type} reviews with centralized service...`);
+                console.log(`🔄 Loading ${type} reviews with centralized carousel...`);
+                console.log(`🔍 Review service available:`, !!window.reviewService);
+                console.log(`🔍 Container ID:`, containerId);
                 
                 const container = document.getElementById(containerId);
                 if (!container) {
                     console.error(`❌ Container ${containerId} not found!`);
                     return;
                 }
+                console.log(`✅ Container found:`, container);
+
+                // Check if review service is available
+                if (!window.reviewService) {
+                    console.error(`❌ Review service not available!`);
+                    container.innerHTML = `
+                        <div class="col-12 text-center py-5">
+                            <h4 class="text-danger">Review Service Error</h4>
+                            <p class="text-muted">Review service not loaded. Please refresh the page.</p>
+                        </div>
+                    `;
+                    return;
+                }
 
                 // Get filtered reviews using centralized service
+                console.log(`🔍 Getting ${type} reviews...`);
                 const filteredReviews = await window.reviewService.getReviews(type);
+                console.log(`📊 Found ${filteredReviews.length} ${type} reviews`);
                 
                 if (filteredReviews.length === 0) {
                     container.innerHTML = `
@@ -880,62 +772,80 @@
                     return;
                 }
 
-                // Use centralized rendering method
-                const reviewsHtml = filteredReviews.map(review => 
-                    window.reviewService.generateReviewHTML(review, {
-                        colClass: 'col-lg-6 col-md-6',
-                        showBadges: true
-                    })
-                ).join('');
+                // Create carousel container and render as carousel
+                const carouselId = `${type}-carousel`;
+                console.log(`🎠 Creating carousel with ID: ${carouselId}`);
+                container.innerHTML = `<div id="${carouselId}"></div>`;
 
-                container.innerHTML = `<div class="row">${reviewsHtml}</div>`;
-                console.log(`✅ Loaded ${filteredReviews.length} ${type} reviews using centralized service`);
+                // Check if renderAsCarousel function exists
+                if (typeof window.reviewService.renderAsCarousel !== 'function') {
+                    console.error(`❌ renderAsCarousel function not available!`);
+                    container.innerHTML = `
+                        <div class="col-12 text-center py-5">
+                            <h4 class="text-danger">Carousel Function Error</h4>
+                            <p class="text-muted">Carousel rendering not available. Please refresh the page.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Render reviews as carousel
+                console.log(`🎠 Rendering carousel with 3 desktop items...`);
+                window.reviewService.renderAsCarousel(filteredReviews, carouselId, {
+                    itemsDesktop: 3,  // 3 items for main reviews page 
+                    itemsTablet: 2,   // 2 items on tablets 
+                    itemsMobile: 1,   // 1 item on mobile
+                    autoplay: true,
+                    autoplayTimeout: 6000,  // Longer timeout for reading
+                    showNavigation: true,
+                    showDots: true
+                });
+
+                console.log(`✅ Loaded ${filteredReviews.length} ${type} reviews in carousel format`);
             } catch (error) {
                 console.error(`❌ Error loading ${type} reviews:`, error);
+                console.error(`❌ Error details:`, error.message, error.stack);
                 const container = document.getElementById(containerId);
                 if (container) {
                     container.innerHTML = `
                         <div class="col-12 text-center py-5">
-                            <h4 class="text-muted">Unable to load reviews at this time.</h4>
-                            <p class="text-muted">Please check back later.</p>
+                            <h4 class="text-danger">Error Loading Reviews</h4>
+                            <p class="text-muted">Error: ${error.message}</p>
+                            <p class="text-muted">Please check the browser console and refresh the page.</p>
                         </div>
                     `;
                 }
             }
         }
 
-        // Helper function to generate star ratings
-        function generateStars(rating) {
-            const fullStars = Math.floor(rating);
-            const hasHalfStar = rating % 1 !== 0;
-            let starsHTML = '';
-            
-            // Add full stars
-            for (let i = 0; i < fullStars; i++) {
-                starsHTML += '<i class="fas fa-star text-warning"></i>';
-            }
-            
-            // Add half star if needed
-            if (hasHalfStar) {
-                starsHTML += '<i class="fas fa-star-half-alt text-warning"></i>';
-            }
-            
-            // Add empty stars to make 5 total
-            const emptyStars = 5 - Math.ceil(rating);
-            for (let i = 0; i < emptyStars; i++) {
-                starsHTML += '<i class="far fa-star text-warning"></i>';
-            }
-            
-            return starsHTML;
-        }
+        // generateStars function available from centralized review service
 
         // Initialize the reviews system using centralized service
         async function initializeReviewsSystem() {
             console.log('🔄 Initializing reviews system with centralized service...');
             
-            // Load reviews for default active tabs (workshop and mentoring)
-            await renderReviewsByType('workshop', 'workshop-reviews-container');
-            await renderReviewsByType('mentoring', 'mentoring-reviews-container');
+            // Wait for review service to be available
+            if (!window.reviewService) {
+                console.log('⏳ Waiting for review service to load...');
+                await new Promise(resolve => {
+                    const checkService = () => {
+                        if (window.reviewService) {
+                            resolve();
+                        } else {
+                            setTimeout(checkService, 100);
+                        }
+                    };
+                    checkService();
+                });
+            }
+            
+            console.log('✅ Review service available, loading workshop reviews...');
+            
+            // Load workshop reviews by default (active tab)
+            renderReviewsByType('workshop', 'workshop-reviews-container');
+            
+            // Track loaded tabs to prevent conflicts
+            const loadedTabs = { 'workshop': true };
             
             // Handle tab switching
             $('#reviews-tabs a[data-toggle="pill"]').on('click', async function(e) {
@@ -953,11 +863,10 @@
                     reviewType = 'online-course';
                 }
                 
-                // Load reviews for the selected tab if not already loaded
-                const container = document.getElementById(containerId);
-                if (container && container.innerHTML.includes('spinner-border')) {
-                    await renderReviewsByType(reviewType, containerId);
-                }
+                // Always reload to ensure carousel (avoid conflicts from old grid system)
+                console.log(`🔄 Loading ${reviewType} reviews for tab switch...`);
+                renderReviewsByType(reviewType, containerId);
+                loadedTabs[reviewType] = true;
                 
                 // Show the tab
                 $(this).tab('show');
@@ -966,9 +875,12 @@
             console.log('✅ Reviews system initialized with centralized service');
         }
 
-        // Initialize when page loads
+        // Initialize when page loads - with proper timing
         $(document).ready(function() {
-            initializeReviewsSystem();
+            // Add small delay to ensure all scripts are loaded
+            setTimeout(() => {
+                initializeReviewsSystem();
+            }, 500);
         });
     </script>
 </body>

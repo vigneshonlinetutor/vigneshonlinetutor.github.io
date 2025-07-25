@@ -293,6 +293,222 @@
         .workshop-upcoming .workshop-overlay::before {
             background: rgba(23, 162, 184, 0.9);
         }
+
+        /* Enhanced Countdown Timer Styles */
+        .countdown-container {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52, #ff4757);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 
+                0 15px 35px rgba(255, 107, 107, 0.4),
+                0 5px 15px rgba(255, 107, 107, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .countdown-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2.5s infinite;
+        }
+
+        .countdown-container::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #ff6b6b, #ee5a52);
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0.7;
+            animation: borderGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes borderGlow {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        .countdown-title {
+            color: white;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.3),
+                0 0 10px rgba(255, 255, 255, 0.3);
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 255, 255, 0.3); }
+            100% { text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.5); }
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 15px;
+            padding: 12px 16px;
+            text-align: center;
+            min-width: 75px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 
+                0 8px 16px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .countdown-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+            border-radius: 13px;
+            pointer-events: none;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 12px 24px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .countdown-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            line-height: 1;
+            text-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.4),
+                0 0 8px rgba(255, 255, 255, 0.3);
+            animation: numberPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes numberPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .countdown-label {
+            display: block;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.95);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown-urgency {
+            background: linear-gradient(135deg, #f39c12, #e67e22, #d35400);
+            animation: urgentPulse 1.5s infinite, urgentGlow 2s ease-in-out infinite alternate;
+            box-shadow: 
+                0 15px 35px rgba(243, 156, 18, 0.5),
+                0 5px 15px rgba(243, 156, 18, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .countdown-critical {
+            background: linear-gradient(135deg, #e74c3c, #c0392b, #8e44ad);
+            animation: criticalPulse 1s infinite, criticalShake 0.5s infinite, criticalGlow 1.5s ease-in-out infinite alternate;
+            box-shadow: 
+                0 15px 35px rgba(231, 76, 60, 0.6),
+                0 5px 15px rgba(231, 76, 60, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes urgentPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        @keyframes urgentGlow {
+            0% { box-shadow: 0 15px 35px rgba(243, 156, 18, 0.5), 0 5px 15px rgba(243, 156, 18, 0.4); }
+            100% { box-shadow: 0 20px 40px rgba(243, 156, 18, 0.7), 0 8px 20px rgba(243, 156, 18, 0.6); }
+        }
+
+        @keyframes criticalPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes criticalShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-1px); }
+            75% { transform: translateX(1px); }
+        }
+
+        @keyframes criticalGlow {
+            0% { box-shadow: 0 15px 35px rgba(231, 76, 60, 0.6), 0 5px 15px rgba(231, 76, 60, 0.5); }
+            100% { box-shadow: 0 25px 50px rgba(231, 76, 60, 0.8), 0 10px 25px rgba(231, 76, 60, 0.7); }
+        }
+
+        /* Enhanced Mobile responsive countdown */
+        @media (max-width: 576px) {
+            .countdown-container {
+                padding: 15px;
+                margin: 15px 0;
+                border-radius: 15px;
+            }
+            
+            .countdown-timer {
+                gap: 10px;
+            }
+            
+            .countdown-item {
+                min-width: 60px;
+                padding: 10px 12px;
+                border-radius: 12px;
+            }
+            
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+            
+            .countdown-label {
+                font-size: 0.65rem;
+            }
+            
+            .countdown-title {
+                font-size: 0.95rem;
+                letter-spacing: 1px;
+            }
+        }
     </style>
 </head>
 
@@ -743,6 +959,99 @@
             return new Date(year, month - 1, day); // month is 0-indexed in JS
         }
 
+        // Countdown Timer Functions
+        function calculateTimeRemaining(targetDate) {
+            const now = new Date();
+            const difference = targetDate - now;
+            
+            if (difference <= 0) {
+                return null; // Event has started or passed
+            }
+            
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            
+            return { days, hours, minutes, seconds, total: difference };
+        }
+
+        function getCountdownUrgencyClass(days) {
+            if (days <= 3) return 'countdown-critical';
+            if (days <= 7) return 'countdown-urgency';
+            return '';
+        }
+
+        function generateCountdownHTML(workshopId, startDate) {
+            const targetDate = parseDateDDMMYYYY(startDate);
+            const timeRemaining = calculateTimeRemaining(targetDate);
+            
+            if (!timeRemaining) {
+                return ''; // Event has started or passed
+            }
+            
+            const urgencyClass = getCountdownUrgencyClass(timeRemaining.days);
+            const title = timeRemaining.days <= 7 ? '🔥 HURRY! Registration Closing Soon!' : '⏰ Workshop Starting In:';
+            
+            return `
+                <div class="countdown-container ${urgencyClass}" id="countdown-${workshopId}">
+                    <div class="countdown-title">${title}</div>
+                    <div class="countdown-timer">
+                        <div class="countdown-item">
+                            <span class="countdown-number" data-days>${timeRemaining.days}</span>
+                            <span class="countdown-label">Days</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" data-hours>${timeRemaining.hours}</span>
+                            <span class="countdown-label">Hours</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" data-minutes>${timeRemaining.minutes}</span>
+                            <span class="countdown-label">Minutes</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" data-seconds>${timeRemaining.seconds}</span>
+                            <span class="countdown-label">Seconds</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateCountdown(workshopId, startDate) {
+            const targetDate = parseDateDDMMYYYY(startDate);
+            const timeRemaining = calculateTimeRemaining(targetDate);
+            const container = document.getElementById(`countdown-${workshopId}`);
+            
+            if (!timeRemaining || !container) {
+                if (container) container.style.display = 'none';
+                return false; // Stop updating this countdown
+            }
+            
+            // Update the numbers
+            const daysEl = container.querySelector('[data-days]');
+            const hoursEl = container.querySelector('[data-hours]');
+            const minutesEl = container.querySelector('[data-minutes]');
+            const secondsEl = container.querySelector('[data-seconds]');
+            
+            if (daysEl) daysEl.textContent = timeRemaining.days;
+            if (hoursEl) hoursEl.textContent = timeRemaining.hours;
+            if (minutesEl) minutesEl.textContent = timeRemaining.minutes;
+            if (secondsEl) secondsEl.textContent = timeRemaining.seconds;
+            
+            // Update urgency class
+            const urgencyClass = getCountdownUrgencyClass(timeRemaining.days);
+            container.className = `countdown-container ${urgencyClass}`;
+            
+            // Update title based on urgency
+            const titleEl = container.querySelector('.countdown-title');
+            if (titleEl) {
+                titleEl.textContent = timeRemaining.days <= 7 ? '🔥 HURRY! Registration Closing Soon!' : '⏰ Workshop Starting In:';
+            }
+            
+            return true; // Continue updating
+        }
+
         // Workshop Status Calculator
         function getWorkshopStatus(startDate, endDate) {
             const today = new Date();
@@ -780,6 +1089,9 @@
             const statusBadge = statusBadges[status];
             const delay = (index * 0.2).toFixed(1);
             
+            // Generate unique workshop ID for countdown
+            const workshopId = `workshop-${index}-${workshop.title.replace(/\s+/g, '-').toLowerCase()}`;
+            
             // Format date range for display
             const startDate = parseDateDDMMYYYY(workshop.startDate);
             const endDate = parseDateDDMMYYYY(workshop.endDate);
@@ -798,6 +1110,10 @@
                            startDate.getMonth() === endDate.getMonth() ? 
                            `${startDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${endDate.getDate()}, ${endDate.getFullYear()}` :
                            `${startStr} - ${endStr}`;
+            
+            // Generate countdown for current and upcoming workshops
+            const countdownHTML = (status === 'current' || status === 'upcoming') ? 
+                generateCountdownHTML(workshopId, workshop.startDate) : '';
             
             // Button configuration based on status
             const buttonConfig = {
@@ -825,6 +1141,7 @@
                     <div class="course-card h-100 position-relative">
                         ${status !== 'current' ? `<div class="workshop-overlay" data-overlay-text="${statusBadge.text}"></div>` : ''}
                         <div class="card-body p-4">
+                            ${countdownHTML}
                             <div class="row align-items-center">
                                 <div class="col-md-4 text-center mb-3 mb-md-0">
                                     <div class="p-2 bg-light rounded-circle d-inline-block mb-2" style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center;">
@@ -858,7 +1175,7 @@
                                         ).join('')}
                                     </div>
                                     
-                                                                                            <a href="${button.href}" class="btn btn-primary btn-block" ${button.href.startsWith('https://') ? 'target="_blank" rel="noopener noreferrer"' : ''}>
+                                    <a href="${button.href}" class="btn btn-primary btn-block" ${button.href.startsWith('https://') ? 'target="_blank" rel="noopener noreferrer"' : ''}>
                                         <i class="fas fa-${status === 'past' ? 'info-circle' : status === 'upcoming' ? 'eye' : 'calendar-plus'} mr-2"></i>${button.text}
                                     </a>
                                 </div>
@@ -927,8 +1244,50 @@
             
             container.innerHTML = workshopsHTML;
             
+            // Start countdown timers for current and upcoming workshops
+            startCountdownTimers();
+            
             console.log(`✅ Displayed ${workshopsData.length} workshops with date-based status`);
         }
+
+        // Countdown Timer Management
+        let countdownIntervals = [];
+
+        function startCountdownTimers() {
+            // Clear any existing intervals
+            countdownIntervals.forEach(interval => clearInterval(interval));
+            countdownIntervals = [];
+
+            // Find all workshops that need countdowns
+            workshopsData.forEach((workshop, index) => {
+                const status = getWorkshopStatus(workshop.startDate, workshop.endDate);
+                if (status === 'current' || status === 'upcoming') {
+                    const workshopId = `workshop-${index}-${workshop.title.replace(/\s+/g, '-').toLowerCase()}`;
+                    
+                    // Start interval for this workshop
+                    const interval = setInterval(() => {
+                        const shouldContinue = updateCountdown(workshopId, workshop.startDate);
+                        if (!shouldContinue) {
+                            clearInterval(interval);
+                            // Remove from active intervals array
+                            const index = countdownIntervals.indexOf(interval);
+                            if (index > -1) {
+                                countdownIntervals.splice(index, 1);
+                            }
+                        }
+                    }, 1000);
+                    
+                    countdownIntervals.push(interval);
+                }
+            });
+
+            console.log(`✅ Started ${countdownIntervals.length} countdown timers`);
+        }
+
+        // Clean up intervals when page is unloaded
+        window.addEventListener('beforeunload', function() {
+            countdownIntervals.forEach(interval => clearInterval(interval));
+        });
     </script>
 </body>
 

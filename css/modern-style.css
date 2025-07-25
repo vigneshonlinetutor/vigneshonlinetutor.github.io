@@ -1343,4 +1343,79 @@ a:hover, a:active, a:focus {
     .contact-form .form-control {
         font-size: 16px; /* Prevent zoom on iOS */
     }
-} 
+}
+
+/* ================================================
+   PROMINENT COURSE BADGES FOR ALL REVIEW PAGES
+   ================================================ */
+
+/* Course Badges Container */
+.course-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Base Course Badge Styling */
+.course-type-badge {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.course-type-badge:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Course Type Badges - Different colors for each type */
+.course-type-workshop {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    color: white;
+    border-color: #ff6b6b;
+}
+
+.course-type-mentoring {
+    background: linear-gradient(135deg, #a55eea 0%, #8b2be8 100%);
+    color: white;
+    border-color: #a55eea;
+}
+
+.course-type-online-course {
+    background: linear-gradient(135deg, #26de81 0%, #20bf6b 100%);
+    color: white;
+    border-color: #26de81;
+}
+
+
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .course-type-badge {
+        font-size: 0.8rem;
+        padding: 8px 16px;
+    }
+    
+    .course-badges {
+        margin-bottom: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .course-type-badge {
+        font-size: 0.75rem;
+        padding: 6px 14px;
+    }
+}

@@ -288,15 +288,17 @@ class ReviewService {
         const starsHtml = this.generateStars(review.rating);
         
         const badgesHtml = showBadges ? `
-            <div class="mt-auto">
-                <span class="badge badge-primary mr-1">${review.type.charAt(0).toUpperCase() + review.type.slice(1).replace('-', ' ')}</span>
-                ${review.subtype ? `<span class="badge badge-success">${review.subtype.charAt(0).toUpperCase() + review.subtype.slice(1)}</span>` : ''}
+            <div class="course-badges mb-3">
+                <div class="course-type-badge course-type-${review.type}">
+                    ${review.type.charAt(0).toUpperCase() + review.type.slice(1).replace('-', ' ')}
+                </div>
             </div>
         ` : '';
 
         return `
             <div class="${colClass} mb-4">
                 <div class="review-card h-100 p-4 border rounded shadow-sm">
+                    ${badgesHtml}
                     <div class="d-flex align-items-center mb-3">
                         <div class="mr-3">${photoHtml}</div>
                         <div>
@@ -310,7 +312,6 @@ class ReviewService {
                         <span class="ml-2 text-muted small">(${review.rating}★)</span>
                     </div>
                     <p class="text-muted mb-3">"${review.review}"</p>
-                    ${badgesHtml}
                 </div>
             </div>
         `;

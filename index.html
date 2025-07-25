@@ -240,35 +240,188 @@
             transform: translateY(-2px) !important;
         }
         
-        /* Testimonials Carousel */
-        .testimonials-carousel {
-            position: relative;
-            overflow: hidden;
+        /* Testimonials Container with Side Navigation */
+        .testimonials-wrapper {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 20px !important;
+            position: relative !important;
         }
         
-        .testimonials-slide {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
+        .testimonials-owl {
+            flex: 1 !important;
+            max-width: calc(100% - 140px) !important; /* Reserve space for buttons */
+            position: relative !important;
         }
         
-        .testimonials-slide.active {
+        /* Hide default owl navigation */
+        .owl-carousel.testimonials-owl .owl-nav {
+            display: none !important;
+        }
+        
+        /* Custom Navigation Buttons - Outside carousel */
+        .custom-nav-btn {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 50% !important;
+            width: 60px !important;
+            height: 60px !important;
+            font-size: 22px !important;
+            transition: all 0.3s ease !important;
+            cursor: pointer !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3) !important;
+            outline: none !important;
+            z-index: 1000 !important;
+        }
+        
+        .custom-nav-btn:hover {
+            background: linear-gradient(135deg, #0056b3 0%, #004085 100%) !important;
+            transform: scale(1.1) !important;
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5) !important;
+        }
+        
+        .custom-nav-btn:active {
+            transform: scale(0.95) !important;
+        }
+        
+        .custom-nav-btn:disabled {
+            background: #6c757d !important;
+            cursor: not-allowed !important;
+            opacity: 0.5 !important;
+        }
+        
+        /* Owl Carousel Dots */
+        .testimonials-owl .owl-dots {
+            margin-top: 30px !important;
+            text-align: center !important;
+        }
+        
+        .testimonials-owl .owl-dots .owl-dot {
+            display: inline-block !important;
+            margin: 0 5px !important;
+        }
+        
+        .testimonials-owl .owl-dots .owl-dot span {
             display: block !important;
-            opacity: 1 !important;
+            width: 15px !important;
+            height: 15px !important;
+            border-radius: 50% !important;
+            background: #dee2e6 !important;
+            transition: all 0.3s ease !important;
         }
         
-        .testimonials-slide.fade-in {
-            animation: fadeInSlide 0.8s ease-in-out;
+        .testimonials-owl .owl-dots .owl-dot.active span,
+        .testimonials-owl .owl-dots .owl-dot:hover span {
+            background: #007bff !important;
+            transform: scale(1.2) !important;
         }
         
-        @keyframes fadeInSlide {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+        /* Testimonial item animation */
+        .testimonials-owl .item {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+        
+        /* Enhanced review card for carousel - Much larger size */
+        .testimonials-owl .review-card {
+            min-height: 480px !important; /* Increased from 420px to 480px */
+            max-height: none !important; /* Remove fixed height */
+            display: flex !important;
+            flex-direction: column !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+            padding: 2.5rem !important; /* Increased padding even more */
+            margin: 10px !important; /* Add margin for better spacing */
+        }
+        
+        .testimonials-owl .review-card:hover {
+            transform: translateY(-5px) !important;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15) !important;
+        }
+        
+        /* Handle long review text - Show even more lines */
+        .testimonials-owl .review-card p {
+            flex-grow: 1 !important;
+            overflow: hidden !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 8 !important; /* Increased from 6 to 8 lines */
+            -webkit-box-orient: vertical !important;
+            line-height: 1.6 !important; /* Better line spacing */
+            margin-bottom: 20px !important; /* More margin */
+            font-size: 1.05rem !important; /* Slightly larger text */
+        }
+        
+        /* Alternative: Show full text with better spacing */
+        .testimonials-owl .review-card.full-text p {
+            -webkit-line-clamp: none !important;
+            display: block !important;
+        }
+        
+        /* Mobile responsiveness for new navigation structure */
+        @media (max-width: 768px) {
+            .testimonials-wrapper {
+                gap: 15px !important;
+            }
+            
+            .testimonials-owl {
+                max-width: calc(100% - 120px) !important; /* Smaller buttons on mobile */
+            }
+            
+            .custom-nav-btn {
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 18px !important;
+            }
+            
+            .testimonials-owl .review-card {
+                min-height: 420px !important; /* Adjusted for mobile */
+                padding: 2rem !important; /* Slightly smaller padding on mobile */
+                margin: 8px !important;
+            }
+            
+            .testimonials-owl .review-card p {
+                -webkit-line-clamp: 6 !important; /* Show 6 lines on mobile */
+                font-size: 1rem !important; /* Standard text on mobile */
+                line-height: 1.5 !important;
+            }
+        }
+        
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .testimonials-wrapper {
+                flex-direction: column !important;
+                gap: 20px !important;
+            }
+            
+            .testimonials-owl {
+                max-width: 100% !important;
+            }
+            
+            .custom-nav-btn {
+                display: none !important; /* Hide side navigation on very small screens */
+            }
+            
+            .testimonials-owl .review-card {
+                min-height: 380px !important;
+                padding: 1.5rem !important;
+                margin: 5px !important;
+            }
+            
+            .testimonials-owl .review-card p {
+                -webkit-line-clamp: 5 !important; /* 5 lines on very small screens */
+                font-size: 0.95rem !important;
             }
         }
         
@@ -1467,24 +1620,44 @@
             try {
                 console.log('🔄 Initializing testimonials with centralized service...');
                 
-                // Load all reviews for testimonials (mixed types)
+                // Load all reviews and filter out online-course reviews
                 const allReviews = await window.reviewService.getReviews();
                 
-                if (allReviews.length === 0) {
-                    console.log('⚠️ No reviews found for testimonials');
+                // Separate workshop and mentoring reviews
+                const workshopReviews = allReviews.filter(review => review.type === 'workshop');
+                const mentoringReviews = allReviews.filter(review => review.type === 'mentoring');
+                
+                // Interleave workshop and mentoring reviews for better user experience
+                // Pattern: Workshop → Mentoring → Workshop → Mentoring
+                const interleavedReviews = [];
+                const maxLength = Math.max(workshopReviews.length, mentoringReviews.length);
+                
+                for (let i = 0; i < maxLength; i++) {
+                    // Add workshop review if available
+                    if (i < workshopReviews.length) {
+                        interleavedReviews.push(workshopReviews[i]);
+                    }
+                    // Add mentoring review if available
+                    if (i < mentoringReviews.length) {
+                        interleavedReviews.push(mentoringReviews[i]);
+                    }
+                }
+                
+                if (interleavedReviews.length === 0) {
+                    console.log('⚠️ No workshop/mentoring reviews found for testimonials');
                     return;
                 }
                 
                 // Display testimonials in carousel format
-                displayTestimonialsCarousel(allReviews);
+                displayTestimonialsCarousel(interleavedReviews);
                 
-                console.log(`✅ Initialized testimonials with ${allReviews.length} reviews`);
+                console.log(`✅ Initialized testimonials with ${interleavedReviews.length} reviews (${workshopReviews.length} workshop + ${mentoringReviews.length} mentoring, interleaved for better UX)`);
             } catch (error) {
                 console.error('❌ Error initializing testimonials:', error);
             }
         }
 
-        // Display testimonials in carousel format
+        // Display testimonials using Owl Carousel
         function displayTestimonialsCarousel(reviews) {
             const container = document.getElementById('testimonials-container');
             if (!container) {
@@ -1492,59 +1665,109 @@
                 return;
             }
             
-            const reviewsPerSet = 3;
-            let currentSet = 0;
-            const totalSets = Math.ceil(reviews.length / reviewsPerSet);
+            // Show loading state
+            container.innerHTML = `
+                <div class="text-center py-4">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Initializing carousel...</span>
+                    </div>
+                    <p class="text-muted mt-2">Setting up testimonials...</p>
+                </div>
+            `;
             
-            function showSet(setIndex) {
-                const startIndex = setIndex * reviewsPerSet;
-                const endIndex = Math.min(startIndex + reviewsPerSet, reviews.length);
-                const currentReviews = reviews.slice(startIndex, endIndex);
+            // Generate individual review items for Owl Carousel
+            const reviewsHtml = reviews.map(review => 
+                window.reviewService.generateReviewHTML(review, {
+                    colClass: 'item', // Owl Carousel uses 'item' class instead of Bootstrap columns
+                    showBadges: true
+                })
+            ).join('');
+            
+            // Small delay for smooth transition
+            setTimeout(() => {
+                // Destroy existing carousel if it exists
+                if ($('.testimonials-owl').length && $('.testimonials-owl').hasClass('owl-loaded')) {
+                    $('.testimonials-owl').trigger('destroy.owl.carousel');
+                }
                 
-                const reviewsHtml = currentReviews.map(review => 
-                    window.reviewService.generateReviewHTML(review, {
-                        colClass: 'col-lg-4 col-md-6',
-                        showBadges: true
-                    })
-                ).join('');
-                
-                const navigationHtml = `
-                    <div class="d-flex justify-content-between align-items-center mt-4">
-                        <button class="btn btn-outline-primary" id="prevTestimonials" ${setIndex === 0 ? 'disabled' : ''} onclick="changeTestimonialSet(${setIndex - 1})">
-                            <i class="fas fa-chevron-left mr-2"></i>Previous
+                // Create Owl Carousel structure with custom navigation
+                container.innerHTML = `
+                    <div class="testimonials-wrapper">
+                        <button class="custom-nav-btn" id="testimonial-prev">
+                            <i class="fas fa-chevron-left"></i>
                         </button>
-                        
-                        <div class="testimonial-indicators">
-                            ${Array.from({length: totalSets}, (_, i) => `
-                                <button class="btn btn-sm ${i === setIndex ? 'btn-primary' : 'btn-outline-primary'} mx-1" 
-                                        onclick="changeTestimonialSet(${i})">${i + 1}</button>
-                            `).join('')}
+                        <div class="owl-carousel owl-theme testimonials-owl">
+                            ${reviewsHtml}
                         </div>
-                        
-                        <button class="btn btn-outline-primary" id="nextTestimonials" 
-                                ${setIndex >= totalSets - 1 ? 'disabled' : ''} onclick="changeTestimonialSet(${setIndex + 1})">
-                            Next<i class="fas fa-chevron-right ml-2"></i>
+                        <button class="custom-nav-btn" id="testimonial-next">
+                            <i class="fas fa-chevron-right"></i>
                         </button>
                     </div>
                 `;
                 
-                container.innerHTML = `
-                    <div class="row">${reviewsHtml}</div>
-                    ${navigationHtml}
-                `;
+                // Initialize Owl Carousel with enhanced settings
+                const owl = $('.testimonials-owl').owlCarousel({
+                    loop: true,
+                    margin: 30,
+                    nav: false, // Disable default navigation
+                    dots: true,
+                    autoplay: true,
+                    autoplayTimeout: 4000, // 4 seconds for faster transitions
+                    autoplayHoverPause: true,
+                    smartSpeed: 800,
+                    animateOut: 'fadeOut',
+                    animateIn: 'fadeIn',
+                    responsive: {
+                        0: {
+                            items: 1,
+                            margin: 15,
+                            dots: true
+                        },
+                        481: {
+                            items: 1,
+                            margin: 15,
+                            dots: true
+                        },
+                        768: {
+                            items: 2,
+                            margin: 20,
+                            dots: true
+                        },
+                        992: {
+                            items: 3,
+                            margin: 30,
+                            dots: true
+                        }
+                    },
+                    onInitialized: function(event) {
+                        console.log('🎠 Owl Carousel initialized successfully');
+                        // Add entrance animation to items after carousel is ready
+                        setTimeout(() => {
+                            $('.testimonials-owl .item').addClass('animate__animated animate__fadeInUp');
+                        }, 100);
+                    },
+                    onTranslated: function(event) {
+                        // Ensure smooth transitions between items of different heights
+                        const activeItems = $('.testimonials-owl .owl-item.active');
+                        let maxHeight = 0;
+                        activeItems.find('.review-card').each(function() {
+                            const height = $(this).outerHeight();
+                            if (height > maxHeight) maxHeight = height;
+                        });
+                    }
+                });
                 
-                currentSet = setIndex;
-            }
-            
-            // Global function for navigation
-            window.changeTestimonialSet = function(setIndex) {
-                if (setIndex >= 0 && setIndex < totalSets) {
-                    showSet(setIndex);
-                }
-            };
-            
-            // Show first set
-            showSet(0);
+                // Add custom navigation event listeners
+                $('#testimonial-prev').on('click', function() {
+                    owl.trigger('prev.owl.carousel');
+                });
+                
+                $('#testimonial-next').on('click', function() {
+                    owl.trigger('next.owl.carousel');
+                });
+                
+                console.log(`✅ Owl Carousel initialized with ${reviews.length} testimonials`);
+            }, 300);
         }
     </script>
 </body>

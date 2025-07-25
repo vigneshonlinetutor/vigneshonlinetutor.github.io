@@ -1302,15 +1302,15 @@
                             ${countdownHTML}
                             <div class="row align-items-center">
                                 <div class="col-md-4 text-center mb-3 mb-md-0">
-                                    <div class="p-2 bg-light rounded-circle d-inline-block mb-2" style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center;">
+                                    <div class="p-3 bg-light rounded-circle d-inline-block mb-3" style="width: 130px; height: 130px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
                                         ${workshop.logo ? 
-                                            `<img src="${workshop.logo.replace('../logo/', 'portfolio/logo/')}" alt="${workshop.title}" style="width: 80px; height: 80px; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
-                                             <i class="${workshop.fallbackIcon} fa-3x ${workshop.iconColor}" style="display: none;"></i>` :
-                                            `<i class="${workshop.fallbackIcon} fa-3x ${workshop.iconColor}"></i>`
+                                            `<img src="${workshop.logo.replace('../logo/', 'portfolio/logo/')}" alt="${workshop.title}" style="width: 100px; height: 100px; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                             <i class="${workshop.fallbackIcon} fa-4x ${workshop.iconColor}" style="display: none;"></i>` :
+                                            `<i class="${workshop.fallbackIcon} fa-4x ${workshop.iconColor}"></i>`
                                         }
                                     </div>
                                     <div class="text-center mt-2">
-                                        <small class="text-muted font-weight-bold">${dateStr}</small>
+                                        <div class="text-primary font-weight-bold" style="font-size: 1rem; line-height: 1.2;">${dateStr}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
@@ -1319,28 +1319,27 @@
                                     
                                     <div class="row mb-3">
                                         <div class="col-12">
-                                            <div class="d-flex align-items-center justify-content-center">
-                                                <i class="fas fa-clock text-warning mr-2"></i>
-                                                <span class="font-weight-bold text-dark">${workshop.duration}</span>
-                                                <small class="text-muted ml-1">Duration</small>
+                                            <div class="d-flex align-items-center justify-content-center bg-light rounded p-2" style="border: 2px solid #ffc107;">
+                                                <i class="fas fa-clock text-warning mr-2" style="font-size: 1.2rem;"></i>
+                                                <span class="font-weight-bold text-dark" style="font-size: 1.1rem;">${workshop.duration}</span>
+                                                <small class="text-muted ml-2" style="font-size: 0.9rem;">Duration</small>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="mb-4">
-                                        ${workshop.technologies.map((tech, i) => 
-                                            `<span class="badge badge-${workshop.techColors[i]} mr-1 mb-1">${tech}</span>`
-                                        ).join('')}
-                                    </div>
-                                    
                                     <div class="row">
-                                        <div class="col-md-6 mb-2">
+                                        <div class="col-12 mb-2">
                                             <a href="${workshop.registrationLink}" class="btn btn-success btn-block" target="_blank" rel="noopener noreferrer">
                                                 <i class="fas fa-calendar-plus mr-2"></i>Register Now
                                             </a>
                                         </div>
                                         <div class="col-md-6 mb-2">
-                                            <a href="portfolio/training/live-workshops.html" class="btn btn-outline-primary btn-block">
+                                            <a href="${workshop.registrationLink}" class="btn btn-warning btn-block" target="_blank" rel="noopener noreferrer">
+                                                <i class="fas fa-file-alt mr-2"></i>View Syllabus
+                                            </a>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <a href="portfolio/training/live-workshops.html" class="btn btn-info btn-block">
                                                 <i class="fas fa-info-circle mr-2"></i>More Details
                                             </a>
                                         </div>

@@ -622,6 +622,8 @@
 
     <!-- Core Javascript -->
     <script src="../js/main.js"></script>
+    <!-- Centralized Review Service -->
+    <script src="../js/review-service.js"></script>
     <!-- Interactive Features -->
     <script src="../js/interactive.js"></script>
     
@@ -852,88 +854,54 @@
             return starsHTML;
         }
 
-        // Tab-based Review Management System
-        let reviewsData = [];
-
-        // Load reviews data
-        async function loadReviewsData() {
+        // Tab-based Review Management System using centralized service
+        
+        // Render reviews for a specific type using centralized service
+        async function renderReviewsByType(type, containerId) {
             try {
-                const response = await fetch('reviews.json');
-                const data = await response.json();
-                reviewsData = data.reviews;
-                console.log(`✅ Loaded ${reviewsData.length} reviews from JSON`);
-                return reviewsData;
-            } catch (error) {
-                console.error('❌ Error loading reviews:', error);
-                return [];
-            }
-        }
-
-        // Render reviews for a specific type
-        function renderReviewsByType(type, containerId) {
-            const container = document.getElementById(containerId);
-            if (!container) {
-                console.error(`❌ Container ${containerId} not found!`);
-                return;
-            }
-
-            const filteredReviews = reviewsData.filter(review => review.type === type);
-            
-            if (filteredReviews.length === 0) {
-                container.innerHTML = `
-                    <div class="col-12 text-center py-5">
-                        <h4 class="text-muted">No ${type.replace('-', ' ')} reviews available yet.</h4>
-                        <p class="text-muted">Check back soon for student testimonials!</p>
-                    </div>
-                `;
-                return;
-            }
-
-            // Sort by subtype, then by rating
-            filteredReviews.sort((a, b) => {
-                if (a.subtype && b.subtype && a.subtype !== b.subtype) {
-                    return a.subtype.localeCompare(b.subtype);
+                console.log(`🔄 Loading ${type} reviews with centralized service...`);
+                
+                const container = document.getElementById(containerId);
+                if (!container) {
+                    console.error(`❌ Container ${containerId} not found!`);
+                    return;
                 }
-                return b.rating - a.rating;
-            });
 
-            const reviewsHtml = filteredReviews.map(review => `
-                <div class="col-lg-6 col-md-6 mb-4">
-                    <div class="review-card h-100 p-4 border rounded shadow-sm">
-                        <div class="d-flex align-items-center mb-3">
-                            <div class="mr-3">
-                                ${review.photo.startsWith('generic_') ? 
-                                    `<div class="avatar-placeholder rounded-circle shadow-sm d-flex align-items-center justify-content-center" 
-                                          style="width: 60px; height: 60px; background-color: #6366F1; color: white; font-weight: bold; font-size: 20px;">
-                                         ${review.name.split(' ').map(n => n.charAt(0)).join('').toUpperCase()}
-                                     </div>` :
-                                    `<img src="img/reviews/${review.photo}" 
-                                          class="rounded-circle shadow-sm" 
-                                          alt="${review.name}"
-                                          style="width: 60px; height: 60px; object-fit: cover;">`
-                                }
-                            </div>
-                            <div>
-                                <h6 class="mb-0 font-weight-bold">${review.name}</h6>
-                                <small class="text-primary font-weight-500">${review.title}</small>
-                                <div class="text-muted small">${review.company}</div>
-                            </div>
+                // Get filtered reviews using centralized service
+                const filteredReviews = await window.reviewService.getReviews(type);
+                
+                if (filteredReviews.length === 0) {
+                    container.innerHTML = `
+                        <div class="col-12 text-center py-5">
+                            <h4 class="text-muted">No ${type.replace('-', ' ')} reviews available yet.</h4>
+                            <p class="text-muted">Check back soon for student testimonials!</p>
                         </div>
-                        <div class="mb-3">
-                            ${generateStars(review.rating)}
-                            <span class="ml-2 text-muted small">(${review.rating}★)</span>
-                        </div>
-                        <p class="text-muted mb-3">"${review.review}"</p>
-                        <div class="mt-auto">
-                            <span class="badge badge-primary mr-1">${type.charAt(0).toUpperCase() + type.slice(1).replace('-', ' ')}</span>
-                            ${review.subtype ? `<span class="badge badge-success">${review.subtype.charAt(0).toUpperCase() + review.subtype.slice(1)}</span>` : ''}
-                        </div>
-                    </div>
-                </div>
-            `).join('');
+                    `;
+                    return;
+                }
 
-            container.innerHTML = `<div class="row">${reviewsHtml}</div>`;
-            console.log(`✅ Loaded ${filteredReviews.length} ${type} reviews`);
+                // Use centralized rendering method
+                const reviewsHtml = filteredReviews.map(review => 
+                    window.reviewService.generateReviewHTML(review, {
+                        colClass: 'col-lg-6 col-md-6',
+                        showBadges: true
+                    })
+                ).join('');
+
+                container.innerHTML = `<div class="row">${reviewsHtml}</div>`;
+                console.log(`✅ Loaded ${filteredReviews.length} ${type} reviews using centralized service`);
+            } catch (error) {
+                console.error(`❌ Error loading ${type} reviews:`, error);
+                const container = document.getElementById(containerId);
+                if (container) {
+                    container.innerHTML = `
+                        <div class="col-12 text-center py-5">
+                            <h4 class="text-muted">Unable to load reviews at this time.</h4>
+                            <p class="text-muted">Please check back later.</p>
+                        </div>
+                    `;
+                }
+            }
         }
 
         // Helper function to generate star ratings
@@ -961,17 +929,16 @@
             return starsHTML;
         }
 
-        // Initialize the reviews system
+        // Initialize the reviews system using centralized service
         async function initializeReviewsSystem() {
-            // Load reviews data
-            await loadReviewsData();
+            console.log('🔄 Initializing reviews system with centralized service...');
             
-            // Load reviews for both default active tabs (workshop and mentoring)
-            renderReviewsByType('workshop', 'workshop-reviews-container');
-            renderReviewsByType('mentoring', 'mentoring-reviews-container');
+            // Load reviews for default active tabs (workshop and mentoring)
+            await renderReviewsByType('workshop', 'workshop-reviews-container');
+            await renderReviewsByType('mentoring', 'mentoring-reviews-container');
             
             // Handle tab switching
-            $('#reviews-tabs a[data-toggle="pill"]').on('click', function(e) {
+            $('#reviews-tabs a[data-toggle="pill"]').on('click', async function(e) {
                 e.preventDefault();
                 const tabId = $(this).attr('href').replace('#', '');
                 const containerId = tabId + '-container';
@@ -989,12 +956,14 @@
                 // Load reviews for the selected tab if not already loaded
                 const container = document.getElementById(containerId);
                 if (container && container.innerHTML.includes('spinner-border')) {
-                    renderReviewsByType(reviewType, containerId);
+                    await renderReviewsByType(reviewType, containerId);
                 }
                 
                 // Show the tab
                 $(this).tab('show');
             });
+            
+            console.log('✅ Reviews system initialized with centralized service');
         }
 
         // Initialize when page loads

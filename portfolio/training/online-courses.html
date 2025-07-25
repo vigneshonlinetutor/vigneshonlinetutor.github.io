@@ -529,6 +529,8 @@
 
     <!-- Core Javascript -->
     <script src="../../js/main.js"></script>
+    <!-- Centralized Review Service -->
+    <script src="../../js/review-service.js"></script>
     <!-- Interactive Features -->
     <script src="../../js/interactive.js"></script>
     
@@ -681,12 +683,13 @@
             })
             .catch(error => console.error('Error fetching courses:', error));
 
-        // Load online course reviews
+        // Load online course reviews using centralized service
         async function loadOnlineCourseReviews() {
             try {
-                const response = await fetch('../../portfolio/reviews.json');
-                const data = await response.json();
-                const onlineCourseReviews = data.reviews.filter(review => review.type === 'online-course');
+                console.log('🔄 Loading online course reviews with centralized service...');
+                
+                // Get online course reviews with limit of 6
+                const onlineCourseReviews = await window.reviewService.getReviews('online-course', null, { limit: 6 });
                 
                 if (onlineCourseReviews.length === 0) {
                     document.getElementById('online-course-reviews').innerHTML = `
@@ -698,14 +701,7 @@
                     return;
                 }
 
-                // Sort by subtype, then by rating
-                onlineCourseReviews.sort((a, b) => {
-                    if (a.subtype && b.subtype && a.subtype !== b.subtype) {
-                        return a.subtype.localeCompare(b.subtype);
-                    }
-                    return b.rating - a.rating;
-                });
-
+                // Use the centralized render method
                 const reviewsHtml = `
                     <div class="row mb-4">
                         <div class="col-12 text-center">
@@ -713,51 +709,14 @@
                         </div>
                     </div>
                     <div class="row">
-                        ${onlineCourseReviews.slice(0, 6).map(review => `
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="review-card h-100 p-4 border rounded shadow-sm">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <div class="mr-3">
-                                            ${review.photo.startsWith('generic_') ? 
-                                                `<div class="avatar-placeholder rounded-circle shadow-sm d-flex align-items-center justify-content-center" 
-                                                      style="width: 50px; height: 50px; background-color: #6366F1; color: white; font-weight: bold; font-size: 18px;">
-                                                     ${review.name.split(' ').map(n => n.charAt(0)).join('').toUpperCase()}
-                                                 </div>` :
-                                                `<img src="../../portfolio/img/reviews/${review.photo}" 
-                                                      class="rounded-circle shadow-sm" 
-                                                      alt="${review.name}"
-                                                      style="width: 50px; height: 50px; object-fit: cover;">`
-                                            }
-                                        </div>
-                                        <div>
-                                            <h6 class="mb-0 font-weight-bold">${review.name}</h6>
-                                            <small class="text-primary font-weight-500">${review.title}</small>
-                                            <div class="text-muted small">${review.company}</div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        ${Array.from({length: 5}, (_, i) => {
-                                            const rating = review.rating;
-                                            if (i < Math.floor(rating)) {
-                                                return '<i class="fas fa-star text-warning"></i>';
-                                            } else if (i < Math.ceil(rating) && rating % 1 !== 0) {
-                                                return '<i class="fas fa-star-half-alt text-warning"></i>';
-                                            } else {
-                                                return '<i class="far fa-star text-warning"></i>';
-                                            }
-                                        }).join('')}
-                                        <span class="ml-2 text-muted small">(${review.rating}★)</span>
-                                    </div>
-                                    <p class="text-muted mb-3">"${review.review}"</p>
-                                    <div class="mt-auto">
-                                        <span class="badge badge-primary mr-1">Online Course</span>
-                                        ${review.subtype ? `<span class="badge badge-success">${review.subtype.charAt(0).toUpperCase() + review.subtype.slice(1)}</span>` : ''}
-                                    </div>
-                                </div>
-                            </div>
-                        `).join('')}
+                        ${onlineCourseReviews.map(review => 
+                            window.reviewService.generateReviewHTML(review, {
+                                colClass: 'col-lg-4 col-md-6',
+                                showBadges: true
+                            })
+                        ).join('')}
                     </div>
-                    ${onlineCourseReviews.length > 6 ? `
+                    ${onlineCourseReviews.length >= 6 ? `
                         <div class="text-center mt-4">
                             <a href="../reviews.html" class="btn btn-outline-primary">
                                 View more reviews
@@ -767,7 +726,7 @@
                 `;
 
                 document.getElementById('online-course-reviews').innerHTML = reviewsHtml;
-                console.log(`✅ Loaded ${onlineCourseReviews.length} online course reviews`);
+                console.log(`✅ Loaded ${onlineCourseReviews.length} online course reviews using centralized service`);
             } catch (error) {
                 console.error('❌ Error loading online course reviews:', error);
                 document.getElementById('online-course-reviews').innerHTML = `

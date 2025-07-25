@@ -1092,6 +1092,8 @@
 
     <!-- Core Javascript -->
     <script src="js/main.js"></script>
+    <!-- Centralized Review Service -->
+    <script src="js/review-service.js"></script>
     <!-- Interactive Features -->
     <script src="js/interactive.js"></script>
     
@@ -1140,6 +1142,9 @@
 
             // Load current workshops for home page promotion
             loadCurrentWorkshops();
+            
+            // Load testimonials using the new centralized service
+            initializeTestimonials();
         });
 
         // Workshop data for home page promotion
@@ -1456,6 +1461,91 @@
         window.addEventListener('beforeunload', function() {
             homeCountdownIntervals.forEach(interval => clearInterval(interval));
         });
+
+        // Initialize testimonials using centralized review service
+        async function initializeTestimonials() {
+            try {
+                console.log('🔄 Initializing testimonials with centralized service...');
+                
+                // Load all reviews for testimonials (mixed types)
+                const allReviews = await window.reviewService.getReviews();
+                
+                if (allReviews.length === 0) {
+                    console.log('⚠️ No reviews found for testimonials');
+                    return;
+                }
+                
+                // Display testimonials in carousel format
+                displayTestimonialsCarousel(allReviews);
+                
+                console.log(`✅ Initialized testimonials with ${allReviews.length} reviews`);
+            } catch (error) {
+                console.error('❌ Error initializing testimonials:', error);
+            }
+        }
+
+        // Display testimonials in carousel format
+        function displayTestimonialsCarousel(reviews) {
+            const container = document.getElementById('testimonials-container');
+            if (!container) {
+                console.error('❌ Testimonials container not found!');
+                return;
+            }
+            
+            const reviewsPerSet = 3;
+            let currentSet = 0;
+            const totalSets = Math.ceil(reviews.length / reviewsPerSet);
+            
+            function showSet(setIndex) {
+                const startIndex = setIndex * reviewsPerSet;
+                const endIndex = Math.min(startIndex + reviewsPerSet, reviews.length);
+                const currentReviews = reviews.slice(startIndex, endIndex);
+                
+                const reviewsHtml = currentReviews.map(review => 
+                    window.reviewService.generateReviewHTML(review, {
+                        colClass: 'col-lg-4 col-md-6',
+                        showBadges: true
+                    })
+                ).join('');
+                
+                const navigationHtml = `
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <button class="btn btn-outline-primary" id="prevTestimonials" ${setIndex === 0 ? 'disabled' : ''} onclick="changeTestimonialSet(${setIndex - 1})">
+                            <i class="fas fa-chevron-left mr-2"></i>Previous
+                        </button>
+                        
+                        <div class="testimonial-indicators">
+                            ${Array.from({length: totalSets}, (_, i) => `
+                                <button class="btn btn-sm ${i === setIndex ? 'btn-primary' : 'btn-outline-primary'} mx-1" 
+                                        onclick="changeTestimonialSet(${i})">${i + 1}</button>
+                            `).join('')}
+                        </div>
+                        
+                        <button class="btn btn-outline-primary" id="nextTestimonials" 
+                                ${setIndex >= totalSets - 1 ? 'disabled' : ''} onclick="changeTestimonialSet(${setIndex + 1})">
+                            Next<i class="fas fa-chevron-right ml-2"></i>
+                        </button>
+                    </div>
+                `;
+                
+                container.innerHTML = `
+                    <div class="row">${reviewsHtml}</div>
+                    ${navigationHtml}
+                `;
+                
+                currentSet = setIndex;
+            }
+            
+            // Global function for navigation
+            window.changeTestimonialSet = function(setIndex) {
+                if (setIndex >= 0 && setIndex < totalSets) {
+                    showSet(setIndex);
+                }
+            };
+            
+            // Show first set
+            showSet(0);
+        }
     </script>
 </body>
 

@@ -1419,3 +1419,157 @@ a:hover, a:active, a:focus {
         padding: 6px 14px;
     }
 }
+
+/* ================================================
+   CAROUSEL NAVIGATION FOR ALL REVIEW PAGES
+   ================================================ */
+
+/* Testimonials Container with Side Navigation */
+.testimonials-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 20px !important;
+    position: relative !important;
+}
+
+.testimonials-owl,
+.reviews-carousel {
+    flex: 1 !important;
+    max-width: calc(100% - 140px) !important; /* Reserve space for buttons */
+    position: relative !important;
+}
+
+/* Hide default owl navigation */
+.owl-carousel.testimonials-owl .owl-nav,
+.owl-carousel.reviews-carousel .owl-nav {
+    display: none !important;
+}
+
+/* Custom Navigation Buttons - Outside carousel */
+.custom-nav-btn {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 60px !important;
+    height: 60px !important;
+    font-size: 22px !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3) !important;
+    outline: none !important;
+    z-index: 1000 !important;
+}
+
+.custom-nav-btn:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #004085 100%) !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5) !important;
+}
+
+.custom-nav-btn:active {
+    transform: scale(0.95) !important;
+}
+
+.custom-nav-btn:disabled {
+    background: #6c757d !important;
+    cursor: not-allowed !important;
+    opacity: 0.5 !important;
+}
+
+/* Enhanced review card for carousel - Works for all carousels */
+.testimonials-owl .review-card,
+.reviews-carousel .review-card {
+    min-height: 480px !important;
+    max-height: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    padding: 2.5rem !important;
+    margin: 10px !important;
+}
+
+.testimonials-owl .review-card:hover,
+.reviews-carousel .review-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15) !important;
+}
+
+/* Handle long review text - Show even more lines */
+.testimonials-owl .review-card p,
+.reviews-carousel .review-card p {
+    flex-grow: 1 !important;
+    overflow: hidden !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 8 !important;
+    -webkit-box-orient: vertical !important;
+    line-height: 1.6 !important;
+    margin-bottom: 20px !important;
+    font-size: 1.05rem !important;
+}
+
+/* Mobile responsiveness for new navigation structure */
+@media (max-width: 768px) {
+    .testimonials-wrapper {
+        gap: 15px !important;
+    }
+    
+    .testimonials-owl,
+    .reviews-carousel {
+        max-width: calc(100% - 120px) !important; /* Smaller buttons on mobile */
+    }
+    
+    .custom-nav-btn {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 18px !important;
+    }
+    
+    .testimonials-owl .review-card,
+    .reviews-carousel .review-card {
+        min-height: 420px !important;
+        padding: 2rem !important;
+        margin: 8px !important;
+    }
+    
+    .testimonials-owl .review-card p,
+    .reviews-carousel .review-card p {
+        -webkit-line-clamp: 6 !important;
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .testimonials-wrapper {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+    
+    .testimonials-owl,
+    .reviews-carousel {
+        max-width: 100% !important;
+    }
+    
+    .custom-nav-btn {
+        display: none !important; /* Hide side navigation on very small screens */
+    }
+    
+    .testimonials-owl .review-card,
+    .reviews-carousel .review-card {
+        min-height: 380px !important;
+        padding: 1.5rem !important;
+        margin: 5px !important;
+    }
+    
+    .testimonials-owl .review-card p,
+    .reviews-carousel .review-card p {
+        -webkit-line-clamp: 5 !important;
+        font-size: 0.95rem !important;
+    }
+}

@@ -847,13 +847,13 @@
                 handleMobileDropdowns();
             });
 
-            // Load workshop reviews using centralized service
+            // Load workshop reviews using centralized service with carousel
             async function loadWorkshopReviews() {
                 try {
-                    console.log('🔄 Loading workshop reviews with centralized service...');
+                    console.log('🔄 Loading workshop reviews with centralized carousel...');
                     
-                    // Get workshop reviews with limit of 6
-                    const workshopReviews = await window.reviewService.getReviews('workshop', null, { limit: 6 });
+                    // Get workshop reviews with limit of 9 (better for carousel)
+                    const workshopReviews = await window.reviewService.getReviews('workshop', null, { limit: 9 });
                     
                     if (workshopReviews.length === 0) {
                         document.getElementById('workshop-reviews').innerHTML = `
@@ -865,22 +865,15 @@
                         return;
                     }
 
-                    // Use the centralized render method
-                    const reviewsHtml = `
+                    // Add header and carousel container
+                    const headerHtml = `
                         <div class="row mb-4">
                             <div class="col-12 text-center">
                                 <h3>What Our Workshop Participants Say</h3>
                             </div>
                         </div>
-                        <div class="row">
-                            ${workshopReviews.map(review => 
-                                window.reviewService.generateReviewHTML(review, {
-                                    colClass: 'col-lg-4 col-md-6',
-                                    showBadges: true
-                                })
-                            ).join('')}
-                        </div>
-                        ${workshopReviews.length >= 6 ? `
+                        <div id="workshop-carousel"></div>
+                        ${workshopReviews.length >= 9 ? `
                             <div class="text-center mt-4">
                                 <a href="../reviews.html" class="btn btn-outline-primary">
                                     View more reviews
@@ -889,8 +882,20 @@
                         ` : ''}
                     `;
 
-                    document.getElementById('workshop-reviews').innerHTML = reviewsHtml;
-                    console.log(`✅ Loaded ${workshopReviews.length} workshop reviews using centralized service`);
+                    document.getElementById('workshop-reviews').innerHTML = headerHtml;
+
+                    // Render reviews as carousel
+                    window.reviewService.renderAsCarousel(workshopReviews, 'workshop-carousel', {
+                        itemsDesktop: 3,
+                        itemsTablet: 2,
+                        itemsMobile: 1,
+                        autoplay: true,
+                        autoplayTimeout: 5000,
+                        showNavigation: true,
+                        showDots: true
+                    });
+
+                    console.log(`✅ Loaded ${workshopReviews.length} workshop reviews in carousel format`);
                 } catch (error) {
                     console.error('❌ Error loading workshop reviews:', error);
                     document.getElementById('workshop-reviews').innerHTML = `

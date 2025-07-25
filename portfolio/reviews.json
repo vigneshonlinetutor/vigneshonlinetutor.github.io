@@ -5,30 +5,30 @@
     "review": "Investing in your learning is the most valuable decision you can make. Acquiring knowledge, skills, and experience today will pay dividends in the future.\n\nAttending the Playwright workshop with Vignesh S. was one of the best choices I\u2019ve ever made! At first, I was sceptical about how much I could learn in just four weeks, but the experience far exceeded my expectations. Vignesh\u2019s extensive expertise, combined with his engaging teaching style, made even the most complex automation concepts straightforward and accessible.\n\nIf you\u2019re looking to elevate your automation skills and explore the world of JS/TS based automation with Playwright, I highly recommend enrolling in this bootcamp. \n\nIt\u2019s an investment you won\u2019t regret!",
     "type": "workshop",
     "subtype": "playwright",
-    "title": "",
-    "company": "",
+    "title": "Senior Quality Assurance Automation Engineer",
+    "company": "Tech Holding",
     "rating": 5.0,
-    "photo": "generic_male.jpg"
+    "photo": "dhrumil_soni.jpeg"
   },
   {
     "name": "Deepesh Agarwal",
     "review": "The Playwright workshop with TypeScript was incredibly valuable. It provided hands-on experience with automating browser tests, and using TypeScript for better code quality. The practical exercises and real-world examples helped me feel confident in applying Playwright to streamline web application testing. Vignesh, the instructor, was fantastic\u2014he explained complex concepts clearly, provided insightful tips, and was always available to help with the questions. Highly recommend this workshop for anyone looking to improve their test automation skills!",
     "type": "workshop",
     "subtype": "playwright",
-    "title": "",
-    "company": "",
+    "title": "Senior Test Engineer",
+    "company": "Digital Health and Care Wales",
     "rating": 5.0,
-    "photo": "generic_male.jpg"
+    "photo": "deepesh_agarwal.jpeg"
   },
   {
     "name": "Venkata Lanka",
     "review": "The training program on the Playwright tool for automation is one of the best things I have attended recently, and I couldn't be more pleased with the experience. The training was comprehensive, covering all essential aspects of Playwright clearly and concisely. The instructor was knowledgeable and provided practical examples that made complex concepts easy to understand. I now feel confident in my ability to use Playwright for automation, thanks to this outstanding training. I highly recommend it to anyone looking to enhance their automation skills.",
     "type": "workshop",
     "subtype": "playwright",
-    "title": "",
-    "company": "",
+    "title": "Associate Vice President",
+    "company": "Deloitte",
     "rating": 5.0,
-    "photo": "generic_male.jpg"
+    "photo": "venkata_lanka.jpeg"
   },
   {
     "name": "Anukriti Ojha",
@@ -91,14 +91,14 @@
     "photo": "generic_male.jpg"
   },
   {
-    "name": "Kamini Luthra",
+    "name": "Kamini Chopra",
     "review": "Vignesh is a learned trainer or educator. He knows the topic so well and had answers to all the questions, his ability to answer each question patiently makes him do justice to his job.",
     "type": "workshop",
     "subtype": "gen-ai",
-    "title": "",
-    "company": "",
+    "title": "Senior Quality Assurance Specialist",
+    "company": "Qualitest",
     "rating": 4.9,
-    "photo": "generic_male.jpg"
+    "photo": "kamini_chopra.jpeg"
   },
   {
     "name": "Titir Mishra",
@@ -115,10 +115,60 @@
     "review": "This is a great and timely course which is delivered in an engaging and understandable way. Highly relevant in today's landscape.",
     "type": "workshop",
     "subtype": "gen-ai",
-    "title": "",
-    "company": "",
+    "title": "Senior Software Quality Engineer",
+    "company": "Microsoft",
     "rating": 4.9,
-    "photo": "generic_male.jpg"
+    "photo": "omotola_ude.jpeg"
+  },
+  {
+    "name": "Javier",
+    "review": "This has been an amazing journey. It's kind of sad it came to an end. It speed up my learning and skills in a way that I couldn't expect before the bootcamp started.",
+    "type": "workshop",
+    "subtype": "playwright",
+    "title": "QA Analyst",
+    "company": "NDP Studio",
+    "rating": 5.0,
+    "photo": "javier.jpeg"
+  },
+  {
+    "name": "Kalpuri Preetham",
+    "review": "Vignesh's Playwright workshop completely transformed how I approach test automation. Coming from a Selenium background, I was amazed by how intuitive and powerful Playwright is. The way Vignesh broke down complex concepts like auto-waiting, network interception, and parallel execution made everything click. The hands-on exercises were perfectly structured - we built real-world scenarios that I could immediately apply at work. What impressed me most was Vignesh's depth of knowledge and his ability to answer even the trickiest questions with practical examples. This workshop didn't just teach me a tool; it changed my entire testing mindset.",
+    "type": "workshop",
+    "subtype": "playwright",
+    "title": "SDET-1",
+    "company": "Entain India",
+    "rating": 4.9,
+    "photo": "kalpuri_preetham.jpeg"
+  },
+  {
+    "name": "Kapil Bhansal",
+    "review": "As a freelance test automation engineer, staying ahead of the curve is crucial, and Vignesh's GenAI workshop was exactly what I needed. The way he demonstrated how to integrate AI into daily testing workflows was eye-opening. From using ChatGPT for test case generation to leveraging AI for code reviews and bug analysis - every session was packed with practical value. Vignesh doesn't just talk theory; he shows you real implementations you can use immediately. The workshop covered everything from prompt engineering to building custom GPTs for testing scenarios. This knowledge has already helped me offer more value to my clients. Highly recommend this to anyone wanting to future-proof their testing career!",
+    "type": "workshop",
+    "subtype": "gen-ai",
+    "title": "Test Automation Engineer",
+    "company": "Self Employed",
+    "rating": 4.8,
+    "photo": "kapil_bhansal.jpg"
+  },
+  {
+    "name": "Swati Shinde",
+    "review": "I attended both Vignesh's Playwright and GenAI workshops, and both exceeded my expectations completely. The Playwright session gave me solid technical foundations - from setup to advanced features like visual testing and API automation. But it was the GenAI workshop that truly blew my mind. Vignesh showed us how to use AI tools to generate test data, create automation scripts, and even analyze test results intelligently. His teaching style is incredible - he makes complex topics feel simple and always encourages questions. The combination of both workshops has made me much more efficient in my role. My team now sees me as the go-to person for both modern automation and AI integration in testing. Thank you, Vignesh, for such transformative learning experiences!",
+    "type": "workshop",
+    "subtype": "playwright",
+    "title": "Deputy Manager",
+    "company": "Saregama India Ltd",
+    "rating": 5.0,
+    "photo": "swati_shinde.jpg"
+  },
+  {
+    "name": "Swati Shinde",
+    "review": "I attended both Vignesh's Playwright and GenAI workshops, and both exceeded my expectations completely. The Playwright session gave me solid technical foundations - from setup to advanced features like visual testing and API automation. But it was the GenAI workshop that truly blew my mind. Vignesh showed us how to use AI tools to generate test data, create automation scripts, and even analyze test results intelligently. His teaching style is incredible - he makes complex topics feel simple and always encourages questions. The combination of both workshops has made me much more efficient in my role. My team now sees me as the go-to person for both modern automation and AI integration in testing. Thank you, Vignesh, for such transformative learning experiences!",
+    "type": "workshop",
+    "subtype": "gen-ai",
+    "title": "Deputy Manager",
+    "company": "Saregama India Ltd",
+    "rating": 5.0,
+    "photo": "swati_shinde.jpg"
   }
     ,{
       "name": "Swapnil",

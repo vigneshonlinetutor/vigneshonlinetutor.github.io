@@ -318,16 +318,116 @@ class ReviewService {
     }
 
     /**
-     * Generate carousel HTML for testimonials
+     * Render reviews as Owl Carousel with navigation
      * @param {Array} reviews - Reviews to display
+     * @param {string} containerId - Container element ID
      * @param {Object} options - Carousel options
-     * @returns {string} HTML string
      */
-    generateCarouselHTML(reviews, options = {}) {
-        const { itemsPerSet = 3 } = options;
-        // Implementation for carousel layout (similar to current index.html)
-        // This would include the carousel structure with navigation
-        return `<div class="testimonials-carousel"><!-- Carousel implementation --></div>`;
+    renderAsCarousel(reviews, containerId, options = {}) {
+        const {
+            itemsDesktop = 3,
+            itemsTablet = 2,
+            itemsMobile = 1,
+            autoplay = true,
+            autoplayTimeout = 4000,
+            showNavigation = true,
+            showDots = true,
+            colClass = 'item'
+        } = options;
+
+        const container = document.getElementById(containerId);
+        if (!container) {
+            console.error(`❌ Container ${containerId} not found!`);
+            return;
+        }
+
+        // Show loading state
+        container.innerHTML = `
+            <div class="text-center py-4">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Initializing carousel...</span>
+                </div>
+                <p class="text-muted mt-2">Setting up reviews...</p>
+            </div>
+        `;
+
+        // Generate individual review items for Owl Carousel
+        const reviewsHtml = reviews.map(review => 
+            this.generateReviewHTML(review, {
+                colClass: colClass,
+                showBadges: true
+            })
+        ).join('');
+
+        // Small delay for smooth transition
+        setTimeout(() => {
+            // Destroy existing carousel if it exists
+            if ($(container).find('.owl-carousel').length && $(container).find('.owl-carousel').hasClass('owl-loaded')) {
+                $(container).find('.owl-carousel').trigger('destroy.owl.carousel');
+            }
+
+            // Create carousel structure with custom navigation
+            container.innerHTML = `
+                <div class="testimonials-wrapper">
+                    ${showNavigation ? `<button class="custom-nav-btn carousel-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>` : ''}
+                    <div class="owl-carousel owl-theme reviews-carousel">
+                        ${reviewsHtml}
+                    </div>
+                    ${showNavigation ? `<button class="custom-nav-btn carousel-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>` : ''}
+                </div>
+            `;
+
+            // Initialize Owl Carousel
+            const owl = $(container).find('.reviews-carousel').owlCarousel({
+                loop: reviews.length > 1 ? true : false, // Only loop if more than 1 item
+                margin: 30,
+                nav: false,
+                dots: showDots,
+                autoplay: autoplay && reviews.length > 1, // Only autoplay if more than 1 item
+                autoplayTimeout: autoplayTimeout,
+                autoplayHoverPause: true,
+                smartSpeed: 800,
+                animateOut: 'fadeOut',
+                animateIn: 'fadeIn',
+                responsive: {
+                    0: {
+                        items: itemsMobile,
+                        margin: 15
+                    },
+                    768: {
+                        items: itemsTablet,
+                        margin: 20
+                    },
+                    992: {
+                        items: itemsDesktop,
+                        margin: 30
+                    }
+                },
+                onInitialized: function(event) {
+                    console.log(`🎠 Carousel initialized with ${reviews.length} reviews, autoplay: ${autoplay && reviews.length > 1}`);
+                    // Force start autoplay after initialization
+                    if (autoplay && reviews.length > 1) {
+                        setTimeout(() => {
+                            $(container).find('.reviews-carousel').trigger('play.owl.autoplay');
+                        }, 1000);
+                    }
+                }
+            });
+
+            // Add custom navigation event listeners
+            $(container).find('.carousel-prev').on('click', function() {
+                owl.trigger('prev.owl.carousel');
+            });
+
+            $(container).find('.carousel-next').on('click', function() {
+                owl.trigger('next.owl.carousel');
+            });
+
+        }, 300);
     }
 
     /**

@@ -683,13 +683,13 @@
             })
             .catch(error => console.error('Error fetching courses:', error));
 
-        // Load online course reviews using centralized service
+        // Load online course reviews using centralized service with carousel
         async function loadOnlineCourseReviews() {
             try {
-                console.log('🔄 Loading online course reviews with centralized service...');
+                console.log('🔄 Loading online course reviews with centralized carousel...');
                 
-                // Get online course reviews with limit of 6
-                const onlineCourseReviews = await window.reviewService.getReviews('online-course', null, { limit: 6 });
+                // Get online course reviews with limit of 9 (better for carousel)
+                const onlineCourseReviews = await window.reviewService.getReviews('online-course', null, { limit: 9 });
                 
                 if (onlineCourseReviews.length === 0) {
                     document.getElementById('online-course-reviews').innerHTML = `
@@ -701,22 +701,15 @@
                     return;
                 }
 
-                // Use the centralized render method
-                const reviewsHtml = `
+                // Add header and carousel container
+                const headerHtml = `
                     <div class="row mb-4">
                         <div class="col-12 text-center">
                             <h3>What Students Say</h3>
                         </div>
                     </div>
-                    <div class="row">
-                        ${onlineCourseReviews.map(review => 
-                            window.reviewService.generateReviewHTML(review, {
-                                colClass: 'col-lg-4 col-md-6',
-                                showBadges: true
-                            })
-                        ).join('')}
-                    </div>
-                    ${onlineCourseReviews.length >= 6 ? `
+                    <div id="online-course-carousel"></div>
+                    ${onlineCourseReviews.length >= 9 ? `
                         <div class="text-center mt-4">
                             <a href="../reviews.html" class="btn btn-outline-primary">
                                 View more reviews
@@ -725,8 +718,20 @@
                     ` : ''}
                 `;
 
-                document.getElementById('online-course-reviews').innerHTML = reviewsHtml;
-                console.log(`✅ Loaded ${onlineCourseReviews.length} online course reviews using centralized service`);
+                document.getElementById('online-course-reviews').innerHTML = headerHtml;
+
+                // Render reviews as carousel
+                window.reviewService.renderAsCarousel(onlineCourseReviews, 'online-course-carousel', {
+                    itemsDesktop: 3,
+                    itemsTablet: 2,
+                    itemsMobile: 1,
+                    autoplay: true,
+                    autoplayTimeout: 5000,
+                    showNavigation: true,
+                    showDots: true
+                });
+
+                console.log(`✅ Loaded ${onlineCourseReviews.length} online course reviews in carousel format`);
             } catch (error) {
                 console.error('❌ Error loading online course reviews:', error);
                 document.getElementById('online-course-reviews').innerHTML = `

@@ -215,6 +215,137 @@
         .dropdown:hover .dropdown-menu {
             display: block;
         }
+
+        /* Training Categories Styles */
+        .training-categories {
+            margin-top: 30px;
+        }
+
+        .category-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px 20px;
+            height: 100%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .category-card:hover .tech-list {
+            display: block !important;
+            animation: slideDown 0.3s ease;
+        }
+
+        .category-icon {
+            margin-bottom: 20px;
+        }
+
+        .category-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .category-subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .tech-list {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 15px;
+            border-top: 2px solid #007bff;
+        }
+
+        .tech-item {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 4px 8px;
+            margin: 2px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Ultra Highlighting for Special Offer Text */
+        .special-offer-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff !important;
+            font-size: 1.2rem !important;
+            font-weight: 700 !important;
+            text-align: center;
+            padding: 15px 25px;
+            border-radius: 15px;
+            position: relative;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            border: 2px solid #ffc107;
+            animation: pulseGlow 2s ease-in-out infinite alternate;
+            overflow: hidden;
+        }
+        
+        .special-offer-text::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+            z-index: 1;
+        }
+        
+        .special-offer-text strong {
+            position: relative;
+            z-index: 2;
+        }
+        
+        @keyframes pulseGlow {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+                border-color: #ffc107;
+            }
+            100% {
+                transform: scale(1.03);
+                box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+                border-color: #ff6b6b;
+            }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
     </style>
 </head>
 
@@ -321,8 +452,8 @@
     <div class="training" id="header">
         <div class="container">
             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
-                <h2>1-to-1 Personal Mentoring</h2>
-                <p>Accelerate your automation testing career with personalized guidance</p>
+                <h2>1-to-1 Personal Mentoring for Students</h2>
+                <p>Launch your automation testing career with personalized guidance - <strong class="text-success">First 30 minutes FREE!</strong></p>
             </div>
         </div>
     </div>
@@ -334,45 +465,77 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
                     <div class="section-header">
-                        <h3>Transform Your Testing Career</h3>
-                        <p class="lead">Get personalized, one-on-one mentoring sessions designed to accelerate your journey from Manual QE to Senior SDET.</p>
+                        <h3>🚀 Land Your Dream Automation Job</h3>
+                        <p class="lead">From Manual QA to Automation Engineer - I'll personally guide you every step of the way!</p>
+                        <p class="special-offer-text"><strong>🎉 Special Offer:</strong> First 30 minutes consultation absolutely FREE to discuss your career goals!</p>
                     </div>
                     
                     <div class="row mb-4">
                         <div class="col-12 mb-3">
                             <div class="d-flex align-items-center">
-                                <i class="fas fa-check-circle text-success mr-3 fa-lg"></i>
-                                <span><strong>Career Roadmap Planning</strong> - Customized path from your current level to dream role</span>
+                                <i class="fas fa-route text-success mr-3 fa-lg"></i>
+                                <span><strong>Manual QA → Automation Transition</strong> - Step-by-step roadmap with practical projects</span>
                             </div>
                         </div>
                         <div class="col-12 mb-3">
                             <div class="d-flex align-items-center">
-                                <i class="fas fa-check-circle text-success mr-3 fa-lg"></i>
-                                <span><strong>Technical Skill Development</strong> - Hands-on guidance in Selenium, Playwright, Cypress</span>
+                                <i class="fas fa-code text-success mr-3 fa-lg"></i>
+                                <div>
+                                    <span><strong>Hands-on Technical Training</strong> - Master Web/Mobile/API automation, Programming (Java, Python, JS), Performance Testing, and AI-powered QA tools</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-12 mb-3">
                             <div class="d-flex align-items-center">
-                                <i class="fas fa-check-circle text-success mr-3 fa-lg"></i>
-                                <span><strong>Interview Preparation</strong> - Mock interviews and technical assessment practice</span>
+                                <i class="fas fa-user-tie text-success mr-3 fa-lg"></i>
+                                <span><strong>Interview Preparation</strong> - Mock interviews, coding challenges, salary negotiation</span>
                             </div>
                         </div>
                         <div class="col-12 mb-3">
                             <div class="d-flex align-items-center">
-                                <i class="fas fa-check-circle text-success mr-3 fa-lg"></i>
-                                <span><strong>Resume & Portfolio Review</strong> - Professional feedback and optimization</span>
+                                <i class="fas fa-briefcase text-success mr-3 fa-lg"></i>
+                                <span><strong>Job Search Strategy</strong> - Resume optimization, LinkedIn profile, portfolio projects</span>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-handshake text-success mr-3 fa-lg"></i>
+                                <span><strong>Job Placement Support</strong> - Help you land automation roles in top companies</span>
                             </div>
                         </div>
                     </div>
                     
-                    <a href="../connect/contact-form.html" class="btn btn-primary btn-lg">
-                        <i class="fas fa-calendar-check mr-2"></i>Book Your Session
-                    </a>
+                    <div class="text-center">
+                        <a href="../connect/whatsapp.html" class="btn btn-success btn-lg mr-3 mb-2">
+                            <i class="fab fa-whatsapp mr-2"></i>Start FREE Consultation
+                        </a>
+                        <a href="../connect/contact-form.html" class="btn btn-outline-primary btn-lg mb-2">
+                            <i class="fas fa-envelope mr-2"></i>Send Message
+                        </a>
+                    </div>
                 </div>
                 
                 <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.3s">
                     <div class="text-center">
-                        <img src="../displayPicture/Viki-DP.jpg" alt="Personal Mentoring" class="img-fluid rounded-circle shadow" style="max-width: 350px;">
+                        <div class="bg-light p-4 rounded shadow">
+                            <img src="../displayPicture/Viki-DP.jpg" alt="Personal Mentoring" class="img-fluid rounded-circle shadow mb-3" style="max-width: 250px;">
+                            <h5 class="font-weight-bold text-primary">Vignesh Srinivasa Raghavan</h5>
+                            <p class="text-muted mb-3">Senior Automation Architect<br>10+ Years Experience</p>
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    <h6 class="text-success mb-0">1000+</h6>
+                                    <small class="text-muted">Students Trained</small>
+                                </div>
+                                <div class="col-4">
+                                    <h6 class="text-success mb-0">100%</h6>
+                                    <small class="text-muted">Job Success Rate</small>
+                                </div>
+                                <div class="col-4">
+                                    <h6 class="text-success mb-0">4.9★</h6>
+                                    <small class="text-muted">Average Rating</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -380,135 +543,180 @@
     </div>
     <!-- Mentoring Content End -->
 
-    <!-- Mentoring Packages Start -->
-    <div class="training" id="packages" style="background-color: #f8f9fa;">
+    <!-- Training Services Offered Start -->
+    <div class="training" id="training-services">
         <div class="container">
             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
-                <h3>Mentoring Packages</h3>
-                <p>Choose the mentoring package that fits your career goals</p>
+                <h2>Technologies I Teach</h2>
+                <p>Master these in-demand skills to land your dream automation job</p>
             </div>
             
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="training-item text-center shadow-custom border-radius-custom h-100">
-                        <div class="p-4">
-                            <i class="fas fa-user-check fa-3x text-primary mb-3"></i>
-                            <h4 class="mb-3">Career Consultation</h4>
-                            <div class="mb-3">
-                                <span class="h3 text-primary">$99</span>
-                                <span class="text-muted">/ 1 hour</span>
+            <div class="training-categories text-center wow fadeInUp" data-wow-delay="0.2s">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="category-card" data-category="ai">
+                            <div class="category-icon">
+                                <i class="fas fa-robot fa-3x text-primary"></i>
                             </div>
-                            <ul class="list-unstyled text-left">
-                                <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>Career roadmap assessment</li>
-                                <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>Skill gap analysis</li>
-                                <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>Learning path recommendations</li>
-                                <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>Q&A session</li>
-                            </ul>
-                            <a href="../connect/contact-form.html" class="btn btn-outline-primary btn-block mt-3">
-                                Get Started
-                            </a>
+                            <h5 class="category-title">Artificial Intelligence</h5>
+                            <p class="category-subtitle">Next-gen QA with AI</p>
+                            <div class="tech-list d-none">
+                                <span class="tech-item">Gen-AI for QAs</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="training-item text-center shadow-custom border-radius-custom h-100 position-relative">
-                        <div class="badge badge-primary position-absolute" style="top: 15px; right: 15px;">Popular</div>
-                        <div class="p-4">
-                            <i class="fas fa-users fa-3x text-success mb-3"></i>
-                            <h4 class="mb-3">Monthly Mentoring</h4>
-                            <div class="mb-3">
-                                <span class="h3 text-success">$299</span>
-                                <span class="text-muted">/ month</span>
+                    
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="category-card" data-category="web">
+                            <div class="category-icon">
+                                <i class="fas fa-globe fa-3x text-success"></i>
                             </div>
-                            <ul class="list-unstyled text-left">
-                                <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>4 x 1-hour sessions</li>
-                                <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>Technical skill development</li>
-                                <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>Code review & feedback</li>
-                                <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>WhatsApp support</li>
-                                <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>Career progress tracking</li>
-                            </ul>
-                            <a href="../connect/contact-form.html" class="btn btn-success btn-block mt-3">
-                                Choose Plan
-                            </a>
+                            <h5 class="category-title">Web Automation</h5>
+                            <p class="category-subtitle">Modern web testing tools</p>
+                            <div class="tech-list d-none">
+                                <span class="tech-item">Playwright</span>
+                                <span class="tech-item">Cypress</span>
+                                <span class="tech-item">Selenium</span>
+                                <span class="tech-item">WebdriverIO</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="training-item text-center shadow-custom border-radius-custom h-100">
-                        <div class="p-4">
-                            <i class="fas fa-rocket fa-3x text-warning mb-3"></i>
-                            <h4 class="mb-3">Career Accelerator</h4>
-                            <div class="mb-3">
-                                <span class="h3 text-warning">$799</span>
-                                <span class="text-muted">/ 3 months</span>
+                    
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="category-card" data-category="mobile">
+                            <div class="category-icon">
+                                <i class="fas fa-mobile-alt fa-3x text-info"></i>
                             </div>
-                            <ul class="list-unstyled text-left">
-                                <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>12 x 1-hour sessions</li>
-                                <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>Complete portfolio development</li>
-                                <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>Mock interviews (3 rounds)</li>
-                                <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>Resume optimization</li>
-                                <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>Job application guidance</li>
-                                <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>24/7 support</li>
-                            </ul>
-                            <a href="../connect/contact-form.html" class="btn btn-warning btn-block mt-3">
-                                Transform Career
-                            </a>
+                            <h5 class="category-title">Mobile Automation</h5>
+                            <p class="category-subtitle">iOS & Android testing</p>
+                            <div class="tech-list d-none">
+                                <span class="tech-item">Appium</span>
+                                <span class="tech-item">Espresso</span>
+                                <span class="tech-item">XCUI Test</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="category-card" data-category="api">
+                            <div class="category-icon">
+                                <i class="fas fa-code fa-3x text-warning"></i>
+                            </div>
+                            <h5 class="category-title">API Automation</h5>
+                            <p class="category-subtitle">Backend & API testing</p>
+                            <div class="tech-list d-none">
+                                <span class="tech-item">RestAssured</span>
+                                <span class="tech-item">Postman</span>
+                                <span class="tech-item">Karate</span>
+                                <span class="tech-item">Katalon</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="category-card" data-category="performance">
+                            <div class="category-icon">
+                                <i class="fas fa-tachometer-alt fa-3x text-danger"></i>
+                            </div>
+                            <h5 class="category-title">Performance Testing</h5>
+                            <p class="category-subtitle">Load & stress testing</p>
+                            <div class="tech-list d-none">
+                                <span class="tech-item">Gatling</span>
+                                <span class="tech-item">JMeter</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="category-card" data-category="programming">
+                            <div class="category-icon">
+                                <i class="fas fa-laptop-code fa-3x text-secondary"></i>
+                            </div>
+                            <h5 class="category-title">Programming Languages</h5>
+                            <p class="category-subtitle">Core programming skills</p>
+                            <div class="tech-list d-none">
+                                <span class="tech-item">Java</span>
+                                <span class="tech-item">JavaScript</span>
+                                <span class="tech-item">TypeScript</span>
+                                <span class="tech-item">Python</span>
+                                <span class="tech-item">Kotlin</span>
+                                <span class="tech-item">Scala</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Mentoring Packages End -->
+    <!-- Training Services Offered End -->
 
-    <!-- Success Stories Start -->
-    <div class="training" id="success-stories">
+    <!-- Affordable Training Section Start -->
+    <div class="training" id="affordable-training" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
         <div class="container">
             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
-                <h3>Success Stories</h3>
-                <p>Real career transformations from our mentoring program</p>
+                <h2 class="text-white">💰 Affordable Training for Students</h2>
+                <p class="text-white-50">Quality mentoring that won't break your budget</p>
             </div>
             
-            <div class="row">
-                <div class="col-lg-6 mb-4 wow fadeInLeft" data-wow-delay="0.1s">
-                    <div class="bg-light p-4 rounded">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="https://via.placeholder.com/60x60/007bff/ffffff?text=RK" class="rounded-circle mr-3" alt="Success Story">
-                            <div>
-                                <h5 class="mb-0">Rajesh Kumar</h5>
-                                <small class="text-muted">Manual QE → Senior SDET at Google</small>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="bg-white rounded-lg shadow-lg p-5 text-center">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <i class="fas fa-graduation-cap fa-4x text-primary mb-3"></i>
+                                <h4 class="font-weight-bold text-dark">Student-Friendly Pricing</h4>
+                                <p class="text-muted">Flexible rates designed specifically for students and entry-level professionals</p>
+                                
+                                <div class="row text-center mt-4">
+                                    <div class="col-6">
+                                        <div class="border-right">
+                                            <h5 class="text-success mb-1">FREE</h5>
+                                            <small class="text-muted">First 30 Minutes</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <h5 class="text-primary mb-1">Affordable</h5>
+                                        <small class="text-muted">Hourly Rates</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="bg-light p-4 rounded">
+                                    <h5 class="text-primary mb-3">🎯 What You Get</h5>
+                                    <ul class="list-unstyled text-left">
+                                        <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>Personalized career roadmap</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>Hands-on technical training</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>Interview preparation</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>Portfolio building guidance</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>Job search support</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success mr-2"></i>WhatsApp support between sessions</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                        <p class="mb-0">"Vignesh's mentoring helped me transition from manual testing to automation in just 6 months. His personalized roadmap and technical guidance were invaluable. Now I'm working as a Senior SDET at Google!"</p>
-                        <div class="mt-3">
-                            <span class="badge badge-success">Salary: 200% increase</span>
-                            <span class="badge badge-info">Timeline: 6 months</span>
+                        
+                        <div class="text-center mt-4">
+                            <a href="../connect/whatsapp.html" class="btn btn-success btn-lg mr-3 mb-2">
+                                <i class="fab fa-whatsapp mr-2"></i>Book FREE Consultation
+                            </a>
+                            <a href="../connect/contact-form.html" class="btn btn-outline-primary btn-lg mb-2">
+                                <i class="fas fa-envelope mr-2"></i>Ask About Pricing
+                            </a>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-6 mb-4 wow fadeInRight" data-wow-delay="0.3s">
-                    <div class="bg-light p-4 rounded">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="https://via.placeholder.com/60x60/28a745/ffffff?text=PS" class="rounded-circle mr-3" alt="Success Story">
-                            <div>
-                                <h5 class="mb-0">Priya Sharma</h5>
-                                <small class="text-muted">QE → Lead SDET at Microsoft</small>
-                            </div>
-                        </div>
-                        <p class="mb-0">"The career accelerator program was life-changing. Vignesh's mock interviews and portfolio guidance helped me crack the Microsoft interview. Highly recommend his mentoring!"</p>
-                        <div class="mt-3">
-                            <span class="badge badge-success">Salary: 180% increase</span>
-                            <span class="badge badge-info">Timeline: 4 months</span>
+                        
+                        <div class="alert alert-info border-0 mt-4">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            <strong>Note:</strong> Pricing is customized based on your current level and goals. Let's discuss what works for your budget!
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Success Stories End -->
+    <!-- Affordable Training Section End -->
+
+
 
     <!-- Mentoring Reviews Section -->
     <div class="container-fluid py-5">
@@ -716,6 +924,16 @@
 
             // Load mentoring reviews
             loadMentoringReviews();
+
+            // Show/hide tech lists on hover for category cards
+            $('.category-card').hover(
+                function() {
+                    $(this).find('.tech-list').removeClass('d-none').addClass('d-block');
+                },
+                function() {
+                    $(this).find('.tech-list').removeClass('d-block').addClass('d-none');
+                }
+            );
         });
     </script>
 </body>

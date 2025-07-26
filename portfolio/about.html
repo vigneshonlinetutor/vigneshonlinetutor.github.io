@@ -324,22 +324,31 @@
             animation: countUp 0.8s ease-out;
         }
 
-        /* Technologies I Teach - Category Cards */
+        /* Technologies I Teach - Category Cards (Matching mentoring.html exactly) */
+        .training-categories {
+            margin-top: 30px;
+        }
+
         .category-card {
             background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
-            border: 2px solid #e9ecef;
             border-radius: 15px;
             padding: 30px 20px;
-            text-align: center;
+            min-height: 280px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
-            height: 100%;
             cursor: pointer;
+            position: relative;
+            border: 2px solid #e9ecef;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .category-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 123, 255, 0.15);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
             border-color: #007bff;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
         }
 
         .category-icon {
@@ -347,33 +356,44 @@
         }
 
         .category-title {
-            font-weight: 600;
-            color: #495057;
+            font-weight: 700;
             margin-bottom: 10px;
+            color: #333;
+            font-size: 1.1rem;
         }
 
         .category-subtitle {
-            color: #6c757d;
-            font-size: 0.9rem;
+            color: #666;
+            font-size: 14px;
             margin-bottom: 20px;
         }
 
         .tech-list {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 15px;
+            border-radius: 10px;
+            border-top: 3px solid #007bff;
+            margin-top: auto;
             display: flex;
             flex-wrap: wrap;
+            gap: 6px;
             justify-content: center;
-            gap: 8px;
         }
 
         .tech-item {
             background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
             color: white;
             padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            display: inline-block;
-            margin: 2px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+            transition: transform 0.2s ease;
+        }
+
+        .tech-item:hover {
+            transform: scale(1.05);
         }
 
         /* Success Stories Enhanced */
@@ -706,7 +726,7 @@
                     <div class="training-categories text-center wow fadeInUp" data-wow-delay="0.2s">
                         <div class="row">
                             <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="category-card">
+                                <div class="category-card" data-category="ai">
                                     <div class="category-icon">
                                         <i class="fas fa-robot fa-3x text-primary"></i>
                                     </div>
@@ -719,7 +739,7 @@
                             </div>
                             
                             <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="category-card">
+                                <div class="category-card" data-category="web">
                                     <div class="category-icon">
                                         <i class="fas fa-globe fa-3x text-success"></i>
                                     </div>
@@ -735,7 +755,7 @@
                             </div>
                             
                             <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="category-card">
+                                <div class="category-card" data-category="mobile">
                                     <div class="category-icon">
                                         <i class="fas fa-mobile-alt fa-3x text-info"></i>
                                     </div>
@@ -750,7 +770,7 @@
                             </div>
                             
                             <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="category-card">
+                                <div class="category-card" data-category="api">
                                     <div class="category-icon">
                                         <i class="fas fa-code fa-3x text-warning"></i>
                                     </div>
@@ -766,7 +786,7 @@
                             </div>
                             
                             <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="category-card">
+                                <div class="category-card" data-category="performance">
                                     <div class="category-icon">
                                         <i class="fas fa-tachometer-alt fa-3x text-danger"></i>
                                     </div>
@@ -780,7 +800,7 @@
                             </div>
                             
                             <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="category-card">
+                                <div class="category-card" data-category="programming">
                                     <div class="category-icon">
                                         <i class="fas fa-laptop-code fa-3x text-secondary"></i>
                                     </div>

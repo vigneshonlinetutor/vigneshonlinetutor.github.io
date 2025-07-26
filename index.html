@@ -765,6 +765,103 @@
                 letter-spacing: 1px;
             }
         }
+
+        /* Tech Preview Cards - Enhanced Styling */
+        .tech-preview-card {
+            transition: all 0.4s ease;
+            border: 2px solid #e9ecef !important;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tech-preview-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 123, 255, 0.15);
+            border-color: #007bff !important;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+            transition: transform 0.2s ease;
+        }
+
+        .tech-tag:hover {
+            transform: scale(1.05);
+        }
+
+        /* About Me Preview Enhancements */
+        .expertise-preview h4 {
+            position: relative;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .expertise-preview h4::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            border-radius: 2px;
+        }
+
+        /* Enhanced About Me Section */
+        #about-preview {
+            padding: 80px 0 !important;
+        }
+
+        .expertise-preview .row {
+            margin-bottom: 2rem;
+        }
+
+        /* Tech Preview Card Icons */
+        .tech-preview-card i {
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .tech-preview-card:hover i {
+            opacity: 1;
+        }
+
+        /* Enhanced buttons */
+        .expertise-preview .btn {
+            padding: 12px 24px;
+            font-weight: 600;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .expertise-preview .btn-primary {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .expertise-preview .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+        }
     </style>
 
 
@@ -919,41 +1016,41 @@
     <!-- Stats Start -->
     <div class="training" id="stats" style="background-color: #f8f9fa;">
         <div class="container">
-            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s" style="padding: 80px 0 40px;">
                 <h2>Proven Track Record</h2>
-                <p>Numbers that speak for our success and student satisfaction</p>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="stats-item text-center">
-                        <i class="fas fa-users fa-4x mb-4 text-primary"></i>
-                        <h2 class="text-gradient font-weight-bold">7000+</h2>
-                        <p class="text-muted font-weight-500">Students Trained</p>
-                        <small class="text-muted">Across all platforms</small>
+                <p>Numbers that speak for success and student satisfaction</p>
+                <div class="row mt-5">
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="stats-item text-center p-4">
+                            <i class="fas fa-users fa-4x mb-4 text-primary"></i>
+                            <h2 class="text-gradient font-weight-bold mb-2">7000+</h2>
+                            <p class="text-muted font-weight-500 mb-1">Students Trained</p>
+                            <small class="text-muted">Across all platforms worldwide</small>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="stats-item text-center">
-                        <i class="fas fa-graduation-cap fa-4x mb-4 text-primary"></i>
-                        <h2 class="text-gradient font-weight-bold">Multiple</h2>
-                        <p class="text-muted font-weight-500">Bestseller Udemy Courses</p>
-                        <small class="text-muted">Top-rated on Udemy</small>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="stats-item text-center p-4">
+                            <i class="fas fa-star fa-4x mb-4 text-warning"></i>
+                            <h2 class="text-gradient font-weight-bold mb-2">4.9★</h2>
+                            <p class="text-muted font-weight-500 mb-1">Average Rating</p>
+                            <small class="text-muted">Consistent excellence across courses</small>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="stats-item text-center">
-                        <i class="fas fa-award fa-4x mb-4 text-primary"></i>
-                        <h2 class="text-gradient font-weight-bold">10+</h2>
-                        <p class="text-muted font-weight-500">Years Experience</p>
-                        <small class="text-muted">In automation testing</small>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="stats-item text-center p-4">
+                            <i class="fas fa-trophy fa-4x mb-4 text-success"></i>
+                            <h2 class="text-gradient font-weight-bold mb-2">5+</h2>
+                            <p class="text-muted font-weight-500 mb-1">Bestseller Courses</p>
+                            <small class="text-muted">Top-rated on Udemy platform</small>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="stats-item text-center">
-                        <i class="fas fa-star fa-4x mb-4 text-primary"></i>
-                        <h2 class="text-gradient font-weight-bold">4.9+</h2>
-                        <p class="text-muted font-weight-500">Average Rating</p>
-                        <small class="text-muted">Student feedback</small>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                        <div class="stats-item text-center p-4">
+                            <i class="fas fa-chart-line fa-4x mb-4 text-info"></i>
+                            <h2 class="text-gradient font-weight-bold mb-2">100%</h2>
+                            <p class="text-muted font-weight-500 mb-1">Job Success Rate</p>
+                            <small class="text-muted">Mentoring students career success</small>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1078,70 +1175,75 @@
             </div>
             <div class="row align-items-center">
                 <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.3s">
-                    <div class="expertise-categories" style="font-size: 0.9rem;">
-                        <!-- AI Category -->
-                        <div class="expertise-category mb-3">
-                            <h6 class="text-primary mb-2" style="font-size: 1rem; font-weight: 600;"><i class="fas fa-robot mr-2"></i>AI</h6>
-                            <div class="category-items">
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Gen-AI for QA's</span>
+                    <div class="expertise-preview">
+                        <h4 class="mb-4 text-primary">Technologies I Master & Teach</h4>
+                        <div class="row">
+                            <!-- Core Automation -->
+                            <div class="col-md-6 mb-3">
+                                <div class="tech-preview-card p-3 border rounded bg-white h-100">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="fas fa-robot fa-2x text-primary mr-3"></i>
+                                        <h6 class="mb-0 font-weight-bold">Core Automation</h6>
+                                    </div>
+                                    <div class="tech-tags">
+                                        <span class="tech-tag">Playwright</span>
+                                        <span class="tech-tag">Cypress</span>
+                                        <span class="tech-tag">Selenium</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Programming -->
+                            <div class="col-md-6 mb-3">
+                                <div class="tech-preview-card p-3 border rounded bg-white h-100">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="fas fa-code fa-2x text-success mr-3"></i>
+                                        <h6 class="mb-0 font-weight-bold">Programming</h6>
+                                    </div>
+                                    <div class="tech-tags">
+                                        <span class="tech-tag">Java</span>
+                                        <span class="tech-tag">JavaScript</span>
+                                        <span class="tech-tag">TypeScript</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Mobile & API -->
+                            <div class="col-md-6 mb-3">
+                                <div class="tech-preview-card p-3 border rounded bg-white h-100">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="fas fa-mobile-alt fa-2x text-info mr-3"></i>
+                                        <h6 class="mb-0 font-weight-bold">Mobile & API</h6>
+                                    </div>
+                                    <div class="tech-tags">
+                                        <span class="tech-tag">Appium</span>
+                                        <span class="tech-tag">RestAssured</span>
+                                        <span class="tech-tag">Postman</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Performance & AI -->
+                            <div class="col-md-6 mb-3">
+                                <div class="tech-preview-card p-3 border rounded bg-white h-100">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="fas fa-tachometer-alt fa-2x text-warning mr-3"></i>
+                                        <h6 class="mb-0 font-weight-bold">Performance & AI</h6>
+                                    </div>
+                                    <div class="tech-tags">
+                                        <span class="tech-tag">Gatling</span>
+                                        <span class="tech-tag">JMeter</span>
+                                        <span class="tech-tag">Gen-AI for QAs</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        
-                        <!-- Web Automation Category -->
-                        <div class="expertise-category mb-3">
-                            <h6 class="text-primary mb-2" style="font-size: 1rem; font-weight: 600;"><i class="fas fa-globe mr-2"></i>Web Automation</h6>
-                            <div class="category-items">
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Playwright</span>
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Cypress</span>
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Selenium</span>
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">WebdriverIO</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Mobile Automation Category -->
-                        <div class="expertise-category mb-3">
-                            <h6 class="text-primary mb-2" style="font-size: 1rem; font-weight: 600;"><i class="fas fa-mobile-alt mr-2"></i>Mobile Automation</h6>
-                            <div class="category-items">
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Appium</span>
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Espresso</span>
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">XCUI Test</span>
-                            </div>
-                        </div>
-                        
-                        <!-- API Automation Category -->
-                        <div class="expertise-category mb-3">
-                            <h6 class="text-primary mb-2" style="font-size: 1rem; font-weight: 600;"><i class="fas fa-exchange-alt mr-2"></i>API Automation</h6>
-                            <div class="category-items">
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">RestAssured</span>
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Postman</span>
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Karate</span>
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Katalon</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Performance Testing Category -->
-                        <div class="expertise-category mb-3">
-                            <h6 class="text-primary mb-2" style="font-size: 1rem; font-weight: 600;"><i class="fas fa-tachometer-alt mr-2"></i>Performance Testing</h6>
-                            <div class="category-items">
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Gatling</span>
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">JMeter</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Programming Languages Category -->
-                        <div class="expertise-category mb-3">
-                            <h6 class="text-primary mb-2" style="font-size: 1rem; font-weight: 600;"><i class="fas fa-code mr-2"></i>Programming Languages</h6>
-                            <div class="category-items">
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Java</span>
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">JavaScript</span>
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">TypeScript</span>
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Python</span>
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Kotlin</span>
-                                <span class="badge badge-light mr-2 mb-1" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Scala</span>
-                            </div>
+                        <div class="mt-4">
+                            <p class="text-muted mb-3"><strong>10+ years</strong> transforming careers through hands-on automation training and mentorship.</p>
+                            <a href="portfolio/about.html" class="btn btn-primary mr-3">Learn More About Me</a>
+                            <a href="portfolio/training/mentoring.html" class="btn btn-outline-primary">Start Your Journey</a>
                         </div>
                     </div>
-                    <a href="portfolio/about.html" class="btn btn-primary mt-3">Learn More About Me</a>
                 </div>
                 <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.5s">
                     <div class="text-center">

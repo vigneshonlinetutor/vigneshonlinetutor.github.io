@@ -222,25 +222,25 @@
         }
 
         .category-card {
-            background: #fff;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
             border-radius: 15px;
             padding: 30px 20px;
-            height: 100%;
+            min-height: 280px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
-            overflow: hidden;
+            border: 2px solid #e9ecef;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .category-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-
-        .category-card:hover .tech-list {
-            display: block !important;
-            animation: slideDown 0.3s ease;
+            border-color: #007bff;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
         }
 
         .category-icon {
@@ -251,33 +251,41 @@
             font-weight: 700;
             margin-bottom: 10px;
             color: #333;
+            font-size: 1.1rem;
         }
 
         .category-subtitle {
             color: #666;
             font-size: 14px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .tech-list {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             padding: 15px;
-            border-top: 2px solid #007bff;
+            border-radius: 10px;
+            border-top: 3px solid #007bff;
+            margin-top: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
         }
 
         .tech-item {
-            display: inline-block;
-            background: #007bff;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
             color: white;
-            padding: 4px 8px;
-            margin: 2px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+            transition: transform 0.2s ease;
+        }
+
+        .tech-item:hover {
+            transform: scale(1.05);
         }
 
         @keyframes slideDown {
@@ -557,7 +565,7 @@
                             </div>
                             <h5 class="category-title">Artificial Intelligence</h5>
                             <p class="category-subtitle">Next-gen QA with AI</p>
-                            <div class="tech-list d-none">
+                            <div class="tech-list">
                                 <span class="tech-item">Gen-AI for QAs</span>
                             </div>
                         </div>
@@ -570,7 +578,7 @@
                             </div>
                             <h5 class="category-title">Web Automation</h5>
                             <p class="category-subtitle">Modern web testing tools</p>
-                            <div class="tech-list d-none">
+                            <div class="tech-list">
                                 <span class="tech-item">Playwright</span>
                                 <span class="tech-item">Cypress</span>
                                 <span class="tech-item">Selenium</span>
@@ -586,7 +594,7 @@
                             </div>
                             <h5 class="category-title">Mobile Automation</h5>
                             <p class="category-subtitle">iOS & Android testing</p>
-                            <div class="tech-list d-none">
+                            <div class="tech-list">
                                 <span class="tech-item">Appium</span>
                                 <span class="tech-item">Espresso</span>
                                 <span class="tech-item">XCUI Test</span>
@@ -601,7 +609,7 @@
                             </div>
                             <h5 class="category-title">API Automation</h5>
                             <p class="category-subtitle">Backend & API testing</p>
-                            <div class="tech-list d-none">
+                            <div class="tech-list">
                                 <span class="tech-item">RestAssured</span>
                                 <span class="tech-item">Postman</span>
                                 <span class="tech-item">Karate</span>
@@ -617,7 +625,7 @@
                             </div>
                             <h5 class="category-title">Performance Testing</h5>
                             <p class="category-subtitle">Load & stress testing</p>
-                            <div class="tech-list d-none">
+                            <div class="tech-list">
                                 <span class="tech-item">Gatling</span>
                                 <span class="tech-item">JMeter</span>
                             </div>
@@ -631,7 +639,7 @@
                             </div>
                             <h5 class="category-title">Programming Languages</h5>
                             <p class="category-subtitle">Core programming skills</p>
-                            <div class="tech-list d-none">
+                            <div class="tech-list">
                                 <span class="tech-item">Java</span>
                                 <span class="tech-item">JavaScript</span>
                                 <span class="tech-item">TypeScript</span>
@@ -892,16 +900,6 @@
 
             // Load mentoring reviews
             loadMentoringReviews();
-
-            // Show/hide tech lists on hover for category cards
-            $('.category-card').hover(
-                function() {
-                    $(this).find('.tech-list').removeClass('d-none').addClass('d-block');
-                },
-                function() {
-                    $(this).find('.tech-list').removeClass('d-block').addClass('d-none');
-                }
-            );
         });
     </script>
 </body>

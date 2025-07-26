@@ -8,7 +8,7 @@ Visit: [https://vigneshonlinetutor.github.io/](https://vigneshonlinetutor.github
 
 ## 💼 About
 
-Professional portfolio for **Vignesh Srinivasa Raghavan** - Lead SDET with 9+ years of experience in automation testing, Udemy bestseller instructor, and corporate trainer.
+Professional portfolio for **Vignesh Srinivasa Raghavan** - Lead SDET with 10+ years of experience in automation testing, Udemy bestseller instructor, and corporate trainer.
 
 ## 🎯 Features
 
@@ -95,7 +95,7 @@ Hosted on **GitHub Pages** with automatic deployment from the main branch.
 
 - **1500+ Students Trained**: Across all platforms
 - **Multiple Bestseller Courses**: Top-rated Udemy content
-- **9+ Years Experience**: In automation testing
+- **10+ Years Experience**: In automation testing
 - **4.5+ Average Rating**: From student feedback
 
 ## 📧 Contact

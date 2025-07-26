@@ -170,13 +170,13 @@
     "rating": 5.0,
     "photo": "swati_shinde.jpg"
   }
-    ,{
+    ,    {
       "name": "Swapnil",
       "title": "Senior QA Analyst",
       "company": "Capgemini",
       "rating": 4.8,
       "photo": "generic_male.jpg",
-      "review": "I was stuck in manual QA for years. Vignesh's mentorship gave me not just a roadmap but the confidence to switch to automation. His guidance on frameworks, AI tools in QA, and resume strategy was gold. The mock interview we did helped me land my first automation role!",
+      "review": "From manual QA to high-paying automation role in 4 months! Vignesh completely transformed my career by training me from JavaScript fundamentals to advanced Cypress automation. His structured approach covered everything - programming concepts, framework design, real-world project scenarios, and interview preparation. The personalized mentorship didn't just teach me tools; it gave me the confidence to crack automation interviews. Today I'm earning 60% more than my previous manual QA role. Best investment I ever made!",
       "type": "mentoring",
       "subtype": ""
     },
@@ -186,7 +186,7 @@
       "company": "Absa Group",
       "rating": 4.9,
       "photo": "shilpa_shravge.jpeg",
-      "review": "Vignesh's mentorship is unlike any other. He helped me migrate our legacy framework to a clean, maintainable architecture. What stood out was how he explained thread-safety and framework decisions clearly. Also loved the regular mock interviews \u2013 boosted my confidence immensely!",
+      "review": "Vignesh's Playwright automation strategy mentorship was a game-changer for my career! He guided me through complex TypeScript implementations that seemed impossible at first. His approach to breaking down enterprise-level automation challenges into manageable solutions was incredible. With his guidance, I successfully delivered a critical office project that impressed my entire team. The way he explains advanced concepts like thread-safety, framework architecture, and design patterns made me a confident automation lead. Highly recommend for anyone wanting to excel in senior automation roles!",
       "type": "mentoring",
       "subtype": ""
     },
@@ -196,7 +196,7 @@
       "company": "Customer Alliance",
       "rating": 4.7,
       "photo": "neha_tyagi.jpeg",
-      "review": "During 1:1 mentoring, Vignesh helped me transform my basic TestNG skills into a solid framework. His suggestions around reporting, retries, and cross-browser testing saved me hours of debugging. I can't thank him enough!",
+      "review": "Career restart success story! After a 1-year career break, I was worried about re-entering the tech world. Vignesh's 2-month intensive Playwright TypeScript mentorship completely transformed my prospects. Starting from manual QA basics, he patiently trained me through modern automation concepts, TypeScript programming, and advanced Playwright features. His structured curriculum and hands-on approach gave me the confidence to apply for automation roles. Today I'm working in a high-paying Playwright automation position that I never thought possible! Vignesh doesn't just teach – he transforms careers.",
       "type": "mentoring",
       "subtype": ""
     },
@@ -206,7 +206,7 @@
       "company": "Retresco",
       "rating": 5.0,
       "photo": "sriram_balaji.jpeg",
-      "review": "Through Vignesh's 1-on-1 coaching, I upgraded my entire QA strategy to include GenAI tools. We restructured our automation framework with better CI/CD, implemented Docker, and added AI-powered reporting workflows. That insight is hard to find elsewhere.",
+      "review": "Interview success and ongoing support! Vignesh helped me nail a challenging Playwright interview assignment that seemed impossible initially. His strategic approach to breaking down complex automation problems and explaining advanced concepts made the difference. After clearing the interview, he continues to mentor me through daily office challenges. His guidance on framework architecture, best practices, and troubleshooting has made me the go-to automation person in my team. Having Vignesh as a mentor is like having a senior automation architect on speed dial!",
       "type": "mentoring",
       "subtype": ""
     },
@@ -216,7 +216,7 @@
       "company": "Zurich Covermore",
       "rating": 5.0,
       "photo": "penzar_merchant.jpeg",
-      "review": "Attended Vignesh's Playwright workshop last year. It was a great learning experience and I was able to apply the learnings in my work. From then on in constant touch with Vignesh for my queries and guidance. He is a great mentor and a great teacher.",
+      "review": "Complete career transformation! From mechanical QA to software automation expert in 5 months. Vignesh's intensive mentorship covered everything - manual testing fundamentals, programming concepts, and advanced Playwright automation. His patient teaching style helped me grasp complex technical concepts despite my non-software background. The rigorous training prepared me for real-world challenges, and I successfully landed a high-paying Playwright automation role. Even now, Vignesh provides daily support for my office work. His mentorship program is perfect for anyone wanting a complete career switch into software QA!",
       "type": "mentoring",
       "subtype": ""
     },
@@ -226,7 +226,7 @@
       "company": "Check 24",
       "rating": 5.0,
       "photo": "akshaya_narayanan.jpeg",
-      "review": "Couple of years back reached out to Vignesh via LinkedIn and asked him to guide me for an interview preparation. He was very helpful and guided me through the process. Throught which I have cleared my interview and got selected. Years passed and I have been in touch with Vignesh for my queries and guidance. ",
+      "review": "From non-technical to German QA superstar! My journey with Vignesh started as a complete beginner with zero technical background. He trained me comprehensively in Selenium, Cypress, and Playwright – building my skills from ground up. His mentorship wasn't just technical; he guided me through interview strategies, resume building, and career planning. The result? I secured a high-paying QA position in Germany! Moving from India to work as a QA engineer in Germany seemed impossible, but Vignesh made it happen. Even after years, I still reach out to him for guidance. He's not just a mentor – he's a career transformer!",
       "type": "mentoring",
       "subtype": ""
     },
@@ -236,7 +236,7 @@
       "company": "JLL Technologies",
       "rating": 5.0,
       "photo": "anurima_chandra.jpeg",
-      "review": "Vignesh is a great trainer and mentor. He taught me various automation techologies such as selenium, cypress etc. Due to which I could able to shine in my current organization and able to automate on my own.",
+      "review": "Complete automation mastery achieved! Vignesh trained me from JavaScript fundamentals to advanced Cypress automation. His comprehensive approach covered not just the tool, but proper programming concepts and best practices. What impressed me most was how he connected the training to real office scenarios. After completing his mentorship, I successfully automated all manual processes in my current organization and became the automation champion in my team. His ongoing support for office work challenges makes him an invaluable mentor. Perfect for anyone wanting to master Cypress automation from scratch!",
       "type": "mentoring",
       "subtype": ""
     },

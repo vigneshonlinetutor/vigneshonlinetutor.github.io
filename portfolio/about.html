@@ -215,6 +215,197 @@
         .dropdown:hover .dropdown-menu {
             display: block;
         }
+
+        /* Custom About Page Styles */
+        .credential-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stats-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stats-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card, .audience-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover, .audience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .success-story {
+            padding: 30px 20px;
+        }
+
+        .quote-mark {
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .expertise-category {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            transition: transform 0.3s ease;
+        }
+
+        .expertise-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-list .skill-item {
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .skill-level {
+            height: 6px;
+            background-color: #e9ecef;
+            border-radius: 3px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .skill-bar {
+            height: 100%;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            border-radius: 3px;
+            transition: width 2s ease-in-out;
+        }
+
+        .philosophy-card {
+            transition: transform 0.3s ease;
+        }
+
+        .philosophy-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .audience-item {
+            text-align: left;
+            padding: 8px 0;
+        }
+
+        .audience-item strong {
+            color: #495057;
+        }
+
+        /* Animation for stats */
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stats-item h2 {
+            animation: countUp 0.8s ease-out;
+        }
+
+        /* Technologies I Teach - Category Cards */
+        .category-card {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 123, 255, 0.15);
+            border-color: #007bff;
+        }
+
+        .category-icon {
+            margin-bottom: 20px;
+        }
+
+        .category-title {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        .category-subtitle {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .tech-item {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        /* Success Stories Enhanced */
+        .success-story {
+            padding: 30px 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .success-story:hover {
+            transform: scale(1.02);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .credential-badge {
+                margin: 5px 0;
+                display: block;
+                text-align: center;
+            }
+            
+            .success-story {
+                padding: 20px 10px;
+            }
+            
+            .tech-expertise-card {
+                margin-bottom: 20px;
+            }
+
+            .tech-icon {
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 
@@ -314,220 +505,295 @@
     </div>
     <!-- Nav Bar End -->
 
-    <!-- Page Header Start -->
+    <!-- Hero Section Start - Immediate Credibility -->
     <div class="hero" id="about">
         <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-12">
                     <div class="hero-content text-center">
-                        <div class="hero-text">
-                            <h1>About Me</h1>
-                            <p>Lead SDET | Udemy Instructor | Corporate Trainer</p>
+                        <div class="hero-text wow fadeInUp" data-wow-delay="0.1s">
+                            <h1 class="display-4 font-weight-bold mb-3">The Automation Testing Expert Who Has Transformed <span class="text-primary">7000+ Careers</span></h1>
+                            <p class="lead mb-4">Lead SDET | Udemy Bestseller | Corporate Trainer | 10+ Years Experience</p>
+                            <div class="d-flex justify-content-center flex-wrap">
+                                <div class="credential-badge mx-3 mb-2">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <span class="font-weight-bold">4.9★ Rating</span>
+                                </div>
+                                <div class="credential-badge mx-3 mb-2">
+                                    <i class="fas fa-trophy text-success"></i>
+                                    <span class="font-weight-bold">Multiple Bestsellers</span>
+                                </div>
+                                <div class="credential-badge mx-3 mb-2">
+                                    <i class="fas fa-chart-line text-info"></i>
+                                    <span class="font-weight-bold">100% Job Success Rate</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Page Header End -->
+    <!-- Hero Section End -->
 
     <!-- About Start -->
     <div class="training" id="about-content">
         <div class="container">
-            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
-                <h2>Professional Background</h2>
-                <p>10+ years of experience in Quality Assurance and Automation Engineering</p>
-            </div>
             
-            <div class="row">
+            <!-- Section 2: Impact Numbers - Social Proof -->
+            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s" style="padding: 80px 0 40px;">
+                <h2>Proven Track Record</h2>
+                <p>Numbers that speak for success and student satisfaction</p>
+                <div class="row mt-5">
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="stats-item text-center p-4">
+                            <i class="fas fa-users fa-4x mb-4 text-primary"></i>
+                            <h2 class="text-gradient font-weight-bold mb-2">7000+</h2>
+                            <p class="text-muted font-weight-500 mb-1">Students Trained</p>
+                            <small class="text-muted">Across all platforms worldwide</small>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="stats-item text-center p-4">
+                            <i class="fas fa-star fa-4x mb-4 text-warning"></i>
+                            <h2 class="text-gradient font-weight-bold mb-2">4.9★</h2>
+                            <p class="text-muted font-weight-500 mb-1">Average Rating</p>
+                            <small class="text-muted">Consistent excellence across courses</small>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="stats-item text-center p-4">
+                            <i class="fas fa-trophy fa-4x mb-4 text-success"></i>
+                            <h2 class="text-gradient font-weight-bold mb-2">5+</h2>
+                            <p class="text-muted font-weight-500 mb-1">Bestseller Courses</p>
+                            <small class="text-muted">Top-rated on Udemy platform</small>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                        <div class="stats-item text-center p-4">
+                            <i class="fas fa-chart-line fa-4x mb-4 text-info"></i>
+                            <h2 class="text-gradient font-weight-bold mb-2">100%</h2>
+                            <p class="text-muted font-weight-500 mb-1">Job Success Rate</p>
+                            <small class="text-muted">Mentoring students career success</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: My Story - Building Trust -->
+            <div class="row mt-5 align-items-center" style="background-color: #f8f9fa; border-radius: 15px; padding: 60px 40px;">
                 <div class="col-lg-8 wow fadeInLeft" data-wow-delay="0.2s">
-                    <p>
-                        Lead SDET with <strong>10+ years</strong> of experience. I've honed my craft
-                        as a Software Quality Engineer, specializing in Agile Testing methodologies, both Automation & Manual, while
-                        excelling in devising robust Test Strategies, Test plan and steering execution with finesse.
+                    <h3 class="mb-4">From Engineer to Educator: My Journey</h3>
+                    <p class="lead mb-4">
+                        Ten years ago, I was where many of you are today – struggling with outdated testing methods, 
+                        feeling overwhelmed by new technologies, and wondering how to advance my career in automation testing.
+                    </p>
+                    <p class="mb-4">
+                        <strong>The turning point came</strong> when I realized that mastering automation wasn't just about learning tools – 
+                        it was about understanding the right approach, having proper guidance, and applying knowledge to real-world scenarios.
+                        After transforming my own career and helping countless colleagues, I discovered my true passion: 
+                        <em>empowering others to achieve the same success.</em>
+                    </p>
+                    <p class="mb-0">
+                        <strong>Today, I don't just teach automation – I transform careers.</strong> Every student success story, 
+                        every career breakthrough, every interview cleared reminds me why I chose this path. 
+                        When you learn with me, you're not just acquiring skills; you're joining a community of 
+                        successful automation professionals who've made the same journey.
                     </p>
                 </div>
-                <div class="col-lg-4 wow fadeInRight" data-wow-delay="0.2s">
+                <div class="col-lg-4 wow fadeInRight" data-wow-delay="0.3s">
                     <div class="text-center">
-                        <img src="displayPicture/Viki-DP.jpg" alt="Vignesh Srinivasa Raghavan" class="img-fluid rounded-circle" style="max-width: 200px;">
+                        <img src="displayPicture/Viki-DP.jpg" alt="Vignesh Srinivasa Raghavan" class="img-fluid rounded-circle shadow-lg" style="max-width: 280px;">
+                        <div class="mt-3">
+                            <h5 class="font-weight-bold text-primary">Vignesh Srinivasa Raghavan</h5>
+                            <p class="text-muted mb-0">Lead SDET & Automation Architect</p>
+                            <p class="text-muted"><small>10+ Years Experience</small></p>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Section 4: What Makes Me Different - Unique Value Proposition -->
             <div class="row mt-5">
-                <div class="col-12 wow fadeInUp" data-wow-delay="0.3s">
-                    <h3>Roles And Responsibilities</h3>
+                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h3 class="mb-5">What Makes My Training Different</h3>
                     <div class="row">
-                        <div class="col-md-6">
-                            <ul>
-                                <li>Proficient in Web & Mobile Automation, API Testing, and Performance Testing. Leveraging a
-                                    diverse tech stack, I've demonstrated prowess in employing cutting-edge tools to optimize
-                                    efficiency and accuracy.</li>
-                                <li>Adept in Modern Web UI Automation using Cypress and Playwright, with a track record of
-                                    creating sophisticated frameworks that elevate testing efficiency to unprecedented levels.</li>
-                                <li>Extensive hands-on experience with Selenium WebDriver, TestNG, Java, and Maven for Selenium
-                                    Automation.</li>
-                                <li>Proficiency extends to Appium and Test Cafe for Mobile automation across Android & iOS
-                                    platforms.</li>
-                                <li>Extensive hands-on experience with Rest Assured to ensure seamless API Automation.</li>
-                            </ul>
+                        <div class="col-lg-3 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="feature-card h-100 p-4 text-center border rounded shadow-sm">
+                                <i class="fas fa-laptop-code fa-3x mb-3 text-primary"></i>
+                                <h5 class="font-weight-bold">Real Enterprise Experience</h5>
+                                <p class="text-muted">10+ years building automation frameworks in actual production environments, not just theoretical knowledge.</p>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <ul>
-                                <li>Well-versed in critical infrastructure tools such as Docker & Kubernetes, leveraging them
-                                    to streamline testing processes and optimize resource allocation.</li>
-                                <li>Adept in Test-Driven Development (TDD) and Behavior Driven Development (BDD).</li>
-                                <li>Strong skills in conducting comprehensive Database testing through SQL queries and MongoDB,
-                                    ensuring data integrity and system robustness.</li>
-                                <li>Extensive experience in Load/Performance Testing using Gatling & JMeter, ensuring
-                                    applications withstand real-world demands and perform optimally under stress.</li>
-                                <li>Actively engaged as an Online/Offline Trainer, specializing in Playwright, Cypress,
-                                    Selenium, Appium, Java, JavaScript, etc. Sharing knowledge and expertise to mentor and
-                                    empower teams.</li>
-                                <li>Recognized as an accomplished Udemy Instructor with published courses on Playwright,
-                                    Cypress & Selenium, attracting over 1500+ students.</li>
-                            </ul>
+                        <div class="col-lg-3 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="feature-card h-100 p-4 text-center border rounded shadow-sm">
+                                <i class="fas fa-rocket fa-3x mb-3 text-success"></i>
+                                <h5 class="font-weight-bold">Proven Career Results</h5>
+                                <p class="text-muted">100% job success rate for mentoring students. See real transformations: manual QA → automation experts.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="feature-card h-100 p-4 text-center border rounded shadow-sm">
+                                <i class="fas fa-tools fa-3x mb-3 text-warning"></i>
+                                <h5 class="font-weight-bold">Modern Technology Stack</h5>
+                                <p class="text-muted">Focus on current industry demands: Playwright, Cypress, API testing, CI/CD - not outdated approaches.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.5s">
+                            <div class="feature-card h-100 p-4 text-center border rounded shadow-sm">
+                                <i class="fas fa-heart fa-3x mb-3 text-danger"></i>
+                                <h5 class="font-weight-bold">Personal Investment</h5>
+                                <p class="text-muted">I personally invest in each student's success. Ongoing support, career guidance, and interview preparation included.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row mt-5">
-                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.4s">
-                    <h3>Technical Expertise</h3>
-                    <div class="row mt-4">
-                        <div class="col-md-3">
-                            <i class="fas fa-robot fa-3x mb-3" style="color: #f40909;"></i>
-                            <h5>Automation Testing</h5>
-                            <p>Selenium, Playwright, Cypress, Appium</p>
-                        </div>
-                        <div class="col-md-3">
-                            <i class="fas fa-code fa-3x mb-3" style="color: #f40909;"></i>
-                            <h5>Programming</h5>
-                            <p>Java, JavaScript, TypeScript</p>
-                        </div>
-                        <div class="col-md-3">
-                            <i class="fas fa-cogs fa-3x mb-3" style="color: #f40909;"></i>
-                            <h5>API Testing</h5>
-                            <p>Rest Assured, Postman</p>
-                        </div>
-                        <div class="col-md-3">
-                            <i class="fas fa-tachometer-alt fa-3x mb-3" style="color: #f40909;"></i>
-                            <h5>Performance Testing</h5>
-                            <p>Gatling, JMeter</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mt-5">
-                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.5s">
-                    <h3>Teaching & Training</h3>
-                    <div class="row mt-4">
-                        <div class="col-md-4">
-                            <i class="fas fa-graduation-cap fa-3x mb-3" style="color: #f40909;"></i>
-                            <h5>Udemy Instructor</h5>
-                            <p>1500+ students across multiple courses</p>
-                        </div>
-                        <div class="col-md-4">
-                            <i class="fas fa-chalkboard-teacher fa-3x mb-3" style="color: #f40909;"></i>
-                            <h5>Corporate Trainer</h5>
-                            <p>Training organizations and individuals</p>
-                        </div>
-                        <div class="col-md-4">
-                            <i class="fas fa-users fa-3x mb-3" style="color: #f40909;"></i>
-                            <h5>Mentor</h5>
-                            <p>Guiding teams in automation best practices</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Skills Progress Section -->
-            <div class="row mt-5" style="background-color: #f8f9fa; border-radius: 10px; padding: 40px;">
-                <div class="col-12 wow fadeInUp" data-wow-delay="0.6s">
-                    <h3 class="text-center mb-4">Core Skills & Expertise</h3>
+            <!-- Section 5: Real Impact - Success Stories -->
+            <div class="row mt-5" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%); color: white; border-radius: 15px; padding: 60px 40px;">
+                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h3 class="mb-5 text-white">Real Career Transformations</h3>
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="skill-item mb-4" data-skill="95">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span>Selenium WebDriver</span>
-                                    <span>95%</span>
+                        <div class="col-md-4 mb-4 wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="success-story text-center">
+                                <div class="story-icon mb-3">
+                                    <i class="fas fa-globe fa-3x text-warning"></i>
                                 </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-primary" style="--skill-width: 95%; width: 0%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="skill-item mb-4" data-skill="90">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span>Playwright</span>
-                                    <span>90%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" style="--skill-width: 90%; width: 0%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="skill-item mb-4" data-skill="85">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span>Cypress</span>
-                                    <span>85%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-info" style="--skill-width: 85%; width: 0%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="skill-item mb-4" data-skill="90">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span>Java Programming</span>
-                                    <span>90%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-warning" style="--skill-width: 90%; width: 0%"></div>
-                                </div>
+                                <h5 class="font-weight-bold text-white">Akshaya → Germany QA Engineer</h5>
+                                <p class="text-white">
+                                    Started as a complete non-technical person with no programming background. Through comprehensive training in Selenium, Cypress, and Playwright, she mastered automation testing from fundamentals to advanced frameworks. Today, she's working as a high-paying QA Engineer in Germany, proving that anyone can transform their career with the right guidance and dedication.
+                                </p>
+                                <div class="quote-mark">"Vignesh doesn't just teach – he transforms careers! His structured approach and personal mentorship made my impossible dream a reality."</div>
                             </div>
                         </div>
-                        
-                        <div class="col-md-6">
-                            <div class="skill-item mb-4" data-skill="85">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span>JavaScript/TypeScript</span>
-                                    <span>85%</span>
+                        <div class="col-md-4 mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="success-story text-center">
+                                <div class="story-icon mb-3">
+                                    <i class="fas fa-briefcase fa-3x text-info"></i>
                                 </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-danger" style="--skill-width: 85%; width: 0%"></div>
+                                <h5 class="font-weight-bold text-white">Neha → Career Restart Success</h5>
+                                <p class="text-white">
+                                    After a 2-year career break, Neha felt overwhelmed about re-entering the tech industry. Through an intensive 2-month Playwright TypeScript program, she not only regained her confidence but also upgraded her skills to modern automation tools. She successfully secured a high-paying automation position, proving that career breaks don't have to be career setbacks.
+                                </p>
+                                <div class="quote-mark">"I never thought this was possible after my break! Vignesh's patient guidance and practical approach helped me restart stronger than ever."</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4 wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="success-story text-center">
+                                <div class="story-icon mb-3">
+                                    <i class="fas fa-rocket fa-3x text-success"></i>
+                                </div>
+                                <h5 class="font-weight-bold text-white">Penzar → Career Switch Success</h5>
+                                <p class="text-white">
+                                    A mechanical engineer wanting to switch to software testing, Penzar underwent 5 months of rigorous training covering everything from manual testing fundamentals to advanced Playwright automation. With ongoing daily support and mentorship, he successfully transitioned to a high-paying Playwright automation position, completely changing his career trajectory.
+                                </p>
+                                <div class="quote-mark">"Complete career transformation with dedicated mentorship! Vignesh's daily support made all the difference in my journey from mechanical to software testing."</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 6: Technologies I Teach -->
+            <div class="row mt-5">
+                <div class="container">
+                    <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                        <h3>Technologies I Teach</h3>
+                        <p>Master these in-demand skills to land your dream automation job</p>
+                    </div>
+                    
+                    <div class="training-categories text-center wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="category-card">
+                                    <div class="category-icon">
+                                        <i class="fas fa-robot fa-3x text-primary"></i>
+                                    </div>
+                                    <h5 class="category-title">Artificial Intelligence</h5>
+                                    <p class="category-subtitle">Next-gen QA with AI</p>
+                                    <div class="tech-list">
+                                        <span class="tech-item">Gen-AI for QAs</span>
+                                    </div>
                                 </div>
                             </div>
                             
-                            <div class="skill-item mb-4" data-skill="88">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span>API Testing (RestAssured)</span>
-                                    <span>88%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-secondary" style="--skill-width: 88%; width: 0%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="skill-item mb-4" data-skill="80">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span>Performance Testing (Gatling)</span>
-                                    <span>80%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-dark" style="--skill-width: 80%; width: 0%"></div>
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="category-card">
+                                    <div class="category-icon">
+                                        <i class="fas fa-globe fa-3x text-success"></i>
+                                    </div>
+                                    <h5 class="category-title">Web Automation</h5>
+                                    <p class="category-subtitle">Modern web testing tools</p>
+                                    <div class="tech-list">
+                                        <span class="tech-item">Playwright</span>
+                                        <span class="tech-item">Cypress</span>
+                                        <span class="tech-item">Selenium</span>
+                                        <span class="tech-item">WebdriverIO</span>
+                                    </div>
                                 </div>
                             </div>
                             
-                            <div class="skill-item mb-4" data-skill="75">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span>CI/CD & DevOps</span>
-                                    <span>75%</span>
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="category-card">
+                                    <div class="category-icon">
+                                        <i class="fas fa-mobile-alt fa-3x text-info"></i>
+                                    </div>
+                                    <h5 class="category-title">Mobile Automation</h5>
+                                    <p class="category-subtitle">iOS & Android testing</p>
+                                    <div class="tech-list">
+                                        <span class="tech-item">Appium</span>
+                                        <span class="tech-item">Espresso</span>
+                                        <span class="tech-item">XCUI Test</span>
+                                    </div>
                                 </div>
-                                <div class="progress">
-                                    <div class="progress-bar" style="--skill-width: 75%; width: 0%; background-color: #6f42c1;"></div>
+                            </div>
+                            
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="category-card">
+                                    <div class="category-icon">
+                                        <i class="fas fa-code fa-3x text-warning"></i>
+                                    </div>
+                                    <h5 class="category-title">API Automation</h5>
+                                    <p class="category-subtitle">Backend & API testing</p>
+                                    <div class="tech-list">
+                                        <span class="tech-item">RestAssured</span>
+                                        <span class="tech-item">Postman</span>
+                                        <span class="tech-item">Karate</span>
+                                        <span class="tech-item">Katalon</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="category-card">
+                                    <div class="category-icon">
+                                        <i class="fas fa-tachometer-alt fa-3x text-danger"></i>
+                                    </div>
+                                    <h5 class="category-title">Performance Testing</h5>
+                                    <p class="category-subtitle">Load & stress testing</p>
+                                    <div class="tech-list">
+                                        <span class="tech-item">Gatling</span>
+                                        <span class="tech-item">JMeter</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="category-card">
+                                    <div class="category-icon">
+                                        <i class="fas fa-laptop-code fa-3x text-secondary"></i>
+                                    </div>
+                                    <h5 class="category-title">Programming Languages</h5>
+                                    <p class="category-subtitle">Core programming skills</p>
+                                    <div class="tech-list">
+                                        <span class="tech-item">Java</span>
+                                        <span class="tech-item">JavaScript</span>
+                                        <span class="tech-item">TypeScript</span>
+                                        <span class="tech-item">Python</span>
+                                        <span class="tech-item">Kotlin</span>
+                                        <span class="tech-item">Scala</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -535,29 +801,183 @@
                 </div>
             </div>
 
-            <!-- Call to Action -->
-            <div class="row mt-5">
-                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.7s">
-                    <h3>Ready to Learn or Collaborate?</h3>
-                    <p>Whether you're looking to advance your automation skills or need expert training for your team</p>
-                    <div class="mt-3">
-                        <a href="training/online-courses.html" class="btn btn-primary btn-lg mr-3 mb-2">
-                            <i class="fas fa-graduation-cap mr-2"></i>Browse Courses
-                        </a>
-                        <a href="training/corporate-training.html" class="btn btn-outline-primary btn-lg mr-3 mb-2">
-                            <i class="fas fa-chalkboard-teacher mr-2"></i>Corporate Training
-                        </a>
-                        <a href="training/mentoring.html" class="btn btn-outline-success btn-lg mb-2">
-                            <i class="fas fa-user-tie mr-2"></i>1-to-1 Mentoring
-                        </a>
+            <!-- Section 7: Teaching Philosophy - How I Work -->
+            <div class="row mt-5" style="background-color: #f8f9fa; border-radius: 15px; padding: 60px 40px;">
+                <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
+                    <h3 class="text-center mb-5">My Teaching Philosophy</h3>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4 text-center wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="philosophy-card p-4">
+                                <i class="fas fa-hands-helping fa-3x mb-3 text-primary"></i>
+                                <h5 class="font-weight-bold">Hands-On Learning</h5>
+                                <p class="text-muted">No theoretical fluff. Every concept is taught through real projects, actual code, and practical scenarios you'll face in interviews and work.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4 text-center wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="philosophy-card p-4">
+                                <i class="fas fa-user-friends fa-3x mb-3 text-success"></i>
+                                <h5 class="font-weight-bold">Individual Attention</h5>
+                                <p class="text-muted">Your goals are unique. I customize training based on your background, career objectives, and learning pace. No one-size-fits-all approaches.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4 text-center wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="philosophy-card p-4">
+                                <i class="fas fa-industry fa-3x mb-3 text-info"></i>
+                                <h5 class="font-weight-bold">Industry Relevant</h5>
+                                <p class="text-muted">Focus on current market demands. Learn what employers actually want, master tools companies are using, prepare for real interview questions.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mt-3">
-                        <a href="mailto:vigneshonlinetutor@gmail.com" class="btn btn-outline-secondary btn-lg">
-                            <i class="fas fa-envelope mr-2"></i>Get in Touch
-                        </a>
+                    <div class="row mt-4">
+                        <div class="col-12 text-center">
+                            <blockquote class="blockquote">
+                                <p class="mb-0 lead">"I don't just teach automation tools – I build automation careers. My students don't just learn to code tests; they learn to think like senior automation engineers."</p>
+                                <footer class="blockquote-footer mt-3">
+                                    <strong>Vignesh Srinivasa Raghavan</strong>
+                                </footer>
+                            </blockquote>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Section 8: Who I Help - Target Audiences -->
+            <div class="row mt-5">
+                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h3 class="mb-5">Who I Help Succeed</h3>
+                    <div class="row">
+                        <!-- For Students -->
+                        <div class="col-lg-6 mb-4 wow fadeInLeft" data-wow-delay="0.2s">
+                            <div class="audience-card h-100 p-4 border rounded shadow-sm">
+                                <div class="text-center mb-4">
+                                    <i class="fas fa-user-graduate fa-4x text-primary"></i>
+                                    <h4 class="mt-3 font-weight-bold text-primary">For Students & Professionals</h4>
+                                </div>
+                                <div class="audience-list">
+                                    <div class="audience-item mb-3">
+                                        <i class="fas fa-check-circle text-success mr-2"></i>
+                                        <strong>Manual QA → Automation Engineers:</strong> Complete career transformation with modern tools
+                                    </div>
+                                    <div class="audience-item mb-3">
+                                        <i class="fas fa-check-circle text-success mr-2"></i>
+                                        <strong>Developers → Full-Stack Testers:</strong> Add testing expertise to boost your value
+                                    </div>
+                                    <div class="audience-item mb-3">
+                                        <i class="fas fa-check-circle text-success mr-2"></i>
+                                        <strong>Career Changers → Tech Professionals:</strong> Enter tech through automation testing
+                                    </div>
+                                    <div class="audience-item mb-3">
+                                        <i class="fas fa-check-circle text-success mr-2"></i>
+                                        <strong>Fresh Graduates → Job-Ready Engineers:</strong> Bridge the gap between education and employment
+                                    </div>
+                                    <div class="audience-item mb-0">
+                                        <i class="fas fa-check-circle text-success mr-2"></i>
+                                        <strong>Experienced QAs → Modern Tool Masters:</strong> Upgrade skills to current market demands
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- For Companies -->
+                        <div class="col-lg-6 mb-4 wow fadeInRight" data-wow-delay="0.3s">
+                            <div class="audience-card h-100 p-4 border rounded shadow-sm">
+                                <div class="text-center mb-4">
+                                    <i class="fas fa-building fa-4x text-success"></i>
+                                    <h4 class="mt-3 font-weight-bold text-success">For Companies & Teams</h4>
+                                </div>
+                                <div class="audience-list">
+                                    <div class="audience-item mb-3">
+                                        <i class="fas fa-check-circle text-primary mr-2"></i>
+                                        <strong>Teams Adopting Modern Tools:</strong> Smooth transition to Playwright, Cypress, or API testing
+                                    </div>
+                                    <div class="audience-item mb-3">
+                                        <i class="fas fa-check-circle text-primary mr-2"></i>
+                                        <strong>Organizations Scaling QA:</strong> Build robust automation frameworks and practices
+                                    </div>
+                                    <div class="audience-item mb-3">
+                                        <i class="fas fa-check-circle text-primary mr-2"></i>
+                                        <strong>Companies Improving Quality:</strong> Implement comprehensive testing strategies
+                                    </div>
+                                    <div class="audience-item mb-3">
+                                        <i class="fas fa-check-circle text-primary mr-2"></i>
+                                        <strong>Startups to Enterprises:</strong> Custom training programs for any team size
+                                    </div>
+                                    <div class="audience-item mb-0">
+                                        <i class="fas fa-check-circle text-primary mr-2"></i>
+                                        <strong>Development Teams:</strong> Integrate testing best practices into development workflow
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 9: Call to Action - Clear Next Steps -->
+            <div class="row mt-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 15px; padding: 60px 40px;">
+                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h3 class="mb-4 text-white">Ready to Transform Your Career or Team?</h3>
+                    <p class="lead mb-5 text-white">Join 7000+ professionals who've already made the leap. Choose your path:</p>
+                    
+                    <!-- Student Options -->
+                    <div class="row mb-5">
+                        <div class="col-12 mb-3">
+                            <h5 class="text-warning mb-3">For Individual Learners:</h5>
+                        </div>
+                        <div class="col-lg-4 mb-3">
+                            <a href="training/online-courses.html" class="btn btn-light btn-lg btn-block py-3">
+                                <i class="fas fa-graduation-cap mr-2"></i>
+                                <strong>Self-Paced Courses</strong><br>
+                                <small>Learn at your own speed</small>
+                            </a>
+                        </div>
+                        <div class="col-lg-4 mb-3">
+                            <a href="training/mentoring.html" class="btn btn-warning btn-lg btn-block py-3">
+                                <i class="fas fa-user-tie mr-2"></i>
+                                <strong>1-to-1 Mentoring</strong><br>
+                                <small>Personalized career guidance</small>
+                            </a>
+                        </div>
+                        <div class="col-lg-4 mb-3">
+                            <a href="training/live-workshops.html" class="btn btn-info btn-lg btn-block py-3">
+                                <i class="fas fa-users mr-2"></i>
+                                <strong>Live Workshops</strong><br>
+                                <small>Interactive group learning</small>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Company Options -->
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <h5 class="text-warning mb-3">For Companies & Teams:</h5>
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                            <a href="training/corporate-training.html" class="btn btn-success btn-lg btn-block py-3">
+                                <i class="fas fa-chalkboard-teacher mr-2"></i>
+                                <strong>Corporate Training</strong><br>
+                                <small>Custom programs for your team</small>
+                            </a>
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                            <a href="training/mentoring.html" class="btn btn-outline-light btn-lg btn-block py-3">
+                                <i class="fas fa-user-tie mr-2"></i>
+                                <strong>1-to-1 Mentoring</strong><br>
+                                <small>Personalized guidance & training</small>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <p class="text-white mb-0">
+                            <i class="fas fa-clock mr-2"></i>
+                            <strong>Limited spots available for personalized mentoring.</strong> 
+                            Book your consultation today to secure your transformation journey.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <!-- About End -->

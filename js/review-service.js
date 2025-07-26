@@ -10,6 +10,7 @@ class ReviewService {
         this.cache = new Map();
         this.isLoaded = false;
         this.fallbackData = this.getFallbackData();
+        this.expansionInitialized = false;
     }
 
     /**
@@ -263,6 +264,9 @@ class ReviewService {
         }
 
         console.log(`✅ Rendered ${reviews.length} reviews in ${containerId}`);
+        
+        // Initialize review expansion functionality
+        setTimeout(() => this.initializeReviewExpansion(), 100);
     }
 
     /**
@@ -295,9 +299,28 @@ class ReviewService {
             </div>
         ` : '';
 
+        // Determine if review text needs truncation (more than 150 characters)
+        const reviewText = review.review;
+        const needsTruncation = reviewText.length > 150;
+        
+        // Smart truncation - try to break at word boundary
+        let truncatedText = reviewText;
+        if (needsTruncation) {
+            const cutText = reviewText.substring(0, 150);
+            const lastSpaceIndex = cutText.lastIndexOf(' ');
+            if (lastSpaceIndex > 120) { // Only break at word boundary if it's not too short
+                truncatedText = reviewText.substring(0, lastSpaceIndex) + '...';
+            } else {
+                truncatedText = cutText + '...';
+            }
+        }
+        
+        // Generate unique ID for this review
+        const reviewId = `review-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
         return `
             <div class="${colClass} mb-4">
-                <div class="review-card h-100 p-4 border rounded shadow-sm">
+                <div class="review-card h-100 p-4 border rounded shadow-sm" data-review-id="${reviewId}">
                     ${badgesHtml}
                     <div class="d-flex align-items-center mb-3">
                         <div class="mr-3">${photoHtml}</div>
@@ -311,7 +334,25 @@ class ReviewService {
                         ${starsHtml}
                         <span class="ml-2 text-muted small">(${review.rating}★)</span>
                     </div>
-                    <p class="text-muted mb-3">"${review.review}"</p>
+                    <div class="review-content">
+                        <p class="text-muted mb-3 review-text">"${truncatedText}"</p>
+                        ${needsTruncation ? `
+                            <button class="btn btn-link btn-sm p-0 read-more-btn" style="font-size: 0.9rem; text-decoration: none;">
+                                <i class="fas fa-expand-alt mr-1"></i>Read full review
+                            </button>
+                        ` : ''}
+                    </div>
+                    
+                    <!-- Hidden full review data -->
+                    <script type="application/json" class="review-data">
+                        ${JSON.stringify({
+                            ...review,
+                            photoPath: photoPath,
+                            photoHtml: photoHtml,
+                            starsHtml: starsHtml,
+                            badgesHtml: badgesHtml
+                        })}
+                    </script>
                 </div>
             </div>
         `;
@@ -427,6 +468,11 @@ class ReviewService {
                 owl.trigger('next.owl.carousel');
             });
 
+            // Initialize review expansion functionality for carousel
+            setTimeout(() => {
+                window.reviewService.initializeReviewExpansion();
+            }, 100);
+
         }, 300);
     }
 
@@ -457,6 +503,147 @@ class ReviewService {
         }
         
         return starsHTML;
+    }
+
+    /**
+     * Initialize review expansion functionality
+     * Call this after rendering reviews to enable click-to-expand
+     */
+    initializeReviewExpansion() {
+        // Only initialize once to avoid duplicate event listeners
+        if (this.expansionInitialized) {
+            return;
+        }
+
+        // Remove existing modal if it exists
+        const existingModal = document.getElementById('review-expansion-modal');
+        if (existingModal) {
+            existingModal.remove();
+        }
+
+        // Create modal structure
+        const modalHTML = `
+            <div id="review-expansion-modal" class="review-modal" style="display: none;">
+                <div class="review-modal-overlay"></div>
+                <div class="review-modal-content">
+                    <div class="review-modal-header">
+                        <button class="review-modal-close" aria-label="Close expanded review">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="review-modal-body">
+                        <!-- Content will be populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Add modal to body
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+        // Add event listeners for "Read more" buttons (using event delegation)
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.read-more-btn')) {
+                e.preventDefault();
+                e.stopPropagation();
+                const reviewCard = e.target.closest('.review-card');
+                this.expandReview(reviewCard);
+            }
+        });
+
+        // Add event listeners for modal close
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.review-modal-close') || e.target.classList.contains('review-modal-overlay')) {
+                this.closeExpandedReview();
+            }
+        });
+
+        // Add keyboard escape handler
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                this.closeExpandedReview();
+            }
+        });
+
+        this.expansionInitialized = true;
+        console.log('✅ Review expansion functionality initialized');
+    }
+
+    /**
+     * Expand a review in modal
+     * @param {HTMLElement} reviewCard - The review card element
+     */
+    expandReview(reviewCard) {
+        const reviewDataScript = reviewCard.querySelector('.review-data');
+        if (!reviewDataScript) {
+            console.error('❌ Review data not found');
+            return;
+        }
+
+        try {
+            const reviewData = JSON.parse(reviewDataScript.textContent);
+            const modal = document.getElementById('review-expansion-modal');
+            const modalBody = modal.querySelector('.review-modal-body');
+
+            // Generate expanded review HTML
+            const expandedHTML = `
+                <div class="expanded-review-card">
+                    ${reviewData.badgesHtml}
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="mr-3">${reviewData.photoHtml}</div>
+                        <div>
+                            <h5 class="mb-0 font-weight-bold">${reviewData.name}</h5>
+                            <div class="text-primary font-weight-500">${reviewData.title || ''}</div>
+                            <div class="text-muted">${reviewData.company || ''}</div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        ${reviewData.starsHtml}
+                        <span class="ml-2 text-muted">(${reviewData.rating}★)</span>
+                    </div>
+                    <div class="expanded-review-text">
+                        <p class="text-dark mb-0" style="font-size: 1.1rem; line-height: 1.7;">
+                            "${reviewData.review}"
+                        </p>
+                    </div>
+                </div>
+            `;
+
+            modalBody.innerHTML = expandedHTML;
+            
+            // Show modal with animation
+            modal.style.display = 'flex';
+            requestAnimationFrame(() => {
+                modal.classList.add('show');
+            });
+
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+
+            console.log(`✅ Expanded review for ${reviewData.name}`);
+        } catch (error) {
+            console.error('❌ Error expanding review:', error);
+        }
+    }
+
+    /**
+     * Close expanded review modal
+     */
+    closeExpandedReview() {
+        const modal = document.getElementById('review-expansion-modal');
+        if (modal && modal.classList.contains('show')) {
+            modal.classList.remove('show');
+            
+            // Hide modal after animation
+            setTimeout(() => {
+                modal.style.display = 'none';
+                
+                // Restore body scroll
+                document.body.style.overflow = '';
+            }, 300);
+
+            console.log('✅ Closed expanded review');
+        }
     }
 
     /**

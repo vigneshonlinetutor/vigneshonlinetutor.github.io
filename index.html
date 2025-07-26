@@ -1762,6 +1762,11 @@
                 $('#testimonial-next').on('click', function() {
                     owl.trigger('next.owl.carousel');
                 });
+
+                // Initialize review expansion functionality for testimonials
+                setTimeout(() => {
+                    window.reviewService.initializeReviewExpansion();
+                }, 100);
                 
                 console.log(`✅ Owl Carousel initialized with ${reviews.length} testimonials`);
             }, 300);

@@ -8,8 +8,46 @@
     <meta content="Contact Form, Get In Touch, Training Inquiry" name="keywords">
     <meta content="Contact Vignesh for training inquiries, mentoring, and career coaching" name="description">
 
+    <!-- Critical Performance Optimizations - Preload Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Fallback for preload (no-JS) -->
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    </noscript>
+
     <!-- Common Head Meta Component -->
     <div id="common-head-meta"></div>
+
+    <!-- Minimal Critical CSS - Only FOUC Prevention -->
+    <style>
+        /* Basic font loading to prevent FOUC */
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Minimal loading indicators */
+        .component-loading::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 
     <!-- Enhanced Dropdown Navigation Styling -->
     <style>
@@ -765,11 +803,22 @@
     <!-- Common Footer Component -->
     <div id="common-footer"></div>
 
+    <!-- Critical Scripts - Load Immediately to Prevent Layout Issues -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
     <!-- Common Components System (must load before other components) -->
     <script src="../../js/common-components.js"></script>
 
     <!-- Common Scripts Component -->
     <div id="common-scripts"></div>
+
+    <!-- Enhanced Performance Loading - Optimized for Contact Form Page -->
+    <script>
+        window.addEventListener('load', function() {
+            console.log('✅ Contact form page enhanced loading initialized');
+        });
+    </script>
     
     <!-- Custom Navigation Behavior -->
     <script>

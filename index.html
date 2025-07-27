@@ -8,8 +8,46 @@
     <meta content="Lead SDET, Automation Testing, Selenium, Playwright, Cypress, Udemy Instructor" name="keywords">
     <meta content="Vignesh Srinivasa Raghavan - Lead SDET | Udemy Instructor | Corporate Trainer | Testing Expert" name="description">
 
+    <!-- Critical Performance Optimizations - Preload Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Fallback for preload (no-JS) -->
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    </noscript>
+
     <!-- Common Head Meta Component -->
     <div id="common-head-meta"></div>
+
+    <!-- Minimal Critical CSS - Only FOUC Prevention -->
+    <style>
+        /* Basic font loading to prevent FOUC */
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Minimal loading indicators */
+        .component-loading::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 
     <!-- Enhanced Dropdown Navigation Styling -->
     <style>
@@ -1193,18 +1231,53 @@
     <!-- Common Footer Component -->
     <div id="common-footer"></div>
 
+    <!-- Critical Scripts - Load Immediately to Prevent Layout Issues -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
     <!-- Common Components System (must load before other components) -->
     <script src="js/common-components.js"></script>
 
-    <!-- Review Service (must load early for testimonials) -->
-    <script src="js/review-service.js"></script>
-
-    <!-- Contact Javascript File (page-specific) -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
     <!-- Common Scripts Component -->
     <div id="common-scripts"></div>
+
+    <!-- Enhanced Performance Loading - Load Non-Critical Scripts After Page Ready -->
+    <script>
+        window.addEventListener('load', function() {
+            // Load non-critical scripts asynchronously for better performance
+            const enhancedScripts = [
+                'js/review-service.js',
+                'mail/jqBootstrapValidation.min.js',
+                'mail/contact.js'
+            ];
+            
+            enhancedScripts.forEach((src, index) => {
+                setTimeout(() => {
+                    const script = document.createElement('script');
+                    script.src = src;
+                    script.async = true;
+                    script.onload = () => {
+                        if (src.includes('review-service.js')) {
+                            console.log('✅ Review service loaded, checking for testimonials function...');
+                            // Wait for DOM to be fully ready and function to be available
+                            const checkAndInitialize = () => {
+                                if (typeof initializeTestimonials === 'function') {
+                                    console.log('✅ Calling initializeTestimonials...');
+                                    initializeTestimonials();
+                                } else {
+                                    console.log('⏳ Waiting for initializeTestimonials function...');
+                                    setTimeout(checkAndInitialize, 100);
+                                }
+                            };
+                            // Small delay to ensure DOM is ready
+                            setTimeout(checkAndInitialize, 150);
+                        }
+                    };
+                    document.head.appendChild(script);
+                }, index * 200); // Stagger loading for better performance
+            });
+        });
+    </script>
     
     <!-- Custom Navigation Behavior -->
     <script>
@@ -1727,6 +1800,34 @@
             
             console.log(`✅ Fast carousel initialized with ${reviews.length} testimonials`);
         }
+
+        // Backup mechanism - Ensure testimonials are initialized even if async loading fails
+        setTimeout(() => {
+            const testimonialContainer = document.getElementById('testimonials-container');
+            if (testimonialContainer && testimonialContainer.innerHTML.includes('Loading testimonials...')) {
+                console.log('🔄 Backup: Testimonials still loading, attempting direct initialization...');
+                
+                // Check if review service is available
+                if (typeof window.reviewService !== 'undefined' && typeof initializeTestimonials === 'function') {
+                    console.log('✅ Backup: Review service found, initializing testimonials...');
+                    initializeTestimonials();
+                } else {
+                    console.log('⚠️ Backup: Review service not available, loading it directly...');
+                    // Load review service directly if it's not loaded
+                    const script = document.createElement('script');
+                    script.src = 'js/review-service.js';
+                    script.onload = () => {
+                        console.log('✅ Backup: Review service loaded, initializing testimonials...');
+                        if (typeof initializeTestimonials === 'function') {
+                            initializeTestimonials();
+                        }
+                    };
+                    document.head.appendChild(script);
+                }
+            } else {
+                console.log('✅ Testimonials already loaded successfully');
+            }
+        }, 3000); // Wait 3 seconds before checking if backup is needed
     </script>
 </body>
 

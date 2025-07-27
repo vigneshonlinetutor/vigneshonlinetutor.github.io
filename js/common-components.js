@@ -140,10 +140,12 @@ class CommonComponents {
     }
 
     /**
-     * Load all common components
+     * Load all common components with performance optimizations
      */
     async loadAllComponents() {
-        // Load head meta first if placeholder exists
+        console.log('🚀 Starting optimized component loading...');
+        
+        // Load head meta first if placeholder exists (critical for styling)
         const headMetaPlaceholder = document.getElementById('common-head-meta');
         if (headMetaPlaceholder) {
             await this.insertHeadMeta();
@@ -151,15 +153,84 @@ class CommonComponents {
             headMetaPlaceholder.remove();
         }
 
-        // Load other components
+        // Add loading indicators to prevent layout shift
+        this.addLoadingIndicators();
+
+        // Load navigation and footer in parallel for better performance
         const components = [
             { name: 'navigation', target: 'common-navigation' },
-            { name: 'footer', target: 'common-footer' },
-            { name: 'scripts', target: 'common-scripts' }
+            { name: 'footer', target: 'common-footer' }
         ];
 
-        for (const component of components) {
-            await this.insertComponent(component.name, component.target);
+        // Load navigation and footer concurrently
+        const componentPromises = components.map(async (component) => {
+            try {
+                await this.insertComponent(component.name, component.target);
+                console.log(`✅ ${component.name} component loaded successfully`);
+            } catch (error) {
+                console.error(`❌ Failed to load ${component.name}:`, error);
+                // Fallback: show error message but don't break the page
+                this.showComponentError(component.target, component.name);
+            }
+        });
+
+        // Wait for navigation and footer to load
+        await Promise.all(componentPromises);
+
+        // Load scripts last (least critical for initial render)
+        try {
+            await this.insertComponent('scripts', 'common-scripts');
+            console.log('✅ Scripts component loaded successfully');
+        } catch (error) {
+            console.error('❌ Failed to load scripts:', error);
+        }
+
+        // Remove loading indicators
+        this.removeLoadingIndicators();
+        console.log('🎉 All components loaded successfully');
+    }
+
+    /**
+     * Add loading indicators to prevent layout shift
+     */
+    addLoadingIndicators() {
+        const indicators = [
+            { id: 'common-navigation', text: 'Loading navigation...' },
+            { id: 'common-footer', text: 'Loading footer...' }
+        ];
+
+        indicators.forEach(({ id, text }) => {
+            const element = document.getElementById(id);
+            if (element && !element.innerHTML.trim()) {
+                element.innerHTML = `<div class="component-loading">${text}</div>`;
+                element.style.minHeight = id === 'common-navigation' ? '120px' : '200px';
+            }
+        });
+    }
+
+    /**
+     * Remove loading indicators
+     */
+    removeLoadingIndicators() {
+        ['common-navigation', 'common-footer'].forEach(id => {
+            const element = document.getElementById(id);
+            if (element && element.querySelector('.component-loading')) {
+                element.style.minHeight = '';
+            }
+        });
+    }
+
+    /**
+     * Show error message for failed component
+     */
+    showComponentError(targetId, componentName) {
+        const element = document.getElementById(targetId);
+        if (element) {
+            element.innerHTML = `
+                <div style="padding: 20px; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 4px; margin: 10px;">
+                    <strong>Loading Error:</strong> Failed to load ${componentName} component. Please refresh the page.
+                </div>
+            `;
         }
     }
 

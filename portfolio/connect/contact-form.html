@@ -215,6 +215,316 @@
         .dropdown:hover .dropdown-menu {
             display: block;
         }
+
+        /* Enhanced Contact Form Styling */
+        .contact-form-container {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .form-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            border-left: 4px solid #007bff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .form-section-title {
+            color: #007bff;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-section-title i {
+            margin-right: 0.5rem;
+            width: 20px;
+        }
+        
+        .form-control {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 12px 15px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            box-sizing: border-box;
+        }
+        
+        /* Ensure input fields have proper height too */
+        input.form-control,
+        textarea.form-control {
+            min-height: 50px;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
+            transform: translateY(-1px);
+            z-index: 1000;
+        }
+        
+        /* COMPREHENSIVE DROPDOWN FIX */
+        
+        /* Reset all containers to allow dropdown expansion */
+        .contact-form-container,
+        .form-section,
+        .form-row,
+        .container,
+        .col-lg-10,
+        .row,
+        .col-md-6,
+        .col-md-4, 
+        .col-md-8,
+        .col-lg-6,
+        .col-md-12 {
+            overflow: visible !important;
+            position: relative !important;
+        }
+        
+        /* Dropdown styling fixes */
+        select.form-control {
+            width: 100% !important;
+            min-width: 0 !important;
+            max-width: none !important;
+            position: relative !important;
+            z-index: 10 !important;
+            background-color: white !important;
+            color: #495057 !important;
+            text-overflow: ellipsis !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+            font-size: 14px !important;
+            line-height: 1.4 !important;
+            height: 50px !important;
+            min-height: 50px !important;
+            padding: 12px 40px 12px 15px !important;
+            box-sizing: border-box !important;
+            appearance: none !important;
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+            background-repeat: no-repeat !important;
+            background-position: right 15px center !important;
+            background-size: 16px 12px !important;
+            vertical-align: middle !important;
+        }
+        
+        /* Fix dropdown on focus/click */
+        select.form-control:focus,
+        select.form-control:active {
+            z-index: 999 !important;
+            position: relative !important;
+            border-color: #007bff !important;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15) !important;
+        }
+        
+        /* Option styling */
+        select.form-control option {
+            color: #495057 !important;
+            background-color: white !important;
+            padding: 8px 12px !important;
+            font-size: 14px !important;
+            white-space: normal !important;
+            word-wrap: break-word !important;
+        }
+        
+        /* Optgroup styling */
+        select.form-control optgroup {
+            color: #007bff !important;
+            font-weight: 600 !important;
+            font-style: normal !important;
+            background-color: #f8f9fa !important;
+        }
+        
+        /* Form group improvements */
+        .form-group {
+            position: relative !important;
+            margin-bottom: 1.5rem !important;
+            overflow: visible !important;
+        }
+        
+        /* Ensure proper spacing for dropdowns */
+        .form-row {
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+        }
+        
+        .form-row > .col-lg-6,
+        .form-row > .col-md-12 {
+            padding-right: 15px !important;
+            padding-left: 15px !important;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .form-row > .col-lg-6 {
+                flex: 0 0 100% !important;
+                max-width: 100% !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            select.form-control {
+                font-size: 16px !important; /* Prevent zoom on iOS */
+                height: 54px !important;
+                min-height: 54px !important;
+                padding: 14px 40px 14px 15px !important;
+                line-height: 1.4 !important;
+            }
+        }
+        
+        /* Unified Phone Number Input */
+        .unified-phone-container {
+            position: relative;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            background: white;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .unified-phone-container:hover {
+            border-color: #007bff;
+        }
+        
+        .unified-phone-container.focused {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
+            transform: translateY(-1px);
+        }
+        
+        .country-flag {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            z-index: 5;
+            pointer-events: none;
+        }
+        
+        .country-code-input {
+            width: 22%;
+            min-width: 85px;
+            max-width: 100px;
+            border: none !important;
+            outline: none !important;
+            padding: 12px 8px 12px 45px !important;
+            font-size: 14px;
+            background: transparent;
+            border-right: 1px solid #e9ecef !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+        
+        .phone-number-input {
+            width: 78%;
+            border: none !important;
+            outline: none !important;
+            padding: 12px 15px !important;
+            font-size: 14px;
+            background: transparent;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            min-width: 0;
+        }
+        
+        .country-code-input:focus,
+        .phone-number-input:focus {
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+        
+        .phone-input-hint {
+            font-size: 11px;
+            color: #6c757d;
+            margin-top: 4px;
+            font-style: italic;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 8px;
+        }
+        
+        .required-asterisk {
+            color: #dc3545;
+        }
+        
+        .field-description {
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 4px;
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0, 123, 255, 0.4);
+        }
+        
+        .form-group.highlighted {
+            position: relative;
+        }
+        
+        /* Remove unwanted star decorations */
+        .form-group.highlighted::before {
+            display: none;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .contact-form-container {
+                padding: 1rem;
+                border-radius: 15px;
+            }
+            
+            .form-section {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .btn-submit {
+                padding: 12px 30px;
+                font-size: 14px;
+            }
+            
+            /* Mobile phone input adjustments */
+            .country-code-input {
+                min-width: 75px;
+                padding: 12px 6px 12px 40px !important;
+            }
+            
+            .phone-number-input {
+                padding: 12px 12px !important;
+            }
+        }
     </style>
 </head>
 
@@ -329,10 +639,12 @@
     <div class="training" id="contact-form">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <div class="shadow-custom border-radius-custom p-5 bg-white">
-                        <h3 class="text-center mb-4">Professional Inquiry Form</h3>
-                        <p class="text-center text-muted mb-4">Fill out the form below and I'll get back to you within 24 hours</p>
+                <div class="col-lg-10 mx-auto">
+                    <div class="contact-form-container">
+                        <div class="text-center mb-4">
+                            <h3 class="mb-3">Professional Inquiry Form</h3>
+                            <p class="text-muted">Fill out the form below and I'll get back to you within 24 hours</p>
+                        </div>
                         
                         <form name="training-request" netlify netlify-honeypot="bot-field" data-netlify-recaptcha="true">
                             <!-- Netlify Anti-spam -->
@@ -342,126 +654,174 @@
                             </p>
                             <input type="hidden" name="subject" value="[VigneshHub] Professional Inquiry">
                             
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="fullName">Full Name *</label>
-                                    <input type="text" 
-                                           class="form-control" 
-                                           id="fullName" 
-                                           name="fullName" 
-                                           required
-                                           placeholder="Your full name">
+                            <!-- Section 1: Contact Information -->
+                            <div class="form-section">
+                                <h5 class="form-section-title">
+                                    <i class="fas fa-user"></i>
+                                    Contact Information
+                                </h5>
+                                
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 highlighted">
+                                        <label for="fullName">Full Name <span class="required-asterisk">*</span></label>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               id="fullName" 
+                                               name="fullName" 
+                                               required
+                                               placeholder="Enter your full name">
+                                    </div>
+                                    <div class="form-group col-md-6 highlighted">
+                                        <label for="email">Email Address <span class="required-asterisk">*</span></label>
+                                        <input type="email" 
+                                               class="form-control" 
+                                               id="email" 
+                                               name="email" 
+                                               required
+                                               placeholder="your.email@company.com">
+                                        <div class="field-description">We'll use this to send you a detailed response</div>
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="email">Email Address *</label>
-                                    <input type="email" 
-                                           class="form-control" 
-                                           id="email" 
-                                           name="email" 
-                                           required
-                                           placeholder="your.email@company.com">
+                                
+                                <div class="form-group">
+                                    <label for="unifiedPhone">WhatsApp Number <span class="text-danger">*</span></label>
+                                    <div class="unified-phone-container" id="unifiedPhoneContainer">
+                                        <span id="countryFlag" class="country-flag">🇮🇳</span>
+                                        <input type="text" 
+                                               class="country-code-input" 
+                                               id="countryCode" 
+                                               name="countryCode" 
+                                               placeholder="+91"
+                                               value="+91"
+                                               required
+                                               maxlength="5">
+                                        <input type="tel" 
+                                               class="phone-number-input" 
+                                               id="whatsappNumber" 
+                                               name="whatsappNumber" 
+                                               placeholder="Enter mobile number (8-12 digits)"
+                                               required
+                                               maxlength="15">
+                                    </div>
+                                    <div class="phone-input-hint">For quick follow-up conversations and faster response</div>
                                 </div>
                             </div>
                             
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label for="countryCode">Country</label>
-                                    <select class="form-control" id="countryCode" name="countryCode">
-                                        <option value="+91" data-flag="🇮🇳">🇮🇳 India +91</option>
-                                        <option value="+1" data-flag="🇺🇸">🇺🇸 United States +1</option>
-                                        <option value="+44" data-flag="🇬🇧">🇬🇧 United Kingdom +44</option>
-                                        <option value="+49" data-flag="🇩🇪">🇩🇪 Germany +49</option>
-                                        <option value="+33" data-flag="🇫🇷">🇫🇷 France +33</option>
-                                        <option value="+61" data-flag="🇦🇺">🇦🇺 Australia +61</option>
-                                        <option value="+81" data-flag="🇯🇵">🇯🇵 Japan +81</option>
-                                        <option value="+82" data-flag="🇰🇷">🇰🇷 South Korea +82</option>
-                                        <option value="+86" data-flag="🇨🇳">🇨🇳 China +86</option>
-                                        <option value="+7" data-flag="🇷🇺">🇷🇺 Russia +7</option>
+                            <!-- Section 2: Inquiry Details -->
+                            <div class="form-section">
+                                <h5 class="form-section-title">
+                                    <i class="fas fa-clipboard-list"></i>
+                                    Inquiry Details
+                                </h5>
+                                
+                                <div class="form-group highlighted">
+                                    <label for="inquiryType">Type of Inquiry <span class="required-asterisk">*</span></label>
+                                    <select class="form-control" id="inquiryType" name="inquiryType" required>
+                                        <option value="">Choose the category that best matches your needs</option>
+                                        <optgroup label="🎓 Training & Learning">
+                                            <option value="corporate-training">Corporate Team Training</option>
+                                            <option value="1-to-1-mentoring">Personal 1-to-1 Mentoring</option>
+                                            <option value="online-courses">Guidance on Online Courses</option>
+                                            <option value="live-workshop">Live Workshop Attendance</option>
+                                            <option value="bootcamp">Intensive Bootcamp Program</option>
+                                        </optgroup>
+                                        <optgroup label="🎤 Speaking & Events">
+                                            <option value="conference-speaking">Conference/Event Speaking</option>
+                                            <option value="webinar-speaking">Webinar/Virtual Session</option>
+                                            <option value="workshop-hosting">Workshop Facilitation</option>
+                                            <option value="tech-talk">Technical Talk/Presentation</option>
+                                        </optgroup>
+                                        <optgroup label="💼 Career & Consultation">
+                                            <option value="career-guidance">Career Path Guidance</option>
+                                            <option value="interview-prep">Interview Preparation</option>
+                                            <option value="resume-review">Resume/CV Review</option>
+                                            <option value="skill-assessment">Skill Gap Assessment</option>
+                                            <option value="technical-consultation">Technical Project Consultation</option>
+                                        </optgroup>
+                                        <optgroup label="🤝 Partnership & Collaboration">
+                                            <option value="business-partnership">Business Partnership</option>
+                                            <option value="content-collaboration">Content Creation Collaboration</option>
+                                            <option value="community-building">Community Building Initiative</option>
+                                            <option value="general-inquiry">General Business Inquiry</option>
+                                        </optgroup>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-8">
-                                    <label for="whatsappNumber">WhatsApp Number</label>
-                                    <input type="tel" 
-                                           class="form-control" 
-                                           id="whatsappNumber" 
-                                           name="whatsappNumber" 
-                                           placeholder="Enter your WhatsApp number">
+                                
+                                <div class="form-row">
+                                    <div class="form-group col-lg-6 col-md-12">
+                                        <label for="currentRole">Current Role</label>
+                                        <select class="form-control" id="currentRole" name="currentRole">
+                                            <option value="">Helps us understand your background</option>
+                                            <option value="manual-qa">Manual QA</option>
+                                            <option value="automation-qa">Automation QA</option>
+                                            <option value="sdet">SDET</option>
+                                            <option value="qa-manager">QA Manager</option>
+                                            <option value="student">Student</option>
+                                            <option value="non-it">Non IT</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group col-lg-6 col-md-12">
+                                        <label for="experience">Years of Experience</label>
+                                        <select class="form-control" id="experience" name="experience">
+                                            <option value="">Your overall experience in testing/automation</option>
+                                            <option value="0-1">0-1 years (Fresher)</option>
+                                            <option value="1-2">1-2 years</option>
+                                            <option value="2-4">2-4 years</option>
+                                            <option value="4-7">4-7 years</option>
+                                            <option value="7-10">7-10 years</option>
+                                            <option value="10-15">10-15 years</option>
+                                            <option value="15-20">15-20 years</option>
+                                            <option value="20+">20+ years</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             
-                            <div class="form-group">
-                                <label for="inquiryType">Type of Inquiry *</label>
-                                <select class="form-control" id="inquiryType" name="inquiryType" required>
-                                    <option value="">Select inquiry type</option>
-                                    <option value="corporate-training">Corporate Training</option>
-                                    <option value="1-to-1-mentoring">1-to-1 Mentoring</option>
-                                    <option value="online-courses">Online Courses Guidance</option>
-                                    <option value="workshop">Live Workshop</option>
-                                    <option value="speaking-engagement">Speaking Engagement</option>
-                                    <option value="general-inquiry">General Inquiry</option>
-                                </select>
+                            <!-- Section 3: Message -->
+                            <div class="form-section">
+                                <h5 class="form-section-title">
+                                    <i class="fas fa-comment-dots"></i>
+                                    Tell Me More
+                                </h5>
+                                
+                                <div class="form-group highlighted">
+                                    <label for="message">Your Message <span class="required-asterisk">*</span></label>
+                                    <textarea class="form-control" 
+                                              id="message" 
+                                              name="message" 
+                                              rows="6" 
+                                              required
+                                              placeholder="Please describe your specific requirements, goals, questions, timeline, or any other details that would help me provide the best response..."></textarea>
+                                    <div class="field-description">The more details you provide, the better I can tailor my response to your needs</div>
+                                </div>
                             </div>
                             
-                            <div class="form-group">
-                                <label for="currentRole">Current Role</label>
-                                <select class="form-control" id="currentRole" name="currentRole">
-                                    <option value="">Select your current role</option>
-                                    <option value="manual-tester">Manual Tester/QE</option>
-                                    <option value="junior-sdet">Junior SDET</option>
-                                    <option value="sdet">SDET</option>
-                                    <option value="senior-sdet">Senior SDET</option>
-                                    <option value="lead-sdet">Lead SDET</option>
-                                    <option value="qa-manager">QA Manager</option>
-                                    <option value="student">Student</option>
-                                    <option value="career-changer">Career Changer</option>
-                                    <option value="other">Other</option>
-                                </select>
+                            <!-- Security -->
+                            <div class="form-section">
+                                <h5 class="form-section-title">
+                                    <i class="fas fa-shield-alt"></i>
+                                    Security Verification
+                                </h5>
+                                <div class="form-group">
+                                    <p class="text-muted mb-3">
+                                        <i class="fas fa-robot mr-2"></i>
+                                        Please complete the security verification below to help us prevent spam and ensure your message reaches me safely.
+                                    </p>
+                                    <div data-netlify-recaptcha="true"></div>
+                                </div>
                             </div>
                             
-                            <div class="form-group">
-                                <label for="experience">Years of Experience</label>
-                                <select class="form-control" id="experience" name="experience">
-                                    <option value="">Select experience level</option>
-                                    <option value="0-1">0-1 years</option>
-                                    <option value="1-3">1-3 years</option>
-                                    <option value="3-5">3-5 years</option>
-                                    <option value="5-8">5-8 years</option>
-                                    <option value="8+">8+ years</option>
-                                </select>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-submit btn-lg">
+                                    <i class="fas fa-paper-plane mr-2"></i>Send My Inquiry
+                                </button>
+                                <p class="mt-3 text-muted small">
+                                    <i class="fas fa-lock mr-1"></i>
+                                    Your information is secure and will never be shared with third parties
+                                </p>
                             </div>
-                            
-                            <div class="form-group">
-                                <label for="message">Message *</label>
-                                <textarea class="form-control" 
-                                          id="message" 
-                                          name="message" 
-                                          rows="5" 
-                                          required
-                                          placeholder="Please describe your specific requirements, goals, or questions..."></textarea>
-                            </div>
-                            
-                            <!-- Budget range for paid services -->
-                            <div class="form-group">
-                                <label for="budgetRange">Budget Range (for paid services)</label>
-                                <select class="form-control" id="budgetRange" name="budgetRange">
-                                    <option value="">Select budget range (optional)</option>
-                                    <option value="under-500">Under $500</option>
-                                    <option value="500-1000">$500 - $1,000</option>
-                                    <option value="1000-2500">$1,000 - $2,500</option>
-                                    <option value="2500-5000">$2,500 - $5,000</option>
-                                    <option value="5000+">$5,000+</option>
-                                    <option value="discuss">Prefer to discuss</option>
-                                </select>
-                            </div>
-                            
-                            <!-- Netlify reCAPTCHA -->
-                            <div class="form-group">
-                                <div data-netlify-recaptcha="true"></div>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                <i class="fas fa-paper-plane mr-2"></i>Send Message
-                            </button>
                         </form>
                     </div>
                 </div>
@@ -478,8 +838,8 @@
                 <p>Choose the method that works best for you</p>
             </div>
             
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="text-center p-4 bg-white rounded shadow-sm h-100">
                         <i class="fab fa-whatsapp fa-3x text-success mb-3"></i>
                         <h4>WhatsApp Direct</h4>
@@ -490,18 +850,7 @@
                     </div>
                 </div>
                 
-                <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="text-center p-4 bg-white rounded shadow-sm h-100">
-                        <i class="far fa-envelope fa-3x text-primary mb-3"></i>
-                        <h4>Email Direct</h4>
-                        <p class="text-muted mb-3">Detailed inquiries or proposals</p>
-                        <a href="mailto:vigneshonlinetutor@gmail.com" class="btn btn-primary">
-                            <i class="far fa-envelope mr-2"></i>Send Email
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="col-lg-5 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="text-center p-4 bg-white rounded shadow-sm h-100">
                         <i class="fab fa-linkedin fa-3x text-info mb-3"></i>
                         <h4>LinkedIn Connect</h4>
@@ -608,6 +957,196 @@
             // Handle window resize
             $(window).resize(function() {
                 handleMobileDropdowns();
+            });
+        });
+        
+        // Form submission and validation
+        $(document).ready(function() {
+            // Add visual feedback for required dropdowns
+            $('select.form-control[required]').on('change', function() {
+                const $select = $(this);
+                if ($select.val()) {
+                    $select.removeClass('is-invalid').addClass('is-valid');
+                } else {
+                    $select.removeClass('is-valid').addClass('is-invalid');
+                }
+            });
+            
+            // Handle form submission for Netlify
+            $('form[name="training-request"]').on('submit', function(e) {
+                e.preventDefault(); // Prevent default form submission
+                
+                const $form = $(this);
+                const $submitBtn = $form.find('button[type="submit"]');
+                const originalBtnText = $submitBtn.html();
+                
+                // Show loading state
+                $submitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin mr-2"></i>Sending...');
+                
+                // Create FormData object
+                const formData = new FormData(this);
+                
+                // Submit to Netlify
+                fetch('/', {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(formData).toString()
+                })
+                .then(() => {
+                    // Success
+                    $form.hide();
+                    $form.after(`
+                        <div class="text-center p-5">
+                            <div class="mb-4">
+                                <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+                            </div>
+                            <h3 class="text-success mb-3">Thank You!</h3>
+                            <p class="lead text-muted mb-4">Your inquiry has been sent successfully. I'll get back to you within 24 hours.</p>
+                            <div class="mt-4">
+                                <a href="../../index.html" class="btn btn-primary mr-3">
+                                    <i class="fas fa-home mr-2"></i>Back to Home
+                                </a>
+                                <a href="whatsapp.html" class="btn btn-success">
+                                    <i class="fab fa-whatsapp mr-2"></i>Chat Now
+                                </a>
+                            </div>
+                        </div>
+                    `);
+                    
+                    // Scroll to success message
+                    $('html, body').animate({
+                        scrollTop: $('.contact-form-container').offset().top - 100
+                    }, 500);
+                })
+                .catch((error) => {
+                    // Error
+                    console.error('Error:', error);
+                    alert('There was an error sending your message. Please try again or contact me directly via WhatsApp.');
+                    
+                    // Reset button
+                    $submitBtn.prop('disabled', false).html(originalBtnText);
+                });
+            });
+        });
+        
+        // Unified Phone Input with Country Code Detection
+        $(document).ready(function() {
+            // Comprehensive country codes with flags
+            const countryCodes = {
+                '+1': '🇺🇸', '+7': '🇷🇺', '+20': '🇪🇬', '+27': '🇿🇦', '+30': '🇬🇷', '+31': '🇳🇱', '+32': '🇧🇪', '+33': '🇫🇷', '+34': '🇪🇸', '+36': '🇭🇺',
+                '+39': '🇮🇹', '+40': '🇷🇴', '+41': '🇨🇭', '+43': '🇦🇹', '+44': '🇬🇧', '+45': '🇩🇰', '+46': '🇸🇪', '+47': '🇳🇴', '+48': '🇵🇱', '+49': '🇩🇪',
+                '+51': '🇵🇪', '+52': '🇲🇽', '+53': '🇨🇺', '+54': '🇦🇷', '+55': '🇧🇷', '+56': '🇨🇱', '+57': '🇨🇴', '+58': '🇻🇪', '+60': '🇲🇾', '+61': '🇦🇺',
+                '+62': '🇮🇩', '+63': '🇵🇭', '+64': '🇳🇿', '+65': '🇸🇬', '+66': '🇹🇭', '+81': '🇯🇵', '+82': '🇰🇷', '+84': '🇻🇳', '+86': '🇨🇳', '+90': '🇹🇷',
+                '+91': '🇮🇳', '+92': '🇵🇰', '+93': '🇦🇫', '+94': '🇱🇰', '+95': '🇲🇲', '+98': '🇮🇷', '+212': '🇲🇦', '+213': '🇩🇿', '+216': '🇹🇳', '+218': '🇱🇾',
+                '+220': '🇬🇲', '+221': '🇸🇳', '+222': '🇲🇷', '+223': '🇲🇱', '+224': '🇬🇳', '+225': '🇨🇮', '+226': '🇧🇫', '+227': '🇳🇪', '+228': '🇹🇬', '+229': '🇧🇯',
+                '+230': '🇲🇺', '+231': '🇱🇷', '+232': '🇸🇱', '+233': '🇬🇭', '+234': '🇳🇬', '+235': '🇹🇩', '+236': '🇨🇫', '+237': '🇨🇲', '+238': '🇨🇻', '+239': '🇸🇹',
+                '+240': '🇬🇶', '+241': '🇬🇦', '+242': '🇨🇬', '+243': '🇨🇩', '+244': '🇦🇴', '+245': '🇬🇼', '+246': '🇮🇴', '+248': '🇸🇨', '+249': '🇸🇩', '+250': '🇷🇼',
+                '+251': '🇪🇹', '+252': '🇸🇴', '+253': '🇩🇯', '+254': '🇰🇪', '+255': '🇹🇿', '+256': '🇺🇬', '+257': '🇧🇮', '+258': '🇲🇿', '+260': '🇿🇲', '+261': '🇲🇬',
+                '+262': '🇷🇪', '+263': '🇿🇼', '+264': '🇳🇦', '+265': '🇲🇼', '+266': '🇱🇸', '+267': '🇧🇼', '+268': '🇸🇿', '+269': '🇰🇲', '+290': '🇸🇭', '+291': '🇪🇷',
+                '+297': '🇦🇼', '+298': '🇫🇴', '+299': '🇬🇱', '+350': '🇬🇮', '+351': '🇵🇹', '+352': '🇱🇺', '+353': '🇮🇪', '+354': '🇮🇸', '+355': '🇦🇱', '+356': '🇲🇹',
+                '+357': '🇨🇾', '+358': '🇫🇮', '+359': '🇧🇬', '+370': '🇱🇹', '+371': '🇱🇻', '+372': '🇪🇪', '+373': '🇲🇩', '+374': '🇦🇲', '+375': '🇧🇾', '+376': '🇦🇩',
+                '+377': '🇲🇨', '+378': '🇸🇲', '+380': '🇺🇦', '+381': '🇷🇸', '+382': '🇲🇪', '+383': '🇽🇰', '+385': '🇭🇷', '+386': '🇸🇮', '+387': '🇧🇦', '+389': '🇲🇰',
+                '+420': '🇨🇿', '+421': '🇸🇰', '+423': '🇱🇮', '+500': '🇫🇰', '+501': '🇧🇿', '+502': '🇬🇹', '+503': '🇸🇻', '+504': '🇭🇳', '+505': '🇳🇮', '+506': '🇨🇷',
+                '+507': '🇵🇦', '+508': '🇵🇲', '+509': '🇭🇹', '+590': '🇬🇵', '+591': '🇧🇴', '+592': '🇬🇾', '+593': '🇪🇨', '+594': '🇬🇫', '+595': '🇵🇾', '+596': '🇲🇶',
+                '+597': '🇸🇷', '+598': '🇺🇾', '+599': '🇨🇼', '+670': '🇹🇱', '+672': '🇳🇫', '+673': '🇧🇳', '+674': '🇳🇷', '+675': '🇵🇬', '+676': '🇹🇴', '+677': '🇸🇧',
+                '+678': '🇻🇺', '+679': '🇫🇯', '+680': '🇵🇼', '+681': '🇼🇫', '+682': '🇨🇰', '+683': '🇳🇺', '+684': '🇦🇸', '+685': '🇼🇸', '+686': '🇰🇮', '+687': '🇳🇨',
+                '+688': '🇹🇻', '+689': '🇵🇫', '+690': '🇹🇰', '+691': '🇫🇲', '+692': '🇲🇭', '+850': '🇰🇵', '+852': '🇭🇰', '+853': '🇲🇴', '+855': '🇰🇭', '+856': '🇱🇦',
+                '+880': '🇧🇩', '+886': '🇹🇼', '+960': '🇲🇻', '+961': '🇱🇧', '+962': '🇯🇴', '+963': '🇸🇾', '+964': '🇮🇶', '+965': '🇰🇼', '+966': '🇸🇦', '+967': '🇾🇪',
+                '+968': '🇴🇲', '+970': '🇵🇸', '+971': '🇦🇪', '+972': '🇮🇱', '+973': '🇧🇭', '+974': '🇶🇦', '+975': '🇧🇹', '+976': '🇲🇳', '+977': '🇳🇵', '+992': '🇹🇯',
+                '+993': '🇹🇲', '+994': '🇦🇿', '+995': '🇬🇪', '+996': '🇰🇬', '+998': '🇺🇿'
+            };
+            
+            const $container = $('#unifiedPhoneContainer');
+            const $countryCode = $('#countryCode');
+            const $phoneNumber = $('#whatsappNumber');
+            const $flag = $('#countryFlag');
+            
+            // Handle focus states for unified container
+            $countryCode.add($phoneNumber).on('focus', function() {
+                $container.addClass('focused');
+            }).on('blur', function() {
+                // Only remove focused class if neither input is focused
+                setTimeout(function() {
+                    if (!$countryCode.is(':focus') && !$phoneNumber.is(':focus')) {
+                        $container.removeClass('focused');
+                    }
+                }, 50);
+            });
+            
+            // Country code input handler
+            $countryCode.on('input', function() {
+                const input = $(this).val().trim();
+                
+                // Remove any non-numeric characters except +
+                let cleaned = input.replace(/[^\d+]/g, '');
+                
+                // Ensure it starts with +
+                if (cleaned && !cleaned.startsWith('+')) {
+                    cleaned = '+' + cleaned;
+                }
+                
+                // Limit to ITU-T E.164 standard: max 4 digits + plus sign
+                if (cleaned.length > 5) {
+                    cleaned = cleaned.substring(0, 5);
+                }
+                
+                // Update the input value
+                $(this).val(cleaned);
+                
+                // Find matching country code
+                let flagFound = false;
+                for (const [code, flag] of Object.entries(countryCodes)) {
+                    if (cleaned === code || (cleaned.length > 1 && code.startsWith(cleaned))) {
+                        $flag.text(flag);
+                        flagFound = true;
+                        break;
+                    }
+                }
+                
+                // If no exact match, try partial matches for longer codes
+                if (!flagFound && cleaned.length >= 2) {
+                    for (const [code, flag] of Object.entries(countryCodes)) {
+                        if (code.startsWith(cleaned)) {
+                            $flag.text(flag);
+                            flagFound = true;
+                            break;
+                        }
+                    }
+                }
+                
+                // Default flag if no match
+                if (!flagFound) {
+                    $flag.text('🌍');
+                }
+            });
+            
+            // Phone number input - only allow digits
+            $phoneNumber.on('input', function() {
+                let value = $(this).val().replace(/\D/g, ''); // Remove non-digits
+                
+                // Limit based on ITU-T E.164 standard (15 digits total)
+                const countryCodeDigits = $countryCode.val().replace(/\D/g, '').length;
+                const maxPhoneDigits = Math.min(15 - countryCodeDigits, 15);
+                
+                if (value.length > maxPhoneDigits) {
+                    value = value.substring(0, maxPhoneDigits);
+                }
+                
+                $(this).val(value);
+            });
+            
+            // Format country code on blur
+            $countryCode.on('blur', function() {
+                let value = $(this).val().trim();
+                if (value && !value.startsWith('+')) {
+                    $(this).val('+' + value);
+                }
+                
+                // If empty, reset to default
+                if (!value) {
+                    $(this).val('+91');
+                    $flag.text('🇮🇳');
+                }
             });
         });
     </script>

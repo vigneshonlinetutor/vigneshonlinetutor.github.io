@@ -962,15 +962,8 @@
         
         // Form submission and validation
         $(document).ready(function() {
-            // Add visual feedback for required dropdowns
-            $('select.form-control[required]').on('change', function() {
-                const $select = $(this);
-                if ($select.val()) {
-                    $select.removeClass('is-invalid').addClass('is-valid');
-                } else {
-                    $select.removeClass('is-valid').addClass('is-invalid');
-                }
-            });
+            // Clean form validation - only show validation on submission
+            // Remove automatic validation that was causing confusion
             
             // Handle form submission for Netlify
             $('form[name="training-request"]').on('submit', function(e) {

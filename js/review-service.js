@@ -400,6 +400,28 @@ class ReviewService {
 
         // Small delay for smooth transition
         setTimeout(() => {
+            // Check if Owl Carousel is available
+            if (typeof $.fn.owlCarousel === 'undefined') {
+                console.warn('⚠️ Owl Carousel not available for renderAsCarousel, using fallback grid');
+                // Fallback: Display reviews in grid format
+                const fallbackReviewsHtml = reviews.map(review => 
+                    this.generateReviewHTML(review, {
+                        colClass: 'col-lg-4 col-md-6 mb-4', // Bootstrap grid instead
+                        showBadges: true
+                    })
+                ).join('');
+                
+                container.innerHTML = `<div class="row">${fallbackReviewsHtml}</div>`;
+                
+                // Initialize review expansion functionality
+                setTimeout(() => {
+                    this.initializeReviewExpansion();
+                }, 50);
+                
+                console.log(`✅ Fallback grid display with ${reviews.length} reviews in ${containerId}`);
+                return;
+            }
+
             // Destroy existing carousel if it exists
             if ($(container).find('.owl-carousel').length && $(container).find('.owl-carousel').hasClass('owl-loaded')) {
                 $(container).find('.owl-carousel').trigger('destroy.owl.carousel');
@@ -421,7 +443,8 @@ class ReviewService {
             `;
 
             // Initialize Owl Carousel
-            const owl = $(container).find('.reviews-carousel').owlCarousel({
+            try {
+                const owl = $(container).find('.reviews-carousel').owlCarousel({
                 loop: reviews.length > 1 ? true : false, // Only loop if more than 1 item
                 margin: 30,
                 nav: false,
@@ -466,10 +489,29 @@ class ReviewService {
                 owl.trigger('next.owl.carousel');
             });
 
-            // Initialize review expansion functionality for carousel
-            setTimeout(() => {
-                window.reviewService.initializeReviewExpansion();
-            }, 100);
+                // Initialize review expansion functionality for carousel
+                setTimeout(() => {
+                    window.reviewService.initializeReviewExpansion();
+                }, 100);
+
+            } catch (error) {
+                console.error('❌ Error initializing Owl Carousel in renderAsCarousel, using fallback:', error);
+                // Fallback on error
+                const fallbackReviewsHtml = reviews.map(review => 
+                    this.generateReviewHTML(review, {
+                        colClass: 'col-lg-4 col-md-6 mb-4',
+                        showBadges: true
+                    })
+                ).join('');
+                
+                container.innerHTML = `<div class="row">${fallbackReviewsHtml}</div>`;
+                
+                setTimeout(() => {
+                    this.initializeReviewExpansion();
+                }, 50);
+                
+                console.log(`✅ Fallback display after error with ${reviews.length} reviews in ${containerId}`);
+            }
 
         }, 300);
     }

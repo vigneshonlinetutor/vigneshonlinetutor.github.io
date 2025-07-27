@@ -1709,10 +1709,14 @@
                 const container = document.getElementById('testimonials-container');
                 if (container) {
                     container.innerHTML = `
-                        <div class="text-center py-4">
-                            <h5 class="text-muted">Student Reviews</h5>
-                            <p class="text-muted">Loading reviews... Please refresh if this takes too long.</p>
-                            <a href="portfolio/reviews.html" class="btn btn-primary">View All Reviews</a>
+                        <div class="row">
+                            <div class="col-12 text-center py-4">
+                                <h5 class="text-muted">Student Reviews</h5>
+                                <p class="text-muted">Reviews loading failed. Displaying in simple format:</p>
+                            </div>
+                        </div>
+                        <div id="fallback-reviews-grid" class="row">
+                            <!-- Reviews will be inserted here by backup mechanism -->
                         </div>
                     `;
                 }
@@ -1724,6 +1728,28 @@
             const container = document.getElementById('testimonials-container');
             if (!container) {
                 console.error('❌ Testimonials container not found!');
+                return;
+            }
+            
+            // Check if Owl Carousel is available
+            if (typeof $.fn.owlCarousel === 'undefined') {
+                console.warn('⚠️ Owl Carousel not available, using fallback display');
+                // Fallback: Display reviews in simple grid format
+                const reviewsHtml = reviews.map(review => 
+                    window.reviewService.generateReviewHTML(review, {
+                        colClass: 'col-lg-4 col-md-6 mb-4', // Bootstrap grid instead
+                        showBadges: true
+                    })
+                ).join('');
+                
+                container.innerHTML = `<div class="row">${reviewsHtml}</div>`;
+                
+                // Initialize review expansion functionality
+                setTimeout(() => {
+                    window.reviewService.initializeReviewExpansion();
+                }, 50);
+                
+                console.log(`✅ Fallback grid display with ${reviews.length} testimonials`);
                 return;
             }
             
@@ -1756,7 +1782,8 @@
             `;
             
             // Initialize Owl Carousel with optimized settings
-            const owl = $('.testimonials-owl').owlCarousel({
+            try {
+                const owl = $('.testimonials-owl').owlCarousel({
                 loop: reviews.length > 1,
                 margin: 30,
                 nav: false,
@@ -1793,12 +1820,30 @@
                 owl.trigger('next.owl.carousel');
             });
 
-            // Initialize review expansion functionality
-            setTimeout(() => {
-                window.reviewService.initializeReviewExpansion();
-            }, 50);
-            
-            console.log(`✅ Fast carousel initialized with ${reviews.length} testimonials`);
+                // Initialize review expansion functionality
+                setTimeout(() => {
+                    window.reviewService.initializeReviewExpansion();
+                }, 50);
+                
+                console.log(`✅ Fast carousel initialized with ${reviews.length} testimonials`);
+            } catch (error) {
+                console.error('❌ Error initializing Owl Carousel, using fallback:', error);
+                // Fallback on error
+                const fallbackReviewsHtml = reviews.map(review => 
+                    window.reviewService.generateReviewHTML(review, {
+                        colClass: 'col-lg-4 col-md-6 mb-4',
+                        showBadges: true
+                    })
+                ).join('');
+                
+                container.innerHTML = `<div class="row">${fallbackReviewsHtml}</div>`;
+                
+                setTimeout(() => {
+                    window.reviewService.initializeReviewExpansion();
+                }, 50);
+                
+                console.log(`✅ Fallback display after error with ${reviews.length} testimonials`);
+            }
         }
 
         // Backup mechanism - Ensure testimonials are initialized even if async loading fails
@@ -1808,19 +1853,86 @@
                 console.log('🔄 Backup: Testimonials still loading, attempting direct initialization...');
                 
                 // Check if review service is available
-                if (typeof window.reviewService !== 'undefined' && typeof initializeTestimonials === 'function') {
-                    console.log('✅ Backup: Review service found, initializing testimonials...');
-                    initializeTestimonials();
+                if (typeof window.reviewService !== 'undefined') {
+                    console.log('✅ Backup: Review service found, trying direct fallback display...');
+                    
+                    // Try to get reviews and display them in fallback grid
+                    window.reviewService.getReviews().then(allReviews => {
+                        const workshopReviews = allReviews.filter(review => review.type === 'workshop');
+                        const mentoringReviews = allReviews.filter(review => review.type === 'mentoring');
+                        
+                        // Create alternating pattern for backup display
+                        const backupReviews = [];
+                        for (let i = 0; i < Math.min(6, Math.max(workshopReviews.length, mentoringReviews.length)); i++) {
+                            if (i < mentoringReviews.length) backupReviews.push(mentoringReviews[i]);
+                            if (i < workshopReviews.length) backupReviews.push(workshopReviews[i]);
+                        }
+                        
+                        // Insert into fallback grid
+                        const fallbackGrid = document.getElementById('fallback-reviews-grid');
+                        if (fallbackGrid && backupReviews.length > 0) {
+                            const reviewsHtml = backupReviews.map(review => 
+                                window.reviewService.generateReviewHTML(review, {
+                                    colClass: 'col-lg-4 col-md-6 mb-4',
+                                    showBadges: true
+                                })
+                            ).join('');
+                            
+                            fallbackGrid.innerHTML = reviewsHtml;
+                            
+                            // Initialize review expansion
+                            setTimeout(() => {
+                                window.reviewService.initializeReviewExpansion();
+                            }, 100);
+                            
+                            console.log(`✅ Backup: Displayed ${backupReviews.length} reviews in fallback grid`);
+                        }
+                    }).catch(error => {
+                        console.error('❌ Backup: Failed to load reviews:', error);
+                    });
                 } else {
                     console.log('⚠️ Backup: Review service not available, loading it directly...');
                     // Load review service directly if it's not loaded
                     const script = document.createElement('script');
                     script.src = 'js/review-service.js';
                     script.onload = () => {
-                        console.log('✅ Backup: Review service loaded, initializing testimonials...');
-                        if (typeof initializeTestimonials === 'function') {
-                            initializeTestimonials();
-                        }
+                        console.log('✅ Backup: Review service loaded, trying backup display...');
+                        // Retry the backup mechanism after loading
+                        setTimeout(() => {
+                            if (typeof window.reviewService !== 'undefined') {
+                                                                 // Repeat the same logic as above
+                                 window.reviewService.getReviews().then(allReviews => {
+                                     const workshopReviews = allReviews.filter(review => review.type === 'workshop');
+                                     const mentoringReviews = allReviews.filter(review => review.type === 'mentoring');
+                                     
+                                     const backupReviews = [];
+                                     for (let i = 0; i < Math.min(6, Math.max(workshopReviews.length, mentoringReviews.length)); i++) {
+                                         if (i < mentoringReviews.length) backupReviews.push(mentoringReviews[i]);
+                                         if (i < workshopReviews.length) backupReviews.push(workshopReviews[i]);
+                                     }
+                                     
+                                     const fallbackGrid = document.getElementById('fallback-reviews-grid');
+                                     if (fallbackGrid && backupReviews.length > 0) {
+                                         const reviewsHtml = backupReviews.map(review => 
+                                             window.reviewService.generateReviewHTML(review, {
+                                                 colClass: 'col-lg-4 col-md-6 mb-4',
+                                                 showBadges: true
+                                             })
+                                         ).join('');
+                                         
+                                         fallbackGrid.innerHTML = reviewsHtml;
+                                         
+                                         setTimeout(() => {
+                                             window.reviewService.initializeReviewExpansion();
+                                         }, 100);
+                                         
+                                         console.log(`✅ Backup after load: Displayed ${backupReviews.length} reviews`);
+                                     }
+                                 }).catch(error => {
+                                     console.error('❌ Backup after script load: Failed to load reviews:', error);
+                                 });
+                            }
+                        }, 500);
                     };
                     document.head.appendChild(script);
                 }

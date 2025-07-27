@@ -35,7 +35,7 @@
             "title": "Agentic AI for QA's",
             "description": "Master the future of QA with autonomous AI agents. Learn to build intelligent testing systems using LangChain, LangGraph, and advanced prompt engineering for automated QA workflows",
             "duration": "25 Hours",
-            "startDate": "10-08-2025",
+            "startDate": "30-08-2025",
             "endDate": "21-09-2025",
             "technologies": ["Agentic AI", "LangChain", "LangGraph", "Streamlit", "API Integration"],
             "techColors": ["primary", "success", "info", "warning", "danger"],

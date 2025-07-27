@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Want to Work in Germany? - Vignesh Online Tutor</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Work in Germany, Tech Jobs Germany, Career Guidance Germany, Software Engineer Germany" name="keywords">
+    <meta content="Want to work in Germany? Get expert guidance for tech opportunities. Comprehensive insights from someone working in Germany." name="description">
+
+    <!-- Favicon -->
+    <link href="../../img/favicon.ico" rel="icon">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="../../lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Independent Professional Styling -->
+    <link href="../../css/modern-style.css" rel="stylesheet">
+
+    <!-- Enhanced Dropdown Navigation Styling -->
+    <style>
+        /* Remove Bootstrap default focus/active states that cause violet squares */
+        .navbar-nav .nav-link:focus,
+        .navbar-nav .nav-link.active,
+        .navbar-nav .nav-link:hover {
+            background-color: transparent !important;
+            border-radius: 0 !important;
+            color: #007bff !important;
+        }
+        
+        /* Remove any button-like styling */
+        .navbar-nav .nav-item .nav-link {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+        
+        /* Dropdown Navigation Enhancements */
+        .navbar-nav .nav-item.dropdown {
+            position: relative;
+        }
+        
+        /* Custom dropdown arrow using FontAwesome */
+        .navbar-nav .dropdown-toggle::after {
+            display: none !important; /* Hide dropdown arrows completely */
+        }
+        
+        /* Hover-based dropdown behavior */
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            display: block !important; /* Always display but use opacity for show/hide */
+        }
+        
+        /* Dropdown item styling */
+        .dropdown-item {
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            color: #495057;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .dropdown-item:hover {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            border-left-color: #ffc107;
+            transform: translateX(5px);
+        }
+        
+        .dropdown-item i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Pure hover-based dropdown for desktop */
+        @media (min-width: 992px) {
+            .navbar-nav .dropdown:hover .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+            
+            /* Disable click behavior on desktop */
+            .navbar-nav .dropdown-toggle {
+                pointer-events: none;
+            }
+            
+            .navbar-nav .dropdown-toggle::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                pointer-events: auto;
+            }
+        }
+        
+        /* Mobile click-based behavior */
+        @media (max-width: 991.98px) {
+            .dropdown-menu {
+                position: static;
+                float: none;
+                width: 100%;
+                margin-top: 0;
+                background-color: #f8f9fa;
+                border-radius: 0;
+                box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+            }
+            
+            .dropdown-item {
+                padding: 0.5rem 2rem;
+                border-left: none;
+                border-bottom: 1px solid #e9ecef;
+            }
+            
+            .dropdown-item:hover {
+                transform: none;
+                background-color: #007bff;
+                border-left: none;
+            }
+            
+            /* Re-enable click behavior on mobile */
+            .navbar-nav .dropdown-toggle {
+                pointer-events: auto;
+            }
+        }
+        
+        /* Enhanced navigation link styling */
+        .navbar-nav .nav-link {
+            position: relative;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem !important;
+        }
+        
+        /* Underline effect for non-dropdown links */
+        .navbar-nav .nav-link:not(.dropdown-toggle)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .navbar-nav .nav-link:not(.dropdown-toggle):hover::after,
+        .navbar-nav .nav-link:not(.dropdown-toggle).active::after {
+            width: 100%;
+        }
+        
+        /* Clean hover states */
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: #007bff !important;
+            background-color: transparent !important;
+        }
+        
+        /* Clean dropdown toggle hover */
+        .navbar-nav .dropdown-toggle:hover {
+            color: #007bff !important;
+            background-color: transparent !important;
+        }
+        
+        /* Enhanced mobile toggle */
+        .navbar-toggler {
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            padding: 0.5rem 0.75rem;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        /* Remove any Bootstrap button styling that might cause squares */
+        .nav-link.active,
+        .nav-link:focus,
+        .nav-link:hover {
+            background: none !important;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+        
+        /* Ensure dropdown menus stay visible when hovering over them */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Germany-specific styling */
+        .germany-flag {
+            background: linear-gradient(to bottom, #000000 33%, #DD0000 33%, #DD0000 66%, #FFCC00 66%);
+            height: 4px;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .highlight-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .step-card {
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.15);
+        }
+
+        /* Clean FAQ Accordion Styling */
+        .faq-clean {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-card {
+            background: #ffffff;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-card:hover {
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .faq-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .faq-button {
+            width: 100%;
+            padding: 20px 25px;
+            background: none;
+            border: none;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1rem;
+            line-height: 1.4;
+            transition: all 0.3s ease;
+        }
+
+        .faq-button:hover {
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+            color: #007bff;
+        }
+
+        .faq-button:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .faq-button span {
+            flex: 1;
+            margin: 0 15px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+            color: #6c757d;
+        }
+
+        .faq-button[aria-expanded="true"] .faq-icon {
+            transform: rotate(180deg);
+            color: #007bff;
+        }
+
+        .faq-body {
+            padding: 25px;
+            color: #495057;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            background: #ffffff;
+        }
+
+        .faq-body p {
+            margin-bottom: 15px;
+        }
+
+        .faq-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-body ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .faq-body li {
+            margin-bottom: 8px;
+        }
+
+        .faq-body strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .text-purple {
+            color: #6f42c1 !important;
+        }
+
+        /* Smooth collapse animations */
+        .collapse {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="51">
+    <!-- Nav Bar Start -->
+    <div class="navbar-wrapper bg-light">
+        <!-- First Row: Logo and Name -->
+        <div class="navbar-brand-row">
+            <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+                <a href="../../index.html" class="navbar-brand-custom d-flex align-items-center">
+                    <img src="../displayPicture/Viki-DP.jpg" alt="Vignesh Srinivasa Raghavan" class="navbar-logo">
+                    <span class="navbar-title">Vignesh Srinivasa Raghavan</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Second Row: Navigation Menu -->
+        <div class="navbar navbar-expand-lg bg-light navbar-light border-top">
+            <div class="container-fluid">
+                <button type="button" class="navbar-toggler mx-auto" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                        <a href="../../index.html" class="nav-item nav-link">Home</a>
+                        
+                        <!-- Get Trained Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="getTrainedDropdown">
+                                Get Trained
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="getTrainedDropdown">
+                                <a class="dropdown-item" href="online-courses.html">
+                                    <i class="fas fa-graduation-cap mr-2 text-primary"></i>Online Courses
+                                </a>
+                                <a class="dropdown-item" href="live-workshops.html">
+                                    <i class="fas fa-users mr-2 text-success"></i>Live Workshops
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Personal Training Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="personalTrainingDropdown">
+                                Personal Training
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="personalTrainingDropdown">
+                                <a class="dropdown-item" href="corporate-training.html">
+                                    <i class="fas fa-building mr-2 text-info"></i>Corporate Training
+                                </a>
+                                <a class="dropdown-item" href="mentoring.html">
+                                    <i class="fas fa-user-tie mr-2 text-warning"></i>1-to-1 Mentoring
+                                </a>
+                                <a class="dropdown-item active" href="move-to-germany.html">
+                                    <i class="fas fa-plane mr-2 text-success"></i>Want to Work in Germany?
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <a href="../reviews.html" class="nav-item nav-link">Reviews</a>
+                        <a href="../about.html" class="nav-item nav-link">About</a>
+                        
+                        <!-- Speaking & Events Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="speakingDropdown">
+                                Speaking & Events
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="speakingDropdown">
+                                <a class="dropdown-item" href="../speaking/conference-talks.html">
+                                    <i class="fas fa-microphone mr-2 text-primary"></i>Conference Talks
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Let's Connect Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="connectDropdown">
+                                Let's Connect
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="connectDropdown">
+                                <a class="dropdown-item" href="../connect/contact-form.html">
+                                    <i class="fas fa-envelope mr-2 text-primary"></i>Contact Form
+                                </a>
+                                <a class="dropdown-item" href="../connect/whatsapp.html">
+                                    <i class="fab fa-whatsapp mr-2 text-success"></i>WhatsApp Direct
+                                </a>
+                                <a class="dropdown-item" href="https://www.linkedin.com/in/vignesh-srinivasa-raghavan/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-linkedin mr-2 text-info"></i>LinkedIn Profile
+                                </a>
+                                <a class="dropdown-item" href="https://www.udemy.com/user/vignesh-2698/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-play-circle mr-2 text-danger"></i>Udemy Profile
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Nav Bar End -->
+
+    <!-- Page Header Start -->
+    <div class="hero" id="move-to-germany">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="hero-content text-center">
+                        <div class="hero-text">
+                            <h1>🇩🇪 Want to Work in Germany?</h1>
+                            <p>Turn your dream into reality! Get expert guidance from someone already working in Germany</p>
+                            <div class="germany-flag"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Content Start -->
+    <div class="training" id="training">
+        <div class="container">
+            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                <h2>Your Journey to Germany Starts Here</h2>
+                <p>Let me help you navigate the complexities of moving to Germany for a tech career</p>
+            </div>
+
+            <!-- Personal Experience Highlight -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="highlight-card text-center wow fadeInUp" data-wow-delay="0.1s">
+                        <h3><i class="fas fa-user-check mr-3"></i>Why Trust My Guidance?</h3>
+                        <p class="lead mb-4">I've been working in Germany as a Lead SDET, navigating the entire process from visa applications to career growth. I understand the challenges, opportunities, and insider knowledge needed to succeed in the German tech market.</p>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4><i class="fas fa-globe-europe"></i> Germany</h4>
+                                <p>Living & Working</p>
+                            </div>
+                            <div class="col-md-4">
+                                <h4><i class="fas fa-briefcase"></i> Lead SDET</h4>
+                                <p>Current Role</p>
+                            </div>
+                            <div class="col-md-4">
+                                <h4><i class="fas fa-chart-line"></i> 2025</h4>
+                                <p>Latest Insights</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services Offered -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h3 class="text-center mb-4">What I Can Help You With</h3>
+                </div>
+                <div class="col-md-6 mb-4 wow fadeInLeft" data-wow-delay="0.1s">
+                    <div class="step-card">
+                        <h5><i class="fas fa-passport text-primary mr-2"></i>Visa & Documentation</h5>
+                        <ul>
+                            <li>EU Blue Card application process</li>
+                            <li>Job Seeker Visa guidance</li>
+                            <li>Document preparation and translation</li>
+                            <li>Appointment booking strategies</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4 wow fadeInRight" data-wow-delay="0.2s">
+                    <div class="step-card">
+                        <h5><i class="fas fa-search text-success mr-2"></i>Job Search Strategy</h5>
+                        <ul>
+                            <li>German CV/Resume optimization</li>
+                            <li>LinkedIn strategy for German market</li>
+                            <li>Job portals and networking tips</li>
+                            <li>Salary negotiation guidance</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4 wow fadeInLeft" data-wow-delay="0.3s">
+                    <div class="step-card">
+                        <h5><i class="fas fa-comments text-info mr-2"></i>Interview Preparation</h5>
+                        <ul>
+                            <li>German interview culture and etiquette</li>
+                            <li>Technical interview preparation</li>
+                            <li>Common questions and answers</li>
+                            <li>Mock interviews and feedback</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4 wow fadeInRight" data-wow-delay="0.4s">
+                    <div class="step-card">
+                        <h5><i class="fas fa-home text-warning mr-2"></i>Relocation Support</h5>
+                        <ul>
+                            <li>City selection based on tech hubs</li>
+                            <li>Housing search strategies</li>
+                            <li>Banking and insurance setup</li>
+                            <li>First weeks survival guide</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The German Tech Landscape -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h3 class="text-center mb-4">The German Tech Opportunity</h3>
+                    <div class="row text-center">
+                        <div class="col-md-3 mb-3 wow fadeInUp" data-wow-delay="0.1s">
+                            <i class="fas fa-euro-sign fa-3x text-success mb-3"></i>
+                            <h5>Excellent Salaries</h5>
+                            <p>Competitive tech salaries with strong work-life balance</p>
+                        </div>
+                        <div class="col-md-3 mb-3 wow fadeInUp" data-wow-delay="0.2s">
+                            <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                            <h5>Job Security</h5>
+                            <p>Strong labor laws and job protection</p>
+                        </div>
+                        <div class="col-md-3 mb-3 wow fadeInUp" data-wow-delay="0.3s">
+                            <i class="fas fa-graduation-cap fa-3x text-info mb-3"></i>
+                            <h5>Growth Opportunities</h5>
+                            <p>Thriving tech ecosystem with global companies</p>
+                        </div>
+                        <div class="col-md-3 mb-3 wow fadeInUp" data-wow-delay="0.4s">
+                            <i class="fas fa-globe-europe fa-3x text-warning mb-3"></i>
+                            <h5>EU Access</h5>
+                            <p>Gateway to entire European Union</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <!-- FAQ Section -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h3 class="text-center mb-5">Frequently Asked Questions - 2025 Edition</h3>
+                    
+                    <div class="faq-clean">
+                        <div class="accordion" id="faqAccordion">
+                            <div class="faq-card">
+                                <div class="faq-header" id="faq1">
+                                    <button class="faq-button" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                        <i class="fas fa-euro-sign text-primary mr-3"></i>
+                                        <span>What are the latest EU Blue Card salary requirements for 2025?</span>
+                                        <i class="fas fa-chevron-down faq-icon"></i>
+                                    </button>
+                                </div>
+                                <div id="collapse1" class="collapse show" aria-labelledby="faq1" data-parent="#faqAccordion">
+                                    <div class="faq-body">
+                                        <p>For 2025, the EU Blue Card minimum salary is <strong>€48,300 annually for general occupations</strong>. For shortage occupations (including IT, engineering, and healthcare), it's <strong>€43,759.80</strong>. These thresholds increased by 6.6% from 2024, reflecting Germany's commitment to attracting skilled talent.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-card">
+                                <div class="faq-header" id="faq2">
+                                    <button class="faq-button collapsed" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                        <i class="fas fa-chart-line text-success mr-3"></i>
+                                        <span>What are realistic tech salaries in Germany for 2025?</span>
+                                        <i class="fas fa-chevron-down faq-icon"></i>
+                                    </button>
+                                </div>
+                                <div id="collapse2" class="collapse" aria-labelledby="faq2" data-parent="#faqAccordion">
+                                    <div class="faq-body">
+                                        <p><strong>Software Engineers:</strong> €43k-€94k (avg €70k)<br>
+                                        <strong>Data Scientists:</strong> €70k-€102k<br>
+                                        <strong>DevOps Engineers:</strong> €99k average<br>
+                                        <strong>Cybersecurity:</strong> €63k-€112k<br>
+                                        <strong>AI/ML Engineers:</strong> €52k-€105k</p>
+                                        <p>Munich and Frankfurt offer the highest salaries, while Berlin offers great opportunities at slightly lower rates. German salaries include excellent benefits like 25-30 vacation days, healthcare, and strong job security.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-card">
+                                <div class="faq-header" id="faq3">
+                                    <button class="faq-button collapsed" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                        <i class="fas fa-balance-scale text-info mr-3"></i>
+                                        <span>How is work-life balance in Germany's tech industry?</span>
+                                        <i class="fas fa-chevron-down faq-icon"></i>
+                                    </button>
+                                </div>
+                                <div id="collapse3" class="collapse" aria-labelledby="faq3" data-parent="#faqAccordion">
+                                    <div class="faq-body">
+                                        <p>Germany has <strong>exceptional work-life balance</strong>. The Arbeitszeitgesetz (Working Hours Act) limits work to 48 hours per week maximum. Most tech companies offer:</p>
+                                        <ul>
+                                            <li>35-40 hour work weeks</li>
+                                            <li>25-30 paid vacation days</li>
+                                            <li>Sick leave without questions</li>
+                                            <li>Strict boundaries - no emails after hours!</li>
+                                        </ul>
+                                        <p>German culture prioritizes efficiency over long hours, making it ideal for sustainable career growth.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-card">
+                                <div class="faq-header" id="faq4">
+                                    <button class="faq-button collapsed" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                        <i class="fas fa-passport text-warning mr-3"></i>
+                                        <span>What visa options are available for tech professionals in 2025?</span>
+                                        <i class="fas fa-chevron-down faq-icon"></i>
+                                    </button>
+                                </div>
+                                <div id="collapse4" class="collapse" aria-labelledby="faq4" data-parent="#faqAccordion">
+                                    <div class="faq-body">
+                                        <p><strong>1) EU Blue Card</strong> (most popular) - for skilled workers with job offers<br>
+                                        <strong>2) Opportunity Card (Chancenkarte)</strong> - launched June 2024, points-based system for job searching up to 1 year<br>
+                                        <strong>3) Job Seeker Visa</strong> - 6 months to find employment<br>
+                                        <strong>4) Skilled Workers Visa</strong> - for those with recognized qualifications</p>
+                                        <p>The process has been streamlined significantly in 2025 with faster processing times.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-card">
+                                <div class="faq-header" id="faq5">
+                                    <button class="faq-button collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                        <i class="fas fa-language text-danger mr-3"></i>
+                                        <span>Do I need German language skills for tech jobs?</span>
+                                        <i class="fas fa-chevron-down faq-icon"></i>
+                                    </button>
+                                </div>
+                                <div id="collapse5" class="collapse" aria-labelledby="faq5" data-parent="#faqAccordion">
+                                    <div class="faq-body">
+                                        <p>For many tech roles, <strong>English is sufficient</strong>. However, B1 German can increase your salary by up to 15% and open more opportunities.</p>
+                                        <p>For EU Blue Card, you can qualify with either <strong>A1 German OR B2 English</strong>. Companies like SAP, Siemens, and many startups operate primarily in English, but learning German helps with daily life and career advancement.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-card">
+                                <div class="faq-header" id="faq6">
+                                    <button class="faq-button collapsed" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                                        <i class="fas fa-map-marker-alt text-purple mr-3"></i>
+                                        <span>Which German cities offer the best tech opportunities in 2025?</span>
+                                        <i class="fas fa-chevron-down faq-icon"></i>
+                                    </button>
+                                </div>
+                                <div id="collapse6" class="collapse" aria-labelledby="faq6" data-parent="#faqAccordion">
+                                    <div class="faq-body">
+                                        <p><strong>Munich:</strong> Highest salaries €85k+ for senior roles (BMW, Siemens)<br>
+                                        <strong>Berlin:</strong> Largest startup ecosystem, AI hub (€52k-€71k)<br>
+                                        <strong>Frankfurt:</strong> Fintech center (€68k average)<br>
+                                        <strong>Hamburg:</strong> Growing tech scene (€60k average)<br>
+                                        <strong>Stuttgart:</strong> Automotive tech (Mercedes-Benz)<br>
+                                        <strong>Cologne:</strong> Media/gaming industry</p>
+                                        <p>Each city offers unique advantages in cost of living vs. salary balance.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-card">
+                                <div class="faq-header" id="faq7">
+                                    <button class="faq-button collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                                        <i class="fas fa-shield-alt text-secondary mr-3"></i>
+                                        <span>What about remote work and job security in Germany?</span>
+                                        <i class="fas fa-chevron-down faq-icon"></i>
+                                    </button>
+                                </div>
+                                <div id="collapse7" class="collapse" aria-labelledby="faq7" data-parent="#faqAccordion">
+                                    <div class="faq-body">
+                                        <p><strong>64% of German companies</strong> now offer remote work options post-2024. The Kündigungsschutzgesetz (Protection Against Unfair Dismissal Act) provides exceptional job security - companies cannot terminate employees without valid reasons.</p>
+                                        <p>Germany also offers comprehensive social security including healthcare, unemployment benefits, pension contributions, and parental leave policies.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-card">
+                                <div class="faq-header" id="faq8">
+                                    <button class="faq-button collapsed" type="button" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                                        <i class="fas fa-clock text-primary mr-3"></i>
+                                        <span>How long does the entire process take from application to starting work?</span>
+                                        <i class="fas fa-chevron-down faq-icon"></i>
+                                    </button>
+                                </div>
+                                <div id="collapse8" class="collapse" aria-labelledby="faq8" data-parent="#faqAccordion">
+                                    <div class="faq-body">
+                                        <p><strong>Timeline breakdown:</strong></p>
+                                        <ul>
+                                            <li>Job search: 2-4 months</li>
+                                            <li>Visa processing: 4-8 weeks (expedited to 2 weeks for Indian workers in 2025)</li>
+                                            <li>Relocation: 2-4 weeks</li>
+                                        </ul>
+                                        <p><strong>Total timeline: 4-7 months</strong> from start to working in Germany. The key is parallel processing - start visa prep while job hunting and use the Opportunity Card for faster entry if eligible.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-card">
+                                <div class="faq-header" id="faq9">
+                                    <button class="faq-button collapsed" type="button" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                                        <i class="fas fa-calculator text-success mr-3"></i>
+                                        <span>What are the tax implications and take-home salary expectations?</span>
+                                        <i class="fas fa-chevron-down faq-icon"></i>
+                                    </button>
+                                </div>
+                                <div id="collapse9" class="collapse" aria-labelledby="faq9" data-parent="#faqAccordion">
+                                    <div class="faq-body">
+                                        <p>German taxes are progressive: <strong>~35-42% total deductions</strong> including income tax, social security, health insurance, and pension.</p>
+                                        <p><strong>Example:</strong> For a €70k salary, expect ~€42k take-home annually (€3,500/month).</p>
+                                        <p>However, this includes comprehensive healthcare, unemployment insurance, pension contributions, and all social benefits - making it excellent value compared to many countries.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-card">
+                                <div class="faq-header" id="faq10">
+                                    <button class="faq-button collapsed" type="button" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                                        <i class="fas fa-home text-info mr-3"></i>
+                                        <span>What's the path to permanent residency and German citizenship?</span>
+                                        <i class="fas fa-chevron-down faq-icon"></i>
+                                    </button>
+                                </div>
+                                <div id="collapse10" class="collapse" aria-labelledby="faq10" data-parent="#faqAccordion">
+                                    <div class="faq-body">
+                                        <p><strong>Permanent Residency:</strong> EU Blue Card holders can get it after 21 months (with B1 German) or 33 months (with A1 German).</p>
+                                        <p><strong>German Citizenship:</strong> Possible after 5 years of residency (reduced from 8 years in 2024 reforms). Dual citizenship is now permitted, and family members can join with simplified reunification rules.</p>
+                                        <p>The 2025 coalition has maintained these favorable timelines.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ready to Start Section -->
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="highlight-card">
+                        <h3>Ready to Start Your German Adventure? 🚀</h3>
+                        <p class="lead">Don't navigate this journey alone. Let someone who's been there guide you to success.</p>
+                        <div class="row mt-4">
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100 text-dark p-4">
+                                    <i class="fas fa-envelope fa-3x text-primary mb-3"></i>
+                                    <h5>Send Detailed Requirements</h5>
+                                    <p>Share your background, goals, and timeline. I'll create a personalized plan for you.</p>
+                                    <a href="../connect/contact-form.html" class="btn btn-primary">Contact Form</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100 text-dark p-4">
+                                    <i class="fab fa-whatsapp fa-3x text-success mb-3"></i>
+                                    <h5>Quick Questions?</h5>
+                                    <p>Have immediate questions? Let's chat on WhatsApp for quick answers and guidance.</p>
+                                    <a href="../connect/whatsapp.html" class="btn btn-success">WhatsApp Me</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content End -->
+
+    <!-- Footer Start -->
+    <div class="footer wow fadeIn" data-wow-delay="0.3s">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="footer-info">
+                    <h2>Vignesh Srinivasa Raghavan</h2>
+                    <div class="footer-social">
+                        <a href="../connect/contact-form.html" title="Contact Form">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="../connect/whatsapp.html" title="WhatsApp Direct">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/vignesh-srinivasa-raghavan/" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="container copyright">
+                <p>&copy; 2025 Vignesh Srinivasa Raghavan. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to top button -->
+    <a href="#" class="btn back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- Pre Loader -->
+    <div id="loader" class="show">
+        <div class="loader"></div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="../../lib/easing/easing.min.js"></script>
+    <script src="../../lib/wow/wow.min.js"></script>
+    <script src="../../lib/waypoints/waypoints.min.js"></script>
+    <script src="../../lib/typed/typed.min.js"></script>
+    <script src="../../lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../../lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="../../lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Core Javascript -->
+    <script src="../../js/main.js"></script>
+    
+    <!-- Custom Navigation Behavior -->
+    <script>
+        // Handle mobile dropdown behavior
+        $(document).ready(function() {
+            // Only enable click behavior on mobile
+            function handleMobileDropdowns() {
+                if ($(window).width() <= 991) {
+                    // Mobile: Enable click behavior
+                    $('.dropdown-toggle').off('click').on('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        var $dropdown = $(this).parent();
+                        var $menu = $dropdown.find('.dropdown-menu');
+                        
+                        // Close other dropdowns
+                        $('.dropdown-menu').not($menu).removeClass('show');
+                        
+                        // Toggle current dropdown
+                        $menu.toggleClass('show');
+                    });
+                    
+                    // Close dropdown when clicking outside
+                    $(document).on('click', function(e) {
+                        if (!$(e.target).closest('.dropdown').length) {
+                            $('.dropdown-menu').removeClass('show');
+                        }
+                    });
+                } else {
+                    // Desktop: Disable click behavior (hover only)
+                    $('.dropdown-toggle').off('click');
+                    $('.dropdown-menu').removeClass('show');
+                }
+            }
+            
+            // Initial setup
+            handleMobileDropdowns();
+            
+            // Handle window resize
+            $(window).resize(function() {
+                handleMobileDropdowns();
+            });
+        });
+    </script>
+</body>
+
+</html> 

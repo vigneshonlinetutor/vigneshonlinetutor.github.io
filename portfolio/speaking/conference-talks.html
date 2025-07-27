@@ -8,21 +8,8 @@
     <meta content="Conference Talks, Speaking Engagements, Automation Testing" name="keywords">
     <meta content="Upcoming Conference Talks and Speaking Engagements by Vignesh Srinivasa Raghavan" name="description">
 
-    <!-- Favicon -->
-    <link href="../../img/favicon.ico" rel="icon">
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- CSS Libraries -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="../../lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="../../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
-    <!-- Independent Professional Styling -->
-    <link href="../../css/modern-style.css" rel="stylesheet">
+    <!-- Common Head Meta Component -->
+    <div id="common-head-meta"></div>
 
     <!-- Enhanced Dropdown Navigation Styling -->
     <style>
@@ -276,103 +263,10 @@
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="51">
-    <!-- Nav Bar Start -->
-    <div class="navbar-wrapper bg-light">
-        <!-- First Row: Logo and Name -->
-        <div class="navbar-brand-row">
-            <div class="container-fluid d-flex align-items-center justify-content-center h-100">
-                <a href="../../index.html" class="navbar-brand-custom d-flex align-items-center">
-                    <img src="../displayPicture/Viki-DP.jpg" alt="Vignesh Srinivasa Raghavan" class="navbar-logo">
-                    <span class="navbar-title">Vignesh Srinivasa Raghavan</span>
-                </a>
-            </div>
-        </div>
-        
-        <!-- Second Row: Navigation Menu -->
-        <div class="navbar navbar-expand-lg bg-light navbar-light border-top">
-            <div class="container-fluid">
-                <button type="button" class="navbar-toggler mx-auto" data-toggle="collapse" data-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <!-- Common Navigation Component -->
+    <div id="common-navigation"></div>
 
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav mx-auto">
-                        <a href="../../index.html" class="nav-item nav-link">Home</a>
-                        
-                        <!-- Get Trained Dropdown -->
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="getTrainedDropdown">
-                                Get Trained
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="getTrainedDropdown">
-                                <a class="dropdown-item" href="../training/online-courses.html">
-                                    <i class="fas fa-graduation-cap mr-2 text-primary"></i>Online Courses
-                                </a>
-                                <a class="dropdown-item" href="../training/live-workshops.html">
-                                    <i class="fas fa-users mr-2 text-success"></i>Live Workshops
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <!-- Personal Training Dropdown -->
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="personalTrainingDropdown">
-                                Personal Training
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="personalTrainingDropdown">
-                                <a class="dropdown-item" href="../training/corporate-training.html">
-                                    <i class="fas fa-building mr-2 text-info"></i>Corporate Training
-                                </a>
-                                <a class="dropdown-item" href="../training/mentoring.html">
-                                    <i class="fas fa-user-tie mr-2 text-warning"></i>1-to-1 Mentoring
-                                </a>
-                                <a class="dropdown-item" href="../training/move-to-germany.html">
-                                    <i class="fas fa-plane mr-2 text-success"></i>Want to Work in Germany?
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <a href="../reviews.html" class="nav-item nav-link">Reviews</a>
-                        <a href="../about.html" class="nav-item nav-link">About</a>
-                        
-                        <!-- Speaking & Events Dropdown -->
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" href="#" id="speakingDropdown">
-                                Speaking & Events
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="speakingDropdown">
-                                <a class="dropdown-item active" href="conference-talks.html">
-                                    <i class="fas fa-microphone mr-2 text-primary"></i>Conference Talks
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <!-- Let's Connect Dropdown -->
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="connectDropdown">
-                                Let's Connect
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="connectDropdown">
-                                <a class="dropdown-item" href="../connect/contact-form.html">
-                                    <i class="fas fa-envelope mr-2 text-primary"></i>Contact Form
-                                </a>
-                                <a class="dropdown-item" href="../connect/whatsapp.html">
-                                    <i class="fab fa-whatsapp mr-2 text-success"></i>WhatsApp Direct
-                                </a>
-                                <a class="dropdown-item" href="https://www.linkedin.com/in/vignesh-srinivasa-raghavan/" target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-linkedin mr-2 text-info"></i>LinkedIn Profile
-                                </a>
-                                <a class="dropdown-item" href="https://www.udemy.com/user/vignesh-2698/" target="_blank" rel="noopener noreferrer">
-                                    <i class="fas fa-play-circle mr-2 text-danger"></i>Udemy Profile
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Nav Bar End -->
+
 
     <!-- Page Header Start -->
     <div class="hero" id="conference-talks">
@@ -419,9 +313,10 @@
                                 <span id="currentPhotoIndex">1</span> / <span id="totalPhotos">Loading...</span>
                             </div>
                             
-                            <!-- Loading indicator -->
-                            <div id="photoLoader" class="position-absolute" style="top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255,255,255,0.9); padding: 20px; border-radius: 10px; display: none;">
-                                <i class="fas fa-spinner fa-spin text-primary"></i> Loading photos...
+                            <!-- Enhanced Loading indicator -->
+                            <div id="photoLoader" class="position-absolute" style="top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255,255,255,0.95); padding: 25px; border-radius: 15px; display: none; box-shadow: 0 5px 15px rgba(0,0,0,0.2); text-align: center; min-width: 200px;">
+                                <i class="fas fa-image text-primary" style="font-size: 2rem; margin-bottom: 10px;"></i><br>
+                                <i class="fas fa-spinner fa-spin text-primary"></i> <span id="loadingText">Loading photos...</span>
                             </div>
                         </div>
                         
@@ -804,61 +699,28 @@
     </div>
     <!-- Conference Talks End -->
 
-    <!-- Footer Start -->
-    <div class="footer wow fadeIn" data-wow-delay="0.3s">
-        <div class="container-fluid">
-            <div class="container">
-                <div class="footer-info">
-                    <h2>Vignesh Srinivasa Raghavan</h2>
-                    <div class="footer-social">
-                        <a href="../connect/contact-form.html" title="Contact Form">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="../connect/whatsapp.html" title="WhatsApp Direct">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/vignesh-srinivasa-raghavan/" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            </div>
-            <div class="container copyright">
-                <p>&copy; 2025 Vignesh Srinivasa Raghavan. All Rights Reserved.</p>
-            </div>
-        </div>
-    </div>
-    <!-- Footer End -->
+    <!-- Common Footer Component -->
+    <div id="common-footer"></div>
 
-    <!-- Back to top button -->
-    <a href="#" class="btn back-to-top"><i class="fa fa-chevron-up"></i></a>
+    <!-- Common Components System (must load before other components) -->
+    <script src="../../js/common-components.js"></script>
 
-    <!-- Pre Loader -->
-    <div id="loader" class="show">
-        <div class="loader"></div>
-    </div>
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="../../lib/easing/easing.min.js"></script>
-    <script src="../../lib/wow/wow.min.js"></script>
-    <script src="../../lib/waypoints/waypoints.min.js"></script>
-    <script src="../../lib/typed/typed.min.js"></script>
-    <script src="../../lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../../lib/isotope/isotope.pkgd.min.js"></script>
-    <script src="../../lib/lightbox/js/lightbox.min.js"></script>
-
-    <!-- Core Javascript -->
-    <script src="../../js/main.js"></script>
-    <!-- Interactive Features -->
-    <script src="../../js/interactive.js"></script>
+    <!-- Common Scripts Component -->
+    <div id="common-scripts"></div>
     
     <!-- Custom Navigation Behavior -->
     <script>
+        // Wait for jQuery to be loaded by common components system
+        function waitForJQuery(callback) {
+            if (typeof $ !== 'undefined') {
+                $(document).ready(callback);
+            } else {
+                setTimeout(() => waitForJQuery(callback), 50);
+            }
+        }
+        
         // Handle mobile dropdown behavior
-        $(document).ready(function() {
+        waitForJQuery(function() {
             // Only enable click behavior on mobile
             function handleMobileDropdowns() {
                 if ($(window).width() <= 991) {
@@ -902,7 +764,8 @@
 
     <!-- Conference Photos Carousel -->
     <script>
-        $(document).ready(function() {
+        // Wait for jQuery before initializing photo carousel
+        waitForJQuery(function() {
             // Conference photos management
             let conferencePhotos = [];
             let currentPhotoIndex = 0;
@@ -912,82 +775,330 @@
             // Common image extensions to try
             const imageExtensions = ['JPG', 'jpg', 'JPEG', 'jpeg', 'PNG', 'png', 'WebP', 'webp'];
             
-            // Known photo filenames from your folder (we'll try to load these)
-            const knownPhotos = [
-                'IMG_2453', 'IMG_2451', 'IMG_2446', 'IMG_2441', 'IMG_2431',
-                'DSC01782', 'DSC01171', 'DSC01801', 'DSC01405', 'DSC01534',
-                '2A5A1415', '2A5A1428', '2A5A1435', '2A5A1430'
-            ];
+            // NETLIFY-OPTIMIZED: Efficient photo discovery for static hosting
+            async function smartPhotoDiscovery() {
+                const discoveredPhotos = [];
+                const imageExts = ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG', 'WEBP'];
+                
+                // Detect if we're in production (netlify, github pages, etc.)
+                const isProduction = window.location.hostname !== 'localhost' && 
+                                   window.location.hostname !== '127.0.0.1';
+                
+                console.log(`🚀 NETLIFY-OPTIMIZED: Efficient photo discovery (${isProduction ? 'PRODUCTION' : 'LOCAL'} mode)...`);
+                
+                // STRATEGY 1: Check existing known photos first (zero 404s)
+                console.log('📋 Strategy 1: Checking known photos...');
+                const knownPhotos = [
+                    'TribeQonf_Group', '2A5A1415', '2A5A1428', '2A5A1430', '2A5A1435',
+                    'DSC01171', 'DSC01405', 'DSC01534', 'DSC01782', 'DSC01801',
+                    'IMG_2431', 'IMG_2441', 'IMG_2446', 'IMG_2453'
+                ];
+                
+                // Check known photos in parallel for speed
+                const knownChecks = knownPhotos.map(async (name) => {
+                    for (const ext of imageExts) {
+                        const url = `../img/conference/${name}.${ext}`;
+                        if (await checkImageExists(url)) {
+                            return { url, name, ext };
+                        }
+                    }
+                    return null;
+                });
+                
+                const knownResults = await Promise.all(knownChecks);
+                const foundKnown = knownResults.filter(r => r !== null);
+                discoveredPhotos.push(...foundKnown);
+                
+                if (foundKnown.length > 0) {
+                    console.log(`✅ Found ${foundKnown.length} known photos:`, foundKnown.map(p => p.name + '.' + p.ext));
+                }
+                
+                // STRATEGY 2: Smart sequential check (limited to avoid 404 flood)
+                console.log('🔢 Strategy 2: Smart sequential check (limited)...');
+                $('#loadingText').text(`Found ${discoveredPhotos.length} photos, checking for more...`);
+                
+                // Limit even more aggressively in production to minimize 404s
+                const maxSequential = isProduction ? 10 : 20;
+                console.log(`📊 Checking 1-${maxSequential} for sequential files...`);
+                
+                const sequentialChecks = [];
+                for (let num = 1; num <= maxSequential; num++) {
+                    sequentialChecks.push(async () => {
+                        // Try most common extensions first
+                        const commonExts = ['jpg', 'JPG', 'jpeg', 'png'];
+                        for (const ext of commonExts) {
+                            const url = `../img/conference/${num}.${ext}`;
+                            if (await checkImageExists(url)) {
+                                const exists = discoveredPhotos.some(p => p.url === url);
+                                if (!exists) {
+                                    return { url, name: num.toString(), ext };
+                                }
+                            }
+                        }
+                        return null;
+                    });
+                }
+                
+                // Process in batches to avoid overwhelming the server
+                const batchSize = 5;
+                for (let i = 0; i < sequentialChecks.length; i += batchSize) {
+                    const batch = sequentialChecks.slice(i, i + batchSize);
+                    const batchResults = await Promise.all(batch.map(check => check()));
+                    const foundInBatch = batchResults.filter(r => r !== null);
+                    discoveredPhotos.push(...foundInBatch);
+                    
+                    if (foundInBatch.length > 0) {
+                        console.log(`✅ Found sequential: ${foundInBatch.map(p => p.name + '.' + p.ext).join(', ')}`);
+                    }
+                    
+                    // Small delay between batches to be gentle on Netlify
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+                
+                // STRATEGY 3: Common naming patterns (very limited for Netlify)
+                console.log('📝 Strategy 3: Common patterns (limited)...');
+                const highProbabilityNames = isProduction ? 
+                    // Production: Only check very common names
+                    ['photo', 'conference', 'group', '01', '02', '03'] :
+                    // Local: Check more patterns
+                    ['photo', 'conference', 'group', 'talk', 'speaking', 'a', 'b', 'c', '01', '02', '03'];
+                
+                console.log(`📝 Checking ${highProbabilityNames.length} common patterns...`);
+                
+                const patternChecks = highProbabilityNames.map(async (name) => {
+                    // Only check jpg/JPG to minimize 404s
+                    for (const ext of ['jpg', 'JPG']) {
+                        const url = `../img/conference/${name}.${ext}`;
+                        if (await checkImageExists(url)) {
+                            const exists = discoveredPhotos.some(p => p.url === url);
+                            if (!exists) {
+                                return { url, name, ext };
+                            }
+                        }
+                    }
+                    return null;
+                });
+                
+                const patternResults = await Promise.all(patternChecks);
+                const foundPatterns = patternResults.filter(r => r !== null);
+                discoveredPhotos.push(...foundPatterns);
+                
+                if (foundPatterns.length > 0) {
+                    console.log(`✅ Found patterns: ${foundPatterns.map(p => p.name + '.' + p.ext).join(', ')}`);
+                }
+                
+                return discoveredPhotos;
+            }
             
-            // Function to check if image exists
-            function imageExists(url) {
-                return new Promise((resolve) => {
+            // Preload smaller images first for better UX
+            function preloadImage(url) {
+                return new Promise((resolve, reject) => {
                     const img = new Image();
-                    img.onload = () => resolve(true);
-                    img.onerror = () => resolve(false);
+                    img.onload = () => resolve(url);
+                    img.onerror = () => reject(url);
                     img.src = url;
                 });
             }
             
-            // Load all available conference photos
+            // ULTIMATE SMART SCAN: Finds ANY files in conference folder
             async function loadConferencePhotos() {
+                console.log('🔄 ULTIMATE SCAN: Finding ALL photos in conference folder...');
                 $('#photoLoader').show();
-                conferencePhotos = [];
+                $('#loadingText').text('Smart scanning conference folder...');
                 
-                // Try to load known photos with different extensions
-                for (const photo of knownPhotos) {
-                    for (const ext of imageExtensions) {
-                        const photoUrl = `../img/conference/${photo}.${ext}`;
-                        if (await imageExists(photoUrl)) {
-                            conferencePhotos.push({
-                                url: photoUrl,
-                                name: photo
-                            });
-                            break; // Found this photo, move to next
-                        }
+                try {
+                    // Use Netlify-optimized photo discovery
+                    const discoveredPhotos = await smartPhotoDiscovery();
+                    
+                    if (discoveredPhotos.length === 0) {
+                        console.log('⚠️ No conference photos found, using fallback');
+                        conferencePhotos = [{
+                            url: '../displayPicture/Viki-DP.jpg',
+                            name: 'Profile Photo',
+                            ext: 'jpg'
+                        }];
+                    } else {
+                        // Sort photos intelligently (numbers first, then alphabetically)
+                        conferencePhotos = discoveredPhotos.sort((a, b) => {
+                            const aNum = parseInt(a.name);
+                            const bNum = parseInt(b.name);
+                            
+                            // If both are numbers, sort numerically
+                            if (!isNaN(aNum) && !isNaN(bNum)) {
+                                return aNum - bNum;
+                            }
+                            
+                            // Numbers come before non-numbers
+                            if (!isNaN(aNum)) return -1;
+                            if (!isNaN(bNum)) return 1;
+                            
+                            // Both are non-numbers, sort alphabetically
+                            return a.name.localeCompare(b.name);
+                        });
+                        
+                        console.log(`🎉 FOUND ${conferencePhotos.length} photos:`, 
+                            conferencePhotos.map(p => p.name + '.' + p.ext).join(', '));
                     }
+                    
+                    // Show first photo immediately
+                    if (conferencePhotos.length > 0) {
+                        currentPhotoIndex = 0;
+                        $('#conferencePhoto').attr('src', conferencePhotos[0].url);
+                    }
+                    
+                } catch (error) {
+                    console.error('❌ Error during smart scan:', error);
+                    // Fallback to profile photo
+                    conferencePhotos = [{
+                        url: '../displayPicture/Viki-DP.jpg',
+                        name: 'Profile Photo', 
+                        ext: 'jpg'
+                    }];
+                    $('#conferencePhoto').attr('src', conferencePhotos[0].url);
                 }
                 
                 $('#photoLoader').hide();
                 
-                // If no photos found, use fallback
-                if (conferencePhotos.length === 0) {
-                    conferencePhotos = [{
-                        url: '../displayPicture/Viki-DP.jpg',
-                        name: 'Profile Photo'
-                    }];
-                }
-                
                 // Update UI
                 updatePhotoCounter();
                 createPhotoIndicators();
-                showPhoto(0);
                 startCarousel();
+                
+                // Preload remaining images in background for smooth navigation
+                if (conferencePhotos.length > 1) {
+                    setTimeout(() => {
+                        preloadNextImages();
+                    }, 100);
+                }
+                
+                console.log('🎠 Conference photo carousel started with smart discovery');
             }
             
-            // Show specific photo
+            // NETLIFY-OPTIMIZED: Fast image existence check with minimal 404s
+            function checkImageExists(url) {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.onload = () => resolve(true);
+                    img.onerror = () => resolve(false);
+                    
+                    // Shorter timeout for Netlify - faster fail for missing images
+                    setTimeout(() => resolve(false), 200);
+                    img.src = url;
+                });
+            }
+            
+            // Preload next few images for smooth navigation
+            async function preloadNextImages() {
+                const nextImages = conferencePhotos.slice(1, 4); // Preload next 3 images
+                for (const photo of nextImages) {
+                    try {
+                        await preloadImage(photo.url);
+                        console.log(`✅ Preloaded: ${photo.name}.${photo.ext}`);
+                    } catch (error) {
+                        console.log(`⚠️ Failed to preload: ${photo.name}`);
+                    }
+                }
+            }
+            
+            // SEAMLESS NAVIGATION: Preload adjacent images around current photo
+            function preloadAdjacentImages(currentIndex) {
+                if (conferencePhotos.length <= 1) return;
+                
+                // Preload previous and next 2 images for instant switching
+                const toPreload = [];
+                
+                for (let offset = -2; offset <= 2; offset++) {
+                    if (offset === 0) continue; // Skip current image
+                    
+                    let index = currentIndex + offset;
+                    
+                    // Handle wraparound
+                    if (index < 0) index = conferencePhotos.length + index;
+                    if (index >= conferencePhotos.length) index = index - conferencePhotos.length;
+                    
+                    toPreload.push(conferencePhotos[index]);
+                }
+                
+                // Preload in background without blocking UI
+                toPreload.forEach(photo => {
+                    setTimeout(() => {
+                        preloadImage(photo.url).catch(() => {
+                            // Silent fail for background preloading
+                        });
+                    }, 50);
+                });
+            }
+            
+            // SEAMLESS photo switching with smart loading indicator
             function showPhoto(index) {
                 if (conferencePhotos.length === 0) return;
                 
                 currentPhotoIndex = index;
                 const photo = conferencePhotos[currentPhotoIndex];
                 
-                // Update photo with smooth transition
+                // Smart loading indicator - only show if image takes time to load
+                let loadingTimeout;
+                let hasLoaded = false;
+                
+                // Show loading indicator only after 300ms if image hasn't loaded
+                loadingTimeout = setTimeout(() => {
+                    if (!hasLoaded) {
+                        $('#loadingText').text('Loading photo...');
+                        $('#photoLoader').show();
+                    }
+                }, 300);
+                
+                // Check if image is already cached (instant load)
                 const $img = $('#conferencePhoto');
-                $img.fadeOut(300, function() {
-                    $img.attr('src', photo.url);
-                    $img.attr('alt', `Conference Speaking Photo - ${photo.name}`);
-                    $img.fadeIn(300);
-                });
+                const tempImg = new Image();
+                
+                tempImg.onload = function() {
+                    hasLoaded = true;
+                    clearTimeout(loadingTimeout);
+                    
+                    // Hide any loading indicator
+                    $('#photoLoader').hide();
+                    
+                    // Smooth transition - crossfade for seamless experience
+                    if ($img.attr('src') === photo.url) {
+                        // Image already showing, no transition needed
+                        return;
+                    }
+                    
+                    $img.fadeOut(150, function() {
+                        $img.attr('src', photo.url);
+                        $img.attr('alt', `Conference Speaking Photo - ${photo.name}.${photo.ext}`);
+                        $img.fadeIn(150);
+                    });
+                };
+                
+                tempImg.onerror = function() {
+                    hasLoaded = true;
+                    clearTimeout(loadingTimeout);
+                    $('#photoLoader').hide();
+                    console.log(`❌ Failed to load: ${photo.name}.${photo.ext}`);
+                    // Keep current image on error
+                };
+                
+                tempImg.src = photo.url;
                 
                 updatePhotoCounter();
                 updateIndicators();
+                
+                // Preload adjacent images for even smoother navigation
+                preloadAdjacentImages(index);
             }
             
             // Update photo counter
             function updatePhotoCounter() {
                 $('#currentPhotoIndex').text(currentPhotoIndex + 1);
                 $('#totalPhotos').text(conferencePhotos.length);
+                
+                // Add photo info tooltip
+                if (conferencePhotos[currentPhotoIndex]) {
+                    const photo = conferencePhotos[currentPhotoIndex];
+                    $('#totalPhotos').attr('title', `Current photo: ${photo.name}.${photo.ext}`);
+                }
             }
             
             // Create photo indicators (dots)

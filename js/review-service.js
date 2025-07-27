@@ -72,10 +72,14 @@ class ReviewService {
             return true;
         }
 
+        // Show loading indicator immediately for better UX
+        this.showLoadingIndicator();
+
         try {
-            // Try to load from JSON first - determine correct path based on current page
+            // Try primary path first - using smarter detection
             const reviewsPath = this.getReviewsJsonPath();
-            console.log(`🔍 Attempting to fetch reviews from: ${reviewsPath}`);
+            console.log(`🔍 Loading reviews from: ${reviewsPath}`);
+            
             const response = await fetch(reviewsPath);
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             
@@ -83,43 +87,37 @@ class ReviewService {
             this.reviewsData = data.reviews || [];
             this.isLoaded = true;
             
-            console.log(`✅ Loaded ${this.reviewsData.length} reviews from JSON`);
+            console.log(`✅ Loaded ${this.reviewsData.length} reviews from primary path: ${reviewsPath}`);
             return true;
         } catch (error) {
-            console.log('⚠️ Primary path failed, trying alternative paths:', error.message);
+            console.log('⚠️ Primary path failed, using fallback data immediately:', error.message);
             
-            // Try alternative paths in case primary detection failed
-            const alternativePaths = [
-                'reviews.json',
-                '../reviews.json', 
-                '../../portfolio/reviews.json',
-                '../../../portfolio/reviews.json',
-                'portfolio/reviews.json'
-            ];
-            
-            for (const altPath of alternativePaths) {
-                try {
-                    console.log(`🔄 Trying alternative path: ${altPath}`);
-                    const altResponse = await fetch(altPath);
-                    if (altResponse.ok) {
-                        const altData = await altResponse.json();
-                        this.reviewsData = altData.reviews || [];
-                        this.isLoaded = true;
-                        console.log(`✅ SUCCESS! Loaded ${this.reviewsData.length} reviews from alternative path: ${altPath}`);
-                        return true;
-                    }
-                } catch (altError) {
-                    console.log(`❌ Alternative path failed: ${altPath} - ${altError.message}`);
-                }
-            }
-            
-            // If all paths fail, use fallback
-            console.log('⚠️ All paths failed, using fallback data');
+            // Use fallback immediately instead of trying multiple paths
+            // This prevents the slow loading issue
             this.reviewsData = this.fallbackData;
             this.isLoaded = true;
             
-            console.log(`✅ Using ${this.reviewsData.length} fallback reviews`);
+            console.log(`✅ Using ${this.reviewsData.length} fallback reviews (prevents slow loading)`);
             return false;
+        }
+    }
+
+    /**
+     * Show loading indicator for better UX
+     */
+    showLoadingIndicator() {
+        const container = document.getElementById('testimonials-container');
+        if (container) {
+            container.innerHTML = `
+                <div class="row">
+                    <div class="col-12 text-center py-4">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading testimonials...</span>
+                        </div>
+                        <p class="text-muted mt-2">Loading student reviews...</p>
+                    </div>
+                </div>
+            `;
         }
     }
 

@@ -11,15 +11,20 @@
 /* Modern Professional Styling */
 
 /* Color Variables */
+/* Legacy variables - now inherit from brand-colors.css */
 :root {
-    --primary-color: #007bff;
-    --secondary-color: #28a745;
-    --accent-color: #ffc107;
-    --dark-color: #343a40;
+    --primary-color: #4285f4;
+    --secondary-color: #ff6d01;
+    --accent-color: #ff8534;
+    --dark-color: #2c3e50;
     --light-color: #f8f9fa;
     --white: #ffffff;
-    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    
+    /* Gradients with proper fallbacks */
+    --gradient-primary: linear-gradient(135deg, #4285f4, #1b73e8);
+    --gradient-secondary: linear-gradient(135deg, #ff6d01, #e55100);
+    
+    /* Shadows */
     --shadow-light: 0 2px 10px rgba(0,0,0,0.1);
     --shadow-medium: 0 5px 20px rgba(0,0,0,0.15);
     --shadow-heavy: 0 10px 30px rgba(0,0,0,0.2);
@@ -30,6 +35,40 @@ body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
     color: var(--dark-color);
+}
+
+/* Text gradient effects */
+.text-gradient {
+    background: var(--gradient-primary) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    display: inline-block !important;
+}
+
+/* Bootstrap color utilities override */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.text-secondary {
+    color: var(--secondary-color) !important;
+}
+
+.text-success {
+    color: #28a745 !important;
+}
+
+.text-warning {
+    color: #ffc107 !important;
+}
+
+.text-info {
+    color: var(--primary-color) !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
 }
 
 .display-4 {
@@ -111,26 +150,30 @@ body {
     border: none;
     position: relative;
     overflow: hidden;
+    color: #ffffff !important;
 }
 
 .btn-primary {
-    background: var(--gradient-primary);
+    background: var(--gradient-primary) !important;
     box-shadow: var(--shadow-light);
+    color: #ffffff !important;
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-heavy);
+    color: #ffffff !important;
 }
 
 .btn-outline-primary {
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    background: transparent;
+    border: 2px solid var(--primary-color) !important;
+    color: var(--primary-color) !important;
+    background: transparent !important;
 }
 
 .btn-outline-primary:hover {
-    background: var(--primary-color);
+    background: var(--primary-color) !important;
+    color: #ffffff !important;
     transform: translateY(-3px);
     box-shadow: var(--shadow-medium);
 }
@@ -533,8 +576,8 @@ a:hover, a:active, a:focus {
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 1px;
-    color: #ffffff;
-    background: var(--primary-color);
+    color: #ffffff !important;
+    background: var(--primary-color) !important;
     border: 2px solid transparent;
     border-radius: 6px;
     box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
@@ -544,10 +587,58 @@ a:hover, a:active, a:focus {
     cursor: pointer;
 }
 
+/* Fix for badges and tags */
+.badge, .tag {
+    display: inline-block !important;
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    background: var(--primary-color) !important;
+    border-radius: 20px !important;
+    text-decoration: none !important;
+}
+
+.badge-primary, .tag-primary {
+    background: var(--primary-color) !important;
+    color: #ffffff !important;
+}
+
+.badge-secondary, .tag-secondary {
+    background: var(--secondary-color) !important;
+    color: #ffffff !important;
+}
+
+.badge-success {
+    background: #28a745 !important;
+    color: #ffffff !important;
+}
+
+.badge-warning {
+    background: #ffc107 !important;
+    color: #212529 !important;
+}
+
+.badge-info {
+    background: var(--primary-color) !important;
+    color: #ffffff !important;
+}
+
+.badge-danger {
+    background: #dc3545 !important;
+    color: #ffffff !important;
+}
+
+.badge-light {
+    background: #f8f9fa !important;
+    color: #495057 !important;
+    border: 1px solid #dee2e6 !important;
+}
+
 .btn:hover {
-    color: var(--primary-color);
-    background: transparent;
-    border-color: var(--primary-color);
+    color: var(--primary-color) !important;
+    background: transparent !important;
+    border-color: var(--primary-color) !important;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 123, 255, 0.25);
     text-decoration: none;
@@ -559,8 +650,9 @@ a:hover, a:active, a:focus {
 }
 
 .btn-primary {
-    background: var(--gradient-primary);
-    border-color: var(--primary-color);
+    background: var(--gradient-primary) !important;
+    border-color: var(--primary-color) !important;
+    color: #ffffff !important;
 }
 
 .btn-success {
@@ -867,11 +959,11 @@ a:hover, a:active, a:focus {
 
 .navbar-brand-row {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 12px 0;
+    padding: 15px 0;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
-    height: 120px; /* Fixed standard height */
-    max-height: 120px;
+    height: 140px; /* Increased for larger logo */
+    max-height: 140px;
     display: flex;
     align-items: center;
 }
@@ -905,19 +997,22 @@ a:hover, a:active, a:focus {
 }
 
 .navbar-logo {
-    width: 90px;
-    height: 90px;
+    width: 125px;
+    height: 125px;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 20px;
-    border: 4px solid var(--primary-color);
+    margin-right: 25px;
+    background: transparent;
+    padding: 0;
+    border: 3px solid #f8f9fa;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.25);
 }
 
 .navbar-logo:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 25px rgba(0, 123, 255, 0.4);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    border-color: var(--brand-primary);
 }
 
 .navbar-title {
@@ -928,6 +1023,44 @@ a:hover, a:active, a:focus {
     font-weight: 700;
     font-size: 2.8rem;
     letter-spacing: 0.6px;
+}
+
+/* Institute Brand Text Styling */
+.navbar-brand-text-container {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.navbar-brand-main {
+    color: #1b73e8 !important;
+    font-weight: 700;
+    font-size: 2.0rem;
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    text-transform: none;
+    line-height: 1.2;
+}
+
+.navbar-brand-subtitle {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 1.0rem;
+    letter-spacing: 0.3px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: none;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand-custom:hover .navbar-brand-main {
+    color: #4285f4 !important;
+    transform: translateY(-1px);
+}
+
+.navbar-brand-custom:hover .navbar-brand-subtitle {
+    color: #4285f4 !important;
 }
 
 /* Second row navigation */
@@ -976,20 +1109,34 @@ a:hover, a:active, a:focus {
     }
     
     .navbar-logo {
-        width: 75px;
-        height: 75px;
-        margin-right: 15px;
-        border: 3px solid var(--primary-color);
+        width: 105px;
+        height: 105px;
+        margin-right: 20px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: transparent;
+        padding: 0;
+        border: 3px solid #f8f9fa;
     }
     
     .navbar-title {
         font-size: 2.2rem;
     }
     
+    .navbar-brand-main {
+        font-size: 1.7rem;
+        letter-spacing: 0.8px;
+    }
+    
+    .navbar-brand-subtitle {
+        font-size: 0.9rem;
+        letter-spacing: 0.2px;
+    }
+    
     .navbar-brand-row {
-        height: 100px;
-        max-height: 100px;
-        padding: 10px 0;
+        height: 130px;
+        max-height: 130px;
+        padding: 15px 0;
     }
     
     .navbar-wrapper.scrolled .navbar {
@@ -1016,17 +1163,31 @@ a:hover, a:active, a:focus {
         font-size: 1.8rem;
     }
     
+    .navbar-brand-main {
+        font-size: 1.4rem;
+        letter-spacing: 0.6px;
+    }
+    
+    .navbar-brand-subtitle {
+        font-size: 0.8rem;
+        letter-spacing: 0.2px;
+    }
+    
     .navbar-logo {
-        width: 65px;
-        height: 65px;
-        margin-right: 12px;
-        border: 3px solid var(--primary-color);
+        width: 90px;
+        height: 90px;
+        margin-right: 15px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: transparent;
+        padding: 0;
+        border: 3px solid #f8f9fa;
     }
     
     .navbar-brand-row {
-        height: 85px;
-        max-height: 85px;
-        padding: 8px 0;
+        height: 115px;
+        max-height: 115px;
+        padding: 12px 0;
     }
     
     .navbar-wrapper.scrolled .navbar {

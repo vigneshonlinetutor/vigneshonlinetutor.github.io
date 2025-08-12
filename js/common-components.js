@@ -177,6 +177,9 @@ class CommonComponents {
         // Wait for navigation and footer to load
         await Promise.all(componentPromises);
 
+        // Initialize logo detection system after navigation loads
+        await this.initializeLogoSystem();
+
         // Load scripts last (least critical for initial render)
         try {
             await this.insertComponent('scripts', 'common-scripts');
@@ -232,6 +235,61 @@ class CommonComponents {
                 </div>
             `;
         }
+    }
+
+    /**
+     * Initialize logo detection system
+     */
+    async initializeLogoSystem() {
+        try {
+            // Load logo detector script if not already loaded
+            if (typeof window.LogoDetector === 'undefined') {
+                console.log('📋 Loading logo detection system...');
+                
+                await this.loadScript(`${this.basePath}js/logo-detector.js`);
+                
+                // Wait for LogoDetector to be available
+                let attempts = 0;
+                while (typeof window.LogoDetector === 'undefined' && attempts < 50) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    attempts++;
+                }
+                
+                if (typeof window.LogoDetector === 'undefined') {
+                    throw new Error('Logo detector script failed to load');
+                }
+            }
+            
+            // Initialize logo detection
+            if (window.LogoDetector) {
+                await window.LogoDetector.init();
+                console.log('🎯 Logo detection system initialized');
+            }
+            
+        } catch (error) {
+            console.error('❌ Logo system initialization failed:', error);
+            // Continue without logo system - fallback will work
+        }
+    }
+
+    /**
+     * Dynamically load a script
+     */
+    loadScript(src) {
+        return new Promise((resolve, reject) => {
+            // Check if script already exists
+            const existingScript = document.querySelector(`script[src="${src}"]`);
+            if (existingScript) {
+                resolve();
+                return;
+            }
+
+            const script = document.createElement('script');
+            script.src = src;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
     }
 
     /**

@@ -1,0 +1,184 @@
+/**
+ * VISTA Brand Color System
+ * Centralized color management for consistent branding across the entire website
+ * 
+ * Usage: Update colors here and they automatically reflect site-wide
+ * Author: Vignesh Institute for Software Training Academy
+ */
+
+:root {
+    /* =================================================
+     * PRIMARY BRAND COLORS
+     * Update these with your exact brand color codes
+     * ================================================= */
+    
+    /* Blue Theme Colors */
+    --vista-blue-primary: #4285f4;      /* Google-style blue - UPDATE THIS */
+    --vista-blue-light: #6fa8f5;        /* Lighter blue variant */
+    --vista-blue-dark: #1b73e8;         /* Darker blue variant */
+    --vista-blue-ultra-light: #e8f0fe;  /* Very light blue for backgrounds */
+    
+    /* Orange Theme Colors */
+    --vista-orange-primary: #ff6d01;    /* Vibrant orange - UPDATE THIS */
+    --vista-orange-light: #ff8534;      /* Lighter orange variant */
+    --vista-orange-dark: #e55100;       /* Darker orange variant */
+    --vista-orange-ultra-light: #fff3e0; /* Very light orange for backgrounds */
+    
+    /* =================================================
+     * SEMANTIC COLOR ASSIGNMENTS
+     * These map to specific UI elements
+     * ================================================= */
+    
+    /* Primary Brand Colors */
+    --brand-primary: var(--vista-blue-primary);
+    --brand-secondary: var(--vista-orange-primary);
+    --brand-accent: var(--vista-orange-light);
+    
+    /* Navigation & Header Colors */
+    --nav-brand-color: var(--vista-blue-dark);
+    --nav-hover-color: var(--vista-blue-primary);
+    --nav-background: #ffffff;
+    --nav-border: var(--vista-blue-ultra-light);
+    
+    /* Button Colors */
+    --btn-primary-bg: var(--vista-blue-primary);
+    --btn-primary-hover: var(--vista-blue-dark);
+    --btn-secondary-bg: var(--vista-orange-primary);
+    --btn-secondary-hover: var(--vista-orange-dark);
+    
+    /* Text Colors */
+    --text-primary: #2c3e50;
+    --text-secondary: #6c757d;
+    --text-light: #868e96;
+    --text-brand: var(--vista-blue-primary);
+    
+    /* Background Colors */
+    --bg-primary: #ffffff;
+    --bg-light: #f8f9fa;
+    --bg-blue-light: var(--vista-blue-ultra-light);
+    --bg-orange-light: var(--vista-orange-ultra-light);
+    
+    /* Border Colors */
+    --border-light: #e9ecef;
+    --border-primary: var(--vista-blue-light);
+    --border-accent: var(--vista-orange-light);
+    
+    /* Shadow Colors */
+    --shadow-light: rgba(0, 123, 255, 0.15);
+    --shadow-medium: rgba(0, 123, 255, 0.25);
+    --shadow-strong: rgba(0, 123, 255, 0.35);
+    
+    /* =================================================
+     * GRADIENT COMBINATIONS
+     * Professional gradients using brand colors
+     * ================================================= */
+    
+    --gradient-primary: linear-gradient(135deg, var(--vista-blue-primary), var(--vista-blue-light));
+    --gradient-secondary: linear-gradient(135deg, var(--vista-orange-primary), var(--vista-orange-light));
+    --gradient-hero: linear-gradient(135deg, var(--vista-blue-primary), var(--vista-orange-primary));
+    --gradient-subtle: linear-gradient(135deg, var(--vista-blue-ultra-light), var(--vista-orange-ultra-light));
+    
+    /* =================================================
+     * STATUS & FEEDBACK COLORS
+     * For alerts, notifications, etc.
+     * ================================================= */
+    
+    --success-color: #28a745;
+    --success-light: #d4edda;
+    --warning-color: var(--vista-orange-primary);
+    --warning-light: var(--vista-orange-ultra-light);
+    --error-color: #dc3545;
+    --error-light: #f8d7da;
+    --info-color: var(--vista-blue-primary);
+    --info-light: var(--vista-blue-ultra-light);
+}
+
+/* =================================================
+ * DARK MODE SUPPORT (Future Enhancement)
+ * Uncomment when implementing dark mode
+ * ================================================= */
+
+/*
+@media (prefers-color-scheme: dark) {
+    :root {
+        --vista-blue-primary: #4dabf7;
+        --vista-orange-primary: #ffa726;
+        --text-primary: #ffffff;
+        --text-secondary: #adb5bd;
+        --bg-primary: #1a1a1a;
+        --bg-light: #2d2d2d;
+        --border-light: #495057;
+    }
+}
+*/
+
+/* =================================================
+ * UTILITY CLASSES
+ * Quick color application classes
+ * ================================================= */
+
+.text-brand-primary { color: var(--brand-primary) !important; }
+.text-brand-secondary { color: var(--brand-secondary) !important; }
+.bg-brand-primary { background-color: var(--brand-primary) !important; }
+.bg-brand-secondary { background-color: var(--brand-secondary) !important; }
+.bg-brand-light { background-color: var(--bg-blue-light) !important; }
+.border-brand { border-color: var(--border-primary) !important; }
+
+/* =================================================
+ * COMPONENT-SPECIFIC OVERRIDES
+ * Override existing styles to use brand colors
+ * ================================================= */
+
+/* Bootstrap Override */
+.btn-primary {
+    background-color: var(--btn-primary-bg);
+    border-color: var(--btn-primary-bg);
+}
+
+.btn-primary:hover {
+    background-color: var(--btn-primary-hover);
+    border-color: var(--btn-primary-hover);
+}
+
+.btn-secondary {
+    background-color: var(--btn-secondary-bg);
+    border-color: var(--btn-secondary-bg);
+}
+
+.btn-secondary:hover {
+    background-color: var(--btn-secondary-hover);
+    border-color: var(--btn-secondary-hover);
+}
+
+/* Links */
+a {
+    color: var(--brand-primary);
+}
+
+a:hover {
+    color: var(--brand-secondary);
+}
+
+/* =================================================
+ * INSTRUCTIONS FOR UPDATING COLORS
+ * ================================================= */
+
+/*
+
+TO UPDATE YOUR BRAND COLORS:
+
+1. Replace the color values in the "PRIMARY BRAND COLORS" section above:
+   --vista-blue-primary: #YOUR_EXACT_BLUE_CODE
+   --vista-orange-primary: #YOUR_EXACT_ORANGE_CODE
+
+2. The system will automatically generate light/dark variants
+   Or manually set them if you have specific shades
+
+3. All website colors will update automatically!
+
+EXAMPLE:
+If your blue is #1e3a8a and orange is #f97316, update like this:
+--vista-blue-primary: #1e3a8a;
+--vista-orange-primary: #f97316;
+
+*/

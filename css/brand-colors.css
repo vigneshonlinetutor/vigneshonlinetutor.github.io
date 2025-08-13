@@ -12,17 +12,17 @@
      * Update these with your exact brand color codes
      * ================================================= */
     
-    /* Blue Theme Colors */
-    --vista-blue-primary: #4285f4;      /* Google-style blue - UPDATE THIS */
-    --vista-blue-light: #6fa8f5;        /* Lighter blue variant */
-    --vista-blue-dark: #1b73e8;         /* Darker blue variant */
-    --vista-blue-ultra-light: #e8f0fe;  /* Very light blue for backgrounds */
+    /* VISTA Authentic Logo Colors */
+    --vista-blue-primary: #056aaa;      /* Main brand blue from logo */
+    --vista-blue-light: #4a8bc2;        /* Calculated lighter variant */
+    --vista-blue-dark: #05335a;         /* Navy blue from logo */
+    --vista-blue-ultra-light: #e8f2fb;  /* Ultra light blue backgrounds */
     
-    /* Orange Theme Colors */
-    --vista-orange-primary: #ff6d01;    /* Vibrant orange - UPDATE THIS */
-    --vista-orange-light: #ff8534;      /* Lighter orange variant */
-    --vista-orange-dark: #e55100;       /* Darker orange variant */
-    --vista-orange-ultra-light: #fff3e0; /* Very light orange for backgrounds */
+    /* VISTA Orange Theme Colors */
+    --vista-orange-primary: #fea939;    /* Main brand orange from logo */
+    --vista-orange-light: #feb76b;      /* Calculated lighter variant */
+    --vista-orange-dark: #e0932d;       /* Darker orange variant */
+    --vista-orange-ultra-light: #fef4e8; /* Ultra light orange backgrounds */
     
     /* =================================================
      * SEMANTIC COLOR ASSIGNMENTS

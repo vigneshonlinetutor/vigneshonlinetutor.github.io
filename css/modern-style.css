@@ -13,16 +13,16 @@
 /* Color Variables */
 /* Legacy variables - now inherit from brand-colors.css */
 :root {
-    --primary-color: #4285f4;
-    --secondary-color: #ff6d01;
-    --accent-color: #ff8534;
+    --primary-color: #056aaa;
+    --secondary-color: #fea939;
+    --accent-color: #feb76b;
     --dark-color: #2c3e50;
     --light-color: #f8f9fa;
     --white: #ffffff;
     
-    /* Gradients with proper fallbacks */
-    --gradient-primary: linear-gradient(135deg, #4285f4, #1b73e8);
-    --gradient-secondary: linear-gradient(135deg, #ff6d01, #e55100);
+    /* VISTA Brand Gradients */
+    --gradient-primary: linear-gradient(135deg, #056aaa, #05335a);
+    --gradient-secondary: linear-gradient(135deg, #fea939, #e0932d);
     
     /* Shadows */
     --shadow-light: 0 2px 10px rgba(0,0,0,0.1);
@@ -39,7 +39,7 @@ body {
 
 /* Text gradient effects */
 .text-gradient {
-    background: var(--gradient-primary) !important;
+    background: linear-gradient(135deg, #056aaa, #05335a) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
@@ -48,11 +48,11 @@ body {
 
 /* Bootstrap color utilities override */
 .text-primary {
-    color: var(--primary-color) !important;
+    color: #056aaa !important;
 }
 
 .text-secondary {
-    color: var(--secondary-color) !important;
+    color: #fea939 !important;
 }
 
 .text-success {
@@ -60,11 +60,11 @@ body {
 }
 
 .text-warning {
-    color: #ffc107 !important;
+    color: #fea939 !important;
 }
 
 .text-info {
-    color: var(--primary-color) !important;
+    color: #056aaa !important;
 }
 
 .text-danger {
@@ -600,12 +600,12 @@ a:hover, a:active, a:focus {
 }
 
 .badge-primary, .tag-primary {
-    background: var(--primary-color) !important;
+    background: #056aaa !important;
     color: #ffffff !important;
 }
 
 .badge-secondary, .tag-secondary {
-    background: var(--secondary-color) !important;
+    background: #fea939 !important;
     color: #ffffff !important;
 }
 
@@ -615,12 +615,12 @@ a:hover, a:active, a:focus {
 }
 
 .badge-warning {
-    background: #ffc107 !important;
-    color: #212529 !important;
+    background: #fea939 !important;
+    color: #ffffff !important;
 }
 
 .badge-info {
-    background: var(--primary-color) !important;
+    background: #056aaa !important;
     color: #ffffff !important;
 }
 
@@ -1033,7 +1033,7 @@ a:hover, a:active, a:focus {
 }
 
 .navbar-brand-main {
-    color: #1b73e8 !important;
+    color: #05335a !important;
     font-weight: 700;
     font-size: 2.0rem;
     letter-spacing: 1px;
@@ -1055,12 +1055,12 @@ a:hover, a:active, a:focus {
 }
 
 .navbar-brand-custom:hover .navbar-brand-main {
-    color: #4285f4 !important;
+    color: #056aaa !important;
     transform: translateY(-1px);
 }
 
 .navbar-brand-custom:hover .navbar-brand-subtitle {
-    color: #4285f4 !important;
+    color: #056aaa !important;
 }
 
 /* Second row navigation */

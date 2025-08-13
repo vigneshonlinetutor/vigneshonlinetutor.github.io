@@ -9,9 +9,14 @@
     <meta content="Upcoming Conference Talks and Speaking Engagements by Vignesh Srinivasa Raghavan" name="description">
 
     <!-- Critical Performance Optimizations - Preload Resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" as="style" crossorigin onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Preload Critical Font Files (WOFF2) for Instant Text Rendering -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Ew-.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUFjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM70w-.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <link rel="preload" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" as="style" crossorigin onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" as="style" crossorigin onload="this.onload=null;this.rel='stylesheet'">
     
     <!-- Fallback for preload (no-JS) -->
     <noscript>
@@ -28,6 +33,39 @@
         /* Basic font loading to prevent FOUC */
         body {
             font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #343a40;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Critical above-the-fold styles */
+        .hero {
+            background: linear-gradient(135deg, #056aaa 0%, #05335a 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .text-center {
+            text-align: center;
         }
         
         /* Minimal loading indicators */
@@ -47,6 +85,12 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        /* Skeleton shimmer animation */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
     </style>
 
     <!-- Enhanced Dropdown Navigation Styling -->
@@ -60,13 +104,7 @@
             color: #007bff !important;
         }
         
-        /* Remove any button-like styling */
-        .navbar-nav .nav-item .nav-link {
-            background: none !important;
-            border: none !important;
-            box-shadow: none !important;
-            outline: none !important;
-        }
+        /* Remove any button-like styling - consolidated with enhanced styling below */
         
         /* Dropdown Navigation Enhancements */
         .navbar-nav .nav-item.dropdown {
@@ -171,12 +209,16 @@
             }
         }
         
-        /* Enhanced navigation link styling */
+        /* Enhanced navigation link styling - consolidated */
         .navbar-nav .nav-link {
             position: relative;
             font-weight: 500;
             transition: color 0.3s ease;
             padding: 0.5rem 1rem !important;
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
         }
         
         /* Underline effect for non-dropdown links */
@@ -226,15 +268,7 @@
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
         
-        /* Remove any Bootstrap button styling that might cause squares */
-        .nav-link.active,
-        .nav-link:focus,
-        .nav-link:hover {
-            background: none !important;
-            border: none !important;
-            outline: none !important;
-            box-shadow: none !important;
-        }
+        /* Consolidated with enhanced navigation link styling above */
         
         /* Ensure dropdown menus stay visible when hovering over them */
         .dropdown:hover .dropdown-menu {
@@ -324,7 +358,7 @@
     <!-- Page Header End -->
 
     <!-- Conference Talks Start -->
-    <div class="training" id="talks-content">
+    <div class="training" id="talks-content" style="min-height: 1200px;">
         <div class="container">
             <!-- Professional Photos Carousel -->
             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
@@ -335,12 +369,17 @@
             <!-- Photo Carousel -->
             <div class="row mb-5">
                 <div class="col-12">
-                    <div class="conference-photo-container text-center wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="position-relative d-inline-block">
+                    <div class="conference-photo-container text-center wow fadeInUp" data-wow-delay="0.1s" style="min-height: 650px;">
+                        <div class="position-relative d-inline-block" style="min-height: 600px; min-width: 300px;">
                             <img id="conferencePhoto" 
                                  src="../displayPicture/Viki-DP.jpg" 
                                  class="img-fluid rounded-lg shadow-lg" 
                                  alt="Conference Speaking Photo" 
+                                 width="900" 
+                                 height="600"
+                                 loading="eager"
+                                 fetchpriority="high"
+                                 decoding="async"
                                  style="max-height: 600px; width: 100%; max-width: 900px; object-fit: cover; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
                             
                             <!-- Photo overlay for better visibility -->
@@ -351,15 +390,26 @@
                                 <span id="currentPhotoIndex">1</span> / <span id="totalPhotos">Loading...</span>
                             </div>
                             
-                            <!-- Enhanced Loading indicator -->
-                            <div id="photoLoader" class="position-absolute" style="top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255,255,255,0.95); padding: 25px; border-radius: 15px; display: none; box-shadow: 0 5px 15px rgba(0,0,0,0.2); text-align: center; min-width: 200px;">
-                                <i class="fas fa-image text-primary" style="font-size: 2rem; margin-bottom: 10px;"></i><br>
-                                <i class="fas fa-spinner fa-spin text-primary"></i> <span id="loadingText">Loading photos...</span>
+                            <!-- Skeleton Photo Placeholder -->
+                            <div id="photoLoader" class="position-absolute w-100 h-100" style="top: 0; left: 0; display: none; border-radius: 15px; overflow: hidden;">
+                                <!-- Skeleton Photo -->
+                                <div class="skeleton-photo" style="width: 100%; height: 100%; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 15px; position: relative;">
+                                    <!-- Skeleton Photo Counter -->
+                                    <div class="skeleton-counter" style="position: absolute; bottom: 15px; right: 15px; width: 60px; height: 25px; background: rgba(0,0,0,0.7); border-radius: 20px;"></div>
+                                    <!-- Skeleton Controls -->
+                                    <div class="skeleton-controls" style="position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%); width: 200px; height: 35px;">
+                                        <div style="width: 100%; height: 100%; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 20px;"></div>
+                                    </div>
+                                </div>
+                                <!-- Loading Text -->
+                                <div style="position: absolute; bottom: -100px; left: 50%; transform: translateX(-50%); text-align: center; width: 200px;">
+                                    <i class="fas fa-spinner fa-spin text-primary"></i> <span id="loadingText">Loading photos...</span>
+                                </div>
                             </div>
                         </div>
                         
                         <!-- Photo navigation dots -->
-                        <div id="photoIndicators" class="mt-3">
+                        <div id="photoIndicators" class="mt-3" style="min-height: 20px;">
                             <!-- Dynamically generated dots will appear here -->
                         </div>
                         
@@ -385,10 +435,10 @@
                 <p>Premier conferences where I've shared insights on AI in testing, automation frameworks, and performance engineering</p>
             </div>
             
-            <div class="row">
+            <div class="row" style="min-height: 400px;">
                 <!-- TribeQonf - Biggest Conference -->
                 <div class="col-lg-6 col-md-12 mb-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="card h-100 border-0 shadow-lg" style="border-radius: 15px; overflow: hidden;">
+                    <div class="card h-100 border-0 shadow-lg" style="border-radius: 15px; overflow: hidden; min-height: 350px;">
                         <!-- Premier Event Badge -->
                         <div class="position-absolute" style="top: 15px; right: 15px; z-index: 10;">
                             <span class="badge badge-danger px-3 py-2" style="font-size: 0.85rem; border-radius: 20px;">Premier Event</span>
@@ -420,7 +470,7 @@
 
                 <!-- Automation Star - Biggest Conference -->
                 <div class="col-lg-6 col-md-12 mb-4 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="card h-100 border-0 shadow-lg" style="border-radius: 15px; overflow: hidden;">
+                    <div class="card h-100 border-0 shadow-lg" style="border-radius: 15px; overflow: hidden; min-height: 350px;">
                         <!-- Premier Event Badge -->
                         <div class="position-absolute" style="top: 15px; right: 15px; z-index: 10;">
                             <span class="badge badge-danger px-3 py-2" style="font-size: 0.85rem; border-radius: 20px;">Premier Event</span>
@@ -751,7 +801,7 @@
     <div id="common-scripts"></div>
 
     <!-- Enhanced Performance Loading - Optimized for Conference Page -->
-    <script>
+    <script defer>
         window.addEventListener('load', function() {
             console.log('✅ Conference page enhanced loading initialized');
             // Additional conference-specific optimizations can be added here
@@ -759,7 +809,7 @@
     </script>
     
     <!-- Custom Navigation Behavior -->
-    <script>
+    <script defer>
         // Wait for jQuery to be loaded by common components system
         function waitForJQuery(callback) {
             if (typeof $ !== 'undefined') {
@@ -813,7 +863,7 @@
     </script>
 
     <!-- Conference Photos Carousel -->
-    <script>
+    <script defer>
         // Wait for jQuery before initializing photo carousel
         waitForJQuery(function() {
             // Conference photos management
@@ -822,8 +872,8 @@
             let carouselInterval;
             let isCarouselPaused = false;
             
-            // Common image extensions to try
-            const imageExtensions = ['JPG', 'jpg', 'JPEG', 'jpeg', 'PNG', 'png', 'WebP', 'webp'];
+            // Prioritize modern formats (WebP first for better compression)
+            const imageExtensions = ['webp', 'WebP', 'jpg', 'jpeg', 'JPG', 'JPEG', 'png', 'PNG'];
             
             // NETLIFY-OPTIMIZED: Efficient photo discovery for static hosting
             async function smartPhotoDiscovery() {
@@ -834,10 +884,7 @@
                 const isProduction = window.location.hostname !== 'localhost' && 
                                    window.location.hostname !== '127.0.0.1';
                 
-                console.log(`🚀 NETLIFY-OPTIMIZED: Efficient photo discovery (${isProduction ? 'PRODUCTION' : 'LOCAL'} mode)...`);
-                
-                // STRATEGY 1: Check existing known photos first (zero 404s)
-                console.log('📋 Strategy 1: Checking known photos...');
+                console.log(`🚀 Photo discovery (${isProduction ? 'PROD' : 'LOCAL'} mode)...`);
                 const knownPhotos = [
                     'TribeQonf_Group', '2A5A1415', '2A5A1428', '2A5A1430', '2A5A1435',
                     'DSC01171', 'DSC01405', 'DSC01534', 'DSC01782', 'DSC01801',
@@ -859,17 +906,11 @@
                 const foundKnown = knownResults.filter(r => r !== null);
                 discoveredPhotos.push(...foundKnown);
                 
-                if (foundKnown.length > 0) {
-                    console.log(`✅ Found ${foundKnown.length} known photos:`, foundKnown.map(p => p.name + '.' + p.ext));
-                }
-                
-                // STRATEGY 2: Smart sequential check (limited to avoid 404 flood)
-                console.log('🔢 Strategy 2: Smart sequential check (limited)...');
+                console.log(`✅ Found ${foundKnown.length} known photos`);
                 $('#loadingText').text(`Found ${discoveredPhotos.length} photos, checking for more...`);
                 
                 // Limit even more aggressively in production to minimize 404s
                 const maxSequential = isProduction ? 10 : 20;
-                console.log(`📊 Checking 1-${maxSequential} for sequential files...`);
                 
                 const sequentialChecks = [];
                 for (let num = 1; num <= maxSequential; num++) {
@@ -889,20 +930,13 @@
                     });
                 }
                 
-                // Process in batches to avoid overwhelming the server
-                const batchSize = 5;
-                for (let i = 0; i < sequentialChecks.length; i += batchSize) {
-                    const batch = sequentialChecks.slice(i, i + batchSize);
-                    const batchResults = await Promise.all(batch.map(check => check()));
-                    const foundInBatch = batchResults.filter(r => r !== null);
-                    discoveredPhotos.push(...foundInBatch);
-                    
-                    if (foundInBatch.length > 0) {
-                        console.log(`✅ Found sequential: ${foundInBatch.map(p => p.name + '.' + p.ext).join(', ')}`);
-                    }
-                    
-                    // Small delay between batches to be gentle on Netlify
-                    await new Promise(resolve => setTimeout(resolve, 100));
+                // Process all sequential checks concurrently for maximum speed
+                const sequentialResults = await Promise.all(sequentialChecks.map(check => check()));
+                const foundSequential = sequentialResults.filter(r => r !== null);
+                discoveredPhotos.push(...foundSequential);
+                
+                if (foundSequential.length > 0) {
+                    console.log(`✅ Found sequential: ${foundSequential.map(p => p.name + '.' + p.ext).join(', ')}`);
                 }
                 
                 // STRATEGY 3: Common naming patterns (very limited for Netlify)
@@ -950,9 +984,39 @@
                 });
             }
             
-            // ULTIMATE SMART SCAN: Finds ANY files in conference folder
+            // ULTIMATE SMART SCAN: Finds ANY files in conference folder with caching
             async function loadConferencePhotos() {
                 console.log('🔄 ULTIMATE SCAN: Finding ALL photos in conference folder...');
+                
+                // Check sessionStorage cache first
+                const cacheKey = 'conference_photos_cache';
+                const cacheTimestamp = 'conference_photos_timestamp';
+                const cacheExpiry = 30 * 60 * 1000; // 30 minutes
+                
+                const cachedPhotos = sessionStorage.getItem(cacheKey);
+                const cachedTimestamp = sessionStorage.getItem(cacheTimestamp);
+                
+                if (cachedPhotos && cachedTimestamp) {
+                    const now = Date.now();
+                    const timestamp = parseInt(cachedTimestamp);
+                    
+                    if (now - timestamp < cacheExpiry) {
+                        console.log('✅ Using cached photos from sessionStorage');
+                        conferencePhotos = JSON.parse(cachedPhotos);
+                        
+                        // Show first photo immediately from cache
+                        if (conferencePhotos.length > 0) {
+                            currentPhotoIndex = 0;
+                            $('#conferencePhoto').attr('src', conferencePhotos[0].url);
+                        }
+                        
+                        updatePhotoCounter();
+                        createPhotoIndicators();
+                        startCarousel();
+                        return; // Skip API calls
+                    }
+                }
+                
                 $('#photoLoader').show();
                 $('#loadingText').text('Smart scanning conference folder...');
                 
@@ -988,6 +1052,15 @@
                         
                         console.log(`🎉 FOUND ${conferencePhotos.length} photos:`, 
                             conferencePhotos.map(p => p.name + '.' + p.ext).join(', '));
+                        
+                        // Cache the results in sessionStorage
+                        try {
+                            sessionStorage.setItem(cacheKey, JSON.stringify(conferencePhotos));
+                            sessionStorage.setItem(cacheTimestamp, Date.now().toString());
+                            console.log('💾 Photos cached in sessionStorage for 30 minutes');
+                        } catch (e) {
+                            console.warn('⚠️ Failed to cache photos:', e);
+                        }
                     }
                     
                     // Show first photo immediately
@@ -1118,6 +1191,10 @@
                     $img.fadeOut(150, function() {
                         $img.attr('src', photo.url);
                         $img.attr('alt', `Conference Speaking Photo - ${photo.name}.${photo.ext}`);
+                        $img.attr('width', '900');
+                        $img.attr('height', '600');
+                        $img.attr('loading', 'lazy');
+                        $img.attr('decoding', 'async');
                         $img.fadeIn(150);
                     });
                 };

@@ -878,16 +878,34 @@
             // NETLIFY-OPTIMIZED: Efficient photo discovery for static hosting
             async function smartPhotoDiscovery() {
                 const discoveredPhotos = [];
-                const imageExts = ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG', 'WEBP'];
+                const imageExts = ['webp', 'WebP', 'jpg', 'jpeg', 'JPG', 'JPEG', 'png', 'PNG'];
                 
                 // Detect if we're in production (netlify, github pages, etc.)
                 const isProduction = window.location.hostname !== 'localhost' && 
                                    window.location.hostname !== '127.0.0.1';
                 
                 console.log(`🚀 Photo discovery (${isProduction ? 'PROD' : 'LOCAL'} mode)...`);
+                
+                // PRODUCTION OPTIMIZATION: Direct WebP check first since we know these exist
+                if (isProduction) {
+                    const directWebPPhotos = [
+                        'TribeQonf_Group', '2A5A1415', '2A5A1428', '2A5A1430', '2A5A1435',
+                        'DSC01405', 'DSC01782', 'DSC01801',
+                        'IMG_2431', 'IMG_2441', 'IMG_2446', 'IMG_2453'
+                    ];
+                    
+                    console.log('📦 PROD: Direct WebP check for known optimized images...');
+                    for (const name of directWebPPhotos) {
+                        const url = `../img/conference/${name}.webp`;
+                        discoveredPhotos.push({ url, name, ext: 'webp' });
+                    }
+                    console.log(`✅ PROD: Added ${discoveredPhotos.length} known WebP files directly`);
+                    return discoveredPhotos;
+                }
+                
                 const knownPhotos = [
                     'TribeQonf_Group', '2A5A1415', '2A5A1428', '2A5A1430', '2A5A1435',
-                    'DSC01171', 'DSC01405', 'DSC01534', 'DSC01782', 'DSC01801',
+                    'DSC01405', 'DSC01782', 'DSC01801',
                     'IMG_2431', 'IMG_2441', 'IMG_2446', 'IMG_2453'
                 ];
                 
@@ -915,8 +933,8 @@
                 const sequentialChecks = [];
                 for (let num = 1; num <= maxSequential; num++) {
                     sequentialChecks.push(async () => {
-                        // Try most common extensions first
-                        const commonExts = ['jpg', 'JPG', 'jpeg', 'png'];
+                        // Try most common extensions first (prioritize WebP since we converted all images)
+                        const commonExts = ['webp', 'WebP', 'jpg', 'JPG'];
                         for (const ext of commonExts) {
                             const url = `../img/conference/${num}.${ext}`;
                             if (await checkImageExists(url)) {
@@ -950,8 +968,8 @@
                 console.log(`📝 Checking ${highProbabilityNames.length} common patterns...`);
                 
                 const patternChecks = highProbabilityNames.map(async (name) => {
-                    // Only check jpg/JPG to minimize 404s
-                    for (const ext of ['jpg', 'JPG']) {
+                    // Check WebP first since we optimized all images, then fallback to JPG
+                    for (const ext of ['webp', 'WebP', 'jpg', 'JPG']) {
                         const url = `../img/conference/${name}.${ext}`;
                         if (await checkImageExists(url)) {
                             const exists = discoveredPhotos.some(p => p.url === url);
